@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Simple Flashlight</string>
+    <string name="camera_error">Obtaining the camera failed</string>
 </resources>

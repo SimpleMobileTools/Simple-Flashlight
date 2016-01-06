@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MyCamera {
     private ImageView toggleBtn;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
 
     private void setupCameraImpl() {
         cameraImpl = new MyCameraImpl(this);
-        cameraImpl.setupCamera();
         cameraImpl.toggleFlashlight();
     }
 
@@ -60,11 +60,18 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
 
     @Override
     public void enableFlashlight() {
-        toggleBtn.setBackground(getResources().getDrawable(R.mipmap.flashlight_big_on));
+        toggleBtn.setImageResource(R.mipmap.flashlight_big_on);
     }
 
     @Override
     public void disableFlashlight() {
-        toggleBtn.setBackground(getResources().getDrawable(R.mipmap.flashlight_big_off));
+        toggleBtn.setImageResource(R.mipmap.flashlight_big_off);
+    }
+
+    @Override
+    public void cameraUnavailable() {
+        final String errorMsg = getResources().getString(R.string.camera_error);
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+        disableFlashlight();
     }
 }
