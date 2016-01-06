@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
             params = camera.getParameters();
             params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             camera.setParameters(params);
+
+            if (isFlashlightOn)
+                enableFlashlight();
         }
     }
 
