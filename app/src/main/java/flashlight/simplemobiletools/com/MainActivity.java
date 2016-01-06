@@ -18,21 +18,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupCamera();
 
+        setupToggleButton();
+        setupCamera();
+        toggleFlashlight();
+    }
+
+    private void setupToggleButton() {
         toggleBtn = (ImageView) findViewById(R.id.toggle_btn);
         toggleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isFlashlightOn = !isFlashlightOn;
-
-                if (isFlashlightOn) {
-                    enableFlashlight();
-                } else {
-                    disableFlashlight();
-                }
+                toggleFlashlight();
             }
         });
+    }
+
+    private void toggleFlashlight() {
+        isFlashlightOn = !isFlashlightOn;
+
+        if (isFlashlightOn) {
+            enableFlashlight();
+        } else {
+            disableFlashlight();
+        }
     }
 
     private void setupCamera() {
