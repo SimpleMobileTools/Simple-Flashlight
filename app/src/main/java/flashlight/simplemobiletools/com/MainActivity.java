@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
     private void enableFlashlight() {
         params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
         camera.setParameters(params);
-        toggleBtn.getDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_ATOP);
+        toggleBtn.setBackground(getResources().getDrawable(R.mipmap.flashlight_big_on));
     }
 
     private void disableFlashlight() {
         params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
         camera.setParameters(params);
-        toggleBtn.getDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);
+        toggleBtn.setBackground(getResources().getDrawable(R.mipmap.flashlight_big_off));
     }
 
     private void releaseCamera() {
