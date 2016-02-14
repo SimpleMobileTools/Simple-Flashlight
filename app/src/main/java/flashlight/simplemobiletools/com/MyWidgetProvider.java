@@ -51,13 +51,17 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
     @Override
     public void enableFlashlight() {
         remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_big_on);
-        widgetManager.updateAppWidget(widgetIds, remoteViews);
+        for (int widgetId : widgetIds) {
+            widgetManager.updateAppWidget(widgetId, remoteViews);
+        }
     }
 
     @Override
     public void disableFlashlight() {
         remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_big_off);
-        widgetManager.updateAppWidget(widgetIds, remoteViews);
+        for (int widgetId : widgetIds) {
+            widgetManager.updateAppWidget(widgetId, remoteViews);
+        }
         cameraImpl.releaseCamera();
     }
 
