@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
-    package="flashlight.simplemobiletools.com"
+    package="com.simplemobiletools.flashlight"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.simplemobiletools.flashlight.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,7 +30,7 @@
         </activity>
 
         <receiver
-            android:name=".MyWidgetProvider"
+            android:name="com.simplemobiletools.flashlight.MyWidgetProvider"
             android:icon="@mipmap/ic_launcher"
             android:label="Simple Flashlight">
             <intent-filter>

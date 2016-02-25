@@ -1,4 +1,4 @@
-package flashlight.simplemobiletools.com;
+package com.simplemobiletools.flashlight;
 
 import android.hardware.Camera;
 
