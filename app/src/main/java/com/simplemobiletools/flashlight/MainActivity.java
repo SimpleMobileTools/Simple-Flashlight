@@ -6,21 +6,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity implements MyCamera {
-    private ImageView toggleBtn;
+    @BindView(R.id.toggle_btn) ImageView toggleBtn;
     private MyCameraImpl cameraImpl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        setupToggleButton();
         setupCameraImpl();
     }
 
@@ -48,14 +51,9 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
         cameraImpl.toggleFlashlight();
     }
 
-    private void setupToggleButton() {
-        toggleBtn = (ImageView) findViewById(R.id.toggle_btn);
-        toggleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cameraImpl.toggleFlashlight();
-            }
-        });
+    @OnClick(R.id.toggle_btn)
+    public void toggleFlashlight() {
+        cameraImpl.toggleFlashlight();
     }
 
     @Override
