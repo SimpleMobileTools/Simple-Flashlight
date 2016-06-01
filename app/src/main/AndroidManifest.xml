@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.simplemobiletools.flashlight.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,8 +29,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about"
+            android:screenOrientation="portrait"/>
+
         <receiver
-            android:name="com.simplemobiletools.flashlight.MyWidgetProvider"
+            android:name=".MyWidgetProvider"
             android:icon="@mipmap/ic_launcher"
             android:label="Simple Flashlight">
             <intent-filter>
