@@ -1,5 +1,12 @@
-# Simple-Flashlight
+# SimpleFlashlight
+<img alt="Logo" src="app/src/main/res/mipmap-xxxhdpi/launcher.png" width="80">
+
 I'm flashlight. Simple flashlight.
+
+A flashlight app with black background, so it doesn't knock you out when launched in the dark. If it's turned on via the app, it will prevent the device from falling asleep, so it can be used for longer operations too. It also contains a simple 1x1 widget you can place on your homescreen.
+
+<img alt="App image" src="screenshots/app.png" width="250">
+<img alt="App image" src="screenshots/widget.png" width="250">
 
 License
 -------
