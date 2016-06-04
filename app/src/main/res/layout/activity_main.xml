@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_margin">
+    android:background="@android:color/black"
+    android:gravity="center"
+    android:padding="@dimen/activity_margin">
 
     <ImageView
         android:id="@+id/toggle_btn"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/flashlight_big"/>
 </RelativeLayout>

@@ -6,14 +6,18 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
 public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
     private static MyCameraImpl cameraImpl;
     private static RemoteViews remoteViews;
+    private static Context cxt;
     private static int[] widgetIds;
     private static AppWidgetManager widgetManager;
     private static final String TOGGLE = "toggle";
+    private static Bitmap coloredBmp;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
@@ -22,17 +26,22 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
     }
 
     private void initVariables(Context context) {
-        final ComponentName component = new ComponentName(context, MyWidgetProvider.class);
+        cxt = context;
+        final ComponentName component = new ComponentName(cxt, MyWidgetProvider.class);
         widgetManager = AppWidgetManager.getInstance(context);
         widgetIds = widgetManager.getAppWidgetIds(component);
 
-        final Intent intent = new Intent(context, MyWidgetProvider.class);
+        final Intent intent = new Intent(cxt, MyWidgetProvider.class);
         intent.setAction(TOGGLE);
 
-        final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+        final PendingIntent pendingIntent = PendingIntent.getBroadcast(cxt, 0, intent, 0);
+        remoteViews = new RemoteViews(cxt.getPackageName(), R.layout.widget);
         remoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
         cameraImpl = new MyCameraImpl(this);
+
+        final Resources res = cxt.getResources();
+        final int appColor = res.getColor(R.color.colorPrimary);
+        coloredBmp = Utils.getColoredIcon(cxt.getResources(), appColor, R.mipmap.flashlight_small);
     }
 
     @Override
@@ -50,7 +59,7 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
 
     @Override
     public void enableFlashlight() {
-        remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_big_on);
+        remoteViews.setImageViewBitmap(R.id.toggle_btn, coloredBmp);
         for (int widgetId : widgetIds) {
             widgetManager.updateAppWidget(widgetId, remoteViews);
         }
@@ -58,7 +67,7 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
 
     @Override
     public void disableFlashlight() {
-        remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_big_off);
+        remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_small);
         for (int widgetId : widgetIds) {
             widgetManager.updateAppWidget(widgetId, remoteViews);
         }

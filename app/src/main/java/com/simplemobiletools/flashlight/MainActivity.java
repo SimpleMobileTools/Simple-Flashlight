@@ -1,6 +1,7 @@
 package com.simplemobiletools.flashlight;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,20 +82,21 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
 
     @Override
     public void enableFlashlight() {
-        toggleBtn.setImageResource(R.mipmap.flashlight_big_on);
+        final int appColor = getResources().getColor(R.color.colorPrimary);
+        toggleBtn.setImageResource(R.mipmap.flashlight_big);
+        toggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
     public void disableFlashlight() {
-        toggleBtn.setImageResource(R.mipmap.flashlight_big_off);
+        toggleBtn.setImageResource(R.mipmap.flashlight_big);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
     public void cameraUnavailable() {
-        final String errorMsg = getResources().getString(R.string.camera_error);
-        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, R.string.camera_error);
         disableFlashlight();
     }
 }
