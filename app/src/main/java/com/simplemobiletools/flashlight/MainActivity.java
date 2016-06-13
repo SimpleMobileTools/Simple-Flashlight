@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
     }
 
     private void setupCameraImpl() {
-        cameraImpl = new MyCameraImpl(this);
+        cameraImpl = new MyCameraImpl(this, this);
         cameraImpl.toggleFlashlight();
     }
 

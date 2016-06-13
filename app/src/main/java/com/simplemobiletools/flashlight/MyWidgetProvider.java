@@ -37,7 +37,7 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(cxt, 0, intent, 0);
         remoteViews = new RemoteViews(cxt.getPackageName(), R.layout.widget);
         remoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
-        cameraImpl = new MyCameraImpl(this);
+        cameraImpl = new MyCameraImpl(this, cxt);
 
         final Resources res = cxt.getResources();
         final int appColor = res.getColor(R.color.colorPrimary);
