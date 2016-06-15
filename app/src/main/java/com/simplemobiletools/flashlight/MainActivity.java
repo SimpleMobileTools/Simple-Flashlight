@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
     @Override
     protected void onStart() {
         super.onStart();
-        cameraImpl.setupCamera();
+        cameraImpl.handleCameraSetup();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        cameraImpl.setupCamera();
+        cameraImpl.handleCameraSetup();
     }
 
     @Override

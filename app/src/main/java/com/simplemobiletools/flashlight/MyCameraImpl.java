@@ -1,11 +1,7 @@
 package com.simplemobiletools.flashlight;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.Camera;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
-import android.os.Build;
 import android.util.Log;
 
 public class MyCameraImpl {
@@ -15,15 +11,18 @@ public class MyCameraImpl {
     private boolean isFlashlightOn;
     private MyCamera callback;
     private Context context;
+    private boolean isMarshmallow;
+    private MarshmallowCamera marshmallowCamera;
 
     public MyCameraImpl(MyCamera camera, Context cxt) {
         callback = camera;
         context = cxt;
-        setupCamera();
+        isMarshmallow = isMarshmallow();
+        handleCameraSetup();
     }
 
     public void toggleFlashlight() {
-        setupCamera();
+        handleCameraSetup();
         isFlashlightOn = !isFlashlightOn;
 
         if (isFlashlightOn) {
@@ -33,8 +32,22 @@ public class MyCameraImpl {
         }
     }
 
-    public void setupCamera() {
-        if (isMarshmallow())
+    public void handleCameraSetup() {
+        if (isMarshmallow) {
+            setupMarshmallowCamera();
+        } else {
+            setupCamera();
+        }
+    }
+
+    private void setupMarshmallowCamera() {
+        if (marshmallowCamera == null) {
+            marshmallowCamera = new MarshmallowCamera(callback, context);
+        }
+    }
+
+    private void setupCamera() {
+        if (isMarshmallow)
             return;
 
         if (camera == null) {
@@ -54,7 +67,7 @@ public class MyCameraImpl {
     }
 
     private void enableFlashlight() {
-        if (isMarshmallow()) {
+        if (isMarshmallow) {
             toggleMarshmallowFlashlight(true);
         } else {
             if (camera == null || params == null)
@@ -79,16 +92,8 @@ public class MyCameraImpl {
         callback.disableFlashlight();
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void toggleMarshmallowFlashlight(boolean enable) {
-        try {
-            final CameraManager manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
-            final String[] list = manager.getCameraIdList();
-            manager.setTorchMode(list[0], enable);
-        } catch (CameraAccessException e) {
-            Log.e(TAG, "toggle marshmallow flashlight " + e.getMessage());
-            callback.cameraUnavailable();
-        }
+        marshmallowCamera.toggleMarshmallowFlashlight(enable);
     }
 
     public void releaseCamera() {
