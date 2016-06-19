@@ -19,6 +19,7 @@ public class Utils {
         final Paint paint = new Paint();
         final ColorFilter filter = new PorterDuffColorFilter(newTextColor, PorterDuff.Mode.SRC_IN);
         paint.setColorFilter(filter);
+
         final Canvas canvas = new Canvas(bmp);
         canvas.drawBitmap(bmp, 0, 0, paint);
         return bmp;

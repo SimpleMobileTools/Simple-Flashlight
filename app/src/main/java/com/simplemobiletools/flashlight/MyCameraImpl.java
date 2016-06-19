@@ -6,26 +6,27 @@ import android.util.Log;
 
 public class MyCameraImpl {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
-    private Camera camera;
-    private Camera.Parameters params;
-    private boolean isFlashlightOn;
-    private MyCamera callback;
-    private Context context;
-    private boolean isMarshmallow;
-    private MarshmallowCamera marshmallowCamera;
+    private static Camera mCamera;
+    private static Camera.Parameters mParams;
+    private static MyCamera mCallback;
+    private static Context mContext;
+    private static MarshmallowCamera mMarshmallowCamera;
+
+    private static boolean mIsFlashlightOn;
+    private static boolean mIsMarshmallow;
 
     public MyCameraImpl(MyCamera camera, Context cxt) {
-        callback = camera;
-        context = cxt;
-        isMarshmallow = isMarshmallow();
+        mCallback = camera;
+        mContext = cxt;
+        mIsMarshmallow = isMarshmallow();
         handleCameraSetup();
     }
 
     public void toggleFlashlight() {
         handleCameraSetup();
-        isFlashlightOn = !isFlashlightOn;
+        mIsFlashlightOn = !mIsFlashlightOn;
 
-        if (isFlashlightOn) {
+        if (mIsFlashlightOn) {
             enableFlashlight();
         } else {
             disableFlashlight();
@@ -33,7 +34,7 @@ public class MyCameraImpl {
     }
 
     public void handleCameraSetup() {
-        if (isMarshmallow) {
+        if (mIsMarshmallow) {
             setupMarshmallowCamera();
         } else {
             setupCamera();
@@ -41,65 +42,67 @@ public class MyCameraImpl {
     }
 
     private void setupMarshmallowCamera() {
-        if (marshmallowCamera == null) {
-            marshmallowCamera = new MarshmallowCamera(callback, context);
+        if (mMarshmallowCamera == null) {
+            mMarshmallowCamera = new MarshmallowCamera(mCallback, mContext);
         }
     }
 
     private void setupCamera() {
-        if (isMarshmallow)
+        if (mIsMarshmallow)
             return;
 
-        if (camera == null) {
+        if (mCamera == null) {
             try {
-                camera = Camera.open();
-                params = camera.getParameters();
-                params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                camera.setParameters(params);
+                mCamera = Camera.open();
+                mParams = mCamera.getParameters();
+                mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                mCamera.setParameters(mParams);
 
-                if (isFlashlightOn)
+                if (mIsFlashlightOn)
                     enableFlashlight();
             } catch (Exception e) {
-                Log.e(TAG, "setup camera " + e.getMessage());
-                callback.cameraUnavailable();
+                Log.e(TAG, "setup mCamera " + e.getMessage());
+                mCallback.cameraUnavailable();
             }
         }
     }
 
     private void enableFlashlight() {
-        if (isMarshmallow) {
+        if (mIsMarshmallow) {
             toggleMarshmallowFlashlight(true);
         } else {
-            if (camera == null || params == null)
+            if (mCamera == null || mParams == null) {
                 return;
+            }
 
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(params);
+            mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            mCamera.setParameters(mParams);
         }
-        callback.enableFlashlight();
+        mCallback.enableFlashlight();
     }
 
     private void disableFlashlight() {
         if (isMarshmallow()) {
             toggleMarshmallowFlashlight(false);
         } else {
-            if (camera == null || params == null)
+            if (mCamera == null || mParams == null) {
                 return;
+            }
 
-            params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-            camera.setParameters(params);
+            mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            mCamera.setParameters(mParams);
         }
-        callback.disableFlashlight();
+        mCallback.disableFlashlight();
     }
 
     private void toggleMarshmallowFlashlight(boolean enable) {
-        marshmallowCamera.toggleMarshmallowFlashlight(enable);
+        mMarshmallowCamera.toggleMarshmallowFlashlight(enable);
     }
 
     public void releaseCamera() {
-        if (camera != null) {
-            camera.release();
-            camera = null;
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
         }
     }
 

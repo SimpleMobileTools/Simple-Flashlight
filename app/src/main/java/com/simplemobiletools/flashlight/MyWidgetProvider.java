@@ -11,67 +11,66 @@ import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
 public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
-    private static MyCameraImpl cameraImpl;
-    private static RemoteViews remoteViews;
-    private static Context cxt;
-    private static int[] widgetIds;
-    private static AppWidgetManager widgetManager;
     private static final String TOGGLE = "toggle";
-    private static Bitmap coloredBmp;
+    private static MyCameraImpl mCameraImpl;
+    private static RemoteViews mRemoteViews;
+    private static AppWidgetManager mWidgetManager;
+    private static Bitmap mColoredBmp;
+
+    private static int[] mWidgetIds;
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         initVariables(context);
-        appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
+        appWidgetManager.updateAppWidget(appWidgetIds, mRemoteViews);
     }
 
     private void initVariables(Context context) {
-        cxt = context;
-        final ComponentName component = new ComponentName(cxt, MyWidgetProvider.class);
-        widgetManager = AppWidgetManager.getInstance(context);
-        widgetIds = widgetManager.getAppWidgetIds(component);
+        final ComponentName component = new ComponentName(context, MyWidgetProvider.class);
+        mWidgetManager = AppWidgetManager.getInstance(context);
+        mWidgetIds = mWidgetManager.getAppWidgetIds(component);
 
-        final Intent intent = new Intent(cxt, MyWidgetProvider.class);
+        final Intent intent = new Intent(context, MyWidgetProvider.class);
         intent.setAction(TOGGLE);
 
-        final PendingIntent pendingIntent = PendingIntent.getBroadcast(cxt, 0, intent, 0);
-        remoteViews = new RemoteViews(cxt.getPackageName(), R.layout.widget);
-        remoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
-        cameraImpl = new MyCameraImpl(this, cxt);
+        final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        mRemoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
+        mRemoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
+        mCameraImpl = new MyCameraImpl(this, context);
 
-        final Resources res = cxt.getResources();
+        final Resources res = context.getResources();
         final int appColor = res.getColor(R.color.colorPrimary);
-        coloredBmp = Utils.getColoredIcon(cxt.getResources(), appColor, R.mipmap.flashlight_small);
+        mColoredBmp = Utils.getColoredIcon(context.getResources(), appColor, R.mipmap.flashlight_small);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         if (action.equals(TOGGLE)) {
-            if (cameraImpl == null) {
+            if (mCameraImpl == null) {
                 initVariables(context);
             }
 
-            cameraImpl.toggleFlashlight();
+            mCameraImpl.toggleFlashlight();
         } else
             super.onReceive(context, intent);
     }
 
     @Override
     public void enableFlashlight() {
-        remoteViews.setImageViewBitmap(R.id.toggle_btn, coloredBmp);
-        for (int widgetId : widgetIds) {
-            widgetManager.updateAppWidget(widgetId, remoteViews);
+        mRemoteViews.setImageViewBitmap(R.id.toggle_btn, mColoredBmp);
+        for (int widgetId : mWidgetIds) {
+            mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }
     }
 
     @Override
     public void disableFlashlight() {
-        remoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_small);
-        for (int widgetId : widgetIds) {
-            widgetManager.updateAppWidget(widgetId, remoteViews);
+        mRemoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_small);
+        for (int widgetId : mWidgetIds) {
+            mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }
-        cameraImpl.releaseCamera();
+        mCameraImpl.releaseCamera();
     }
 
     @Override
@@ -85,10 +84,10 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
     }
 
     private void releaseCamera(Context context) {
-        if (cameraImpl == null)
+        if (mCameraImpl == null)
             initVariables(context);
 
         disableFlashlight();
-        cameraImpl.releaseCamera();
+        mCameraImpl.releaseCamera();
     }
 }

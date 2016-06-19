@@ -9,6 +9,7 @@ import android.util.Log;
 
 public class MarshmallowCamera {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
+
     private MyCamera mCallback;
     private Context mContext;
 

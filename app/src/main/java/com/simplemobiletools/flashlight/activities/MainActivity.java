@@ -1,22 +1,27 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.activities;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.simplemobiletools.flashlight.MyCamera;
+import com.simplemobiletools.flashlight.MyCameraImpl;
+import com.simplemobiletools.flashlight.R;
+import com.simplemobiletools.flashlight.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MyCamera {
-    @BindView(R.id.toggle_btn) ImageView toggleBtn;
-    private MyCameraImpl cameraImpl;
+    @BindView(R.id.toggle_btn) ImageView mToggleBtn;
+
+    private static MyCameraImpl mCameraImpl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +34,7 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -47,50 +51,50 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
     }
 
     private void setupCameraImpl() {
-        cameraImpl = new MyCameraImpl(this, this);
-        cameraImpl.toggleFlashlight();
+        mCameraImpl = new MyCameraImpl(this, this);
+        mCameraImpl.toggleFlashlight();
     }
 
     @OnClick(R.id.toggle_btn)
     public void toggleFlashlight() {
-        cameraImpl.toggleFlashlight();
+        mCameraImpl.toggleFlashlight();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        cameraImpl.handleCameraSetup();
+        mCameraImpl.handleCameraSetup();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        cameraImpl.handleCameraSetup();
+        mCameraImpl.handleCameraSetup();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        cameraImpl.releaseCamera();
+        mCameraImpl.releaseCamera();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        cameraImpl.releaseCamera();
+        mCameraImpl.releaseCamera();
     }
 
     @Override
     public void enableFlashlight() {
         final int appColor = getResources().getColor(R.color.colorPrimary);
-        toggleBtn.setImageResource(R.mipmap.flashlight_big);
-        toggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
+        mToggleBtn.setImageResource(R.mipmap.flashlight_big);
+        mToggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
     public void disableFlashlight() {
-        toggleBtn.setImageResource(R.mipmap.flashlight_big);
+        mToggleBtn.setImageResource(R.mipmap.flashlight_big);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
