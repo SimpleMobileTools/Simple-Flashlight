@@ -10,12 +10,17 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.widget.RemoteViews;
 
-public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+
+public class MyWidgetProvider extends AppWidgetProvider {
     private static final String TOGGLE = "toggle";
     private static MyCameraImpl mCameraImpl;
     private static RemoteViews mRemoteViews;
     private static AppWidgetManager mWidgetManager;
     private static Bitmap mColoredBmp;
+    private static Bus mBus;
+    private static Context mContext;
 
     private static int[] mWidgetIds;
 
@@ -26,6 +31,7 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
     }
 
     private void initVariables(Context context) {
+        mContext = context;
         final ComponentName component = new ComponentName(context, MyWidgetProvider.class);
         mWidgetManager = AppWidgetManager.getInstance(context);
         mWidgetIds = mWidgetManager.getAppWidgetIds(component);
@@ -36,18 +42,23 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         mRemoteViews = new RemoteViews(context.getPackageName(), R.layout.widget);
         mRemoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
-        mCameraImpl = new MyCameraImpl(this, context);
+        mCameraImpl = new MyCameraImpl(context);
 
         final Resources res = context.getResources();
         final int appColor = res.getColor(R.color.colorPrimary);
         mColoredBmp = Utils.getColoredIcon(context.getResources(), appColor, R.mipmap.flashlight_small);
+
+        if (mBus == null) {
+            mBus = BusProvider.getInstance();
+        }
+        registerBus();
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         if (action.equals(TOGGLE)) {
-            if (mCameraImpl == null) {
+            if (mCameraImpl == null || mBus == null) {
                 initVariables(context);
             }
 
@@ -56,7 +67,6 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
             super.onReceive(context, intent);
     }
 
-    @Override
     public void enableFlashlight() {
         mRemoteViews.setImageViewBitmap(R.id.toggle_btn, mColoredBmp);
         for (int widgetId : mWidgetIds) {
@@ -64,22 +74,34 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
         }
     }
 
-    @Override
     public void disableFlashlight() {
         mRemoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_small);
         for (int widgetId : mWidgetIds) {
             mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }
-        mCameraImpl.releaseCamera();
     }
 
-    @Override
-    public void cameraUnavailable() {
+    @Subscribe
+    public void cameraUnavailable(Events.CameraUnavailable event) {
+        if (mContext != null) {
+            Utils.showToast(mContext, R.string.camera_error);
+            disableFlashlight();
+        }
+    }
+
+    @Subscribe
+    public void stateChangedEvent(Events.StateChanged event) {
+        if (event.getIsEnabled()) {
+            enableFlashlight();
+        } else {
+            disableFlashlight();
+        }
     }
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
         super.onDeleted(context, appWidgetIds);
+        unregisterBus();
         releaseCamera(context);
     }
 
@@ -87,7 +109,20 @@ public class MyWidgetProvider extends AppWidgetProvider implements MyCamera {
         if (mCameraImpl == null)
             initVariables(context);
 
-        disableFlashlight();
         mCameraImpl.releaseCamera();
+    }
+
+    private void registerBus() {
+        try {
+            mBus.register(this);
+        } catch (Exception ignored) {
+        }
+    }
+
+    private void unregisterBus() {
+        try {
+            mBus.unregister(this);
+        } catch (Exception ignored) {
+        }
     }
 }

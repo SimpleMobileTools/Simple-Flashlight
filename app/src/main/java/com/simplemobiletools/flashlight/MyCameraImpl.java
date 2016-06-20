@@ -4,33 +4,35 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.util.Log;
 
+import com.squareup.otto.Bus;
+
 public class MyCameraImpl {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
     private static Camera mCamera;
     private static Camera.Parameters mParams;
-    private static MyCamera mCallback;
     private static Context mContext;
     private static MarshmallowCamera mMarshmallowCamera;
+    private static Bus mBus;
 
     private static boolean mIsFlashlightOn;
     private static boolean mIsMarshmallow;
 
-    public MyCameraImpl(MyCamera camera, Context cxt) {
-        mCallback = camera;
+    public MyCameraImpl(Context cxt) {
         mContext = cxt;
         mIsMarshmallow = isMarshmallow();
+
+        if (mBus == null) {
+            mBus = BusProvider.getInstance();
+            mBus.register(this);
+        }
+
         handleCameraSetup();
+        checkFlashlight();
     }
 
     public void toggleFlashlight() {
-        handleCameraSetup();
         mIsFlashlightOn = !mIsFlashlightOn;
-
-        if (mIsFlashlightOn) {
-            enableFlashlight();
-        } else {
-            disableFlashlight();
-        }
+        handleCameraSetup();
     }
 
     public void handleCameraSetup() {
@@ -39,11 +41,12 @@ public class MyCameraImpl {
         } else {
             setupCamera();
         }
+        checkFlashlight();
     }
 
     private void setupMarshmallowCamera() {
         if (mMarshmallowCamera == null) {
-            mMarshmallowCamera = new MarshmallowCamera(mCallback, mContext);
+            mMarshmallowCamera = new MarshmallowCamera(mContext);
         }
     }
 
@@ -57,17 +60,23 @@ public class MyCameraImpl {
                 mParams = mCamera.getParameters();
                 mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
                 mCamera.setParameters(mParams);
-
-                if (mIsFlashlightOn)
-                    enableFlashlight();
             } catch (Exception e) {
                 Log.e(TAG, "setup mCamera " + e.getMessage());
-                mCallback.cameraUnavailable();
+                mBus.post(new Events.CameraUnavailable());
             }
         }
     }
 
-    private void enableFlashlight() {
+    public void checkFlashlight() {
+        if (mIsFlashlightOn) {
+            enableFlashlight();
+        } else {
+            disableFlashlight();
+        }
+    }
+
+    public void enableFlashlight() {
+        mIsFlashlightOn = true;
         if (mIsMarshmallow) {
             toggleMarshmallowFlashlight(true);
         } else {
@@ -78,10 +87,11 @@ public class MyCameraImpl {
             mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(mParams);
         }
-        mCallback.enableFlashlight();
+        mBus.post(new Events.StateChanged(true));
     }
 
     private void disableFlashlight() {
+        mIsFlashlightOn = false;
         if (isMarshmallow()) {
             toggleMarshmallowFlashlight(false);
         } else {
@@ -92,18 +102,27 @@ public class MyCameraImpl {
             mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
             mCamera.setParameters(mParams);
         }
-        mCallback.disableFlashlight();
+        mBus.post(new Events.StateChanged(false));
     }
 
     private void toggleMarshmallowFlashlight(boolean enable) {
-        mMarshmallowCamera.toggleMarshmallowFlashlight(enable);
+        mMarshmallowCamera.toggleMarshmallowFlashlight(mBus, enable);
     }
 
     public void releaseCamera() {
+        if (mIsFlashlightOn) {
+            disableFlashlight();
+        }
+
         if (mCamera != null) {
             mCamera.release();
             mCamera = null;
         }
+
+        if (mBus != null) {
+            mBus.unregister(this);
+        }
+        mIsFlashlightOn = false;
     }
 
     private boolean isMarshmallow() {

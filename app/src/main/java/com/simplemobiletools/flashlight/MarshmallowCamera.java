@@ -7,26 +7,26 @@ import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.util.Log;
 
+import com.squareup.otto.Bus;
+
 public class MarshmallowCamera {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
 
-    private MyCamera mCallback;
     private Context mContext;
 
-    public MarshmallowCamera(MyCamera camera, Context cxt) {
-        mCallback = camera;
+    public MarshmallowCamera(Context cxt) {
         mContext = cxt;
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    public void toggleMarshmallowFlashlight(boolean enable) {
+    public void toggleMarshmallowFlashlight(final Bus bus, boolean enable) {
         try {
             final CameraManager manager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
             final String[] list = manager.getCameraIdList();
             manager.setTorchMode(list[0], enable);
         } catch (CameraAccessException e) {
             Log.e(TAG, "toggle marshmallow flashlight " + e.getMessage());
-            mCallback.cameraUnavailable();
+            bus.post(new Events.CameraUnavailable());
         }
     }
 }

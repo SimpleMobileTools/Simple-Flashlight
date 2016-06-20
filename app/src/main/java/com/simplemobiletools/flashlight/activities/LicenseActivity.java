@@ -24,6 +24,11 @@ public class LicenseActivity extends AppCompatActivity {
         openUrl(R.string.butterknife_url);
     }
 
+    @OnClick(R.id.license_otto_title)
+    public void ottoClicked() {
+        openUrl(R.string.otto_url);
+    }
+
     private void openUrl(int id) {
         final String url = getResources().getString(id);
         final Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

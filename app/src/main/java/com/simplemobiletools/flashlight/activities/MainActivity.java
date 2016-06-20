@@ -9,18 +9,22 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.simplemobiletools.flashlight.MyCamera;
+import com.simplemobiletools.flashlight.BusProvider;
+import com.simplemobiletools.flashlight.Events;
 import com.simplemobiletools.flashlight.MyCameraImpl;
 import com.simplemobiletools.flashlight.R;
 import com.simplemobiletools.flashlight.Utils;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements MyCamera {
+public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
 
+    private static Bus mBus;
     private static MyCameraImpl mCameraImpl;
 
     @Override
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        setupCameraImpl();
+        mBus = BusProvider.getInstance();
     }
 
     @Override
@@ -51,8 +55,8 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
     }
 
     private void setupCameraImpl() {
-        mCameraImpl = new MyCameraImpl(this, this);
-        mCameraImpl.toggleFlashlight();
+        mCameraImpl = new MyCameraImpl(this);
+        mCameraImpl.enableFlashlight();
     }
 
     @OnClick(R.id.toggle_btn)
@@ -63,28 +67,42 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
     @Override
     protected void onStart() {
         super.onStart();
-        mCameraImpl.handleCameraSetup();
+        mBus.register(this);
+
+        if (mCameraImpl == null) {
+            setupCameraImpl();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mCameraImpl.handleCameraSetup();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mCameraImpl.releaseCamera();
+        mCameraImpl.checkFlashlight();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mCameraImpl.releaseCamera();
+        mBus.unregister(this);
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mCameraImpl.releaseCamera();
+        mCameraImpl = null;
+    }
+
+    @Subscribe
+    public void stateChangedEvent(Events.StateChanged event) {
+        if (event.getIsEnabled()) {
+            enableFlashlight();
+        } else {
+            disableFlashlight();
+        }
+    }
+
     public void enableFlashlight() {
         final int appColor = getResources().getColor(R.color.colorPrimary);
         mToggleBtn.setImageResource(R.mipmap.flashlight_big);
@@ -92,14 +110,13 @@ public class MainActivity extends AppCompatActivity implements MyCamera {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    @Override
     public void disableFlashlight() {
         mToggleBtn.setImageResource(R.mipmap.flashlight_big);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    @Override
-    public void cameraUnavailable() {
+    @Subscribe
+    public void cameraUnavailable(Events.CameraUnavailable event) {
         Utils.showToast(this, R.string.camera_error);
         disableFlashlight();
     }
