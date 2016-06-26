@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.5 *(2016-06---)*
+----------------------------
+
+ * Use a black splash screen with light grey icon instead of white
+
 Version 1.4 *(2016-06-20)*
 ----------------------------
 
