@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.4 *(2016-06-20)*
+----------------------------
+
+ * Use Otto for dispatching events instead of an interface, making it more reliable
+
 Version 1.3 *(2016-06-19)*
 ----------------------------
 
