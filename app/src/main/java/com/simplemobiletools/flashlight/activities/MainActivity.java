@@ -104,15 +104,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void enableFlashlight() {
-        final int appColor = getResources().getColor(R.color.colorPrimary);
-        mToggleBtn.setImageResource(R.mipmap.flashlight_big);
-        mToggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
+        changeIconColor(R.color.colorPrimary);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void disableFlashlight() {
-        mToggleBtn.setImageResource(R.mipmap.flashlight_big);
+        changeIconColor(R.color.translucent_white);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void changeIconColor(int colorId) {
+        final int appColor = getResources().getColor(colorId);
+        mToggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
     }
 
     @Subscribe
