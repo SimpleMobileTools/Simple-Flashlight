@@ -7,6 +7,10 @@
         <item name="actionBarStyle">@style/AppTheme.ActionBarStyle</item>
     </style>
 
+    <style name="BlackSplashScreen" parent="AppTheme">
+        <item name="android:windowBackground">@null</item>
+    </style>
+
     <style name="AppTheme.ActionBarStyle" parent="@style/Base.Widget.AppCompat.ActionBar">
         <item name="background">@color/colorPrimary</item>
         <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleTextStyle</item>

@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/BlackSplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
