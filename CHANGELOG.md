@@ -1,10 +1,11 @@
-Change Log
+Changelog
 ==========
 
-Version 1.5 *(2016-06---)*
+Version 1.5 *(2016-06-27)*
 ----------------------------
 
  * Use a black splash screen with light grey icon instead of white
+ * Add a Google Plus page link to the About section
 
 Version 1.4 *(2016-06-20)*
 ----------------------------
