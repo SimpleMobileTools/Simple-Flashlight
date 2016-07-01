@@ -23,7 +23,8 @@ public class MarshmallowCamera {
         try {
             final CameraManager manager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
             final String[] list = manager.getCameraIdList();
-            manager.setTorchMode(list[0], enable);
+            if (list.length > 0)
+                manager.setTorchMode(list[0], enable);
         } catch (CameraAccessException e) {
             Log.e(TAG, "toggle marshmallow flashlight " + e.getMessage());
             bus.post(new Events.CameraUnavailable());
