@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.simplemobiletools.flashlight.BusProvider;
+import com.simplemobiletools.flashlight.Config;
 import com.simplemobiletools.flashlight.Events;
 import com.simplemobiletools.flashlight.MyCameraImpl;
 import com.simplemobiletools.flashlight.R;
@@ -90,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mCameraImpl.releaseCamera();
-        mCameraImpl = null;
+        Config.newInstance(getApplicationContext()).setIsFirstRun(false);
+        if (mCameraImpl != null) {
+            mCameraImpl.releaseCamera();
+            mCameraImpl = null;
+        }
     }
 
     @Subscribe
