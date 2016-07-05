@@ -1,7 +1,12 @@
 Changelog
 ==========
 
-Version 1.16 *(2016-07-01)*
+Version 1.8 *(2016-07-05)*
+----------------------------
+
+ * Use the new Google Plus logo
+
+Version 1.6 *(2016-07-01)*
 ----------------------------
 
  * Adjust everything properly if used on a tablet
