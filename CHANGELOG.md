@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 1.9 *(2016-07-11)*
+----------------------------
+
+ * Allow using the app in landscape mode
+ * Add Japanese translation
+
 Version 1.8 *(2016-07-05)*
 ----------------------------
 
