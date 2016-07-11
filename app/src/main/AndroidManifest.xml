@@ -4,11 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false"/>
-
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="true"/>
@@ -21,7 +18,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/BlackSplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -32,13 +28,11 @@
 
         <activity
             android:name=".activities.AboutActivity"
-            android:label="@string/about"
-            android:screenOrientation="portrait"/>
+            android:label="@string/about"/>
 
         <activity
             android:name=".activities.LicenseActivity"
-            android:label="@string/third_party_licences"
-            android:screenOrientation="portrait"/>
+            android:label="@string/third_party_licences"/>
 
         <receiver
             android:name=".MyWidgetProvider"

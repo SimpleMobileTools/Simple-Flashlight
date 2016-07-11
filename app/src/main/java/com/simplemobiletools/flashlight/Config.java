@@ -3,8 +3,6 @@ package com.simplemobiletools.flashlight;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.simplemobiletools.flashlight.activities.Constants;
-
 public class Config {
     private SharedPreferences mPrefs;
 
