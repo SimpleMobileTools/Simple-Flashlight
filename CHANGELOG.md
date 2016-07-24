@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 1.10 *(2016-07-24)*
+----------------------------
+
+ * Added a dark theme
+ * Force portrait mode to prevent blinking at rotation
+ * Added Italian and Swedish translations
+
 Version 1.9 *(2016-07-11)*
 ----------------------------
 
