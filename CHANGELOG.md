@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 1.11 *(2016-07-24)*
+----------------------------
+
+ * Fix turning on the flashlight on some devices
+
 Version 1.10 *(2016-07-24)*
 ----------------------------
 
