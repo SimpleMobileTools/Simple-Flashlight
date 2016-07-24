@@ -86,6 +86,7 @@ public class MyCameraImpl {
 
             mParams.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             mCamera.setParameters(mParams);
+            mCamera.startPreview();
         }
         mBus.post(new Events.StateChanged(true));
     }
