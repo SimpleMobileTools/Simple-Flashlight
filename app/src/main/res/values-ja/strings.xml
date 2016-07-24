@@ -2,6 +2,10 @@
     <string name="app_name">シンプル フラッシュライト</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
 
+    <!-- Settings -->
+    <string name="settings">設定</string>
+    <string name="dark_theme">ダークテーマ</string>
+
     <!-- About -->
     <string name="about">アプリについて</string>
     <string name="website">もっとシンプルなアプリとソースコード:\nhttp://simplemobiletools.com</string>

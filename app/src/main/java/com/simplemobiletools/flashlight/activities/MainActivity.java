@@ -3,7 +3,6 @@ package com.simplemobiletools.flashlight.activities;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -22,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends SimpleActivity {
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
 
     private static Bus mBus;
@@ -46,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.settings:
+                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                return true;
             case R.id.about:
                 startActivity(new Intent(getApplicationContext(), AboutActivity.class));
                 return true;

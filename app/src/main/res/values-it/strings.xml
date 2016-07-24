@@ -2,6 +2,10 @@
     <string name="app_name">Simple Flashlight</string>
     <string name="camera_error">Rilevamento fotocamera fallito</string>
 
+    <!-- Settings -->
+    <string name="settings">Impostazioni</string>
+    <string name="dark_theme">Tema scuro</string>
+
     <!-- About -->
     <string name="about">Informazioni</string>
     <string name="website">Altre semplici app e codici sorgenti in:\nhttp://simplemobiletools.com</string>

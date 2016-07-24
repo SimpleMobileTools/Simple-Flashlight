@@ -2,6 +2,10 @@
     <string name="app_name">Simple Flashlight</string>
     <string name="camera_error">Det gick inte att komma åt kameran</string>
 
+    <!-- Settings -->
+    <string name="settings">Inställningar</string>
+    <string name="dark_theme">Mörkt tema</string>
+
     <!-- About -->
     <string name="about">Om</string>
     <string name="website">Fler enkla appar och källkod här:\nhttp://simplemobiletools.com</string>
