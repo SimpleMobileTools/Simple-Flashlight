@@ -31,7 +31,7 @@ public class Config {
     }
 
     public boolean getBrightDisplay() {
-        return mPrefs.getBoolean(Constants.BRIGHT_DISPLAY, false);
+        return mPrefs.getBoolean(Constants.BRIGHT_DISPLAY, true);
     }
 
     public void setBrightDisplay(boolean brightDisplay) {
