@@ -5,6 +5,7 @@
     <!-- Settings -->
     <string name="settings">設定</string>
     <string name="dark_theme">ダークテーマ</string>
+    <string name="bright_display">Show a bright display button</string>
 
     <!-- About -->
     <string name="about">アプリについて</string>

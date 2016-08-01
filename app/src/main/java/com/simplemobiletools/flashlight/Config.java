@@ -29,4 +29,12 @@ public class Config {
     public void setIsDarkTheme(boolean isDarkTheme) {
         mPrefs.edit().putBoolean(Constants.IS_DARK_THEME, isDarkTheme).apply();
     }
+
+    public boolean getBrightDisplay() {
+        return mPrefs.getBoolean(Constants.BRIGHT_DISPLAY, false);
+    }
+
+    public void setBrightDisplay(boolean brightDisplay) {
+        mPrefs.edit().putBoolean(Constants.BRIGHT_DISPLAY, brightDisplay).apply();
+    }
 }

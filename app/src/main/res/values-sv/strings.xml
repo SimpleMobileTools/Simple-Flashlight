@@ -5,6 +5,7 @@
     <!-- Settings -->
     <string name="settings">Inställningar</string>
     <string name="dark_theme">Mörkt tema</string>
+    <string name="bright_display">Show a bright display button</string>
 
     <!-- About -->
     <string name="about">Om</string>
