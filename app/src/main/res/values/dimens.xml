@@ -1,5 +1,6 @@
 <resources>
     <dimen name="activity_margin">16dp</dimen>
+    <dimen name="bright_display_margin">40dp</dimen>
     <dimen name="social_padding">8dp</dimen>
     <dimen name="social_logo">40dp</dimen>
     <dimen name="settings_padding">8dp</dimen>

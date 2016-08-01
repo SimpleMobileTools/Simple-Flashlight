@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:id="@+id/main_holder"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="@dimen/activity_margin">
 
     <ImageView
@@ -12,4 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/flashlight_big"/>
-</RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/bright_display_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bright_display_margin"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/activity_margin"
+        android:src="@mipmap/bright_display"
+        android:visibility="gone"/>
+
+</LinearLayout>

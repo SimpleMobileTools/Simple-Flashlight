@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
@@ -23,6 +24,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends SimpleActivity {
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
+    @BindView(R.id.bright_display_btn) ImageView mBrightDisplayBtn;
 
     private static Bus mBus;
     private static MyCameraImpl mCameraImpl;
@@ -34,6 +36,7 @@ public class MainActivity extends SimpleActivity {
         ButterKnife.bind(this);
 
         mBus = BusProvider.getInstance();
+        changeIconColor(R.color.translucent_white, mBrightDisplayBtn);
     }
 
     @Override
@@ -66,6 +69,11 @@ public class MainActivity extends SimpleActivity {
         mCameraImpl.toggleFlashlight();
     }
 
+    @OnClick(R.id.bright_display_btn)
+    public void launchBrightDisplay() {
+        startActivity(new Intent(getApplicationContext(), BrightDisplayActivity.class));
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -81,6 +89,11 @@ public class MainActivity extends SimpleActivity {
         super.onResume();
         mCameraImpl.handleCameraSetup();
         mCameraImpl.checkFlashlight();
+
+        if (mConfig.getBrightDisplay())
+            mBrightDisplayBtn.setVisibility(View.VISIBLE);
+        else
+            mBrightDisplayBtn.setVisibility(View.GONE);
     }
 
     @Override
@@ -109,18 +122,18 @@ public class MainActivity extends SimpleActivity {
     }
 
     public void enableFlashlight() {
-        changeIconColor(R.color.colorPrimary);
+        changeIconColor(R.color.colorPrimary, mToggleBtn);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void disableFlashlight() {
-        changeIconColor(R.color.translucent_white);
+        changeIconColor(R.color.translucent_white, mToggleBtn);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    private void changeIconColor(int colorId) {
+    private void changeIconColor(int colorId, ImageView imageView) {
         final int appColor = getResources().getColor(colorId);
-        mToggleBtn.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
+        imageView.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
     }
 
     @Subscribe

@@ -38,6 +38,10 @@
             android:parentActivityName=".activities.AboutActivity"/>
 
         <activity
+            android:name=".activities.BrightDisplayActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/settings"
             android:parentActivityName=".activities.MainActivity"/>
