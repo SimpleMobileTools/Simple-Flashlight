@@ -1,4 +1,4 @@
-# SimpleFlashlight
+# Simple Flashlight
 <img alt="Logo" src="app/src/main/res/mipmap-xxxhdpi/launcher.png" width="80">
 
 A flashlight. Simple flashlight. Two buttons. Flashlight and Bright display. No ads. No unnecessary permissions. No advanced features. If you need them, don't install the app. If turned on via the app (not widget), it will prevent the phone from falling asleep. Contains a 1x1 widget.
