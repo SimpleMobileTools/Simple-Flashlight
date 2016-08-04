@@ -5,7 +5,7 @@
     <!-- Settings -->
     <string name="settings">Impostazioni</string>
     <string name="dark_theme">Tema scuro</string>
-    <string name="bright_display">Show a bright display button</string>
+    <string name="bright_display">Mostra un pulsante per schermo luminoso</string>
 
     <!-- About -->
     <string name="about">Informazioni</string>
