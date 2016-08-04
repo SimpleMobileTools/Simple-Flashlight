@@ -1,7 +1,9 @@
 # Simple Flashlight
 <img alt="Logo" src="app/src/main/res/mipmap-xxxhdpi/launcher.png" width="80">
 
-A flashlight. Simple flashlight. Two buttons. Flashlight and Bright display. No ads. No unnecessary permissions. No advanced features. If you need them, don't install the app. If turned on via the app (not widget), it will prevent the phone from falling asleep. Contains a 1x1 widget.
+A flashlight. Simple flashlight. Two buttons. Flashlight and Bright display. Fully opensource. No ads. No unnecessary permissions. No spying. No advanced features. If you need them, don't install the app. If turned on via the app (not widget), it will prevent the phone from falling asleep. 
+
+Contains a 1x1 widget.
 
 <a href='https://play.google.com/store/apps/details?id=com.simplemobiletools.flashlight'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60/></a>
 <a href="https://f-droid.org/app/com.simplemobiletools.flashlight"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="60"></a>
