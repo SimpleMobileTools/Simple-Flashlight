@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">シンプル フラッシュライト</string>
+    <string name="app_launcher_name">Flashlight</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
 
     <!-- Settings -->
