@@ -32,6 +32,20 @@
             android:text="@string/butterknife_text"/>
 
         <TextView
+            android:id="@+id/license_ambilwarna_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_margin"
+            android:text="@string/ambilwarna_title"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/license_ambilwarna_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ambilwarna_text"/>
+
+        <TextView
             android:id="@+id/license_otto_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

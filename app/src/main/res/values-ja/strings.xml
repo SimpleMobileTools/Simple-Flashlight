@@ -25,5 +25,6 @@
     <string name="notice">このアプリは、私の人生を容易にするために、次のサードパーティのライブラリーを使用しています。 ありがとうございます。</string>
     <string name="third_party_licences">サードパーティー ライセンス</string>
     <string name="butterknife_title">Butter Knife (ビュー インジェクター)</string>
+    <string name="ambilwarna_title"><u>AmbilWarna (color picker)</u></string>
     <string name="otto_title"><u>Otto (イベント バス)</u></string>
 </resources>

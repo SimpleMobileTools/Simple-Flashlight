@@ -23,6 +23,11 @@ public class LicenseActivity extends SimpleActivity {
         openUrl(R.string.butterknife_url);
     }
 
+    @OnClick(R.id.license_ambilwarna_title)
+    public void ambilwarnaClicked() {
+        openUrl(R.string.ambilwarna_url);
+    }
+
     @OnClick(R.id.license_otto_title)
     public void ottoClicked() {
         openUrl(R.string.otto_url);
