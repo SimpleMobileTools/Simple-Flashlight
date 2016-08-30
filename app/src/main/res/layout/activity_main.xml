@@ -13,7 +13,7 @@
         android:id="@+id/toggle_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/circles"/>
+        android:src="@drawable/circles_big"/>
 
     <ImageButton
         android:id="@+id/bright_display_btn"
