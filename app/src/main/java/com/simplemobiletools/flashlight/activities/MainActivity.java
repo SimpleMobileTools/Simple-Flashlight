@@ -133,7 +133,7 @@ public class MainActivity extends SimpleActivity {
 
     private void changeIconColor(int colorId, ImageView imageView) {
         final int appColor = getResources().getColor(colorId);
-        imageView.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_ATOP);
+        imageView.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
     }
 
     @Subscribe

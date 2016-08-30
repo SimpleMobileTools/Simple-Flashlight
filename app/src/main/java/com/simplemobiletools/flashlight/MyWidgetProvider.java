@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.widget.RemoteViews;
 
 import com.squareup.otto.Bus;
@@ -49,7 +51,10 @@ public class MyWidgetProvider extends AppWidgetProvider {
         final Resources res = context.getResources();
         final int defaultColor = res.getColor(R.color.colorPrimary);
         final int appColor = prefs.getInt(Constants.WIDGET_COLOR, defaultColor);
-        mColoredBmp = Utils.getColoredIcon(context.getResources(), appColor, R.mipmap.flashlight_small);
+
+        final Drawable drawable = context.getResources().getDrawable(R.drawable.circles_small);
+        drawable.mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_ATOP);
+        mColoredBmp = Utils.drawableToBitmap(drawable);
 
         if (mBus == null) {
             mBus = BusProvider.getInstance();
@@ -78,7 +83,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
     }
 
     public void disableFlashlight() {
-        mRemoteViews.setImageViewResource(R.id.toggle_btn, R.mipmap.flashlight_small);
+        mRemoteViews.setImageViewResource(R.id.toggle_btn, R.drawable.circles_small);
         for (int widgetId : mWidgetIds) {
             mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }

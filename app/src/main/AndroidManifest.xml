@@ -57,7 +57,7 @@
 
         <receiver
             android:name=".MyWidgetProvider"
-            android:icon="@mipmap/flashlight_small">
+            android:icon="@drawable/circles_small">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/config_widget_color"
         android:scaleType="centerInside"
-        android:src="@mipmap/flashlight_small"/>
+        android:src="@drawable/circles_big"/>
 
     <Button
         android:id="@+id/config_widget_color"

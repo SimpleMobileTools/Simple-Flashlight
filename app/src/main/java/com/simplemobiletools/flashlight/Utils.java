@@ -1,28 +1,20 @@
 package com.simplemobiletools.flashlight;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.widget.Toast;
 
 public class Utils {
-    public static Bitmap getColoredIcon(Resources res, int newTextColor, int id) {
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inMutable = true;
-        final Bitmap bmp = BitmapFactory.decodeResource(res, id, options);
-        final Paint paint = new Paint();
-        final ColorFilter filter = new PorterDuffColorFilter(newTextColor, PorterDuff.Mode.SRC_IN);
-        paint.setColorFilter(filter);
-
-        final Canvas canvas = new Canvas(bmp);
-        canvas.drawBitmap(bmp, 0, 0, paint);
-        return bmp;
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        final int width = drawable.getIntrinsicWidth();
+        final int height = drawable.getIntrinsicHeight();
+        final Bitmap mutableBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(mutableBitmap);
+        drawable.setBounds(0, 0, width, height);
+        drawable.draw(canvas);
+        return mutableBitmap;
     }
 
     public static void showToast(Context context, int resId) {

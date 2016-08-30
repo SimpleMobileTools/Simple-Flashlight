@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:width="60dp"
-        android:height="60dp"
-        android:left="60dp"
-        android:top="60dp">
+        android:width="12dp"
+        android:height="12dp"
+        android:left="12dp"
+        android:top="12dp">
         <shape
             android:shape="oval">
             <stroke
-                android:width="15dp"
-                android:color="@color/translucent_white"/>
+                android:width="3dp"
+                android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
 
     <item
-        android:width="120dp"
-        android:height="120dp"
-        android:left="30dp"
-        android:top="30dp">
+        android:width="24dp"
+        android:height="24dp"
+        android:left="6dp"
+        android:top="6dp">
         <shape
             android:shape="oval">
             <stroke
-                android:width="15dp"
-                android:color="@color/translucent_white"/>
+                android:width="3dp"
+                android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
 
     <item
-        android:width="180dp"
-        android:height="180dp">
+        android:width="36dp"
+        android:height="36dp">
         <shape
             android:shape="oval">
             <stroke
-                android:width="15dp"
-                android:color="@color/translucent_white"/>
+                android:width="3dp"
+                android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
