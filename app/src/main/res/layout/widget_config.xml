@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="@dimen/activity_margin"
+    android:paddingBottom="@dimen/activity_margin">
+
+    <ImageView
+        android:id="@+id/config_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/config_widget_color"
+        android:scaleType="centerInside"
+        android:src="@mipmap/flashlight_small"/>
+
+    <Button
+        android:id="@+id/config_widget_color"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/config_save"/>
+
+    <RelativeLayout
+        android:id="@+id/config_widget_seekbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/config_widget_color"
+        android:layout_alignTop="@+id/config_widget_color"
+        android:layout_toRightOf="@+id/config_widget_color"
+        android:background="@android:color/white">
+
+        <SeekBar
+            android:id="@+id/config_widget_seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/config_save"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/translucent_black"
+        android:fontFamily="sans-serif-light"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingRight="@dimen/activity_margin"
+        android:text="@string/ok"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/config_text_size"/>
+
+</RelativeLayout>

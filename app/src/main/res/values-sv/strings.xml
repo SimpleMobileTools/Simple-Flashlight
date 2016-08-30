@@ -2,6 +2,7 @@
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Flashlight</string>
     <string name="camera_error">Det gick inte att komma åt kameran</string>
+    <string name="ok">OK</string>
 
     <!-- Settings -->
     <string name="settings">Inställningar</string>
