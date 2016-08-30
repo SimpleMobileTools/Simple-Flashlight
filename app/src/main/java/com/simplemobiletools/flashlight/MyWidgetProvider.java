@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.widget.RemoteViews;
@@ -44,8 +45,10 @@ public class MyWidgetProvider extends AppWidgetProvider {
         mRemoteViews.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent);
         mCameraImpl = new MyCameraImpl(context);
 
+        final SharedPreferences prefs = initPrefs(context);
         final Resources res = context.getResources();
-        final int appColor = res.getColor(R.color.colorPrimary);
+        final int defaultColor = res.getColor(R.color.colorPrimary);
+        final int appColor = prefs.getInt(Constants.WIDGET_COLOR, defaultColor);
         mColoredBmp = Utils.getColoredIcon(context.getResources(), appColor, R.mipmap.flashlight_small);
 
         if (mBus == null) {
@@ -79,6 +82,10 @@ public class MyWidgetProvider extends AppWidgetProvider {
         for (int widgetId : mWidgetIds) {
             mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }
+    }
+
+    private SharedPreferences initPrefs(Context context) {
+        return context.getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
     }
 
     @Subscribe
