@@ -20,6 +20,7 @@ import com.simplemobiletools.flashlight.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class WidgetConfigureActivity extends AppCompatActivity {
     @BindView(R.id.config_widget_seekbar) SeekBar mWidgetSeekBar;
@@ -61,7 +62,7 @@ public class WidgetConfigureActivity extends AppCompatActivity {
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor));
         mWidgetSeekBar.setOnSeekBarChangeListener(seekbarChangeListener);
         mWidgetSeekBar.setProgress((int) (mWidgetAlpha * 100));
-        updateBackgroundColor();
+        updateColors();
     }
 
     @OnClick(R.id.config_save)
@@ -81,7 +82,19 @@ public class WidgetConfigureActivity extends AppCompatActivity {
 
     @OnClick(R.id.config_widget_color)
     public void pickBackgroundColor() {
+        AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, mWidgetColorWithoutTransparency, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+            }
 
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                mWidgetColorWithoutTransparency = color;
+                updateColors();
+            }
+        });
+
+        dialog.show();
     }
 
     private void storeWidgetColors() {
@@ -95,7 +108,7 @@ public class WidgetConfigureActivity extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
-    private void updateBackgroundColor() {
+    private void updateColors() {
         mWidgetColor = adjustAlpha(mWidgetColorWithoutTransparency, mWidgetAlpha);
         mWidgetColorPicker.setBackgroundColor(mWidgetColor);
         mImage.getDrawable().mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN);
@@ -105,7 +118,7 @@ public class WidgetConfigureActivity extends AppCompatActivity {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             mWidgetAlpha = (float) progress / (float) 100;
-            updateBackgroundColor();
+            updateColors();
         }
 
         @Override
