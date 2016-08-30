@@ -13,7 +13,7 @@
         android:id="@+id/toggle_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/flashlight_big"/>
+        android:src="@drawable/circles"/>
 
     <ImageButton
         android:id="@+id/bright_display_btn"
