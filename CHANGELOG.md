@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 1.15 *(2016-08-30)*
+----------------------------
+
+ * Allow customizing the widget's active color
+ * Rename the app launcher to Flashlight
+ * Update the launcher icon
+
 Version 1.14 *(2016-08-21)*
 ----------------------------
 
