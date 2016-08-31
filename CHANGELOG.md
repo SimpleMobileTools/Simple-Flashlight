@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 1.16 *(2016-08-31)*
+----------------------------
+
+ * Double the resolution of the widget
+
 Version 1.15 *(2016-08-30)*
 ----------------------------
 
