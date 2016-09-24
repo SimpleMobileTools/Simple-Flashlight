@@ -8,6 +8,7 @@
     <string name="settings">Einstellungen</string>
     <string name="dark_theme">Dunkles Thema</string>
     <string name="bright_display">Zeige Knopf für helles Display</string>
+    <string name="stroboscope">Show a stroboscope button</string>
 
     <!-- About -->
     <string name="about">Über</string>

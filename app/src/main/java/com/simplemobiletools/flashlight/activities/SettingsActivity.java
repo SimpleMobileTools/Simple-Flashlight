@@ -14,6 +14,7 @@ import butterknife.OnClick;
 public class SettingsActivity extends SimpleActivity {
     @BindView(R.id.settings_dark_theme) SwitchCompat mDarkThemeSwitch;
     @BindView(R.id.settings_bright_display) SwitchCompat mBrightDisplaySwitch;
+    @BindView(R.id.settings_stroboscope) SwitchCompat mStroboscopeSwitch;
 
     private static Config mConfig;
 
@@ -26,6 +27,7 @@ public class SettingsActivity extends SimpleActivity {
 
         setupDarkTheme();
         setupBrightDisplay();
+        setupStroboscope();
     }
 
     private void setupDarkTheme() {
@@ -34,6 +36,10 @@ public class SettingsActivity extends SimpleActivity {
 
     private void setupBrightDisplay() {
         mBrightDisplaySwitch.setChecked(mConfig.getBrightDisplay());
+    }
+
+    private void setupStroboscope() {
+        mStroboscopeSwitch.setChecked(mConfig.getStroboscope());
     }
 
     @OnClick(R.id.settings_dark_theme_holder)
@@ -47,6 +53,12 @@ public class SettingsActivity extends SimpleActivity {
     public void handleBrightDisplay() {
         mBrightDisplaySwitch.setChecked(!mBrightDisplaySwitch.isChecked());
         mConfig.setBrightDisplay(mBrightDisplaySwitch.isChecked());
+    }
+
+    @OnClick(R.id.settings_stroboscope_holder)
+    public void handleStroboscope() {
+        mStroboscopeSwitch.setChecked(!mStroboscopeSwitch.isChecked());
+        mConfig.setStroboscope(mStroboscopeSwitch.isChecked());
     }
 
     private void restartActivity() {

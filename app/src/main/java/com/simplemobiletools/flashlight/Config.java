@@ -10,7 +10,7 @@ public class Config {
         return new Config(context);
     }
 
-    public Config(Context context) {
+    private Config(Context context) {
         mPrefs = context.getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
     }
 
@@ -36,5 +36,13 @@ public class Config {
 
     public void setBrightDisplay(boolean brightDisplay) {
         mPrefs.edit().putBoolean(Constants.BRIGHT_DISPLAY, brightDisplay).apply();
+    }
+
+    public boolean getStroboscope() {
+        return mPrefs.getBoolean(Constants.STROBOSCOPE, true);
+    }
+
+    public void setStroboscope(boolean stroboscope) {
+        mPrefs.edit().putBoolean(Constants.STROBOSCOPE, stroboscope).apply();
     }
 }

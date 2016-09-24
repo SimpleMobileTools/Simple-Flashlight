@@ -8,6 +8,7 @@
     <string name="settings">Settings</string>
     <string name="dark_theme">Dark theme</string>
     <string name="bright_display">Show a bright display button</string>
+    <string name="stroboscope">Show a stroboscope button</string>
 
     <!-- About -->
     <string name="about">About</string>
