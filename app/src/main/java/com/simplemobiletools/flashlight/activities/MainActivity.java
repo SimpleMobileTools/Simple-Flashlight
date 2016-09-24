@@ -25,6 +25,7 @@ import butterknife.OnClick;
 public class MainActivity extends SimpleActivity {
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
     @BindView(R.id.bright_display_btn) ImageView mBrightDisplayBtn;
+    @BindView(R.id.stroboscope_btn) ImageView mStroboscopeBtn;
 
     private static Bus mBus;
     private static MyCameraImpl mCameraImpl;
@@ -37,6 +38,7 @@ public class MainActivity extends SimpleActivity {
 
         mBus = BusProvider.getInstance();
         changeIconColor(R.color.translucent_white, mBrightDisplayBtn);
+        changeIconColor(R.color.translucent_white, mStroboscopeBtn);
     }
 
     @Override
@@ -74,6 +76,11 @@ public class MainActivity extends SimpleActivity {
         startActivity(new Intent(getApplicationContext(), BrightDisplayActivity.class));
     }
 
+    @OnClick(R.id.stroboscope_btn)
+    public void launchStroboscope() {
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -90,10 +97,8 @@ public class MainActivity extends SimpleActivity {
         mCameraImpl.handleCameraSetup();
         mCameraImpl.checkFlashlight();
 
-        if (mConfig.getBrightDisplay())
-            mBrightDisplayBtn.setVisibility(View.VISIBLE);
-        else
-            mBrightDisplayBtn.setVisibility(View.GONE);
+        mBrightDisplayBtn.setVisibility(mConfig.getBrightDisplay() ? View.VISIBLE : View.GONE);
+        mStroboscopeBtn.setVisibility(mConfig.getStroboscope() ? View.VISIBLE : View.GONE);
     }
 
     @Override

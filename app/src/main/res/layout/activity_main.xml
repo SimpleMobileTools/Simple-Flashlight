@@ -20,7 +20,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/bright_display_margin"
-        android:background="@android:color/transparent"
+        android:padding="@dimen/activity_margin"
+        android:src="@mipmap/bright_display"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/stroboscope_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bright_display_margin"
         android:padding="@dimen/activity_margin"
         android:src="@mipmap/bright_display"
         android:visibility="gone"/>
