@@ -3,6 +3,7 @@
     <string name="app_launcher_name">Flashlight</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
     <string name="ok">OK</string>
+    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
 
     <!-- Settings -->
     <string name="settings">設定</string>

@@ -2,6 +2,7 @@ package com.simplemobiletools.flashlight;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.os.Handler;
 import android.util.Log;
 
 import com.squareup.otto.Bus;
@@ -13,9 +14,12 @@ public class MyCameraImpl {
     private static Bus mBus;
     private Context mContext;
     private MarshmallowCamera mMarshmallowCamera;
+    private volatile boolean mShouldStroboscopeStop;
+    private volatile boolean mIsStroboscopeRunning;
 
     private static boolean mIsFlashlightOn;
     private static boolean mIsMarshmallow;
+    private static boolean mShouldEnableFlashlight;
 
     public MyCameraImpl(Context cxt) {
         mContext = cxt;
@@ -33,6 +37,31 @@ public class MyCameraImpl {
     public void toggleFlashlight() {
         mIsFlashlightOn = !mIsFlashlightOn;
         handleCameraSetup();
+    }
+
+    public boolean toggleStroboscope() {
+        if (!mIsStroboscopeRunning)
+            disableFlashlight();
+
+        if (mCamera == null) {
+            initCamera();
+        }
+
+        if (mCamera == null) {
+            Utils.showToast(mContext, R.string.camera_error);
+            return false;
+        }
+
+        if (mIsStroboscopeRunning) {
+            stopStroboscope();
+        } else {
+            new Thread(stroboscope).start();
+        }
+        return true;
+    }
+
+    private void stopStroboscope() {
+        mShouldStroboscopeStop = true;
     }
 
     public void handleCameraSetup() {
@@ -55,15 +84,19 @@ public class MyCameraImpl {
             return;
 
         if (mCamera == null) {
-            try {
-                mCamera = Camera.open();
-                mParams = mCamera.getParameters();
-                mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-                mCamera.setParameters(mParams);
-            } catch (Exception e) {
-                Log.e(TAG, "setup mCamera " + e.getMessage());
-                mBus.post(new Events.CameraUnavailable());
-            }
+            initCamera();
+        }
+    }
+
+    private void initCamera() {
+        try {
+            mCamera = Camera.open();
+            mParams = mCamera.getParameters();
+            mParams.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+            mCamera.setParameters(mParams);
+        } catch (Exception e) {
+            Log.e(TAG, "setup mCamera " + e.getMessage());
+            mBus.post(new Events.CameraUnavailable());
         }
     }
 
@@ -76,6 +109,12 @@ public class MyCameraImpl {
     }
 
     public void enableFlashlight() {
+        mShouldStroboscopeStop = true;
+        if (mIsStroboscopeRunning) {
+            mShouldEnableFlashlight = true;
+            return;
+        }
+
         mIsFlashlightOn = true;
         if (mIsMarshmallow) {
             toggleMarshmallowFlashlight(true);
@@ -88,12 +127,19 @@ public class MyCameraImpl {
             mCamera.setParameters(mParams);
             mCamera.startPreview();
         }
-        mBus.post(new Events.StateChanged(true));
+
+        Runnable mainRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mBus.post(new Events.StateChanged(true));
+            }
+        };
+        new Handler(mContext.getMainLooper()).post(mainRunnable);
     }
 
     private void disableFlashlight() {
         mIsFlashlightOn = false;
-        if (isMarshmallow()) {
+        if (mIsMarshmallow) {
             toggleMarshmallowFlashlight(false);
         } else {
             if (mCamera == null || mParams == null) {
@@ -129,4 +175,51 @@ public class MyCameraImpl {
     private boolean isMarshmallow() {
         return android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M;
     }
+
+    private Runnable stroboscope = new Runnable() {
+        @Override
+        public void run() {
+            if (mIsStroboscopeRunning) {
+                return;
+            }
+
+            mShouldStroboscopeStop = false;
+            mIsStroboscopeRunning = true;
+
+            if (mCamera == null) {
+                initCamera();
+            }
+
+            Camera.Parameters torchOn = mCamera.getParameters();
+            Camera.Parameters torchOff = mCamera.getParameters();
+            torchOn.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            torchOff.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+
+            while (!mShouldStroboscopeStop) {
+                try {
+                    mCamera.setParameters(torchOn);
+                    Thread.sleep(500);
+                    mCamera.setParameters(torchOff);
+                    Thread.sleep(500);
+                } catch (InterruptedException ignored) {
+                    mShouldStroboscopeStop = true;
+                } catch (RuntimeException ignored) {
+                    mShouldStroboscopeStop = true;
+                }
+            }
+
+            if (mCamera != null) {
+                mCamera.setParameters(torchOff);
+                mCamera.release();
+                mCamera = null;
+            }
+            mIsStroboscopeRunning = false;
+            mShouldStroboscopeStop = false;
+
+            if (mShouldEnableFlashlight) {
+                enableFlashlight();
+                mShouldEnableFlashlight = false;
+            }
+        }
+    };
 }

@@ -1,8 +1,12 @@
 package com.simplemobiletools.flashlight.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +28,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends SimpleActivity {
+    private static final int CAMERA_PERMISSION = 1;
+
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
     @BindView(R.id.bright_display_btn) ImageView mBrightDisplayBtn;
     @BindView(R.id.stroboscope_btn) ImageView mStroboscopeBtn;
@@ -70,6 +76,7 @@ public class MainActivity extends SimpleActivity {
 
     @OnClick(R.id.toggle_btn)
     public void toggleFlashlight() {
+        mStroboscopeBar.setVisibility(View.INVISIBLE);
         mCameraImpl.toggleFlashlight();
     }
 
@@ -79,8 +86,33 @@ public class MainActivity extends SimpleActivity {
     }
 
     @OnClick(R.id.stroboscope_btn)
-    public void launchStroboscope() {
+    public void tryToggleStroboscope() {
+        toggleStroboscope();
+    }
 
+    private void toggleStroboscope() {
+        // use the old Camera API for stroboscope, the new Camera Manager is way too slow
+        if (isCameraPermissionGranted()) {
+            if (mCameraImpl.toggleStroboscope()) {
+                mStroboscopeBar.setVisibility(mStroboscopeBar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+            }
+        } else {
+            final String[] permissions = {Manifest.permission.CAMERA};
+            ActivityCompat.requestPermissions(this, permissions, CAMERA_PERMISSION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == CAMERA_PERMISSION) {
+            if (isCameraPermissionGranted()) {
+                toggleStroboscope();
+            } else {
+                Utils.showToast(getApplicationContext(), R.string.camera_permission);
+            }
+        }
     }
 
     @Override
@@ -121,6 +153,10 @@ public class MainActivity extends SimpleActivity {
             mCameraImpl.releaseCamera();
             mCameraImpl = null;
         }
+    }
+
+    private boolean isCameraPermissionGranted() {
+        return ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Subscribe
