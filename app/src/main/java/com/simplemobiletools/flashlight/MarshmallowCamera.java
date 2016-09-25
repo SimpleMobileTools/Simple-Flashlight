@@ -9,22 +9,28 @@ import android.util.Log;
 
 import com.squareup.otto.Bus;
 
-public class MarshmallowCamera {
+class MarshmallowCamera {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
 
     private Context mContext;
+    private CameraManager manager;
+    private String cameraId;
 
-    public MarshmallowCamera(Context cxt) {
+    @TargetApi(Build.VERSION_CODES.M)
+    MarshmallowCamera(Context cxt) {
         mContext = cxt;
+        manager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+        try {
+            final String[] list = manager.getCameraIdList();
+            cameraId = list[0];
+        } catch (CameraAccessException ignored) {
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    public void toggleMarshmallowFlashlight(final Bus bus, boolean enable) {
+    void toggleMarshmallowFlashlight(final Bus bus, boolean enable) {
         try {
-            final CameraManager manager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
-            final String[] list = manager.getCameraIdList();
-            if (list.length > 0)
-                manager.setTorchMode(list[0], enable);
+            manager.setTorchMode(cameraId, enable);
         } catch (CameraAccessException e) {
             Log.e(TAG, "toggle marshmallow flashlight " + e.getMessage());
             bus.post(new Events.CameraUnavailable());
