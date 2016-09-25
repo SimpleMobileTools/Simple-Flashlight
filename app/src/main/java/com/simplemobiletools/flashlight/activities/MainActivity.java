@@ -156,6 +156,7 @@ public class MainActivity extends SimpleActivity {
 
         mBrightDisplayBtn.setVisibility(mConfig.getBrightDisplay() ? View.VISIBLE : View.GONE);
         mStroboscopeBtn.setVisibility(mConfig.getStroboscope() ? View.VISIBLE : View.GONE);
+        mStroboscopeBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
