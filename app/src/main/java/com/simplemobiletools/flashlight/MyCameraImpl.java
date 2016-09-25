@@ -67,7 +67,7 @@ public class MyCameraImpl {
         return true;
     }
 
-    private void stopStroboscope() {
+    public void stopStroboscope() {
         mShouldStroboscopeStop = true;
     }
 
@@ -221,7 +221,7 @@ public class MyCameraImpl {
 
             if (mCamera != null) {
                 mCamera.setParameters(torchOff);
-                if (!mShouldEnableFlashlight) {
+                if (!mShouldEnableFlashlight || mIsMarshmallow) {
                     mCamera.release();
                     mCamera = null;
                 }

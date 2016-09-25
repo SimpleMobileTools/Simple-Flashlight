@@ -5,6 +5,7 @@ import android.content.Context;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
+import android.os.Handler;
 import android.util.Log;
 
 import com.squareup.otto.Bus;
@@ -14,9 +15,11 @@ class MarshmallowCamera {
 
     private CameraManager manager;
     private String cameraId;
+    private Context mContext;
 
     @TargetApi(Build.VERSION_CODES.M)
     MarshmallowCamera(Context context) {
+        mContext = context;
         manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
         try {
             final String[] list = manager.getCameraIdList();
@@ -31,7 +34,14 @@ class MarshmallowCamera {
             manager.setTorchMode(cameraId, enable);
         } catch (CameraAccessException e) {
             Log.e(TAG, "toggle marshmallow flashlight " + e.getMessage());
-            bus.post(new Events.CameraUnavailable());
+
+            Runnable mainRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    bus.post(new Events.CameraUnavailable());
+                }
+            };
+            new Handler(mContext.getMainLooper()).post(mainRunnable);
         }
     }
 }

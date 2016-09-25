@@ -118,6 +118,7 @@ public class MainActivity extends SimpleActivity {
         if (isCameraPermissionGranted()) {
             if (mCameraImpl.toggleStroboscope()) {
                 mStroboscopeBar.setVisibility(mStroboscopeBar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
+                changeIconColor(mStroboscopeBar.getVisibility() == View.VISIBLE ? R.color.colorPrimary : R.color.translucent_white, mStroboscopeBtn);
             }
         } else {
             final String[] permissions = {Manifest.permission.CAMERA};
@@ -156,7 +157,10 @@ public class MainActivity extends SimpleActivity {
 
         mBrightDisplayBtn.setVisibility(mConfig.getBrightDisplay() ? View.VISIBLE : View.GONE);
         mStroboscopeBtn.setVisibility(mConfig.getStroboscope() ? View.VISIBLE : View.GONE);
-        mStroboscopeBar.setVisibility(View.INVISIBLE);
+        if (!mConfig.getStroboscope()) {
+            mCameraImpl.stopStroboscope();
+            mStroboscopeBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -193,6 +197,7 @@ public class MainActivity extends SimpleActivity {
     }
 
     public void enableFlashlight() {
+        changeIconColor(R.color.translucent_white, mStroboscopeBtn);
         changeIconColor(R.color.colorPrimary, mToggleBtn);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
