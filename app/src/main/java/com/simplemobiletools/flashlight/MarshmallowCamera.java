@@ -12,14 +12,12 @@ import com.squareup.otto.Bus;
 class MarshmallowCamera {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
 
-    private Context mContext;
     private CameraManager manager;
     private String cameraId;
 
     @TargetApi(Build.VERSION_CODES.M)
-    MarshmallowCamera(Context cxt) {
-        mContext = cxt;
-        manager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
+    MarshmallowCamera(Context context) {
+        manager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
         try {
             final String[] list = manager.getCameraIdList();
             cameraId = list[0];
