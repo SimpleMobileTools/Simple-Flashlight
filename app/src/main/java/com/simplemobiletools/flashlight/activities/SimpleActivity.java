@@ -16,7 +16,7 @@ public class SimpleActivity extends AppCompatActivity {
         mConfig = Config.newInstance(getApplicationContext());
         int theme = mConfig.getIsDarkTheme() ? R.style.AppTheme_Dark : R.style.AppTheme;
         if (this instanceof MainActivity) {
-            theme = mConfig.getIsDarkTheme() ? R.style.BlackSplashScreen_Dark : R.style.BlackSplashScreen;
+            theme = R.style.BlackSplashScreen_Dark;
         }
         setTheme(theme);
         super.onCreate(savedInstanceState);

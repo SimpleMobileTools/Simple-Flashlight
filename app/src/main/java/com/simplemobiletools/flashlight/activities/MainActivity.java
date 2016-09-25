@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 
 import com.simplemobiletools.flashlight.BusProvider;
 import com.simplemobiletools.flashlight.Config;
@@ -26,6 +27,7 @@ public class MainActivity extends SimpleActivity {
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
     @BindView(R.id.bright_display_btn) ImageView mBrightDisplayBtn;
     @BindView(R.id.stroboscope_btn) ImageView mStroboscopeBtn;
+    @BindView(R.id.stroboscope_bar) SeekBar mStroboscopeBar;
 
     private static Bus mBus;
     private static MyCameraImpl mCameraImpl;
@@ -111,6 +113,10 @@ public class MainActivity extends SimpleActivity {
     protected void onDestroy() {
         super.onDestroy();
         Config.newInstance(getApplicationContext()).setIsFirstRun(false);
+        releaseCamera();
+    }
+
+    private void releaseCamera() {
         if (mCameraImpl != null) {
             mCameraImpl.releaseCamera();
             mCameraImpl = null;

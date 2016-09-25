@@ -11,26 +11,33 @@
 
     <ImageView
         android:id="@+id/toggle_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/main_button_size"
+        android:layout_height="@dimen/main_button_size"
         android:src="@drawable/circles_big"/>
 
     <ImageView
         android:id="@+id/bright_display_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/bright_display_margin"
+        android:layout_marginTop="@dimen/buttons_margin"
         android:padding="@dimen/activity_margin"
-        android:src="@mipmap/bright_display"
-        android:visibility="gone"/>
+        android:src="@mipmap/bright_display"/>
 
     <ImageView
         android:id="@+id/stroboscope_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/bright_display_margin"
+        android:layout_marginTop="@dimen/buttons_margin"
         android:padding="@dimen/activity_margin"
-        android:src="@mipmap/bright_display"
-        android:visibility="gone"/>
+        android:src="@mipmap/bright_display"/>
+
+    <SeekBar
+        android:id="@+id/stroboscope_bar"
+        android:layout_width="@dimen/seekbar_width"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_margin"
+        android:paddingBottom="@dimen/seekbar_vertical_padding"
+        android:paddingTop="@dimen/seekbar_vertical_padding"
+        android:visibility="invisible"/>
 
 </LinearLayout>
