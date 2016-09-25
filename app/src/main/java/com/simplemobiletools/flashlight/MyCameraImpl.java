@@ -9,6 +9,7 @@ import com.squareup.otto.Bus;
 
 public class MyCameraImpl {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
+
     private static Camera mCamera;
     private static Camera.Parameters mParams;
     private static Bus mBus;
@@ -20,10 +21,12 @@ public class MyCameraImpl {
     private static boolean mIsFlashlightOn;
     private static boolean mIsMarshmallow;
     private static boolean mShouldEnableFlashlight;
+    private static int mStroboFrequency;
 
     public MyCameraImpl(Context cxt) {
         mContext = cxt;
         mIsMarshmallow = isMarshmallow();
+        mStroboFrequency = 1000;
 
         if (mBus == null) {
             mBus = BusProvider.getInstance();
@@ -37,6 +40,10 @@ public class MyCameraImpl {
     public void toggleFlashlight() {
         mIsFlashlightOn = !mIsFlashlightOn;
         handleCameraSetup();
+    }
+
+    public void setStroboFrequency(int frequency) {
+        mStroboFrequency = frequency;
     }
 
     public boolean toggleStroboscope() {
@@ -202,9 +209,9 @@ public class MyCameraImpl {
             while (!mShouldStroboscopeStop) {
                 try {
                     mCamera.setParameters(torchOn);
-                    Thread.sleep(500);
+                    Thread.sleep(mStroboFrequency);
                     mCamera.setParameters(torchOff);
-                    Thread.sleep(500);
+                    Thread.sleep(mStroboFrequency);
                 } catch (InterruptedException ignored) {
                     mShouldStroboscopeStop = true;
                 } catch (RuntimeException ignored) {

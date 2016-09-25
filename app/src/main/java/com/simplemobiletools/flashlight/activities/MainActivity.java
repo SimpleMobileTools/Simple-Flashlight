@@ -29,6 +29,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends SimpleActivity {
     private static final int CAMERA_PERMISSION = 1;
+    private static final int MAX_STROBO_DELAY = 2000;
+    private static final int MIN_STROBO_DELAY = 30;
 
     @BindView(R.id.toggle_btn) ImageView mToggleBtn;
     @BindView(R.id.bright_display_btn) ImageView mBrightDisplayBtn;
@@ -47,6 +49,27 @@ public class MainActivity extends SimpleActivity {
         mBus = BusProvider.getInstance();
         changeIconColor(R.color.translucent_white, mBrightDisplayBtn);
         changeIconColor(R.color.translucent_white, mStroboscopeBtn);
+        mStroboscopeBar.setMax(MAX_STROBO_DELAY - MIN_STROBO_DELAY);
+        mStroboscopeBar.setProgress(mStroboscopeBar.getMax() / 2);
+
+        mStroboscopeBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                final int frequency = mStroboscopeBar.getMax() - progress + MIN_STROBO_DELAY;
+                if (mCameraImpl != null)
+                    mCameraImpl.setStroboFrequency(frequency);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
@@ -180,7 +203,7 @@ public class MainActivity extends SimpleActivity {
 
     private void changeIconColor(int colorId, ImageView imageView) {
         final int appColor = getResources().getColor(colorId);
-        imageView.getDrawable().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
+        imageView.getBackground().mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN);
     }
 
     @Subscribe

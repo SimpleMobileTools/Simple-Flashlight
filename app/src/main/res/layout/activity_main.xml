@@ -13,23 +13,25 @@
         android:id="@+id/toggle_btn"
         android:layout_width="@dimen/main_button_size"
         android:layout_height="@dimen/main_button_size"
-        android:src="@drawable/circles_big"/>
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:background="@drawable/circles_big"/>
 
     <ImageView
         android:id="@+id/bright_display_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_margin"
         android:layout_marginTop="@dimen/buttons_margin"
-        android:padding="@dimen/activity_margin"
-        android:src="@mipmap/bright_display"/>
+        android:background="@mipmap/bright_display"
+        android:padding="@dimen/activity_margin"/>
 
     <ImageView
         android:id="@+id/stroboscope_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/buttons_margin"
-        android:padding="@dimen/activity_margin"
-        android:src="@mipmap/bright_display"/>
+        android:background="@mipmap/bright_display"
+        android:padding="@dimen/activity_margin"/>
 
     <SeekBar
         android:id="@+id/stroboscope_bar"
