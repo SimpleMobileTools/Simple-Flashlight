@@ -30,7 +30,7 @@ public class MainActivity extends SimpleActivity {
     @BindView(R.id.stroboscope_bar) SeekBar mStroboscopeBar;
 
     private static Bus mBus;
-    private static MyCameraImpl mCameraImpl;
+    private MyCameraImpl mCameraImpl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

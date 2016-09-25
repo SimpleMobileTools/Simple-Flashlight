@@ -10,9 +10,9 @@ public class MyCameraImpl {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
     private static Camera mCamera;
     private static Camera.Parameters mParams;
-    private static Context mContext;
-    private static MarshmallowCamera mMarshmallowCamera;
     private static Bus mBus;
+    private Context mContext;
+    private MarshmallowCamera mMarshmallowCamera;
 
     private static boolean mIsFlashlightOn;
     private static boolean mIsMarshmallow;
