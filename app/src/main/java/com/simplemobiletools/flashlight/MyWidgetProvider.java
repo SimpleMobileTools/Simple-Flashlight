@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.widget.RemoteViews;
@@ -22,6 +23,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
     private static RemoteViews mRemoteViews;
     private static AppWidgetManager mWidgetManager;
     private static Bitmap mColoredBmp;
+    private static Bitmap mWhiteBmp;
     private static Bus mBus;
     private static Context mContext;
 
@@ -50,11 +52,12 @@ public class MyWidgetProvider extends AppWidgetProvider {
         final SharedPreferences prefs = initPrefs(context);
         final Resources res = context.getResources();
         final int defaultColor = res.getColor(R.color.colorPrimary);
-        final int appColor = prefs.getInt(Constants.WIDGET_COLOR, defaultColor);
+        final int selectedColor = prefs.getInt(Constants.WIDGET_COLOR, defaultColor);
+        final int alpha = Color.alpha(selectedColor);
 
-        final Drawable drawable = context.getResources().getDrawable(R.drawable.circles_small);
-        drawable.mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_ATOP);
-        mColoredBmp = Utils.drawableToBitmap(drawable);
+        mColoredBmp = getColoredCircles(selectedColor, alpha);
+        mWhiteBmp = getColoredCircles(Color.WHITE, alpha);
+        mRemoteViews.setImageViewBitmap(R.id.toggle_btn, mWhiteBmp);
 
         if (mBus == null) {
             mBus = BusProvider.getInstance();
@@ -75,6 +78,13 @@ public class MyWidgetProvider extends AppWidgetProvider {
             super.onReceive(context, intent);
     }
 
+    private Bitmap getColoredCircles(int color, int alpha) {
+        final Drawable drawable = mContext.getResources().getDrawable(R.drawable.circles_small);
+        drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        drawable.mutate().setAlpha(alpha);
+        return Utils.drawableToBitmap(drawable);
+    }
+
     public void enableFlashlight() {
         mRemoteViews.setImageViewBitmap(R.id.toggle_btn, mColoredBmp);
         for (int widgetId : mWidgetIds) {
@@ -83,7 +93,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
     }
 
     public void disableFlashlight() {
-        mRemoteViews.setImageViewResource(R.id.toggle_btn, R.drawable.circles_small);
+        mRemoteViews.setImageViewBitmap(R.id.toggle_btn, mWhiteBmp);
         for (int widgetId : mWidgetIds) {
             mWidgetManager.updateAppWidget(widgetId, mRemoteViews);
         }
