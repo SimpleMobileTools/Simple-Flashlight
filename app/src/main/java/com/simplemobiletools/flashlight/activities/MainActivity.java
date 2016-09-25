@@ -39,6 +39,7 @@ public class MainActivity extends SimpleActivity {
 
     private static Bus mBus;
     private MyCameraImpl mCameraImpl;
+    private boolean mJustGrantedPermission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,6 @@ public class MainActivity extends SimpleActivity {
 
     @OnClick(R.id.toggle_btn)
     public void toggleFlashlight() {
-        mStroboscopeBar.setVisibility(View.INVISIBLE);
         mCameraImpl.toggleFlashlight();
     }
 
@@ -131,6 +131,7 @@ public class MainActivity extends SimpleActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == CAMERA_PERMISSION) {
+            mJustGrantedPermission = true;
             if (isCameraPermissionGranted()) {
                 toggleStroboscope();
             } else {
@@ -152,6 +153,10 @@ public class MainActivity extends SimpleActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (mJustGrantedPermission) {
+            mJustGrantedPermission = false;
+            return;
+        }
         mCameraImpl.handleCameraSetup();
         mCameraImpl.checkFlashlight();
 
@@ -197,9 +202,11 @@ public class MainActivity extends SimpleActivity {
     }
 
     public void enableFlashlight() {
-        changeIconColor(R.color.translucent_white, mStroboscopeBtn);
         changeIconColor(R.color.colorPrimary, mToggleBtn);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        changeIconColor(R.color.translucent_white, mStroboscopeBtn);
+        mStroboscopeBar.setVisibility(View.INVISIBLE);
     }
 
     public void disableFlashlight() {

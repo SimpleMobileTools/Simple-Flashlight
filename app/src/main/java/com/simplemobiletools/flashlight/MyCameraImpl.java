@@ -219,13 +219,18 @@ public class MyCameraImpl {
                 }
             }
 
-            if (mCamera != null) {
-                mCamera.setParameters(torchOff);
-                if (!mShouldEnableFlashlight || mIsMarshmallow) {
-                    mCamera.release();
-                    mCamera = null;
+            try {
+                if (mCamera != null) {
+                    mCamera.setParameters(torchOff);
+                    if (!mShouldEnableFlashlight || mIsMarshmallow) {
+                        mCamera.release();
+                        mCamera = null;
+                    }
                 }
+            } catch (RuntimeException ignored) {
+
             }
+
             mIsStroboscopeRunning = false;
             mShouldStroboscopeStop = false;
 
