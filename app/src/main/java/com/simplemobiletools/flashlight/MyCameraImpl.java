@@ -221,8 +221,10 @@ public class MyCameraImpl {
 
             if (mCamera != null) {
                 mCamera.setParameters(torchOff);
-                mCamera.release();
-                mCamera = null;
+                if (!mShouldEnableFlashlight) {
+                    mCamera.release();
+                    mCamera = null;
+                }
             }
             mIsStroboscopeRunning = false;
             mShouldStroboscopeStop = false;
