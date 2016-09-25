@@ -138,6 +138,10 @@ public class MyCameraImpl {
     }
 
     private void disableFlashlight() {
+        if (mIsStroboscopeRunning) {
+            return;
+        }
+
         mIsFlashlightOn = false;
         if (mIsMarshmallow) {
             toggleMarshmallowFlashlight(false);
