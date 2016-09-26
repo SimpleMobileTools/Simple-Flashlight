@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- just an invisible rectangle determining the size of the widget -->
     <item
-        android:bottom="24dp"
-        android:left="24dp"
-        android:right="24dp"
-        android:top="24dp">
+        android:bottom="0px"
+        android:left="0px"
+        android:right="60dp"
+        android:top="60dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <item
+        android:bottom="20dp"
+        android:left="20dp"
+        android:right="20dp"
+        android:top="20dp">
         <shape
             android:shape="oval">
             <stroke
-                android:width="6dp"
+                android:width="5dp"
                 android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
 
     <item
-        android:bottom="12dp"
-        android:left="12dp"
-        android:right="12dp"
-        android:top="12dp">
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp">
         <shape
             android:shape="oval">
             <stroke
-                android:width="6dp"
+                android:width="5dp"
                 android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
@@ -32,10 +43,9 @@
         <shape
             android:shape="oval">
             <stroke
-                android:width="6dp"
+                android:width="5dp"
                 android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
-
 </layer-list>

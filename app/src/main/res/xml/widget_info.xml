@@ -3,4 +3,5 @@
                     android:configure="com.simplemobiletools.flashlight.activities.WidgetConfigureActivity"
                     android:initialLayout="@layout/widget"
                     android:minHeight="40dp"
-                    android:minWidth="40dp"/>
+                    android:minWidth="40dp"
+                    android:previewImage="@drawable/circles_small"/>
