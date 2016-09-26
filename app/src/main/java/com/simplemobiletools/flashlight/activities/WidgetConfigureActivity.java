@@ -111,7 +111,7 @@ public class WidgetConfigureActivity extends AppCompatActivity {
     private void updateColors() {
         mWidgetColor = adjustAlpha(mWidgetColorWithoutTransparency, mWidgetAlpha);
         mWidgetColorPicker.setBackgroundColor(mWidgetColor);
-        mImage.getDrawable().mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN);
+        mImage.getBackground().mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN);
     }
 
     private SeekBar.OnSeekBarChangeListener seekbarChangeListener = new SeekBar.OnSeekBarChangeListener() {

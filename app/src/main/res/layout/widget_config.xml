@@ -7,13 +7,19 @@
     android:layout_margin="@dimen/activity_margin"
     android:paddingBottom="@dimen/activity_margin">
 
-    <ImageView
-        android:id="@+id/config_image"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/config_widget_color"
-        android:scaleType="centerInside"
-        android:src="@drawable/circles_big"/>
+        android:layout_marginBottom="@dimen/activity_margin"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/config_image"
+            android:layout_width="@dimen/main_button_size"
+            android:layout_height="@dimen/main_button_size"
+            android:background="@drawable/circles_big"/>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/config_widget_color"
