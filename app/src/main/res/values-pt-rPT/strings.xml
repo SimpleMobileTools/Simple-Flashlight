@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Lanterna</string>
+    <string name="camera_error">Falha ao obter a câmara</string>
+    <string name="ok">OK</string>
+    <string name="camera_permission">A permissão da câmara é necessária para utilizar o efeito estroboscópico</string>
+
+    <!-- Settings -->
+    <string name="settings">Definições</string>
+    <string name="dark_theme">Tema escuro</string>
+    <string name="bright_display">Mostrar um botão para iluminar o ecrã</string>
+    <string name="show_stroboscope">Mostrar um botão de estroboscópio</string>
+
+    <!-- About -->
+    <string name="about">Sobre</string>
+    <string name="website">Mais aplicações simples e código de fonte em:\nhttp://simplemobiletools.com</string>
+    <string name="email_label">Envie os seus comentários ou sugestões para:</string>
+    <string name="third_party_licences_underlined"><u>Licenças de terceiros</u></string>
+    <string name="invite_friends_underlined"><u>Convidar amigos</u></string>
+    <string name="share_text">Olá, experimente %1$s em %2$s</string>
+    <string name="invite_via">Convidar via</string>
+    <string name="rate_us_underlined"><u>Classifique-nos na Play Store</u></string>
+    <string name="follow_us">Siga-nos:</string>
+    <string name="copyright">v %1$s\nCopyright © Simple Mobile Tools %2$d</string>
+
+    <!--License-->
+    <string name="notice">Esta aplicação usa as seguintes bibliotecas de terceiros para facilitar a minha vida. Obrigado.</string>
+    <string name="third_party_licences">Licenças de terceiros</string>
+    <string name="butterknife_title"><u>Butter Knife (injetor de \"views\")</u></string>
+    <string name="ambilwarna_title"><u>AmbilWarna (selecionador de cores)</u></string>
+    <string name="otto_title"><u>Otto (transporte de eventos)</u></string>
+</resources>
