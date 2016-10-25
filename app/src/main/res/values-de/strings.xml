@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Flashlight</string>
+    <string name="app_name">Schlichte Taschenlampe</string>
+    <string name="app_launcher_name">Taschenlampe</string>
     <string name="camera_error">Beanspruchen der Kamera fehlgeschlagen</string>
     <string name="ok">OK</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
+    <string name="camera_permission">Kamera Berichtigung ist für den Stroboskopeffekt erforderlich</string>
 
     <!-- Settings -->
     <string name="settings">Einstellungen</string>
-    <string name="dark_theme">Dunkles Thema</string>
+    <string name="dark_theme">Dunkles Design</string>
     <string name="bright_display">Zeige Knopf für helles Display</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
+    <string name="show_stroboscope">Zeige einen Stroboskop Button</string>
 
     <!-- About -->
     <string name="about">Über</string>
@@ -26,7 +26,7 @@
     <!--License-->
     <string name="notice">Diese App nutzt die folgenden Drittanbieterbibliotheken, die mein Leben einfacher machen. Danke.</string>
     <string name="third_party_licences">Drittanbieterlizenzen</string>
-    <string name="butterknife_title">Butter Knife (view injector)</string>
-    <string name="ambilwarna_title"><u>AmbilWarna (color picker)</u></string>
-    <string name="otto_title"><u>Otto (event bus)</u></string>
+    <string name="butterknife_title">Butter Knife (View Injector)</string>
+    <string name="ambilwarna_title"><u>AmbilWarna (Color Picker)</u></string>
+    <string name="otto_title"><u>Otto (Event Bus)</u></string>
 </resources>
