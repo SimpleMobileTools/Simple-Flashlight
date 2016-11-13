@@ -3,7 +3,7 @@
     <string name="app_launcher_name">Lanterna</string>
     <string name="camera_error">Falha ao obter a câmara</string>
     <string name="ok">OK</string>
-    <string name="camera_permission">A permissão da câmara é necessária para utilizar o efeito estroboscópio</string>
+    <string name="camera_permission">A permissão da câmara é necessária para utilizar o efeito estroboscópico</string>
 
     <!-- Settings -->
     <string name="settings">Definições</string>
