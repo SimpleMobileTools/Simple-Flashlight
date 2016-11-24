@@ -29,4 +29,17 @@
     <string name="butterknife_title">Butter Knife (ビュー インジェクター)</string>
     <string name="ambilwarna_title"><u>AmbilWarna (color picker)</u></string>
     <string name="otto_title"><u>Otto (イベント バス)</u></string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <string name="app_short_description">A simple flashlight without ads.</string>
+    <string name="app_long_description">
+        A clean flashlight with an extra bright display and customizable stroboscope. If turned on via the app (not widget), it will prevent the device from falling asleep.
+
+
+        Comes with a 1x1 widget with customizable color.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides a Dark theme too.
+
+        This app is just one piece of a bigger series of apps. You can find the rest of them at http://www.simplemobiletools.com
+    </string>
 </resources>
