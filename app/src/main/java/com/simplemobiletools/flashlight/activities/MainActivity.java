@@ -115,7 +115,7 @@ public class MainActivity extends SimpleActivity {
 
     private void toggleStroboscope() {
         // use the old Camera API for stroboscope, the new Camera Manager is way too slow
-        if (isCameraPermissionGranted()) {
+        if (isCameraPermissionGranted() || Utils.isNougat()) {
             if (mCameraImpl.toggleStroboscope()) {
                 mStroboscopeBar.setVisibility(mStroboscopeBar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
                 changeIconColor(mStroboscopeBar.getVisibility() == View.VISIBLE ? R.color.colorPrimary : R.color.translucent_white, mStroboscopeBtn);

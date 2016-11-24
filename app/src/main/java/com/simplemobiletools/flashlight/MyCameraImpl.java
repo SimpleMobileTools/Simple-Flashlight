@@ -50,13 +50,15 @@ public class MyCameraImpl {
         if (!mIsStroboscopeRunning)
             disableFlashlight();
 
-        if (mCamera == null) {
-            initCamera();
-        }
+        if (!Utils.isNougat()) {
+            if (mCamera == null) {
+                initCamera();
+            }
 
-        if (mCamera == null) {
-            Utils.showToast(mContext, R.string.camera_error);
-            return false;
+            if (mCamera == null) {
+                Utils.showToast(mContext, R.string.camera_error);
+                return false;
+            }
         }
 
         if (mIsStroboscopeRunning) {
@@ -181,6 +183,7 @@ public class MyCameraImpl {
             mBus.unregister(this);
         }
         mIsFlashlightOn = false;
+        mShouldStroboscopeStop = true;
     }
 
     private boolean isMarshmallow() {
@@ -197,38 +200,53 @@ public class MyCameraImpl {
             mShouldStroboscopeStop = false;
             mIsStroboscopeRunning = true;
 
-            if (mCamera == null) {
-                initCamera();
-            }
-
-            Camera.Parameters torchOn = mCamera.getParameters();
-            Camera.Parameters torchOff = mCamera.getParameters();
-            torchOn.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-            torchOff.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
-
-            while (!mShouldStroboscopeStop) {
-                try {
-                    mCamera.setParameters(torchOn);
-                    Thread.sleep(mStroboFrequency);
-                    mCamera.setParameters(torchOff);
-                    Thread.sleep(mStroboFrequency);
-                } catch (InterruptedException ignored) {
-                    mShouldStroboscopeStop = true;
-                } catch (RuntimeException ignored) {
-                    mShouldStroboscopeStop = true;
-                }
-            }
-
-            try {
-                if (mCamera != null) {
-                    mCamera.setParameters(torchOff);
-                    if (!mShouldEnableFlashlight || mIsMarshmallow) {
-                        mCamera.release();
-                        mCamera = null;
+            if (Utils.isNougat()) {
+                while (!mShouldStroboscopeStop) {
+                    try {
+                        mMarshmallowCamera.toggleMarshmallowFlashlight(mBus, true);
+                        Thread.sleep(mStroboFrequency);
+                        mMarshmallowCamera.toggleMarshmallowFlashlight(mBus, false);
+                        Thread.sleep(mStroboFrequency);
+                    } catch (InterruptedException ignored) {
+                        mShouldStroboscopeStop = true;
+                    } catch (RuntimeException ignored) {
+                        mShouldStroboscopeStop = true;
                     }
                 }
-            } catch (RuntimeException ignored) {
+            } else {
+                if (mCamera == null) {
+                    initCamera();
+                }
 
+                Camera.Parameters torchOn = mCamera.getParameters();
+                Camera.Parameters torchOff = mCamera.getParameters();
+                torchOn.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                torchOff.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+
+                while (!mShouldStroboscopeStop) {
+                    try {
+                        mCamera.setParameters(torchOn);
+                        Thread.sleep(mStroboFrequency);
+                        mCamera.setParameters(torchOff);
+                        Thread.sleep(mStroboFrequency);
+                    } catch (InterruptedException ignored) {
+                        mShouldStroboscopeStop = true;
+                    } catch (RuntimeException ignored) {
+                        mShouldStroboscopeStop = true;
+                    }
+                }
+
+                try {
+                    if (mCamera != null) {
+                        mCamera.setParameters(torchOff);
+                        if (!mShouldEnableFlashlight || mIsMarshmallow) {
+                            mCamera.release();
+                            mCamera = null;
+                        }
+                    }
+                } catch (RuntimeException ignored) {
+
+                }
             }
 
             mIsStroboscopeRunning = false;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.widget.Toast;
 
 public class Utils {
@@ -19,5 +20,9 @@ public class Utils {
 
     public static void showToast(Context context, int resId) {
         Toast.makeText(context, context.getResources().getString(resId), Toast.LENGTH_SHORT).show();
+    }
+
+    public static boolean isNougat() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N;
     }
 }
