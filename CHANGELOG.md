@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 1.21 *(2016-11-24)*
+----------------------------
+
+ * Fixed some Nougat issues
+ * Added some translations
+
 Version 1.20 *(2016-09-26)*
 ----------------------------
 
