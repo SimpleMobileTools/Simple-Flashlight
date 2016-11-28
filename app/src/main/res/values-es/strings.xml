@@ -31,15 +31,15 @@
     <string name="otto_title"><u>Otto (Canal de eventos)</u></string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <string name="app_short_description">A simple flashlight without ads.</string>
+    <string name="app_short_description">Una simple linterna sin anuncios.</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display and customizable stroboscope. If turned on via the app (not widget), it will prevent the device from falling asleep.
+        Una sencilla linterna con brillo extra de pantalla y un personalizable estroboscopio. Si la enciende a través de la aplicación (no del widget), prevendrá que el dispositivo se duerma.
 
 
-        Comes with a 1x1 widget with customizable color.
+        Viene con un widget 1x1 con color personalizable.
 
-        Contains no ads or unnecessary permissions. It is fully opensource, provides a Dark theme too.
+        No contiene anuncios ni permisos innecesarios. Es completamente OpenSource y además provee un tema oscuro.
 
-        This app is just one piece of a bigger series of apps. You can find the rest of them at http://www.simplemobiletools.com
+        Esta aplicación es tan solo una pequeña parte de una serie de aplicaciones. Puede encontrar el resto en http://www.simplemobiletools.com
     </string>
 </resources>
