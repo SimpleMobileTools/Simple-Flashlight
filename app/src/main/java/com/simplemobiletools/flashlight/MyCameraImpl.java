@@ -1,11 +1,14 @@
 package com.simplemobiletools.flashlight;
 
 import android.content.Context;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.util.Log;
 
 import com.squareup.otto.Bus;
+
+import java.io.IOException;
 
 public class MyCameraImpl {
     private static final String TAG = MyCameraImpl.class.getSimpleName();
@@ -223,6 +226,15 @@ public class MyCameraImpl {
                 torchOn.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                 torchOff.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
 
+                SurfaceTexture dummy = new SurfaceTexture(1);
+                try {
+                    mCamera.setPreviewTexture(dummy);
+                } catch (IOException e) {
+                    Log.e(TAG, "setup stroboscope1 " + e.getMessage());
+                }
+
+                mCamera.startPreview();
+
                 while (!mShouldStroboscopeStop) {
                     try {
                         mCamera.setParameters(torchOn);
@@ -244,8 +256,8 @@ public class MyCameraImpl {
                             mCamera = null;
                         }
                     }
-                } catch (RuntimeException ignored) {
-
+                } catch (RuntimeException e) {
+                    Log.e(TAG, "setup stroboscope2 " + e.getMessage());
                 }
             }
 
