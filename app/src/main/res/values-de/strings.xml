@@ -3,7 +3,7 @@
     <string name="app_launcher_name">Taschenlampe</string>
     <string name="camera_error">Beanspruchen der Kamera fehlgeschlagen</string>
     <string name="ok">OK</string>
-    <string name="camera_permission">Kamera-Berichtigung ist für den Stroboskopeffekt erforderlich</string>
+    <string name="camera_permission">Kamera-Berechtigung ist für den Stroboskopeffekt erforderlich</string>
 
     <!-- Settings -->
     <string name="settings">Einstellungen</string>
