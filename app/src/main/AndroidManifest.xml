@@ -16,16 +16,21 @@
         android:label="@string/app_launcher_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/BlackSplashScreen.Dark">
+            android:name=".activities.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BlackSplashScreen.Dark"/>
 
         <activity
             android:name=".activities.WidgetConfigureActivity"
@@ -37,16 +42,6 @@
         </activity>
 
         <activity
-            android:name=".activities.AboutActivity"
-            android:label="@string/about"
-            android:parentActivityName=".activities.MainActivity"/>
-
-        <activity
-            android:name=".activities.LicenseActivity"
-            android:label="@string/third_party_licences"
-            android:parentActivityName=".activities.AboutActivity"/>
-
-        <activity
             android:name=".activities.BrightDisplayActivity"
             android:screenOrientation="portrait"/>
 
@@ -54,6 +49,21 @@
             android:name=".activities.SettingsActivity"
             android:label="@string/settings"
             android:parentActivityName=".activities.MainActivity"/>
+
+        <activity
+            android:name="com.simplemobiletools.commons.activities.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName=".activities.MainActivity"/>
+
+        <activity
+            android:name="com.simplemobiletools.commons.activities.LicenseActivity"
+            android:label="@string/third_party_licences"
+            android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity"/>
+
+        <activity
+            android:name="com.simplemobiletools.commons.activities.CustomizationActivity"
+            android:label="@string/customize_colors"
+            android:parentActivityName=".activities.SettingsActivity"/>
 
         <receiver
             android:name=".helpers.MyWidgetProvider"
