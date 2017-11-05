@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_margin"
         android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@mipmap/bright_display"
+        android:background="@mipmap/ic_bright_display"
         android:padding="@dimen/activity_margin"/>
 
     <ImageView
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@mipmap/stroboscope"
+        android:background="@mipmap/ic_stroboscope"
         android:padding="@dimen/activity_margin"/>
 
     <com.simplemobiletools.commons.views.MySeekBar
