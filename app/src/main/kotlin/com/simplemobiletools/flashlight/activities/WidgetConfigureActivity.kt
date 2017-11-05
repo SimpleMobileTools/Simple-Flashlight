@@ -8,44 +8,28 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.ImageView
 import android.widget.RemoteViews
 import android.widget.SeekBar
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
+import com.simplemobiletools.commons.dialogs.ColorPickerDialog
+import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.helpers.PREFS_KEY
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
 import com.simplemobiletools.flashlight.helpers.WIDGET_COLOR
-import yuku.ambilwarna.AmbilWarnaDialog
+import kotlinx.android.synthetic.main.widget_config.*
 
 class WidgetConfigureActivity : AppCompatActivity() {
-    @BindView(R.id.config_widget_seekbar) internal var mWidgetSeekBar: SeekBar? = null
-    @BindView(R.id.config_widget_color) internal var mWidgetColorPicker: View? = null
-    @BindView(R.id.config_image) internal var mImage: ImageView? = null
-
-    private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
-        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-            mWidgetAlpha = progress.toFloat() / 100.toFloat()
-            updateColors()
-        }
-
-        override fun onStartTrackingTouch(seekBar: SeekBar) {
-
-        }
-
-        override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-        }
+    companion object {
+        private var mWidgetAlpha = 0f
+        private var mWidgetId = 0
+        private var mWidgetColor = 0
+        private var mWidgetColorWithoutTransparency = 0
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
         setContentView(R.layout.widget_config)
-        ButterKnife.bind(this)
         initVariables()
 
         val intent = intent
@@ -55,25 +39,27 @@ class WidgetConfigureActivity : AppCompatActivity() {
 
         if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
             finish()
+
+        config_save.setOnClickListener { saveConfig() }
+        config_widget_color.setOnClickListener { pickBackgroundColor() }
     }
 
     private fun initVariables() {
         val prefs = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
         mWidgetColor = prefs.getInt(WIDGET_COLOR, 1)
         if (mWidgetColor == 1) {
-            mWidgetColor = resources.getColor(R.color.colorPrimary)
+            mWidgetColor = resources.getColor(R.color.color_primary)
             mWidgetAlpha = 1f
         } else {
             mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
         }
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
-        mWidgetSeekBar!!.setOnSeekBarChangeListener(seekbarChangeListener)
-        mWidgetSeekBar!!.progress = (mWidgetAlpha * 100).toInt()
+        config_widget_seekbar.setOnSeekBarChangeListener(seekbarChangeListener)
+        config_widget_seekbar.progress = (mWidgetAlpha * 100).toInt()
         updateColors()
     }
 
-    @OnClick(R.id.config_save)
     fun saveConfig() {
         val appWidgetManager = AppWidgetManager.getInstance(this)
         val views = RemoteViews(packageName, R.layout.widget)
@@ -88,18 +74,11 @@ class WidgetConfigureActivity : AppCompatActivity() {
         finish()
     }
 
-    @OnClick(R.id.config_widget_color)
     fun pickBackgroundColor() {
-        val dialog = AmbilWarnaDialog(this, mWidgetColorWithoutTransparency, object : AmbilWarnaDialog.OnAmbilWarnaListener {
-            override fun onCancel(dialog: AmbilWarnaDialog) {}
-
-            override fun onOk(dialog: AmbilWarnaDialog, color: Int) {
-                mWidgetColorWithoutTransparency = color
-                updateColors()
-            }
-        })
-
-        dialog.show()
+        ColorPickerDialog(this, mWidgetColorWithoutTransparency) {
+            mWidgetColorWithoutTransparency = it
+            updateColors()
+        }
     }
 
     private fun storeWidgetColors() {
@@ -114,24 +93,23 @@ class WidgetConfigureActivity : AppCompatActivity() {
     }
 
     private fun updateColors() {
-        mWidgetColor = adjustAlpha(mWidgetColorWithoutTransparency, mWidgetAlpha)
-        mWidgetColorPicker!!.setBackgroundColor(mWidgetColor)
-        mImage!!.background.mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN)
+        mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
+        config_widget_color.setBackgroundColor(mWidgetColor)
+        config_image.background.mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN)
     }
 
-    private fun adjustAlpha(color: Int, factor: Float): Int {
-        val alpha = Math.round(Color.alpha(color) * factor)
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
-    }
+    private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+            mWidgetAlpha = progress.toFloat() / 100.toFloat()
+            updateColors()
+        }
 
-    companion object {
+        override fun onStartTrackingTouch(seekBar: SeekBar) {
 
-        private var mWidgetAlpha: Float = 0.toFloat()
-        private var mWidgetId: Int = 0
-        private var mWidgetColor: Int = 0
-        private var mWidgetColorWithoutTransparency: Int = 0
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+        }
     }
 }

@@ -30,7 +30,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/BlackSplashScreen.Dark"/>
+            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".activities.WidgetConfigureActivity"

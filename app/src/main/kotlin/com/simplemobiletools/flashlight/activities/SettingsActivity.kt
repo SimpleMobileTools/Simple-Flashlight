@@ -1,54 +1,45 @@
 package com.simplemobiletools.flashlight.activities
 
 import android.os.Bundle
-import android.support.v4.app.TaskStackBuilder
-import android.support.v7.widget.SwitchCompat
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
+import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.helpers.Config
+import com.simplemobiletools.flashlight.extensions.config
+import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : SimpleActivity() {
-    @BindView(R.id.settings_bright_display) internal var mBrightDisplaySwitch: SwitchCompat? = null
-    @BindView(R.id.settings_stroboscope) internal var mStroboscopeSwitch: SwitchCompat? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        mConfig = Config.newInstance(applicationContext)
-        ButterKnife.bind(this)
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        setupCustomizeColors()
         setupBrightDisplay()
         setupStroboscope()
+        updateTextColors(settings_holder)
+    }
+
+    private fun setupCustomizeColors() {
+        settings_customize_colors_holder.setOnClickListener {
+            startCustomizationActivity()
+        }
     }
 
     private fun setupBrightDisplay() {
-        mBrightDisplaySwitch!!.isChecked = mConfig!!.brightDisplay
+        settings_bright_display.isChecked = config.brightDisplay
+        settings_bright_display_holder.setOnClickListener {
+            settings_bright_display.toggle()
+            config.brightDisplay = settings_bright_display.isChecked
+        }
     }
 
     private fun setupStroboscope() {
-        mStroboscopeSwitch!!.isChecked = mConfig!!.stroboscope
-    }
-
-    @OnClick(R.id.settings_bright_display_holder)
-    fun handleBrightDisplay() {
-        mBrightDisplaySwitch!!.isChecked = !mBrightDisplaySwitch!!.isChecked
-        mConfig!!.brightDisplay = mBrightDisplaySwitch!!.isChecked
-    }
-
-    @OnClick(R.id.settings_stroboscope_holder)
-    fun handleStroboscope() {
-        mStroboscopeSwitch!!.isChecked = !mStroboscopeSwitch!!.isChecked
-        mConfig!!.stroboscope = mStroboscopeSwitch!!.isChecked
-    }
-
-    private fun restartActivity() {
-        TaskStackBuilder.create(applicationContext).addNextIntentWithParentStack(intent).startActivities()
-    }
-
-    companion object {
-
-        private var mConfig: Config? = null
+        settings_stroboscope.isChecked = config.stroboscope
+        settings_stroboscope_holder.setOnClickListener {
+            settings_stroboscope.toggle()
+            config.stroboscope = settings_stroboscope.isChecked
+        }
     }
 }

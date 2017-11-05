@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.widget.RemoteViews
+import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.PREFS_KEY
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.models.Events
@@ -40,7 +41,7 @@ class MyWidgetProvider : AppWidgetProvider() {
 
         val prefs = initPrefs(context)
         val res = context.resources
-        val defaultColor = res.getColor(R.color.colorPrimary)
+        val defaultColor = res.getColor(R.color.color_primary)
         val selectedColor = prefs.getInt(WIDGET_COLOR, defaultColor)
         val alpha = Color.alpha(selectedColor)
 
@@ -94,7 +95,7 @@ class MyWidgetProvider : AppWidgetProvider() {
     @Subscribe
     fun cameraUnavailable(event: Events.CameraUnavailable) {
         if (mContext != null) {
-            Utils.showToast(mContext!!, R.string.camera_error)
+            mContext!!.toast(R.string.camera_error)
             disableFlashlight()
         }
     }
