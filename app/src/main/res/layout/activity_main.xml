@@ -33,7 +33,7 @@
         android:background="@mipmap/stroboscope"
         android:padding="@dimen/activity_margin"/>
 
-    <SeekBar
+    <com.simplemobiletools.commons.views.MySeekBar
         android:id="@+id/stroboscope_bar"
         android:layout_width="@dimen/seekbar_width"
         android:layout_height="wrap_content"

@@ -2,29 +2,24 @@ package com.simplemobiletools.flashlight.activities
 
 import android.app.Activity
 import android.appwidget.AppWidgetManager
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.RemoteViews
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
-import com.simplemobiletools.commons.helpers.PREFS_KEY
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
-import com.simplemobiletools.flashlight.helpers.WIDGET_COLOR
 import kotlinx.android.synthetic.main.widget_config.*
 
 class WidgetConfigureActivity : AppCompatActivity() {
-    companion object {
-        private var mWidgetAlpha = 0f
-        private var mWidgetId = 0
-        private var mWidgetColor = 0
-        private var mWidgetColorWithoutTransparency = 0
-    }
+    private var mWidgetAlpha = 0f
+    private var mWidgetId = 0
+    private var mWidgetColor = 0
+    private var mWidgetColorWithoutTransparency = 0
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +27,6 @@ class WidgetConfigureActivity : AppCompatActivity() {
         setContentView(R.layout.widget_config)
         initVariables()
 
-        val intent = intent
         val extras = intent.extras
         if (extras != null)
             mWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
@@ -45,8 +39,7 @@ class WidgetConfigureActivity : AppCompatActivity() {
     }
 
     private fun initVariables() {
-        val prefs = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
-        mWidgetColor = prefs.getInt(WIDGET_COLOR, 1)
+        mWidgetColor = config.widgetBgColor
         if (mWidgetColor == 1) {
             mWidgetColor = resources.getColor(R.color.color_primary)
             mWidgetAlpha = 1f
@@ -60,36 +53,29 @@ class WidgetConfigureActivity : AppCompatActivity() {
         updateColors()
     }
 
-    fun saveConfig() {
-        val appWidgetManager = AppWidgetManager.getInstance(this)
-        val views = RemoteViews(packageName, R.layout.widget)
-        appWidgetManager.updateAppWidget(mWidgetId, views)
-
-        storeWidgetColors()
+    private fun saveConfig() {
+        config.widgetBgColor = mWidgetColor
         requestWidgetUpdate()
 
-        val resultValue = Intent()
-        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mWidgetId)
-        setResult(Activity.RESULT_OK, resultValue)
+        Intent().apply {
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mWidgetId)
+            setResult(Activity.RESULT_OK, this)
+        }
         finish()
     }
 
-    fun pickBackgroundColor() {
+    private fun pickBackgroundColor() {
         ColorPickerDialog(this, mWidgetColorWithoutTransparency) {
             mWidgetColorWithoutTransparency = it
             updateColors()
         }
     }
 
-    private fun storeWidgetColors() {
-        val prefs = getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
-        prefs.edit().putInt(WIDGET_COLOR, mWidgetColor).apply()
-    }
-
     private fun requestWidgetUpdate() {
-        val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetProvider::class.java)
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
-        sendBroadcast(intent)
+        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetProvider::class.java).apply {
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
+            sendBroadcast(this)
+        }
     }
 
     private fun updateColors() {
@@ -104,12 +90,8 @@ class WidgetConfigureActivity : AppCompatActivity() {
             updateColors()
         }
 
-        override fun onStartTrackingTouch(seekBar: SeekBar) {
+        override fun onStartTrackingTouch(seekBar: SeekBar) {}
 
-        }
-
-        override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-        }
+        override fun onStopTrackingTouch(seekBar: SeekBar) {}
     }
 }

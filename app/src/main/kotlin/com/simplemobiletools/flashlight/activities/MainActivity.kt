@@ -60,6 +60,7 @@ class MainActivity : SimpleActivity() {
             mCameraImpl!!.stopStroboscope()
             stroboscope_bar.beInvisible()
         }
+        updateTextColors(main_holder)
     }
 
     override fun onStart() {
@@ -118,8 +119,7 @@ class MainActivity : SimpleActivity() {
         stroboscope_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
                 val frequency = stroboscope_bar.max - progress + MIN_STROBO_DELAY
-                if (mCameraImpl != null)
-                    mCameraImpl!!.stroboFrequency = frequency
+                mCameraImpl?.stroboFrequency = frequency
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
