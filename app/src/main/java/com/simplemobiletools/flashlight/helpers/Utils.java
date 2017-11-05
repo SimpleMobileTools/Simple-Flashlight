@@ -1,4 +1,4 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.helpers;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -56,7 +56,7 @@
             android:parentActivityName=".activities.MainActivity"/>
 
         <receiver
-            android:name=".MyWidgetProvider"
+            android:name=".helpers.MyWidgetProvider"
             android:icon="@drawable/circles_small">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>

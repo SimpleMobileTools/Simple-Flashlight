@@ -1,4 +1,4 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.helpers;
 
 public class Constants {
     // shared preferences

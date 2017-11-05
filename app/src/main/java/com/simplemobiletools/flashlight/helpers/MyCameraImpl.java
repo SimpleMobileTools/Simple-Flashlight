@@ -1,4 +1,4 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.helpers;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
@@ -6,6 +6,8 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.util.Log;
 
+import com.simplemobiletools.flashlight.R;
+import com.simplemobiletools.flashlight.models.Events;
 import com.squareup.otto.Bus;
 
 import java.io.IOException;

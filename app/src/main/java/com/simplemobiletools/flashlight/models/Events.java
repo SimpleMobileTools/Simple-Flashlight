@@ -1,10 +1,10 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.models;
 
 public class Events {
     public static class StateChanged {
         private static boolean mIsEnabled;
 
-        StateChanged(boolean isEnabled) {
+        public StateChanged(boolean isEnabled) {
             mIsEnabled = isEnabled;
         }
 

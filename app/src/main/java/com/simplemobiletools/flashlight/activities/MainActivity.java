@@ -14,12 +14,12 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 
-import com.simplemobiletools.flashlight.BusProvider;
-import com.simplemobiletools.flashlight.Config;
-import com.simplemobiletools.flashlight.Events;
-import com.simplemobiletools.flashlight.MyCameraImpl;
+import com.simplemobiletools.flashlight.helpers.BusProvider;
+import com.simplemobiletools.flashlight.helpers.Config;
+import com.simplemobiletools.flashlight.models.Events;
+import com.simplemobiletools.flashlight.helpers.MyCameraImpl;
 import com.simplemobiletools.flashlight.R;
-import com.simplemobiletools.flashlight.Utils;
+import com.simplemobiletools.flashlight.helpers.Utils;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

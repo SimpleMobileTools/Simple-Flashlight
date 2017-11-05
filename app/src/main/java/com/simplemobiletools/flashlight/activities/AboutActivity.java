@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.simplemobiletools.flashlight.BuildConfig;
-import com.simplemobiletools.flashlight.Config;
+import com.simplemobiletools.flashlight.helpers.Config;
 import com.simplemobiletools.flashlight.R;
 
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.helpers;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
+import com.simplemobiletools.flashlight.models.Events;
 import com.squareup.otto.Bus;
 
 class MarshmallowCamera {

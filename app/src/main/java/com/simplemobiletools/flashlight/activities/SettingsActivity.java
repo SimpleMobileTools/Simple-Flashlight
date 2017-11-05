@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.widget.SwitchCompat;
 
-import com.simplemobiletools.flashlight.Config;
+import com.simplemobiletools.flashlight.helpers.Config;
 import com.simplemobiletools.flashlight.R;
 
 import butterknife.BindView;

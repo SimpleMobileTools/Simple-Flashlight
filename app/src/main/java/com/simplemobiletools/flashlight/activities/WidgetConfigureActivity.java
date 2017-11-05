@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.SeekBar;
 
-import com.simplemobiletools.flashlight.Constants;
-import com.simplemobiletools.flashlight.MyWidgetProvider;
+import com.simplemobiletools.flashlight.helpers.Constants;
+import com.simplemobiletools.flashlight.helpers.MyWidgetProvider;
 import com.simplemobiletools.flashlight.R;
 
 import butterknife.BindView;

@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.simplemobiletools.flashlight.Config;
+import com.simplemobiletools.flashlight.helpers.Config;
 import com.simplemobiletools.flashlight.R;
 
 public class SimpleActivity extends AppCompatActivity {

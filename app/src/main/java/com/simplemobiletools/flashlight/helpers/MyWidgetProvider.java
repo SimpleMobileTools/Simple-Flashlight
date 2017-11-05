@@ -1,4 +1,4 @@
-package com.simplemobiletools.flashlight;
+package com.simplemobiletools.flashlight.helpers;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -14,6 +14,8 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.widget.RemoteViews;
 
+import com.simplemobiletools.flashlight.R;
+import com.simplemobiletools.flashlight.models.Events;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
