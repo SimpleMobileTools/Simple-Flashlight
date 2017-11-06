@@ -29,14 +29,16 @@ class MainActivity : SimpleActivity() {
 
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
+    private var translucentWhite = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mBus = BusProvider.instance
-        changeIconColor(R.color.translucent_white, bright_display_btn)
-        changeIconColor(R.color.translucent_white, stroboscope_btn)
+        translucentWhite = resources.getColor(R.color.translucent_white)
+        changeIconColor(translucentWhite, bright_display_btn)
+        changeIconColor(translucentWhite, stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
@@ -150,7 +152,7 @@ class MainActivity : SimpleActivity() {
     private fun cameraPermissionGranted() {
         if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar.beInvisibleIf(stroboscope_bar.visibility == View.VISIBLE)
-            changeIconColor(if (stroboscope_bar.visibility == View.VISIBLE) R.color.color_primary else R.color.translucent_white, stroboscope_btn)
+            changeIconColor(if (stroboscope_bar.visibility == View.VISIBLE) config.primaryColor else translucentWhite, stroboscope_btn)
         }
     }
 
@@ -173,21 +175,20 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun enableFlashlight() {
-        changeIconColor(R.color.color_primary, toggle_btn)
+        changeIconColor(config.primaryColor, toggle_btn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        changeIconColor(R.color.translucent_white, stroboscope_btn)
+        changeIconColor(translucentWhite, stroboscope_btn)
         stroboscope_bar.beInvisible()
     }
 
     private fun disableFlashlight() {
-        changeIconColor(R.color.translucent_white, toggle_btn)
+        changeIconColor(translucentWhite, toggle_btn)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
-    private fun changeIconColor(colorId: Int, imageView: ImageView?) {
-        val appColor = resources.getColor(colorId)
-        imageView!!.background.mutate().setColorFilter(appColor, PorterDuff.Mode.SRC_IN)
+    private fun changeIconColor(color: Int, imageView: ImageView?) {
+        imageView!!.background.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN)
     }
 
     @Subscribe
