@@ -112,6 +112,10 @@ class MyCameraImpl(val context: Context) {
     }
 
     private fun checkFlashlight() {
+        if (camera == null) {
+            handleCameraSetup()
+        }
+
         if (isFlashlightOn) {
             enableFlashlight()
         } else {
@@ -158,6 +162,7 @@ class MyCameraImpl(val context: Context) {
             camera!!.parameters = params
         }
         stateChanged(false)
+        releaseCamera()
     }
 
     private fun stateChanged(isEnabled: Boolean) {
