@@ -52,6 +52,7 @@ class MainActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         mCameraImpl!!.handleCameraSetup()
+        checkState(MyCameraImpl.isFlashlightOn)
 
         bright_display_btn.beVisibleIf(config.brightDisplay)
         stroboscope_btn.beVisibleIf(config.stroboscope)
@@ -160,7 +161,11 @@ class MainActivity : SimpleActivity() {
 
     @Subscribe
     fun stateChangedEvent(event: Events.StateChanged) {
-        if (event.isEnabled) {
+        checkState(event.isEnabled)
+    }
+
+    private fun checkState(isEnabled: Boolean) {
+        if (isEnabled) {
             enableFlashlight()
         } else {
             disableFlashlight()

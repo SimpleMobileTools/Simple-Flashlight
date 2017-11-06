@@ -16,19 +16,19 @@ import java.io.IOException
 class MyCameraImpl(val context: Context) {
     var stroboFrequency = 1000
 
-    private var camera: Camera? = null
-    private var params: Camera.Parameters? = null
-    private var bus: Bus? = null
-
-    private var isFlashlightOn = false
-    private var isMarshmallow = false
-    private var shouldEnableFlashlight = false
-
-    private var marshmallowCamera: MarshmallowCamera? = null
-    @Volatile private var shouldStroboscopeStop = false
-    @Volatile private var isStroboscopeRunning = false
-
     companion object {
+        var isFlashlightOn = false
+
+        private var camera: Camera? = null
+        private var params: Camera.Parameters? = null
+        private var bus: Bus? = null
+        private var isMarshmallow = false
+        private var shouldEnableFlashlight = false
+
+        private var marshmallowCamera: MarshmallowCamera? = null
+        @Volatile private var shouldStroboscopeStop = false
+        @Volatile private var isStroboscopeRunning = false
+
         fun newInstance(context: Context) = MyCameraImpl(context)
     }
 
@@ -163,7 +163,7 @@ class MyCameraImpl(val context: Context) {
     private fun stateChanged(isEnabled: Boolean) {
         isFlashlightOn = isEnabled
         bus!!.post(Events.StateChanged(isEnabled))
-        context.updateWidgets()
+        context.updateWidgets(isEnabled)
     }
 
     private fun toggleMarshmallowFlashlight(enable: Boolean) {
