@@ -12,7 +12,7 @@ import com.squareup.otto.Bus
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 internal class MarshmallowCamera constructor(val context: Context) {
 
-    private val manager: CameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+    private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     private var cameraId: String? = null
 
     init {

@@ -52,7 +52,6 @@ class MainActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         mCameraImpl!!.handleCameraSetup()
-        mCameraImpl!!.checkFlashlight()
 
         bright_display_btn.beVisibleIf(config.brightDisplay)
         stroboscope_btn.beVisibleIf(config.stroboscope)
@@ -105,7 +104,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupCameraImpl() {
-        mCameraImpl = MyCameraImpl(this)
+        mCameraImpl = MyCameraImpl.newInstance(this)
         mCameraImpl!!.enableFlashlight()
     }
 

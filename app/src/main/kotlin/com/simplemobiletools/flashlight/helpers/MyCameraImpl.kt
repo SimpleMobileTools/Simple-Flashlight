@@ -1,15 +1,14 @@
 package com.simplemobiletools.flashlight.helpers
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.SurfaceTexture
 import android.hardware.Camera
-import android.os.Build
 import android.os.Handler
 import com.simplemobiletools.commons.extensions.isMarshmallowPlus
 import com.simplemobiletools.commons.extensions.isNougatPlus
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
 import com.squareup.otto.Bus
 import java.io.IOException
@@ -17,19 +16,172 @@ import java.io.IOException
 class MyCameraImpl(val context: Context) {
     var stroboFrequency = 1000
 
-    companion object {
-        private var camera: Camera? = null
-        private var mParams: Camera.Parameters? = null
-        private var bus: Bus? = null
+    private var camera: Camera? = null
+    private var params: Camera.Parameters? = null
+    private var bus: Bus? = null
 
-        private var mIsFlashlightOn = false
-        private var mIsMarshmallow = false
-        private var mShouldEnableFlashlight = false
-    }
+    private var isFlashlightOn = false
+    private var isMarshmallow = false
+    private var shouldEnableFlashlight = false
 
     private var marshmallowCamera: MarshmallowCamera? = null
     @Volatile private var shouldStroboscopeStop = false
     @Volatile private var isStroboscopeRunning = false
+
+    companion object {
+        fun newInstance(context: Context) = MyCameraImpl(context)
+    }
+
+    init {
+        isMarshmallow = context.isMarshmallowPlus()
+
+        if (bus == null) {
+            bus = BusProvider.instance
+            bus!!.register(this)
+        }
+
+        handleCameraSetup()
+    }
+
+    fun toggleFlashlight() {
+        isFlashlightOn = !isFlashlightOn
+        checkFlashlight()
+    }
+
+    fun toggleStroboscope(): Boolean {
+        if (!isStroboscopeRunning) {
+            disableFlashlight()
+        }
+
+        if (!context.isNougatPlus()) {
+            if (camera == null) {
+                initCamera()
+            }
+
+            if (camera == null) {
+                context.toast(R.string.camera_error)
+                return false
+            }
+        }
+
+        if (isStroboscopeRunning) {
+            stopStroboscope()
+        } else {
+            Thread(stroboscope).start()
+        }
+        return true
+    }
+
+    fun stopStroboscope() {
+        shouldStroboscopeStop = true
+    }
+
+    fun handleCameraSetup() {
+        if (isMarshmallow) {
+            setupMarshmallowCamera()
+        } else {
+            setupCamera()
+        }
+    }
+
+    private fun setupMarshmallowCamera() {
+        if (marshmallowCamera == null) {
+            marshmallowCamera = MarshmallowCamera(context)
+        }
+    }
+
+    private fun setupCamera() {
+        if (isMarshmallow)
+            return
+
+        if (camera == null) {
+            initCamera()
+        }
+    }
+
+    private fun initCamera() {
+        try {
+            camera = Camera.open()
+            params = camera!!.parameters
+            params!!.flashMode = Camera.Parameters.FLASH_MODE_OFF
+            camera!!.parameters = params
+        } catch (e: Exception) {
+            bus!!.post(Events.CameraUnavailable())
+        }
+
+    }
+
+    private fun checkFlashlight() {
+        if (isFlashlightOn) {
+            enableFlashlight()
+        } else {
+            disableFlashlight()
+        }
+    }
+
+    fun enableFlashlight() {
+        shouldStroboscopeStop = true
+        if (isStroboscopeRunning) {
+            shouldEnableFlashlight = true
+            return
+        }
+
+        if (isMarshmallow) {
+            toggleMarshmallowFlashlight(true)
+        } else {
+            if (camera == null || params == null) {
+                return
+            }
+
+            params!!.flashMode = Camera.Parameters.FLASH_MODE_TORCH
+            camera!!.parameters = params
+            camera!!.startPreview()
+        }
+
+        val mainRunnable = Runnable { stateChanged(true) }
+        Handler(context.mainLooper).post(mainRunnable)
+    }
+
+    private fun disableFlashlight() {
+        if (isStroboscopeRunning) {
+            return
+        }
+
+        if (isMarshmallow) {
+            toggleMarshmallowFlashlight(false)
+        } else {
+            if (camera == null || params == null) {
+                return
+            }
+
+            params!!.flashMode = Camera.Parameters.FLASH_MODE_OFF
+            camera!!.parameters = params
+        }
+        stateChanged(false)
+    }
+
+    private fun stateChanged(isEnabled: Boolean) {
+        isFlashlightOn = isEnabled
+        bus!!.post(Events.StateChanged(isEnabled))
+        context.updateWidgets()
+    }
+
+    private fun toggleMarshmallowFlashlight(enable: Boolean) {
+        marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, enable)
+    }
+
+    fun releaseCamera() {
+        if (isFlashlightOn) {
+            disableFlashlight()
+        }
+
+        camera?.release()
+        camera = null
+
+        bus?.unregister(this)
+        isFlashlightOn = false
+        shouldStroboscopeStop = true
+    }
 
     private val stroboscope = Runnable {
         if (isStroboscopeRunning) {
@@ -46,9 +198,7 @@ class MyCameraImpl(val context: Context) {
                     Thread.sleep(stroboFrequency.toLong())
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, false)
                     Thread.sleep(stroboFrequency.toLong())
-                } catch (ignored: InterruptedException) {
-                    shouldStroboscopeStop = true
-                } catch (ignored: RuntimeException) {
+                } catch (e: Exception) {
                     shouldStroboscopeStop = true
                 }
 
@@ -77,18 +227,14 @@ class MyCameraImpl(val context: Context) {
                     Thread.sleep(stroboFrequency.toLong())
                     camera!!.parameters = torchOff
                     Thread.sleep(stroboFrequency.toLong())
-                } catch (ignored: InterruptedException) {
-                    shouldStroboscopeStop = true
-                } catch (ignored: RuntimeException) {
-                    shouldStroboscopeStop = true
+                } catch (e: Exception) {
                 }
-
             }
 
             try {
                 if (camera != null) {
                     camera!!.parameters = torchOff
-                    if (!mShouldEnableFlashlight || mIsMarshmallow) {
+                    if (!shouldEnableFlashlight || isMarshmallow) {
                         camera!!.release()
                         camera = null
                     }
@@ -100,157 +246,9 @@ class MyCameraImpl(val context: Context) {
         isStroboscopeRunning = false
         shouldStroboscopeStop = false
 
-        if (mShouldEnableFlashlight) {
+        if (shouldEnableFlashlight) {
             enableFlashlight()
-            mShouldEnableFlashlight = false
+            shouldEnableFlashlight = false
         }
-    }
-
-    init {
-        mIsMarshmallow = context.isMarshmallowPlus()
-
-        if (bus == null) {
-            bus = BusProvider.instance
-            bus!!.register(this)
-        }
-
-        handleCameraSetup()
-        checkFlashlight()
-    }
-
-    fun toggleFlashlight() {
-        mIsFlashlightOn = !mIsFlashlightOn
-        handleCameraSetup()
-    }
-
-    fun toggleStroboscope(): Boolean {
-        if (!isStroboscopeRunning)
-            disableFlashlight()
-
-        if (!context.isNougatPlus()) {
-            if (camera == null) {
-                initCamera()
-            }
-
-            if (camera == null) {
-                context.toast(R.string.camera_error)
-                return false
-            }
-        }
-
-        if (isStroboscopeRunning) {
-            stopStroboscope()
-        } else {
-            Thread(stroboscope).start()
-        }
-        return true
-    }
-
-    fun stopStroboscope() {
-        shouldStroboscopeStop = true
-    }
-
-    fun handleCameraSetup() {
-        if (mIsMarshmallow) {
-            setupMarshmallowCamera()
-        } else {
-            setupCamera()
-        }
-        checkFlashlight()
-    }
-
-    private fun setupMarshmallowCamera() {
-        if (marshmallowCamera == null) {
-            marshmallowCamera = MarshmallowCamera(context)
-        }
-    }
-
-    private fun setupCamera() {
-        if (mIsMarshmallow)
-            return
-
-        if (camera == null) {
-            initCamera()
-        }
-    }
-
-    private fun initCamera() {
-        try {
-            camera = Camera.open()
-            mParams = camera!!.parameters
-            mParams!!.flashMode = Camera.Parameters.FLASH_MODE_OFF
-            camera!!.parameters = mParams
-        } catch (e: Exception) {
-            bus!!.post(Events.CameraUnavailable())
-        }
-
-    }
-
-    fun checkFlashlight() {
-        if (mIsFlashlightOn) {
-            enableFlashlight()
-        } else {
-            disableFlashlight()
-        }
-    }
-
-    fun enableFlashlight() {
-        shouldStroboscopeStop = true
-        if (isStroboscopeRunning) {
-            mShouldEnableFlashlight = true
-            return
-        }
-
-        mIsFlashlightOn = true
-        if (mIsMarshmallow) {
-            toggleMarshmallowFlashlight(true)
-        } else {
-            if (camera == null || mParams == null) {
-                return
-            }
-
-            mParams!!.flashMode = Camera.Parameters.FLASH_MODE_TORCH
-            camera!!.parameters = mParams
-            camera!!.startPreview()
-        }
-
-        val mainRunnable = Runnable { bus!!.post(Events.StateChanged(true)) }
-        Handler(context.mainLooper).post(mainRunnable)
-    }
-
-    private fun disableFlashlight() {
-        if (isStroboscopeRunning) {
-            return
-        }
-
-        mIsFlashlightOn = false
-        if (mIsMarshmallow) {
-            toggleMarshmallowFlashlight(false)
-        } else {
-            if (camera == null || mParams == null) {
-                return
-            }
-
-            mParams!!.flashMode = Camera.Parameters.FLASH_MODE_OFF
-            camera!!.parameters = mParams
-        }
-        bus!!.post(Events.StateChanged(false))
-    }
-
-    private fun toggleMarshmallowFlashlight(enable: Boolean) {
-        marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, enable)
-    }
-
-    fun releaseCamera() {
-        if (mIsFlashlightOn) {
-            disableFlashlight()
-        }
-
-        camera?.release()
-        camera = null
-
-        bus?.unregister(this)
-        mIsFlashlightOn = false
-        shouldStroboscopeStop = true
     }
 }
