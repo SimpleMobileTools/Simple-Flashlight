@@ -5,4 +5,4 @@
     android:initialLayout="@layout/widget"
     android:minHeight="40dp"
     android:minWidth="40dp"
-    android:previewImage="@drawable/circles_small"/>
+    android:previewImage="@drawable/img_widget_preview"/>

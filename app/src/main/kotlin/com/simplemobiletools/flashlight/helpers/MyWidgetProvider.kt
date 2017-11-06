@@ -8,10 +8,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.widget.RemoteViews
+import com.simplemobiletools.commons.extensions.getColoredDrawableWithColor
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.extensions.drawableToBitmap
 
 class MyWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
@@ -22,7 +23,6 @@ class MyWidgetProvider : AppWidgetProvider() {
         val selectedColor = context.config.widgetBgColor
         val alpha = Color.alpha(selectedColor)
         val bmp = getColoredCircles(context, Color.WHITE, alpha)
-
         val intent = Intent(context, MyWidgetProvider::class.java)
         intent.action = TOGGLE
 
@@ -54,8 +54,9 @@ class MyWidgetProvider : AppWidgetProvider() {
     private fun toggleFlashlight(context: Context, intent: Intent) {
         if (intent.extras?.containsKey(IS_ENABLED) == true) {
             val enable = intent.extras.getBoolean(IS_ENABLED)
-            val selectedColor = if (enable) context.config.widgetBgColor else Color.WHITE
-            val alpha = Color.alpha(selectedColor)
+            val widgetBgColor = context.config.widgetBgColor
+            val alpha = Color.alpha(widgetBgColor)
+            val selectedColor = if (enable) widgetBgColor else Color.WHITE
             val bmp = getColoredCircles(context, selectedColor, alpha)
 
             val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -68,9 +69,7 @@ class MyWidgetProvider : AppWidgetProvider() {
     }
 
     private fun getColoredCircles(context: Context, color: Int, alpha: Int): Bitmap {
-        val drawable = context.resources.getDrawable(R.drawable.circles_small)
-        drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
-        drawable.mutate().alpha = alpha
-        return Utils.drawableToBitmap(drawable)
+        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.circles_small, color, alpha)
+        return context.drawableToBitmap(drawable)
     }
 }
