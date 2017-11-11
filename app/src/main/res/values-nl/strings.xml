@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Flashlight</string>
+    <string name="camera_error">Obtaining the camera failed</string>
+    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Show a bright display button</string>
+    <string name="show_stroboscope">Show a stroboscope button</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <string name="app_short_description">A simple flashlight without ads.</string>
+    <string name="app_long_description">
+        A clean flashlight with an extra bright display and customizable stroboscope. If turned on via the app (not widget), it will prevent the device from falling asleep.
+
+        Comes with a 1x1 widget with customizable color.
+
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+
+        This app is just one piece of a bigger series of apps. You can find the rest of them at http://www.simplemobiletools.com
+    </string>
+</resources>
