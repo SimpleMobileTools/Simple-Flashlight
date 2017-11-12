@@ -2,7 +2,7 @@
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Flashlight</string>
     <string name="camera_error">Uzyskanie dostępu do aparatu zakończone niepowodzeniem</string>
-    <string name="camera_permission">Uprawnienia dostępu do aparatu są niezbędne w celu uzyskania efektu stroboskopowego</string>
+    <string name="camera_permission">Uprawnienia dostępu do aparatu są niezbędne, aby uzyskać efekt stroboskopowy</string>
 
     <!-- Settings -->
     <string name="bright_display">Pokazuj przycisk jasnego wyświetlania</string>
