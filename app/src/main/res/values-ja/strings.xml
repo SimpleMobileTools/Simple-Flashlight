@@ -9,6 +9,7 @@
     <string name="show_stroboscope">ストロボボタンを表示</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">広告のないシンプルな懐中電灯です。</string>
     <string name="app_long_description">
         特別に明るく表示とカスタマイズ可能なストロボを備えたシンプルな懐中電灯です。 （ウィジェットではなく）アプリでオンにすると、デバイスがスリープ状態にならないようになります。
@@ -19,4 +20,9 @@
 
         このアプリは、大きな一連のアプリの一つです。 他のアプリは http://www.simplemobiletools.com で見つけることができます
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

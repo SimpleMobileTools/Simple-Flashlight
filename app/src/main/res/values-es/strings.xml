@@ -4,7 +4,12 @@
     <string name="camera_error">Ha fallado el acceso a la cámara</string>
     <string name="camera_permission">El permiso de acceso a la cámara es necesario para un apropiado efecto estroboscópico</string>
 
+    <!-- Settings -->
+    <string name="bright_display">Show a bright display button</string>
+    <string name="show_stroboscope">Show a stroboscope button</string>
+
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Una simple linterna sin anuncios.</string>
     <string name="app_long_description">
         Una sencilla linterna con brillo extra de pantalla y un personalizable estroboscopio. Si la enciende a través de la aplicación (no del widget), prevendrá que el dispositivo se duerma.
@@ -15,4 +20,9 @@
 
         Esta aplicación es tan solo una pequeña parte de una serie de aplicaciones. Puede encontrar el resto en http://www.simplemobiletools.com
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

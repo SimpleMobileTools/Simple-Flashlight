@@ -9,6 +9,7 @@
     <string name="show_stroboscope">Mostrar botão de estroboscópio</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Um lanterna básica.</string>
     <string name="app_long_description">
         Uma lanterna simples com um brilho extra e um estroboscópio personalizável. Pode ser ativada na aplicação (não no widget), impedindo o adormecimento do dispositivo.
@@ -19,4 +20,9 @@
 
         Esta aplicação é apenas parte de um conjunto mais vasto de aplicações. Saiba mais em http://www.simplemobiletools.com
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

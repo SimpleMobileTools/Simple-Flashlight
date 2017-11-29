@@ -9,6 +9,7 @@
     <string name="show_stroboscope">Toon een stroboscoop knop</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Een eenvoudige zaklamp zonder advertenties.</string>
     <string name="app_long_description">
         Een eenvoudige zaklamp met een extra fel scherm en een aanpasbare stroboscoop. Indien zaklamp wordt aangezet via de app (dus niet de widget), wordt voorkomen dat het scherm uitgaat.
@@ -19,4 +20,9 @@
 
 	Deze app is onderdeel van een grotere verzameling. Vind de andere apps op http://www.simplemobiletools.com
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

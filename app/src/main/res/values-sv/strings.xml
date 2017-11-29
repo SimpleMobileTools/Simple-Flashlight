@@ -9,6 +9,7 @@
     <string name="show_stroboscope">Visa en stroboskopknapp</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">En enkel ficklampa utan reklam.</string>
     <string name="app_long_description">
         En ren ficklampa med en extra ljus skärm och ett anpassningsbart stroboskop. Om den slås på via appen (inte widgeten), hindrar den enheten från att försättas i viloläge.
@@ -19,4 +20,9 @@
 
         Denna app är bara en del av en större serie appar. Du hittar resten av dem på http://www.simplemobiletools.com
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>
