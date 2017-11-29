@@ -17,7 +17,7 @@ internal class MarshmallowCamera constructor(val context: Context) {
 
     init {
         try {
-            cameraId = manager.cameraIdList[0]
+            cameraId = manager.cameraIdList[0] ?: "0"
         } catch (ignored: CameraAccessException) {
         }
     }

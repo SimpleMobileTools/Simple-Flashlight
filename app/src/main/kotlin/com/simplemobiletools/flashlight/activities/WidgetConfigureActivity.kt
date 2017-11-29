@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
@@ -15,13 +14,14 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
 import kotlinx.android.synthetic.main.widget_config.*
 
-class WidgetConfigureActivity : AppCompatActivity() {
+class WidgetConfigureActivity : SimpleActivity() {
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
     private var mWidgetColorWithoutTransparency = 0
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+        useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
         setContentView(R.layout.widget_config)
