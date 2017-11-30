@@ -28,9 +28,10 @@
             android:name=".activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -83,5 +84,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info"/>
         </receiver>
+
+        <service
+            android:name=".helpers.MyTileService"
+            android:label="@string/app_launcher_name"
+            android:icon="@drawable/img_widget_preview"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
