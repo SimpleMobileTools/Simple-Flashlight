@@ -38,8 +38,8 @@
         android:layout_width="@dimen/seekbar_width"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_margin"
-        android:paddingBottom="@dimen/seekbar_vertical_padding"
-        android:paddingTop="@dimen/seekbar_vertical_padding"
+        android:paddingBottom="@dimen/medium_margin"
+        android:paddingTop="@dimen/medium_margin"
         android:visibility="invisible"/>
 
 </LinearLayout>

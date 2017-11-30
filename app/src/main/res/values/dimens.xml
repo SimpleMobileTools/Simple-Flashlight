@@ -1,6 +1,5 @@
 <resources>
     <dimen name="buttons_margin">30dp</dimen>
     <dimen name="seekbar_width">250dp</dimen>
-    <dimen name="seekbar_vertical_padding">6dp</dimen>
     <dimen name="main_button_size">150dp</dimen>
 </resources>

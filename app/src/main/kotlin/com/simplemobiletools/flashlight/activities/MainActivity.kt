@@ -34,6 +34,7 @@ class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        appLaunched()
 
         mBus = BusProvider.instance
         translucentWhite = resources.getColor(R.color.translucent_white)
