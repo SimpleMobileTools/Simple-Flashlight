@@ -1,7 +1,6 @@
 package com.simplemobiletools.flashlight.activities
 
 import android.content.Intent
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -189,7 +188,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun changeIconColor(color: Int, imageView: ImageView?) {
-        imageView!!.background.mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN)
+        imageView!!.background.mutate().applyColorFilter(color)
     }
 
     @Subscribe

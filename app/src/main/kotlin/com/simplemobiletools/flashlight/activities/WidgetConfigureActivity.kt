@@ -4,11 +4,11 @@ import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
+import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
@@ -81,7 +81,7 @@ class WidgetConfigureActivity : SimpleActivity() {
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
         config_widget_color.setBackgroundColor(mWidgetColor)
-        config_image.background.mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN)
+        config_image.background.mutate().applyColorFilter(mWidgetColor)
     }
 
     private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
