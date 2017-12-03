@@ -29,6 +29,7 @@ class MainActivity : SimpleActivity() {
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var translucentWhite = 0
+    private var mStoredUseEnglish = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +50,16 @@ class MainActivity : SimpleActivity() {
         }
 
         setupStroboscope()
+        storeStateVariables()
     }
 
     override fun onResume() {
         super.onResume()
+        if (mStoredUseEnglish != config.useEnglish) {
+            restartActivity()
+            return
+        }
+
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
@@ -72,6 +79,11 @@ class MainActivity : SimpleActivity() {
         if (mCameraImpl == null) {
             setupCameraImpl()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        storeStateVariables()
     }
 
     override fun onStop() {
@@ -96,6 +108,12 @@ class MainActivity : SimpleActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    private fun storeStateVariables() {
+        config.apply {
+            mStoredUseEnglish = useEnglish
+        }
     }
 
     private fun launchSettings() {
