@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 3.0.0 *(2017-12-04)*
+----------------------------
+
+ * Improved primary color customization
+ * Added a quicksetting tile for Android 7+
+
 Version 2.0.0 *(2017-11-06)*
 ----------------------------
 
