@@ -23,7 +23,7 @@
             android:shape="oval">
             <stroke
                 android:width="13dp"
-                android:color="@color/translucent_white"/>
+                android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
@@ -33,7 +33,7 @@
             android:shape="oval">
             <stroke
                 android:width="13dp"
-                android:color="@color/translucent_white"/>
+                android:color="@android:color/white"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>

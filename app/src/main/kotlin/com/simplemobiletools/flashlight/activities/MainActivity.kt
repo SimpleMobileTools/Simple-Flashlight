@@ -28,7 +28,6 @@ class MainActivity : SimpleActivity() {
 
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
-    private var translucentWhite = 0
     private var mStoredUseEnglish = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +36,7 @@ class MainActivity : SimpleActivity() {
         appLaunched()
 
         mBus = BusProvider.instance
-        translucentWhite = resources.getColor(R.color.translucent_white)
-        changeIconColor(translucentWhite, bright_display_btn)
-        changeIconColor(translucentWhite, stroboscope_btn)
+        changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
@@ -63,13 +60,18 @@ class MainActivity : SimpleActivity() {
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
+        changeIconColor(config.backgroundColor.getContrastColor(), bright_display_btn)
         bright_display_btn.beVisibleIf(config.brightDisplay)
         stroboscope_btn.beVisibleIf(config.stroboscope)
         if (!config.stroboscope) {
             mCameraImpl!!.stopStroboscope()
             stroboscope_bar.beInvisible()
         }
+
         updateTextColors(main_holder)
+        if (stroboscope_bar.isInvisible()) {
+            changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
+        }
     }
 
     override fun onStart() {
@@ -169,8 +171,8 @@ class MainActivity : SimpleActivity() {
 
     private fun cameraPermissionGranted() {
         if (mCameraImpl!!.toggleStroboscope()) {
-            stroboscope_bar.beInvisibleIf(stroboscope_bar.visibility == View.VISIBLE)
-            changeIconColor(if (stroboscope_bar.visibility == View.VISIBLE) config.primaryColor else translucentWhite, stroboscope_btn)
+            stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
+            changeIconColor(if (stroboscope_bar.isVisible()) config.primaryColor else config.backgroundColor.getContrastColor(), stroboscope_btn)
         }
     }
 
@@ -196,12 +198,12 @@ class MainActivity : SimpleActivity() {
         changeIconColor(config.primaryColor, toggle_btn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        changeIconColor(translucentWhite, stroboscope_btn)
+        changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
         stroboscope_bar.beInvisible()
     }
 
     private fun disableFlashlight() {
-        changeIconColor(translucentWhite, toggle_btn)
+        changeIconColor(config.backgroundColor.getContrastColor(), toggle_btn)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
