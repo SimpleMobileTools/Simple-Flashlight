@@ -172,7 +172,7 @@ class MainActivity : SimpleActivity() {
     private fun cameraPermissionGranted() {
         if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-            changeIconColor(if (stroboscope_bar.isVisible()) config.primaryColor else config.backgroundColor.getContrastColor(), stroboscope_btn)
+            changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else config.backgroundColor.getContrastColor(), stroboscope_btn)
         }
     }
 
@@ -195,7 +195,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun enableFlashlight() {
-        changeIconColor(config.primaryColor, toggle_btn)
+        changeIconColor(getAdjustedPrimaryColor(), toggle_btn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
