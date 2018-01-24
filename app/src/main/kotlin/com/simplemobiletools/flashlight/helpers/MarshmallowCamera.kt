@@ -2,7 +2,6 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.annotation.TargetApi
 import android.content.Context
-import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Handler
@@ -18,7 +17,7 @@ internal class MarshmallowCamera constructor(val context: Context) {
     init {
         try {
             cameraId = manager.cameraIdList[0] ?: "0"
-        } catch (ignored: CameraAccessException) {
+        } catch (ignored: Exception) {
         }
     }
 
@@ -26,7 +25,7 @@ internal class MarshmallowCamera constructor(val context: Context) {
     fun toggleMarshmallowFlashlight(bus: Bus, enable: Boolean) {
         try {
             manager.setTorchMode(cameraId!!, enable)
-        } catch (e: CameraAccessException) {
+        } catch (e: Exception) {
             val mainRunnable = Runnable {
                 bus.post(Events.CameraUnavailable())
             }
