@@ -7,6 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Zobraziť tlačidlo pre jasný displej</string>
     <string name="show_stroboscope">Zobraziť tlačidlo pre stroboskop</string>
+    <string name="turn_flashlight_on">Aktivovať baterku po spustení</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
