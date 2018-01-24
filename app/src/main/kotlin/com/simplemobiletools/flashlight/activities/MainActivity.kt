@@ -127,7 +127,9 @@ class MainActivity : SimpleActivity() {
 
     private fun setupCameraImpl() {
         mCameraImpl = MyCameraImpl.newInstance(this)
-        mCameraImpl!!.enableFlashlight()
+        if (config.turnFlashlightOn) {
+            mCameraImpl!!.enableFlashlight()
+        }
     }
 
     private fun setupStroboscope() {

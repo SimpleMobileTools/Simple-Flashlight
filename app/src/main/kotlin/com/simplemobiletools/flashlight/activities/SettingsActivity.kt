@@ -20,6 +20,7 @@ class SettingsActivity : SimpleActivity() {
 
         setupCustomizeColors()
         setupUseEnglish()
+        setupTurnFlashlightOn()
         setupBrightDisplay()
         setupStroboscope()
         updateTextColors(settings_holder)
@@ -38,6 +39,14 @@ class SettingsActivity : SimpleActivity() {
             settings_use_english.toggle()
             config.useEnglish = settings_use_english.isChecked
             useEnglishToggled()
+        }
+    }
+
+    private fun setupTurnFlashlightOn() {
+        settings_turn_flashlight_on.isChecked = config.turnFlashlightOn
+        settings_turn_flashlight_on_holder.setOnClickListener {
+            settings_turn_flashlight_on.toggle()
+            config.turnFlashlightOn = settings_turn_flashlight_on.isChecked
         }
     }
 
