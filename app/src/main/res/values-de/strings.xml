@@ -7,7 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Zeige Button für helles Display</string>
     <string name="show_stroboscope">Zeige Button für Stroboskop</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="turn_flashlight_on">Taschenlampe beim Start einschalten</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
