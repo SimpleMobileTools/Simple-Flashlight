@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 3.1.0 *(2018-01-24)*
+----------------------------
+
+ * Added a toggle for turning flashlight on at startup
+
 Version 3.0.1 *(2017-12-07)*
 ----------------------------
 
