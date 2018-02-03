@@ -7,7 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Visa en knapp för ljus skärm</string>
     <string name="show_stroboscope">Visa en stroboskopknapp</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="turn_flashlight_on">Slå på ficklampan vid start</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
@@ -17,7 +17,7 @@
 
         Har en 1x1-widget med anpassningsbar färg.
 
-        Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och har även ett Mörkt tema.
+        Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och anpassningsbara färger.
 
         Denna app är bara en del av en större serie appar. Du hittar resten av dem på http://www.simplemobiletools.com
     </string>
