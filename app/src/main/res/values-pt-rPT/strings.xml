@@ -7,7 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Mostrar botão para iluminar o ecrã</string>
     <string name="show_stroboscope">Mostrar botão de estroboscópio</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="turn_flashlight_on">Ativar lanterna ao iniciar</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
