@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Απλός φακός</string>
+    <string name="app_launcher_name">Φακός</string>
+    <string name="camera_error">Η εύρεση της κάμερας απέτυχε</string>
+    <string name="camera_permission">Χρειάζεται άδεια χρήσης της κάμερας για τη σωστή λειτουργία στροβοσκοπίου</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Προβολή κουμπιού φωτεινότητας</string>
+    <string name="show_stroboscope">Προβολή κουμπιού στροβοσκοπίου</string>
+    <string name="turn_flashlight_on">Άνοιγμα του φακού κατά την εκκίνηση</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Ένας απλός φακός, χωρίς διαφημίσεις.</string>
+    <string name="app_long_description">
+        Ένας καθαρός φακός με μεγάλη απόδοση φωτεινότητας και τροποποιήσιμο στροβοσκόπιο. Όταν ενεργοποιείται μέσω της εφαρμογής (και όχι μέσω του πρόσθετου), αποτρέπει την συσκευή να αδρανοποιηθεί.
+
+        Συμπεριλαμβάνει ένα πρόσθετο διαστάσεων 1x1, με προσαρμόσιμο χρώμα.
+
+        Δεν περιέχει διαφημίσεις ή άσκοπη αδειοδότηση. Είναι πλήρως ανοιχτού κώδικα και παρέχει προσαρμόσιμες αποχρώσεις της εφαρμογής.
+
+        Αυτή η εφαρμογή είναι απλώς κομμάτι μίας μεγάλης συλλογής εφαρμογών. Μπορείτε να τις βρείτε στο http://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
