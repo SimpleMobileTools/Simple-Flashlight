@@ -15,8 +15,8 @@ import com.simplemobiletools.flashlight.helpers.TOGGLE_WIDGET_UI
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
 fun Context.updateWidgets(isEnabled: Boolean) {
-    val widgetsCnt = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetProvider::class.java))
-    if (widgetsCnt.isNotEmpty()) {
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetProvider::class.java))
+    if (widgetIDs.isNotEmpty()) {
         Intent(applicationContext, MyWidgetProvider::class.java).apply {
             action = TOGGLE_WIDGET_UI
             putExtra(IS_ENABLED, isEnabled)
