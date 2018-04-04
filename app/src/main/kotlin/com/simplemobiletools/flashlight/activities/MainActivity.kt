@@ -8,9 +8,9 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_KOTLIN
 import com.simplemobiletools.commons.helpers.LICENSE_OTTO
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
@@ -27,7 +27,6 @@ class MainActivity : SimpleActivity() {
 
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
-    private var mStoredUseEnglish = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,16 +45,10 @@ class MainActivity : SimpleActivity() {
         }
 
         setupStroboscope()
-        storeStateVariables()
     }
 
     override fun onResume() {
         super.onResume()
-        if (mStoredUseEnglish != config.useEnglish) {
-            restartActivity()
-            return
-        }
-
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
@@ -82,11 +75,6 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        storeStateVariables()
-    }
-
     override fun onStop() {
         super.onStop()
         mBus!!.unregister(this)
@@ -111,18 +99,12 @@ class MainActivity : SimpleActivity() {
         return true
     }
 
-    private fun storeStateVariables() {
-        config.apply {
-            mStoredUseEnglish = useEnglish
-        }
-    }
-
     private fun launchSettings() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
 
     private fun launchAbout() {
-        startAboutActivity(R.string.app_name, LICENSE_KOTLIN or LICENSE_OTTO, BuildConfig.VERSION_NAME)
+        startAboutActivity(R.string.app_name, LICENSE_OTTO, BuildConfig.VERSION_NAME)
     }
 
     private fun setupCameraImpl() {

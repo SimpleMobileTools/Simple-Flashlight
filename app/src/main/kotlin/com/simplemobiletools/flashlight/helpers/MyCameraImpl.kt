@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.SurfaceTexture
 import android.hardware.Camera
 import android.os.Handler
-import com.simplemobiletools.commons.extensions.isMarshmallowPlus
-import com.simplemobiletools.commons.extensions.isNougatPlus
 import com.simplemobiletools.commons.extensions.toast
+import com.simplemobiletools.commons.helpers.isMarshmallowPlus
+import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
@@ -26,14 +26,16 @@ class MyCameraImpl(val context: Context) {
         private var shouldEnableFlashlight = false
 
         private var marshmallowCamera: MarshmallowCamera? = null
-        @Volatile private var shouldStroboscopeStop = false
-        @Volatile private var isStroboscopeRunning = false
+        @Volatile
+        private var shouldStroboscopeStop = false
+        @Volatile
+        private var isStroboscopeRunning = false
 
         fun newInstance(context: Context) = MyCameraImpl(context)
     }
 
     init {
-        isMarshmallow = context.isMarshmallowPlus()
+        isMarshmallow = isMarshmallowPlus()
 
         if (bus == null) {
             bus = BusProvider.instance
@@ -53,7 +55,7 @@ class MyCameraImpl(val context: Context) {
             disableFlashlight()
         }
 
-        if (!context.isNougatPlus()) {
+        if (!isNougatPlus()) {
             if (camera == null) {
                 initCamera()
             }
@@ -196,7 +198,7 @@ class MyCameraImpl(val context: Context) {
         shouldStroboscopeStop = false
         isStroboscopeRunning = true
 
-        if (context.isNougatPlus()) {
+        if (isNougatPlus()) {
             while (!shouldStroboscopeStop) {
                 try {
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, true)
