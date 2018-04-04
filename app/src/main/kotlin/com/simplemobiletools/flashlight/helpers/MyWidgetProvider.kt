@@ -26,11 +26,11 @@ class MyWidgetProvider : AppWidgetProvider() {
         val intent = Intent(context, MyWidgetProvider::class.java)
         intent.action = TOGGLE
 
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
-
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             val views = RemoteViews(context.packageName, R.layout.widget)
+
+            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, 0)
             views.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent)
             views.setImageViewBitmap(R.id.toggle_btn, bmp)
             appWidgetManager.updateAppWidget(it, views)
