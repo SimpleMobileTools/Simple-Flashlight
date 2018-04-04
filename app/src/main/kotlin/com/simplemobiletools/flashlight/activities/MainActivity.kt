@@ -11,6 +11,7 @@ import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_OTTO
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
 import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
@@ -104,7 +105,13 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        startAboutActivity(R.string.app_name, LICENSE_OTTO, BuildConfig.VERSION_NAME)
+        val faqItems = arrayListOf(
+                FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
+                FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
+                FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons)
+        )
+
+        startAboutActivity(R.string.app_name, LICENSE_OTTO, BuildConfig.VERSION_NAME, faqItems)
     }
 
     private fun setupCameraImpl() {
