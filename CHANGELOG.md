@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 3.2.0 *(2018-04-05)*
+----------------------------
+
+ * Allow changing the color of Bright Display
+ * Allow landscape orientation of the app
+ * Remember the last used stroboscope frequency
+
 Version 3.1.0 *(2018-01-24)*
 ----------------------------
 
