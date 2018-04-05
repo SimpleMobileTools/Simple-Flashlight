@@ -38,7 +38,6 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
 
         <activity
@@ -50,9 +49,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activities.BrightDisplayActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.BrightDisplayActivity"/>
 
         <activity
             android:name=".activities.SettingsActivity"

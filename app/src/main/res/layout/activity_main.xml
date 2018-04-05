@@ -1,44 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_holder"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_margin">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/toggle_btn"
-        android:layout_width="@dimen/main_button_size"
-        android:layout_height="@dimen/main_button_size"
-        android:layout_marginBottom="@dimen/activity_margin"
-        android:background="@drawable/circles_big"/>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/main_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/bright_display_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@drawable/ic_bright_display"
-        android:padding="@dimen/activity_margin"/>
+        <ImageView
+            android:id="@+id/toggle_btn"
+            android:layout_width="@dimen/main_button_size"
+            android:layout_height="@dimen/main_button_size"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:background="@drawable/circles_big"
+            app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/stroboscope_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@drawable/ic_stroboscope"
-        android:padding="@dimen/activity_margin"/>
+        <ImageView
+            android:id="@+id/bright_display_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:layout_marginTop="@dimen/buttons_margin"
+            android:background="@drawable/ic_bright_display"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toggle_btn"/>
 
-    <com.simplemobiletools.commons.views.MySeekBar
-        android:id="@+id/stroboscope_bar"
-        android:layout_width="@dimen/seekbar_width"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"
-        android:paddingBottom="@dimen/medium_margin"
-        android:paddingTop="@dimen/medium_margin"
-        android:visibility="invisible"/>
+        <ImageView
+            android:id="@+id/stroboscope_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/buttons_margin"
+            android:background="@drawable/ic_stroboscope"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bright_display_btn"/>
 
-</LinearLayout>
+        <com.simplemobiletools.commons.views.MySeekBar
+            android:id="@+id/stroboscope_bar"
+            android:layout_width="@dimen/seekbar_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin"
+            android:paddingBottom="@dimen/medium_margin"
+            android:paddingTop="@dimen/medium_margin"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
