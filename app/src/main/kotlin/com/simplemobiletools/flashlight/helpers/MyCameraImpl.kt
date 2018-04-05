@@ -210,7 +210,6 @@ class MyCameraImpl(val context: Context) {
                 } catch (e: Exception) {
                     shouldStroboscopeStop = true
                 }
-
             }
         } else {
             if (camera == null) {
