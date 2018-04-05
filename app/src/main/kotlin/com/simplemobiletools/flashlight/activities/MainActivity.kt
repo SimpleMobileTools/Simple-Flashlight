@@ -25,9 +25,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : SimpleActivity() {
     private val MAX_STROBO_DELAY = 2000
     private val MIN_STROBO_DELAY = 30
+    private val FLASHLIGHT_STATE = "flashlight_state"
+    private val STROBOSCOPE_STATE = "stroboscope_state"
 
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
+    private var mIsFlashlightOn = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +44,7 @@ class MainActivity : SimpleActivity() {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
-        toggle_btn.setOnClickListener {
+        flashlight_btn.setOnClickListener {
             mCameraImpl!!.toggleFlashlight()
         }
 
@@ -98,6 +101,25 @@ class MainActivity : SimpleActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(FLASHLIGHT_STATE, mIsFlashlightOn)
+        outState.putBoolean(STROBOSCOPE_STATE, stroboscope_bar.isVisible())
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val isFlashlightOn = savedInstanceState.getBoolean(FLASHLIGHT_STATE, false)
+        if (isFlashlightOn) {
+            mCameraImpl!!.toggleFlashlight()
+        }
+
+        val isStroboscopeOn = savedInstanceState.getBoolean(STROBOSCOPE_STATE, false)
+        if (isStroboscopeOn) {
+            toggleStroboscope()
+        }
     }
 
     private fun launchSettings() {
@@ -185,16 +207,18 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun enableFlashlight() {
-        changeIconColor(getAdjustedPrimaryColor(), toggle_btn)
+        changeIconColor(getAdjustedPrimaryColor(), flashlight_btn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        mIsFlashlightOn = true
 
         changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
         stroboscope_bar.beInvisible()
     }
 
     private fun disableFlashlight() {
-        changeIconColor(config.backgroundColor.getContrastColor(), toggle_btn)
+        changeIconColor(config.backgroundColor.getContrastColor(), flashlight_btn)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        mIsFlashlightOn = false
     }
 
     private fun changeIconColor(color: Int, imageView: ImageView?) {

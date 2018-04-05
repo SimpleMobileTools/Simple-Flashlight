@@ -31,8 +31,8 @@ class MyWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget)
 
             val pendingIntent = PendingIntent.getBroadcast(context, it, intent, 0)
-            views.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent)
-            views.setImageViewBitmap(R.id.toggle_btn, bmp)
+            views.setOnClickPendingIntent(R.id.flashlight_btn, pendingIntent)
+            views.setImageViewBitmap(R.id.flashlight_btn, bmp)
             appWidgetManager.updateAppWidget(it, views)
         }
     }
@@ -62,7 +62,7 @@ class MyWidgetProvider : AppWidgetProvider() {
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
                 val views = RemoteViews(context.packageName, R.layout.widget)
-                views.setImageViewBitmap(R.id.toggle_btn, bmp)
+                views.setImageViewBitmap(R.id.flashlight_btn, bmp)
                 appWidgetManager.updateAppWidget(it, views)
             }
         }
