@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/display_holder"
+    android:id="@+id/bright_display_holder"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"/>
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/bright_display"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/bright_display_change_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:alpha="0.5"
+        android:background="@drawable/button_background"
+        android:padding="@dimen/activity_margin"
+        android:text="@string/change_color"
+        android:textSize="@dimen/big_text_size"/>
+
+</RelativeLayout>

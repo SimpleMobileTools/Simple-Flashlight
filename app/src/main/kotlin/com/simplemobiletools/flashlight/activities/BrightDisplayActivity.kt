@@ -3,7 +3,9 @@ package com.simplemobiletools.flashlight.activities
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
-
+import com.simplemobiletools.commons.dialogs.ColorPickerDialog
+import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import kotlinx.android.synthetic.main.activity_bright_display.*
@@ -13,7 +15,19 @@ class BrightDisplayActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bright_display)
         supportActionBar?.hide()
-        display_holder.background = ColorDrawable(config.brightDisplayColor)
+        setBackgroundColor(config.brightDisplayColor)
+
+        bright_display_change_color.setOnClickListener {
+            ColorPickerDialog(this, config.brightDisplayColor, true, currentColorCallback = {
+                setBackgroundColor(it)
+            }) { wasPositivePressed, color ->
+                if (wasPositivePressed) {
+                    config.brightDisplayColor = color
+                } else {
+                    setBackgroundColor(config.brightDisplayColor)
+                }
+            }
+        }
     }
 
     override fun onResume() {
@@ -26,6 +40,14 @@ class BrightDisplayActivity : SimpleActivity() {
         super.onPause()
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toggleBrightness(false)
+    }
+
+    private fun setBackgroundColor(color: Int) {
+        bright_display.background = ColorDrawable(color)
+
+        val contrastColor = config.brightDisplayColor.getContrastColor()
+        bright_display_change_color.setTextColor(contrastColor)
+        bright_display_change_color.background.applyColorFilter(contrastColor)
     }
 
     private fun toggleBrightness(increase: Boolean) {
