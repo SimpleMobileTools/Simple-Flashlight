@@ -19,4 +19,12 @@ class Config(context: Context) : BaseConfig(context) {
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
         set(turnFlashlightOn) = prefs.edit().putBoolean(TURN_FLASHLIGHT_ON, turnFlashlightOn).apply()
+
+    var stroboscopeProgress: Int
+        get() = prefs.getInt(STROBOSCOPE_PROGRESS, 1000)
+        set(stroboscopeProgress) = prefs.edit().putInt(STROBOSCOPE_PROGRESS, stroboscopeProgress).apply()
+
+    var stroboscopeFrequency: Long
+        get() = prefs.getLong(STROBOSCOPE_FREQUENCY, 1000L)
+        set(stroboscopeFrequency) = prefs.edit().putLong(STROBOSCOPE_FREQUENCY, stroboscopeFrequency).apply()
 }

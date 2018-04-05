@@ -8,13 +8,14 @@ import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.isMarshmallowPlus
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
 import com.squareup.otto.Bus
 import java.io.IOException
 
 class MyCameraImpl(val context: Context) {
-    var stroboFrequency = 1000
+    var stroboFrequency = 1000L
 
     companion object {
         var isFlashlightOn = false
@@ -43,6 +44,7 @@ class MyCameraImpl(val context: Context) {
         }
 
         handleCameraSetup()
+        stroboFrequency = context.config.stroboscopeFrequency
     }
 
     fun toggleFlashlight() {
@@ -202,9 +204,9 @@ class MyCameraImpl(val context: Context) {
             while (!shouldStroboscopeStop) {
                 try {
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, true)
-                    Thread.sleep(stroboFrequency.toLong())
+                    Thread.sleep(stroboFrequency)
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, false)
-                    Thread.sleep(stroboFrequency.toLong())
+                    Thread.sleep(stroboFrequency)
                 } catch (e: Exception) {
                     shouldStroboscopeStop = true
                 }
@@ -231,9 +233,9 @@ class MyCameraImpl(val context: Context) {
             while (!shouldStroboscopeStop) {
                 try {
                     camera!!.parameters = torchOn
-                    Thread.sleep(stroboFrequency.toLong())
+                    Thread.sleep(stroboFrequency)
                     camera!!.parameters = torchOff
-                    Thread.sleep(stroboFrequency.toLong())
+                    Thread.sleep(stroboFrequency)
                 } catch (e: Exception) {
                 }
             }

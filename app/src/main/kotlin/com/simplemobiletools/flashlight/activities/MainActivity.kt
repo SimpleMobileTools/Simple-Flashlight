@@ -23,8 +23,8 @@ import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
-    private val MAX_STROBO_DELAY = 2000
-    private val MIN_STROBO_DELAY = 30
+    private val MAX_STROBO_DELAY = 2000L
+    private val MIN_STROBO_DELAY = 30L
     private val FLASHLIGHT_STATE = "flashlight_state"
     private val STROBOSCOPE_STATE = "stroboscope_state"
 
@@ -148,12 +148,14 @@ class MainActivity : SimpleActivity() {
             toggleStroboscope()
         }
 
-        stroboscope_bar.max = MAX_STROBO_DELAY - MIN_STROBO_DELAY
-        stroboscope_bar.progress = stroboscope_bar.max / 2
+        stroboscope_bar.max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
+        stroboscope_bar.progress = config.stroboscopeProgress
         stroboscope_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
                 val frequency = stroboscope_bar.max - progress + MIN_STROBO_DELAY
                 mCameraImpl?.stroboFrequency = frequency
+                config.stroboscopeFrequency = frequency
+                config.stroboscopeProgress = progress
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
