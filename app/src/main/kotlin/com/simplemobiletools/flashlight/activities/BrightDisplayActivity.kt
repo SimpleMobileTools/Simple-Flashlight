@@ -1,15 +1,19 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
 
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.extensions.config
+import kotlinx.android.synthetic.main.activity_bright_display.*
 
 class BrightDisplayActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bright_display)
         supportActionBar?.hide()
+        display_holder.background = ColorDrawable(config.brightDisplayColor)
     }
 
     override fun onResume() {

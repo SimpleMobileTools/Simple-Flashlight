@@ -1,6 +1,7 @@
 package com.simplemobiletools.flashlight.helpers
 
 const val BRIGHT_DISPLAY = "bright_display"
+const val BRIGHT_DISPLAY_COLOR = "bright_display_color"
 const val STROBOSCOPE = "stroboscope"
 const val TURN_FLASHLIGHT_ON = "turn_flashlight_on"
 const val IS_ENABLED = "is_enabled"

@@ -1,6 +1,7 @@
 package com.simplemobiletools.flashlight.helpers
 
 import android.content.Context
+import android.graphics.Color
 import com.simplemobiletools.commons.helpers.BaseConfig
 
 class Config(context: Context) : BaseConfig(context) {
@@ -27,4 +28,8 @@ class Config(context: Context) : BaseConfig(context) {
     var stroboscopeFrequency: Long
         get() = prefs.getLong(STROBOSCOPE_FREQUENCY, 1000L)
         set(stroboscopeFrequency) = prefs.edit().putLong(STROBOSCOPE_FREQUENCY, stroboscopeFrequency).apply()
+
+    var brightDisplayColor: Int
+        get() = prefs.getInt(BRIGHT_DISPLAY_COLOR, Color.WHITE)
+        set(brightDisplayColor) = prefs.edit().putInt(BRIGHT_DISPLAY_COLOR, brightDisplayColor).apply()
 }
