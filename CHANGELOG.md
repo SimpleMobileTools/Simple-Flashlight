@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 3.2.1 *(2018-04-15)*
+----------------------------
+
+ * Added a toggle for forcing portrait mode, enabled by default
+
 Version 3.2.0 *(2018-04-05)*
 ----------------------------
 
