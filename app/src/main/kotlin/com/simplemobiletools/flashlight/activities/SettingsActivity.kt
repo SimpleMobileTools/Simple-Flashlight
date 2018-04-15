@@ -23,6 +23,7 @@ class SettingsActivity : SimpleActivity() {
         setupTurnFlashlightOn()
         setupBrightDisplay()
         setupStroboscope()
+        setupForcePortrait()
         updateTextColors(settings_holder)
     }
 
@@ -71,6 +72,14 @@ class SettingsActivity : SimpleActivity() {
         settings_stroboscope_holder.setOnClickListener {
             settings_stroboscope.toggle()
             config.stroboscope = settings_stroboscope.isChecked
+        }
+    }
+
+    private fun setupForcePortrait() {
+        settings_force_portrait.isChecked = config.forcePortrait
+        settings_force_portrait_holder.setOnClickListener {
+            settings_force_portrait.toggle()
+            config.forcePortrait = settings_force_portrait.isChecked
         }
     }
 }

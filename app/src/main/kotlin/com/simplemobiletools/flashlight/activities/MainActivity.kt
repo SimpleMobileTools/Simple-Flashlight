@@ -1,6 +1,7 @@
 package com.simplemobiletools.flashlight.activities
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -67,6 +68,10 @@ class MainActivity : SimpleActivity() {
         updateTextColors(main_holder)
         if (stroboscope_bar.isInvisible()) {
             changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
+        }
+
+        if (config.forcePortrait) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
     }
 

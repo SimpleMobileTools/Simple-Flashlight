@@ -1,5 +1,6 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.content.pm.ActivityInfo
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
@@ -34,6 +35,10 @@ class BrightDisplayActivity : SimpleActivity() {
         super.onResume()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toggleBrightness(true)
+
+        if (config.forcePortrait) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
     }
 
     override fun onPause() {
