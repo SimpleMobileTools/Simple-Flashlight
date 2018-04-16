@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Paprastas žibintuvėlis</string>
+    <string name="app_launcher_name">Žibintuvėlis</string>
+    <string name="camera_error">Fotoaparato įjungti nepavyko</string>
+    <string name="camera_permission">Fotoaparato leidimas būtinas tinkamam stroboskopo efektui</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Rodyti ryškaus ekrano mygtuką</string>
+    <string name="show_stroboscope">Rodyti stroboskopo mygtuką</string>
+    <string name="turn_flashlight_on">Įjungti žibintuvėlį paleidus programėlę</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Paprastas žibintuvėlis be reklamų.</string>
+    <string name="app_long_description">
+        Švarus žibintuvėlis su papildomu ryškiu ekranu ir tinkamu stroboskopu. Jei įjungta per programą (ne valdiklį), tai neleis įrenginiui užmigti.
+
+        Suderinamas su 1x1 valdikliu su pritaikoma spalva.
+
+        Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas.
+
+        Ši programėle yra viena iš keletos mūsų programėlių. Likusias Jūs galite rasti čia https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
