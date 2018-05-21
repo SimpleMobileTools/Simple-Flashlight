@@ -30,7 +30,7 @@ class MyWidgetProvider : AppWidgetProvider() {
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             val views = RemoteViews(context.packageName, R.layout.widget)
 
-            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, 0)
+            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             views.setOnClickPendingIntent(R.id.flashlight_btn, pendingIntent)
             views.setImageViewBitmap(R.id.flashlight_btn, bmp)
             appWidgetManager.updateAppWidget(it, views)
