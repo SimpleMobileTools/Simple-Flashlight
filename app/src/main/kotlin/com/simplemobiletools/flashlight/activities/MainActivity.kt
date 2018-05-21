@@ -36,7 +36,7 @@ class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        appLaunched()
+        appLaunched(BuildConfig.APPLICATION_ID)
 
         mBus = BusProvider.instance
         changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
