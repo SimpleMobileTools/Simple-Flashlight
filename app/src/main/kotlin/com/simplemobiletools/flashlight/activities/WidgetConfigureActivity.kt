@@ -9,6 +9,7 @@ import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.setFillWithStroke
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
@@ -82,7 +83,7 @@ class WidgetConfigureActivity : SimpleActivity() {
 
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        config_widget_color.setBackgroundColor(mWidgetColor)
+        config_widget_color.setFillWithStroke(mWidgetColor, Color.BLACK)
         config_image.background.mutate().applyColorFilter(mWidgetColor)
     }
 

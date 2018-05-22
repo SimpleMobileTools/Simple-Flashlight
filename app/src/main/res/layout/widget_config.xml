@@ -21,7 +21,7 @@
             android:background="@drawable/circles_big"/>
     </RelativeLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/config_widget_color"
         android:layout_width="@dimen/widget_colorpicker_size"
         android:layout_height="@dimen/widget_colorpicker_size"
