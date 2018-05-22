@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 4.0.0 *(2018-05-22)*
+----------------------------
+
+ * Allow changing the app launcher icon color
+ * Allow customizing the widget color without recreating
+
 Version 3.2.1 *(2018-04-15)*
 ----------------------------
 
