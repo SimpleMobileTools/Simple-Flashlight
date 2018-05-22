@@ -1,8 +1,10 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.content.Intent
 import android.os.Bundle
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -18,6 +20,7 @@ class SettingsActivity : SimpleActivity() {
         super.onResume()
 
         setupCustomizeColors()
+        setupCustomizeWidgetColors()
         setupUseEnglish()
         setupAvoidWhatsNew()
         setupTurnFlashlightOn()
@@ -30,6 +33,15 @@ class SettingsActivity : SimpleActivity() {
     private fun setupCustomizeColors() {
         settings_customize_colors_holder.setOnClickListener {
             startCustomizationActivity()
+        }
+    }
+
+    private fun setupCustomizeWidgetColors() {
+        settings_customize_widget_colors_holder.setOnClickListener {
+            Intent(this, WidgetConfigureActivity::class.java).apply {
+                putExtra(IS_CUSTOMIZING_COLORS, true)
+                startActivity(this)
+            }
         }
     }
 
