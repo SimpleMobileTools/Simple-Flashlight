@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Basit Fener</string>
+    <string name="app_launcher_name">Fener</string>
+    <string name="camera_error">Kamera hatası</string>
+    <string name="camera_permission">Düzgün stroboskop etkisi için kamera izni gereklidir</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Parlak ekran düğmesini göster</string>
+    <string name="show_stroboscope">Stroboskop düğmesini göster</string>
+    <string name="turn_flashlight_on">Başlangıçta feneri aç</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Reklamsız basit bir fener.</string>
+    <string name="app_long_description">
+        Ekstra parlak ekran ve özelleştirilebilir stroboskop'lu temiz bir fener. Uygulama yoluyla (widget'la değil) açıldığında, cihazın uykuya geçmesini engeller.
+
+        Özelleştirilebilir renkli 1x1 widget ile birlikte gelir.
+
+        Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
+
+        Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı http://www.simplemobiletools.com adresinde bulabilirsiniz.
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
