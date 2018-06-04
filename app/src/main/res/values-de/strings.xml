@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Schlichte Taschenlampe</string>
+    <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Taschenlampe</string>
     <string name="camera_error">Beanspruchen der Kamera fehlgeschlagen</string>
     <string name="camera_permission">Kamera-Berechtigung ist für den Stroboskopeffekt erforderlich</string>
@@ -11,15 +11,15 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Eine schlichte Taschenlampe, ganz ohne Werbung.</string>
+    <string name="app_short_description">Eine einfache Taschenlampe, ganz ohne Werbung.</string>
     <string name="app_long_description">
-        Eine einfache Taschenlampe mit extra hellem Display und anpassbarem Stroboskop. Wenn die Taschenlampe über die App eingeschaltet wurde (nicht Widget), wird das Gerät nicht in Standby gehen.
+        Eine einfache Taschenlampe mit extra hellem Display und anpassbarem Stroboskop. Wenn die Taschenlampe über die Anwendung eingeschaltet wurde (nicht Widget), wird das Gerät nicht in Standby gehen.
 
         Inklusive 1x1 Widget mit anpassbaren Farben.
 
         Beinhaltet keine Werbung oder unnötige Berechtigungen. Sie ist komplett Open Source, alle verwendeten Farben sind anpassbar.
 
-        Diese App ist nur eine aus einer größeren Serie von schlichten Apps. Der Rest davon findet sich auf http://www.simplemobiletools.com
+        Diese Anwendung ist nur eine aus einer größeren Serie. Der Rest davon findet sich auf http://www.simplemobiletools.com
     </string>
 
     <!--
