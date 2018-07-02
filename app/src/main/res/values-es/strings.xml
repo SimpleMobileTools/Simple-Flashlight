@@ -5,9 +5,9 @@
     <string name="camera_permission">El permiso de acceso a la cámara es necesario para un apropiado efecto estroboscópico</string>
 
     <!-- Settings -->
-    <string name="bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="bright_display">Mostrar botón de pantalla brillante</string>
+    <string name="show_stroboscope">Mostrar botón de estroboscopio</string>
+    <string name="turn_flashlight_on">Encender la linterna al iniciar</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
