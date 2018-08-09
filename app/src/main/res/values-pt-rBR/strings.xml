@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lanterna Simples</string>
+    <string name="app_launcher_name">Lanterna</string>
+    <string name="camera_error">Erro ao obter a câmera</string>
+    <string name="camera_permission">A permissão para a câmera é necessária para usar o estroboscópio</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Mostrar o botão de Tela com Brilho Forte</string>
+    <string name="show_stroboscope">Mostrar o botão do Estroboscópio</string>
+    <string name="turn_flashlight_on">Ligar a lanterna ao iniciar o app</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Uma lanterna simples e sem anúncios.</string>
+    <string name="app_long_description">
+        Um app simples e funcional com opções de lanterna pelo flash da câmera e pelo aumento do brilho da tela, conta ainda com um estroboscópio customizável!
+
+        Disponibiliza também um atalho com cor personalizável na tela inicial do Android.
+
+        Não tem anúncios nem pede permissões desnecessárias. Disponibiliza um tema escuro e é totalmente open source.
+
+        Esta aplicação é apenas uma dentro de um conjunto mais vasto de aplicações que seguem esta mesma linha. Saiba mais em http://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
