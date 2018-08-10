@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/settings_scrollview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -10,6 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/settings_purchase_thank_you_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:background="?attr/selectableItemBackground"
+            android:paddingBottom="@dimen/activity_margin"
+            android:paddingLeft="@dimen/normal_margin"
+            android:paddingRight="@dimen/normal_margin"
+            android:paddingTop="@dimen/activity_margin">
+
+            <com.simplemobiletools.commons.views.MyTextView
+                android:id="@+id/settings_purchase_thank_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/medium_margin"
+                android:paddingStart="@dimen/medium_margin"
+                android:text="@string/purchase_simple_thank_you"/>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/settings_customize_colors_holder"
@@ -74,7 +97,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/use_english_language"/>
+                android:text="@string/use_english_language"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
 
@@ -97,7 +121,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/avoid_whats_new"/>
+                android:text="@string/avoid_whats_new"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
 
@@ -120,7 +145,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/turn_flashlight_on"/>
+                android:text="@string/turn_flashlight_on"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
 
@@ -143,7 +169,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/bright_display"/>
+                android:text="@string/bright_display"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
 
@@ -166,7 +193,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/show_stroboscope"/>
+                android:text="@string/show_stroboscope"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
 
@@ -189,7 +217,8 @@
                 android:clickable="false"
                 android:paddingLeft="@dimen/medium_margin"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/force_portrait_mode"/>
+                android:text="@string/force_portrait_mode"
+                app:switchPadding="@dimen/medium_margin"/>
 
         </RelativeLayout>
     </LinearLayout>
