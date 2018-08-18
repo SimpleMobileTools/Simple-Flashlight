@@ -10,6 +10,9 @@
     <string name="show_stroboscope">Mostrar o botão do Estroboscópio</string>
     <string name="turn_flashlight_on">Ligar a lanterna ao iniciar o app</string>
 
+    <!--Text on the app-->
+    <string name="tap_again_to_set_timer">Toque de novo para acionar uma contagem regressiva</string>
+
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Uma lanterna simples e sem anúncios.</string>

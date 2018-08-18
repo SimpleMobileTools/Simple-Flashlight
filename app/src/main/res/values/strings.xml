@@ -9,6 +9,9 @@
     <string name="show_stroboscope">Show a stroboscope button</string>
     <string name="turn_flashlight_on">Turn flashlight on at startup</string>
 
+    <!--Text on the app-->
+    <string name="tap_again_to_set_timer">Tap again to set a timer</string>
+
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">A simple flashlight without ads.</string>
