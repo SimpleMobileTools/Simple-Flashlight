@@ -71,9 +71,7 @@ class MainActivity : SimpleActivity() {
             changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
         }
 
-        if (config.forcePortrait) {
-            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        }
+        requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
     }
 
     override fun onStart() {

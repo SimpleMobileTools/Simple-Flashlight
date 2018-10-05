@@ -98,10 +98,10 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupForcePortrait() {
-        settings_force_portrait.isChecked = config.forcePortrait
+        settings_force_portrait.isChecked = config.forcePortraitMode
         settings_force_portrait_holder.setOnClickListener {
             settings_force_portrait.toggle()
-            config.forcePortrait = settings_force_portrait.isChecked
+            config.forcePortraitMode = settings_force_portrait.isChecked
         }
     }
 }
