@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 4.2.0 *(2018-10-05)*
+----------------------------
+
+ * Fixing a glitch at forcing portrait
+ * Some translation improvements
+
 Version 4.1.0 *(2018-08-10)*
 ----------------------------
 
