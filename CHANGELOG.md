@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.0.0 *(2018-10-12)*
+----------------------------
+
+ * Increased the minimal requested Android OS version to 5 (Lollipop)
+ * Replaced G+ button with Reddit
+
 Version 4.2.0 *(2018-10-05)*
 ----------------------------
 
