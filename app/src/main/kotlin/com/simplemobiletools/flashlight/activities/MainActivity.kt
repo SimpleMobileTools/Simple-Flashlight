@@ -3,6 +3,7 @@ package com.simplemobiletools.flashlight.activities
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
@@ -23,7 +24,9 @@ import com.squareup.otto.Bus
 import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : SimpleActivity() {
+    private val EXTRA_TIME = 30000L
     private val MAX_STROBO_DELAY = 2000L
     private val MIN_STROBO_DELAY = 30L
     private val FLASHLIGHT_STATE = "flashlight_state"
@@ -32,6 +35,8 @@ class MainActivity : SimpleActivity() {
     private var mBus: Bus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
+    private var mTimeInMilliseconds: Long = 0
+    private var mCountDownTimer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +51,56 @@ class MainActivity : SimpleActivity() {
         }
 
         flashlight_btn.setOnClickListener {
-            mCameraImpl!!.toggleFlashlight()
+            remaining_time_chron.beVisible()
+            remaining_time_chron.setTextColor(config.backgroundColor.getContrastColor())
+
+            if (MyCameraImpl.isFlashlightOn) {
+                mTimeInMilliseconds += EXTRA_TIME
+
+                mCountDownTimer = startCountDownWithTime(mTimeInMilliseconds)
+            } else {
+                mCameraImpl!!.toggleFlashlight()
+                remaining_time_chron.text = "∞"
+                toast(getString(R.string.tap_again_to_set_timer))
+            }
+        }
+
+        turn_off_flashlight_btn.setOnClickListener {
+            stopFlashlight()
         }
 
         setupStroboscope()
         checkAppOnSDCard()
+    }
+
+    private fun startCountDownWithTime(mTimeInMillis: Long): CountDownTimer? {
+        val countDownInterval: Long = 500
+
+        mCountDownTimer?.cancel()
+        mCountDownTimer = object : CountDownTimer(mTimeInMillis, countDownInterval) {
+            override fun onTick(millisUntilFinished: Long) {
+                // Updating the remaining time
+                mTimeInMilliseconds -= countDownInterval
+                remaining_time_chron.text = (millisUntilFinished / 1000).toString()
+            }
+
+            override fun onFinish() {
+                stopFlashlight()
+            }
+        }
+        mCountDownTimer?.start()
+
+        return mCountDownTimer
+    }
+
+    private fun stopFlashlight() {
+        mCountDownTimer?.cancel()
+        mTimeInMilliseconds = 0
+        remaining_time_chron.beGone()
+
+        if (MyCameraImpl.isFlashlightOn) {
+            mCameraImpl!!.toggleFlashlight()
+        }
     }
 
     override fun onResume() {
@@ -58,6 +108,7 @@ class MainActivity : SimpleActivity() {
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
+        changeIconColor(config.backgroundColor.getContrastColor(), turn_off_flashlight_btn)
         changeIconColor(config.backgroundColor.getContrastColor(), bright_display_btn)
         bright_display_btn.beVisibleIf(config.brightDisplay)
         stroboscope_btn.beVisibleIf(config.stroboscope)
