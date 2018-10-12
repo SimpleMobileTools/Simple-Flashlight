@@ -8,7 +8,6 @@ import android.os.Handler
 import com.simplemobiletools.flashlight.models.Events
 import com.squareup.otto.Bus
 
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 internal class MarshmallowCamera constructor(val context: Context) {
 
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
