@@ -1,25 +1,26 @@
 <resources>
-    <string name="app_name">Simple Flashlight</string>
+    <string name="app_name">Semplice torcia</string>
     <string name="app_launcher_name">Torcia</string>
     <string name="camera_error">Impossibile rilevare la fotocamera</string>
-    <string name="camera_permission">Il permesso per accedere alla fotocamera è necessario per un corretto effetto stroboscopico</string>
+    <string name="camera_permission">Il permesso per la fotocamera è necessario per l\'effetto stroboscopico</string>
 
     <!-- Settings -->
-    <string name="bright_display">Mostra un pulsante per schermo luminoso</string>
-    <string name="show_stroboscope">Mostra un pulsante stroboscopico</string>
+    <string name="bright_display">Mostra un pulsante per lo schermo luminoso</string>
+    <string name="show_stroboscope">Mostra un pulsante per l\'effetto stroboscopico</string>
     <string name="turn_flashlight_on">Accendi la torcia all\'avvio</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- Short description has to have less than 80 chars -->
+    <!-- ITALIAN TRANSLATORS: the last two lines are translated the same way in other applications! -->
     <string name="app_short_description">Una semlpice torcia senza pubblicità.</string>
     <string name="app_long_description">
-        Un torcia leggera con uno stroboscopio personalizzabile e con schermo luminoso. Se accesa tramite l\'applicazione (non il widget), impedirà al dispositivo di ibernarsi.
+        Un\'elegante torcia con la possibilità di avere lo schermo luminoso e un effetto stroboscopio personalizzabile. Se inoltre si accende la torcia tramite l'\applicazione (non tremite widget), lo schermo del dispositivo non verrà spento.
 
         Include un widget 1x1 con colore personalizzabile.
 
-        Non contiene pubblicità o permessi non necessari. È completamente open source, fornisce anche un tema scuro.
-
-        Questa applicazione fa parte di una serie. Si possono trovare le altre su http://www.simplemobiletools.com
+        L\'applicazione non contiene pubblicità o permessi non necessari; è completamente opensource e la si può personalizzare con i propri colori preferiti.
+        
+        Questa è solamente una delle tante applicazioni della serie Simple Mobile Tools. Si possono trovare le altre su http://www.simplemobiletools.com
     </string>
 
     <!--
