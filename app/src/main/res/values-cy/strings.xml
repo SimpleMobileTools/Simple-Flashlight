@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Fflacholau</string>
+    <string name="camera_error">Methwyd cael at y camera</string>
+    <string name="camera_permission">Rhaid cael caniatâd y camera i\'r effaith strobosgop</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Dangos botwm dangosydd llachar</string>
+    <string name="show_stroboscope">Dangos botwm strobosgop</string>
+    <string name="turn_flashlight_on">Troi\'r fflacholau ymlaen wrth ddechrau</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Fflacholau syml heb hysbysebion.</string>
+    <string name="app_long_description">
+        Fflacholau syml gyda dangosydd llachar a strobosgop gellir ei addasu dy hun. Os yw\'n cael ei droi ymlaen fel ap (yn hytrach na theclyn), bydd yn rhwystro\'r ddyfais rhag cysgu.
+
+        Mae\'n dod gyda theclyn 1x1 a lliw addasedig ar gyfer dy sgrin gartref.
+
+        Dim hysbysebion nac angen unrhyw ganiatâd di-angen. Mae\'n god agored a gellir addasu\'r lliwiau dy hun.
+
+        Mae\'r ap hwn yn rhan o gasgliad o apiau. Mae\'r gweddill i\'w gweld yma: https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
