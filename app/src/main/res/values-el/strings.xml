@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Απλός φακός</string>
+    <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Φακός</string>
     <string name="camera_error">Η εύρεση της κάμερας απέτυχε</string>
     <string name="camera_permission">Χρειάζεται άδεια χρήσης της κάμερας για τη σωστή λειτουργία στροβοσκοπίου</string>
