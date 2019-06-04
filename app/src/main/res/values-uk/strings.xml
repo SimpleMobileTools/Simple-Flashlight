@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Простий Ліхтарик</string>
+    <string name="app_launcher_name">Ліхтарик</string>
+    <string name="camera_error">Не вдалося отримати доступ до камери</string>
+    <string name="camera_permission">Дозвіл на доступ до камери необхідний для створення ефекту стробоскопа</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Показувати кнопку перемикання на білий дисплей</string>
+    <string name="show_stroboscope">Показувати кнопку стробоскопа</string>
+    <string name="turn_flashlight_on">Вмикати ліхтарик при запуску</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Простий ліхтарик без реклами.</string>
+    <string name="app_long_description">
+        Простий ліхтарик з яскравим дисплеєм та функцією стробоскопа. Якщо ввімкнено через додаток (не віджет), це завадить перейти пристрою в режим сну.
+
+        Містить віджет, кольори якого можна налаштувати.
+
+        Цей додаток не буде показувати рекламу; потрібні лише найнеобхідніші дозволи. Додаток має повністю відкритий програмний код, кольори оформлення можна легко налаштувати.
+
+        Простий Ліхтарик - це один із ряду додатків від Simple Mobile Tools. Інші додатки можна знайти тут: https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
