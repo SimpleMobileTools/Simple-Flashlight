@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : SimpleActivity() {
     private val MAX_STROBO_DELAY = 2000L
-    private val MIN_STROBO_DELAY = 30L
+    private val MIN_STROBO_DELAY = 10L
     private val FLASHLIGHT_STATE = "flashlight_state"
     private val STROBOSCOPE_STATE = "stroboscope_state"
 
