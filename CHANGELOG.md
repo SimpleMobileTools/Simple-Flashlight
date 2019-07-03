@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.0.2 *(2019-07-03)*
+----------------------------
+
+ * Allow setting an even more frequent stroboscope
+ * Some translation improvements
+
 Version 5.0.1 *(2019-04-08)*
 ----------------------------
 
