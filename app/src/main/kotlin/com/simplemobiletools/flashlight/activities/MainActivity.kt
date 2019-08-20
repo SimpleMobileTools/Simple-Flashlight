@@ -72,6 +72,7 @@ class MainActivity : SimpleActivity() {
         }
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        invalidateOptionsMenu()
     }
 
     override fun onStart() {
@@ -95,6 +96,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        updateMenuItemColors(menu)
         return true
     }
 

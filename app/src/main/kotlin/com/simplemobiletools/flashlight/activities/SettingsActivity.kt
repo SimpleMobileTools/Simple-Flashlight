@@ -2,6 +2,7 @@ package com.simplemobiletools.flashlight.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isThankYouInstalled
 import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
@@ -31,6 +32,12 @@ class SettingsActivity : SimpleActivity() {
         setupSOS()
         setupForcePortrait()
         updateTextColors(settings_holder)
+        invalidateOptionsMenu()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        updateMenuItemColors(menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setupCustomizeColors() {
