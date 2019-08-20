@@ -7,7 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Knop voor fel scherm tonen</string>
     <string name="show_stroboscope">Knop voor stroboscoop tonen</string>
-    <string name="show_sos">Show an SOS button</string>
+    <string name="show_sos">Knop voor SOS-noodsignaal tonen</string>
     <string name="turn_flashlight_on">Zaklamp bij starten aanzetten</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
