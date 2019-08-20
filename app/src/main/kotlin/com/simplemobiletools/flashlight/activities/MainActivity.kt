@@ -49,6 +49,8 @@ class MainActivity : SimpleActivity() {
             mCameraImpl!!.toggleFlashlight()
         }
 
+        sos_btn.setOnClickListener {}
+
         setupStroboscope()
         checkAppOnSDCard()
     }
@@ -58,9 +60,13 @@ class MainActivity : SimpleActivity() {
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
-        changeIconColor(config.backgroundColor.getContrastColor(), bright_display_btn)
+        val contrastColor = config.backgroundColor.getContrastColor()
+        changeIconColor(contrastColor, bright_display_btn)
         bright_display_btn.beVisibleIf(config.brightDisplay)
+        sos_btn.beVisibleIf(config.sos)
+        sos_btn.setTextColor(contrastColor)
         stroboscope_btn.beVisibleIf(config.stroboscope)
+
         if (!config.stroboscope) {
             mCameraImpl!!.stopStroboscope()
             stroboscope_bar.beInvisible()
@@ -68,7 +74,7 @@ class MainActivity : SimpleActivity() {
 
         updateTextColors(main_holder)
         if (stroboscope_bar.isInvisible()) {
-            changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
+            changeIconColor(contrastColor, stroboscope_btn)
         }
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
