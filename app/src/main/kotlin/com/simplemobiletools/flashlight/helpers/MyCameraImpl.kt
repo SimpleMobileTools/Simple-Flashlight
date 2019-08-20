@@ -31,6 +31,8 @@ class MyCameraImpl(val context: Context) {
         private var shouldStroboscopeStop = false
         @Volatile
         private var isStroboscopeRunning = false
+        @Volatile
+        private var isSOSRunning = false
 
         fun newInstance(context: Context) = MyCameraImpl(context)
     }
@@ -78,6 +80,25 @@ class MyCameraImpl(val context: Context) {
 
     fun stopStroboscope() {
         shouldStroboscopeStop = true
+        bus!!.post(Events.StopStroboscope())
+    }
+
+    fun toggleSOS(): Boolean {
+        if (isStroboscopeRunning) {
+            stopStroboscope()
+        }
+
+        if (isFlashlightOn) {
+            disableFlashlight()
+        }
+
+        isSOSRunning = !isSOSRunning
+        return isSOSRunning
+    }
+
+    fun stopSOS() {
+        isSOSRunning = false
+        bus!!.post(Events.StopSOS())
     }
 
     fun handleCameraSetup() {
@@ -95,8 +116,9 @@ class MyCameraImpl(val context: Context) {
     }
 
     private fun setupCamera() {
-        if (isMarshmallow)
+        if (isMarshmallow) {
             return
+        }
 
         if (camera == null) {
             initCamera()
@@ -112,7 +134,6 @@ class MyCameraImpl(val context: Context) {
         } catch (e: Exception) {
             bus!!.post(Events.CameraUnavailable())
         }
-
     }
 
     private fun checkFlashlight() {
@@ -128,6 +149,12 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun enableFlashlight() {
+        if (isSOSRunning) {
+            shouldEnableFlashlight = true
+            stopSOS()
+            return
+        }
+
         shouldStroboscopeStop = true
         if (isStroboscopeRunning) {
             shouldEnableFlashlight = true

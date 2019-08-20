@@ -39,7 +39,7 @@ class MainActivity : SimpleActivity() {
         appLaunched(BuildConfig.APPLICATION_ID)
 
         mBus = BusProvider.instance
-        changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
+        changeIconColor(getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
@@ -66,7 +66,7 @@ class MainActivity : SimpleActivity() {
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
-        val contrastColor = config.backgroundColor.getContrastColor()
+        val contrastColor = getContrastColor()
         changeIconColor(contrastColor, bright_display_btn)
         bright_display_btn.beVisibleIf(config.brightDisplay)
         sos_btn.beVisibleIf(config.sos)
@@ -202,13 +202,17 @@ class MainActivity : SimpleActivity() {
 
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
+            val isSOSRunning = mCameraImpl!!.toggleSOS()
+            sos_btn.setTextColor(if (isSOSRunning) getAdjustedPrimaryColor() else getContrastColor())
         } else {
             if (mCameraImpl!!.toggleStroboscope()) {
                 stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-                changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else config.backgroundColor.getContrastColor(), stroboscope_btn)
+                changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else getContrastColor(), stroboscope_btn)
             }
         }
     }
+
+    private fun getContrastColor() = config.backgroundColor.getContrastColor()
 
     private fun releaseCamera() {
         mCameraImpl?.releaseCamera()
@@ -218,6 +222,17 @@ class MainActivity : SimpleActivity() {
     @Subscribe
     fun stateChangedEvent(event: Events.StateChanged) {
         checkState(event.isEnabled)
+    }
+
+    @Subscribe
+    fun stopStroboscope(event: Events.StopStroboscope) {
+        stroboscope_bar.beInvisible()
+        changeIconColor(getContrastColor(), stroboscope_btn)
+    }
+
+    @Subscribe
+    fun stopSOS(event: Events.StopSOS) {
+        sos_btn.setTextColor(getContrastColor())
     }
 
     private fun checkState(isEnabled: Boolean) {
@@ -233,12 +248,12 @@ class MainActivity : SimpleActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
 
-        changeIconColor(config.backgroundColor.getContrastColor(), stroboscope_btn)
+        changeIconColor(getContrastColor(), stroboscope_btn)
         stroboscope_bar.beInvisible()
     }
 
     private fun disableFlashlight() {
-        changeIconColor(config.backgroundColor.getContrastColor(), flashlight_btn)
+        changeIconColor(getContrastColor(), flashlight_btn)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = false
     }
