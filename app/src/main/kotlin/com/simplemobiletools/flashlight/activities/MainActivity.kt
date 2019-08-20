@@ -49,7 +49,13 @@ class MainActivity : SimpleActivity() {
             mCameraImpl!!.toggleFlashlight()
         }
 
-        sos_btn.setOnClickListener {}
+        sos_btn.setOnClickListener {
+            toggleStroboscope(true)
+        }
+
+        stroboscope_btn.setOnClickListener {
+            toggleStroboscope(false)
+        }
 
         setupStroboscope()
         checkAppOnSDCard()
@@ -130,7 +136,7 @@ class MainActivity : SimpleActivity() {
 
         val isStroboscopeOn = savedInstanceState.getBoolean(STROBOSCOPE_STATE, false)
         if (isStroboscopeOn) {
-            toggleStroboscope()
+            toggleStroboscope(false)
         }
     }
 
@@ -159,10 +165,6 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupStroboscope() {
-        stroboscope_btn.setOnClickListener {
-            toggleStroboscope()
-        }
-
         stroboscope_bar.max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
         stroboscope_bar.progress = config.stroboscopeProgress
         stroboscope_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -183,14 +185,14 @@ class MainActivity : SimpleActivity() {
         })
     }
 
-    private fun toggleStroboscope() {
+    private fun toggleStroboscope(isSOS: Boolean) {
         // use the old Camera API for stroboscope, the new Camera Manager is way too slow
         if (isNougatPlus()) {
-            cameraPermissionGranted()
+            cameraPermissionGranted(isSOS)
         } else {
             handlePermission(PERMISSION_CAMERA) {
                 if (it) {
-                    cameraPermissionGranted()
+                    cameraPermissionGranted(isSOS)
                 } else {
                     toast(R.string.camera_permission)
                 }
@@ -198,10 +200,13 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    private fun cameraPermissionGranted() {
-        if (mCameraImpl!!.toggleStroboscope()) {
-            stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-            changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else config.backgroundColor.getContrastColor(), stroboscope_btn)
+    private fun cameraPermissionGranted(isSOS: Boolean) {
+        if (isSOS) {
+        } else {
+            if (mCameraImpl!!.toggleStroboscope()) {
+                stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
+                changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else config.backgroundColor.getContrastColor(), stroboscope_btn)
+            }
         }
     }
 
