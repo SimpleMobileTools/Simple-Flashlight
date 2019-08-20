@@ -17,6 +17,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(STROBOSCOPE, true)
         set(stroboscope) = prefs.edit().putBoolean(STROBOSCOPE, stroboscope).apply()
 
+    var sos: Boolean
+        get() = prefs.getBoolean(SOS, true)
+        set(sos) = prefs.edit().putBoolean(SOS, sos).apply()
+
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
         set(turnFlashlightOn) = prefs.edit().putBoolean(TURN_FLASHLIGHT_ON, turnFlashlightOn).apply()

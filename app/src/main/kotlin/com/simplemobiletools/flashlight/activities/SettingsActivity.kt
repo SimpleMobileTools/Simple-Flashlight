@@ -28,6 +28,7 @@ class SettingsActivity : SimpleActivity() {
         setupTurnFlashlightOn()
         setupBrightDisplay()
         setupStroboscope()
+        setupSOS()
         setupForcePortrait()
         updateTextColors(settings_holder)
     }
@@ -85,6 +86,14 @@ class SettingsActivity : SimpleActivity() {
         settings_stroboscope_holder.setOnClickListener {
             settings_stroboscope.toggle()
             config.stroboscope = settings_stroboscope.isChecked
+        }
+    }
+
+    private fun setupSOS() {
+        settings_sos.isChecked = config.sos
+        settings_sos_holder.setOnClickListener {
+            settings_sos.toggle()
+            config.sos = settings_sos.isChecked
         }
     }
 
