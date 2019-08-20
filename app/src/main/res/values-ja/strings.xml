@@ -7,6 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">明るく表示ボタンを表示</string>
     <string name="show_stroboscope">ストロボボタンを表示</string>
+    <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Turn flashlight on at startup</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->

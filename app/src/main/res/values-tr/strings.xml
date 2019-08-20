@@ -7,6 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Parlak ekran düğmesini göster</string>
     <string name="show_stroboscope">Stroboskop düğmesini göster</string>
+    <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Başlangıçta feneri aç</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->

@@ -7,6 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">顯示螢幕發亮按鈕</string>
     <string name="show_stroboscope">顯示閃爍效果按鈕</string>
+    <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">啟動時打開手電筒</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
