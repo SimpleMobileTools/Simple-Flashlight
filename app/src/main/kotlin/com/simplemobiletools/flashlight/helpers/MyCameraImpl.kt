@@ -59,15 +59,8 @@ class MyCameraImpl(val context: Context) {
             disableFlashlight()
         }
 
-        if (!isNougatPlus()) {
-            if (camera == null) {
-                initCamera()
-            }
-
-            if (camera == null) {
-                context.toast(R.string.camera_error)
-                return false
-            }
+        if (!tryInitCamera()) {
+            return false
         }
 
         if (isStroboscopeRunning) {
@@ -88,6 +81,10 @@ class MyCameraImpl(val context: Context) {
             stopStroboscope()
         }
 
+        if (!tryInitCamera()) {
+            return false
+        }
+
         if (isFlashlightOn) {
             disableFlashlight()
         }
@@ -99,6 +96,20 @@ class MyCameraImpl(val context: Context) {
     fun stopSOS() {
         isSOSRunning = false
         bus!!.post(Events.StopSOS())
+    }
+
+    private fun tryInitCamera(): Boolean {
+        if (!isNougatPlus()) {
+            if (camera == null) {
+                initCamera()
+            }
+
+            if (camera == null) {
+                context.toast(R.string.camera_error)
+                return false
+            }
+        }
+        return true
     }
 
     fun handleCameraSetup() {
