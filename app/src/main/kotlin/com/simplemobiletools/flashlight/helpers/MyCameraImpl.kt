@@ -33,8 +33,6 @@ class MyCameraImpl(val context: Context) {
         @Volatile
         private var isStroboscopeRunning = false
         @Volatile
-        private var shouldSOSStop = false
-        @Volatile
         private var isSOSRunning = false
 
         fun newInstance(context: Context) = MyCameraImpl(context)
@@ -95,17 +93,17 @@ class MyCameraImpl(val context: Context) {
             disableFlashlight()
         }
 
-        if (isSOSRunning) {
+        return if (isSOSRunning) {
             stopSOS()
+            false
         } else {
-            isSOSRunning = true
             Thread(stroboscope).start()
+            true
         }
-        return isSOSRunning
     }
 
     fun stopSOS() {
-        shouldSOSStop = true
+        shouldStroboscopeStop = true
         bus!!.post(Events.StopSOS())
     }
 
@@ -172,7 +170,6 @@ class MyCameraImpl(val context: Context) {
 
     fun enableFlashlight() {
         shouldStroboscopeStop = true
-        shouldSOSStop = true
         if (isStroboscopeRunning || isSOSRunning) {
             shouldEnableFlashlight = true
             return
@@ -234,7 +231,6 @@ class MyCameraImpl(val context: Context) {
         bus?.unregister(this)
         isFlashlightOn = false
         shouldStroboscopeStop = true
-        shouldSOSStop = true
     }
 
     private val stroboscope = Runnable {
@@ -242,11 +238,10 @@ class MyCameraImpl(val context: Context) {
             return@Runnable
         }
 
+        shouldStroboscopeStop = false
         if (isStroboSOS) {
-            shouldSOSStop = false
             isSOSRunning = true
         } else {
-            shouldStroboscopeStop = false
             isStroboscopeRunning = true
         }
 
@@ -259,7 +254,6 @@ class MyCameraImpl(val context: Context) {
                     Thread.sleep(stroboFrequency)
                 } catch (e: Exception) {
                     shouldStroboscopeStop = true
-                    shouldSOSStop = true
                 }
             }
         } else {
@@ -302,11 +296,10 @@ class MyCameraImpl(val context: Context) {
             }
         }
 
+        shouldStroboscopeStop = false
         if (isStroboSOS) {
-            shouldSOSStop = false
             isSOSRunning = false
         } else {
-            shouldStroboscopeStop = false
             isStroboscopeRunning = false
         }
 
