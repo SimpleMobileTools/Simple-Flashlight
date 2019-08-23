@@ -25,12 +25,15 @@ class MyCameraImpl(val context: Context) {
         private var bus: Bus? = null
         private var isMarshmallow = false
         private var shouldEnableFlashlight = false
+        private var isStroboSOS = false     // are we sending SOS, or casual stroboscope?
 
         private var marshmallowCamera: MarshmallowCamera? = null
         @Volatile
         private var shouldStroboscopeStop = false
         @Volatile
         private var isStroboscopeRunning = false
+        @Volatile
+        private var shouldSOSStop = false
         @Volatile
         private var isSOSRunning = false
 
@@ -55,6 +58,7 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun toggleStroboscope(): Boolean {
+        isStroboSOS = false
         if (!isStroboscopeRunning) {
             disableFlashlight()
         }
@@ -63,12 +67,13 @@ class MyCameraImpl(val context: Context) {
             return false
         }
 
-        if (isStroboscopeRunning) {
+        return if (isStroboscopeRunning) {
             stopStroboscope()
+            false
         } else {
             Thread(stroboscope).start()
+            true
         }
-        return true
     }
 
     fun stopStroboscope() {
@@ -77,6 +82,7 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun toggleSOS(): Boolean {
+        isStroboSOS = true
         if (isStroboscopeRunning) {
             stopStroboscope()
         }
@@ -89,12 +95,17 @@ class MyCameraImpl(val context: Context) {
             disableFlashlight()
         }
 
-        isSOSRunning = !isSOSRunning
+        if (isSOSRunning) {
+            stopSOS()
+        } else {
+            isSOSRunning = true
+            Thread(stroboscope).start()
+        }
         return isSOSRunning
     }
 
     fun stopSOS() {
-        isSOSRunning = false
+        shouldSOSStop = true
         bus!!.post(Events.StopSOS())
     }
 
@@ -160,14 +171,9 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun enableFlashlight() {
-        if (isSOSRunning) {
-            shouldEnableFlashlight = true
-            stopSOS()
-            return
-        }
-
         shouldStroboscopeStop = true
-        if (isStroboscopeRunning) {
+        shouldSOSStop = true
+        if (isStroboscopeRunning || isSOSRunning) {
             shouldEnableFlashlight = true
             return
         }
@@ -189,7 +195,7 @@ class MyCameraImpl(val context: Context) {
     }
 
     private fun disableFlashlight() {
-        if (isStroboscopeRunning) {
+        if (isStroboscopeRunning || isSOSRunning) {
             return
         }
 
@@ -228,15 +234,21 @@ class MyCameraImpl(val context: Context) {
         bus?.unregister(this)
         isFlashlightOn = false
         shouldStroboscopeStop = true
+        shouldSOSStop = true
     }
 
     private val stroboscope = Runnable {
-        if (isStroboscopeRunning) {
+        if (isStroboscopeRunning || isSOSRunning) {
             return@Runnable
         }
 
-        shouldStroboscopeStop = false
-        isStroboscopeRunning = true
+        if (isStroboSOS) {
+            shouldSOSStop = false
+            isSOSRunning = true
+        } else {
+            shouldStroboscopeStop = false
+            isStroboscopeRunning = true
+        }
 
         if (isNougatPlus()) {
             while (!shouldStroboscopeStop) {
@@ -247,6 +259,7 @@ class MyCameraImpl(val context: Context) {
                     Thread.sleep(stroboFrequency)
                 } catch (e: Exception) {
                     shouldStroboscopeStop = true
+                    shouldSOSStop = true
                 }
             }
         } else {
@@ -289,8 +302,13 @@ class MyCameraImpl(val context: Context) {
             }
         }
 
-        isStroboscopeRunning = false
-        shouldStroboscopeStop = false
+        if (isStroboSOS) {
+            shouldSOSStop = false
+            isSOSRunning = false
+        } else {
+            shouldStroboscopeStop = false
+            isStroboscopeRunning = false
+        }
 
         if (shouldEnableFlashlight) {
             enableFlashlight()
