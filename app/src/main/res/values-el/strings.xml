@@ -7,7 +7,7 @@
     <!-- Settings -->
     <string name="bright_display">Προβολή κουμπιού φωτεινότητας</string>
     <string name="show_stroboscope">Προβολή κουμπιού στροβοσκοπίου</string>
-    <string name="show_sos">Show an SOS button</string>
+    <string name="show_sos">Προβολή κουμπιού SOS</string>
     <string name="turn_flashlight_on">Άνοιγμα του φακού κατά την εκκίνηση</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
@@ -20,7 +20,7 @@
 
         Δεν περιέχει διαφημίσεις ή άσκοπη αδειοδότηση. Είναι πλήρως ανοιχτού κώδικα και παρέχει προσαρμόσιμες αποχρώσεις.
 
-        Αυτή η εφαρμογή είναι απλώς κομμάτι μίας μεγάλης συλλογής εφαρμογών. Μπορείτε να τις βρείτε στο http://www.simplemobiletools.com
+        Αυτή η εφαρμογή είναι μέρος μίας μεγάλης συλλογής εφαρμογών. Μπορείτε να τις βρείτε στο http://www.simplemobiletools.com
     </string>
 
     <!--
