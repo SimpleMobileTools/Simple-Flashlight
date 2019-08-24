@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.0.3 *(2019-08-24)*
+----------------------------
+
+ * Added an initial implementation of SOS morse code
+
 Version 5.0.2 *(2019-07-03)*
 ----------------------------
 
