@@ -19,6 +19,7 @@ class MyCameraImpl(val context: Context) {
 
     companion object {
         var isFlashlightOn = false
+        private val SOS = arrayListOf(250L, 250L, 250L, 250L, 250L, 250L, 500L, 250L, 500L, 250L, 500L, 250L, 250L, 250L, 250L, 250L, 250L, 1000L)
 
         private var camera: Camera? = null
         private var params: Camera.Parameters? = null
@@ -245,13 +246,16 @@ class MyCameraImpl(val context: Context) {
             isStroboscopeRunning = true
         }
 
+        var sosIndex = 0
         if (isNougatPlus()) {
             while (!shouldStroboscopeStop) {
                 try {
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, true)
-                    Thread.sleep(stroboFrequency)
+                    val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    Thread.sleep(onDuration)
                     marshmallowCamera!!.toggleMarshmallowFlashlight(bus!!, false)
-                    Thread.sleep(stroboFrequency)
+                    val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    Thread.sleep(offDuration)
                 } catch (e: Exception) {
                     shouldStroboscopeStop = true
                 }
@@ -277,9 +281,11 @@ class MyCameraImpl(val context: Context) {
             while (!shouldStroboscopeStop) {
                 try {
                     camera!!.parameters = torchOn
-                    Thread.sleep(stroboFrequency)
+                    val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    Thread.sleep(onDuration)
                     camera!!.parameters = torchOff
-                    Thread.sleep(stroboFrequency)
+                    val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
+                    Thread.sleep(offDuration)
                 } catch (e: Exception) {
                 }
             }
