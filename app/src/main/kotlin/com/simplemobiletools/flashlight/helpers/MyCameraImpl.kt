@@ -57,6 +57,11 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun toggleStroboscope(): Boolean {
+        if (isSOSRunning) {
+            stopSOS()
+            return false
+        }
+
         isStroboSOS = false
         if (!isStroboscopeRunning) {
             disableFlashlight()
@@ -81,6 +86,11 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun toggleSOS(): Boolean {
+        if (isStroboscopeRunning) {
+            stopStroboscope()
+            return false
+        }
+
         isStroboSOS = true
         if (isStroboscopeRunning) {
             stopStroboscope()

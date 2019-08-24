@@ -248,6 +248,8 @@ class MainActivity : SimpleActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
 
+        sos_btn.setTextColor(getContrastColor())
+
         changeIconColor(getContrastColor(), stroboscope_btn)
         stroboscope_bar.beInvisible()
     }
