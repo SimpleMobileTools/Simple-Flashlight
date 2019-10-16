@@ -1,0 +1,7 @@
+Ekstra parlak ekran ve özelleştirilebilir stroboskop'lu temiz bir fener. Uygulama yoluyla (widget'la değil) açıldığında, cihazın uykuya geçmesini engeller.
+
+Özelleştirilebilir renkli 1x1 widget ile birlikte gelir.
+
+Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
+
+Bu uygulama, daha büyük bir uygulama serisinden sadece bir parça. Geri kalanı https://www.simplemobiletools.com adresinde bulabilirsiniz.

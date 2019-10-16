@@ -1,0 +1,7 @@
+Švarus žibintuvėlis su papildomu ryškiu ekranu ir tinkamu stroboskopu. Jei įjungta per programą (ne valdiklį), tai neleis įrenginiui užmigti.
+
+Suderinamas su 1x1 valdikliu su pritaikoma spalva.
+
+Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas.
+
+Ši programėle yra viena iš keletos mūsų programėlių. Likusias Jūs galite rasti čia https://www.simplemobiletools.com

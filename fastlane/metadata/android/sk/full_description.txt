@@ -1,0 +1,7 @@
+Jednoduchá baterka s jasným displejom a nastaviteľným stroboskopom. Ak bude zapnutá cez aplikáciu (nie widget), zabráni uspaniu zariadenia.
+
+Poskytuje aj 1x1 widget s nastaviteľnou farbou.
+
+Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
+
+Táto aplikácia je iba jednou zo skupiny aplikácií. Ostatné viete nájsť na https://www.simplemobiletools.com

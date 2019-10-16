@@ -1,0 +1,7 @@
+Een eenvoudige zaklamp met een extra fel scherm en een aanpasbare stroboscoop. Indien de zaklamp wordt aangezet via de app (dus niet de widget), wordt voorkomen dat het scherm uitgaat.
+
+Bevat een 1x1 widget met aanpasbare kleuren.
+
+Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
+
+Deze app is onderdeel van een grotere verzameling. Vind de andere apps op https://www.simplemobiletools.com

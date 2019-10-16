@@ -1,0 +1,7 @@
+Uma lanterna simples com um brilho extra e um estroboscópio personalizável. Pode ser ativada na aplicação (não no widget), impedindo o adormecimento do dispositivo.
+
+Disponibiliza um widget 1x1 com uma cor personalizável.
+
+Não contém anúncios nem permissões desnecessárias. Disponibiliza um tema escuro e é totalmente 'open source'.
+
+Esta aplicação é apenas parte de um conjunto mais vasto de aplicações. Saiba mais em https://www.simplemobiletools.com
