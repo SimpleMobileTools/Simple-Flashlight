@@ -14,13 +14,13 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Une lampe de poche simple sans publicité.</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display and customizable stroboscope. If turned on via the app (not widget), it will prevent the device from falling asleep.
+        Une lampe de poche propre avec un écran brillant en plus et un stroboscope personnalisable. Si activé depuis l\'application (et non depuis de widget), cela empêchera la mise en veille de l\'appareil.
 
-        Comes with a 1x1 widget with customizable color.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        This app is just one piece of a bigger series of apps. You can find the rest of them at https://www.simplemobiletools.com
+        Installée avec un widget 1x1 dont la couleur est personnalisable.
+        
+        Ne contient pas de publicités ou d\'autorisations inutiles. Elle est totalement opensouce et propose des couleurs personnalisables.
+        
+        Cette application n\'est qu\'une partie d\'une plus grande série d'applications. Vous pouvez trouver le reste de ces application sur https://www.simplemobiletools.com
     </string>
 
     <!--
