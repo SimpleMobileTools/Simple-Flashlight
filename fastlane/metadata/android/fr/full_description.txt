@@ -1,0 +1,7 @@
+Une lampe de poche propre avec un écran brillant en plus et un stroboscope personnalisable. Si activé depuis l'application (et non depuis de widget), cela empêchera la mise en veille de l'appareil.
+
+Installée avec un widget 1x1 dont la couleur est personnalisable.
+
+Ne contient pas de publicités ou d'autorisations inutiles. Elle est totalement opensouce et propose des couleurs personnalisables.
+
+Cette application n'est qu'une partie d'une plus grande série d'applications. Vous pouvez trouver le reste de ces application sur https://www.simplemobiletools.com
