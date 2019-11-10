@@ -11,8 +11,9 @@
     <string name="turn_flashlight_on">Accendi la torcia all\'avvio</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Flashlight - Do not get lost in the dark</string>
     <!-- Short description has to have less than 80 chars -->
-    <!-- ITALIAN TRANSLATORS: the last two lines are translated the same way in other applications! -->
     <string name="app_short_description">Una semlpice torcia senza pubblicità.</string>
     <string name="app_long_description">
         Un\'elegante torcia con la possibilità di avere lo schermo luminoso e un effetto stroboscopio personalizzabile. Se inoltre si accende la torcia tramite l\'applicazione (non tremite widget), lo schermo del dispositivo non verrà spento.
