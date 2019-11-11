@@ -12,7 +12,7 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Do not get lost in the dark</string>
+    <string name="app_title">Eenvoudige Zaklamp - Verdwaal niet in het donker</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Een eenvoudige zaklamp zonder advertenties.</string>
     <string name="app_long_description">
