@@ -53,7 +53,7 @@ class MyWidgetProvider : AppWidgetProvider() {
 
     private fun toggleFlashlight(context: Context, intent: Intent) {
         if (intent.extras?.containsKey(IS_ENABLED) == true) {
-            val enable = intent.extras.getBoolean(IS_ENABLED)
+            val enable = intent.extras!!.getBoolean(IS_ENABLED)
             val widgetBgColor = context.config.widgetBgColor
             val alpha = Color.alpha(widgetBgColor)
             val selectedColor = if (enable) widgetBgColor else Color.WHITE
