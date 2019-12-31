@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Jednoduchá svítilna</string>
+    <string name="app_launcher_name">Svítilna</string>
+    <string name="camera_error">Přístup k fotoaparátu se nezdařil</string>
+    <string name="camera_permission">Přístup k fotoaparátu je potřebný pro správný stroboskopický efekt</string>
+
+    <!-- Settings -->
+    <string name="bright_display">Zobrazit tlačítko pro jasný displej</string>
+    <string name="show_stroboscope">Zobrazit tlačítko pro stroboskop</string>
+    <string name="show_sos">Zobrazit tlačítko SOS</string>
+    <string name="turn_flashlight_on">Zapnout svítilnu po spuštění</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Jednoduchá svítilna - Neztraťte se ve tmě</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Jednoduchá svítilna bez reklam.</string>
+    <string name="app_long_description">
+        Jednoduchá svítilna s jasným displejem a nastavitelným stroboskopem. Při spuštění přes ikonu aplikace (ne widget), zabrání uspání zařízení.
+
+        Poskytuje i 1x1 widget s nastavitelnou barvou.
+
+        Neobsahuje žádné reklamy či nepotřebná oprávnění. Má otevřený kód a možnost změny barev.
+
+        Tato aplikace je jen jednou ze sady aplikací. Ostatní si můžete prohlédnout na https://www.simplemobiletools.com
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
