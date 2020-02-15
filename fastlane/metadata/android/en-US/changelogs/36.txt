@@ -1,1 +1,1 @@
-Updated some libraries and translations
+ * Updated some libraries and translations
