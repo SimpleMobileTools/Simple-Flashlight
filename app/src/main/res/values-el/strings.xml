@@ -12,27 +12,27 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Απλός φακός - Φωτεινή οθόνη &amp; στροβοσκόπιο</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">Απλός σύγχρονος φακός με SOS, στροβοσκόπιο &amp; φωτεινή οθόνη, χωρίς διαφημίσεις</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+        Ένας καθαρός φακός με μια επιπλέον φωτεινή οθόνη, προσαρμόσιμο στροβοσκόπιο και μια προκαθορισμένη λειτουργία SOS.
 
-        All these functions can be hugely helpful under certain circumstances.
+        Όλες αυτές οι λειτουργίες μπορεί να είναι εξαιρετικά χρήσιμες υπό ορισμένες συνθήκες.
 
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+        Η φωτεινή οθόνη μπορεί να αλλάζει το χρώμα της, ανοίγοντας έναν νέο κόσμο των πιθανών χρήσεων. Μπορεί να φανεί πρακτικό σε περίπτωση που θέλετε να δείτε πολύ κοντά σας χωρίς να τυφλωθείτε.
 
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+        Το στροβοσκόπιο μπορεί να αλλάξει τη συχνότητά του, που κυμαίνεται από πολύ γρήγορα μέχρι περιστασιακά.
 
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+        Εάν αυτός ο δωρεάν φακός ενεργοποιηθεί μέσω της εφαρμογής (όχι widget), και αποτρέψει την αδρανοποίηση της συσκευής. Ο ισχυρός φακός μπορεί προαιρετικά να ενεργοποιείται κατά την εκκίνηση της εφαρμογής, αλλά δεν είναι υποχρεωτικό.
 
-        Comes with a 1x1 widget with customizable color and transparency.
+        Παρέχεται με 1x1 γραφικό στοιχείο με προσαρμόσιμο χρώμα και διαφάνεια.
 
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+        Διατίθεται με σχεδίαση υλικού και σκούρο θέμα από προεπιλογή, παρέχει εξαιρετική εμπειρία χρήστη για εύκολη χρήση. Η έλλειψη πρόσβασης στο διαδίκτυο σας παρέχει περισσότερο απόρρητο, ασφάλεια και σταθερότητα από ό,τι άλλες εφαρμογές.
 
         Δεν περιέχει διαφημίσεις ή άσκοπη αδειοδότηση. Είναι πλήρως ανοιχτού κώδικα και παρέχει προσαρμόσιμες αποχρώσεις.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Δείτε την πλήρη σειρά των Απλών Εργαλείων εδώ:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
