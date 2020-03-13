@@ -12,13 +12,23 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">簡易手電筒 - 不會在黑暗中迷路</string>
+    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">一個沒有廣告的簡易手電筒。</string>
+    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
     <string name="app_long_description">
-        一個有超亮螢幕和可自訂閃爍效果的乾淨手電筒。如果使用應用程式(不是小工具)打開手電筒，會防止裝置進入睡眠。
+        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
-        帶有一個可自訂顏色的1x1小工具。
+        All these functions can be hugely helpful under certain circumstances.
+
+        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+
+        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+
+        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+
+        Comes with a 1x1 widget with customizable color and transparency.
+
+        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
 
         不包含廣告及非必要的權限，而且完全開放原始碼，並提供自訂顏色。
 		

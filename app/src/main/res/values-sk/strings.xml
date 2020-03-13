@@ -12,13 +12,23 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Jednoduchá baterka - Nestraťte sa v tme</string>
+    <string name="app_title">Jednoduchá baterka - Jasný displej a baterka</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Jednoduchá baterka bez reklám</string>
+    <string name="app_short_description">Moderná jednoduchá baterka s SOS, stroboskopom a jasným displejom bez reklám</string>
     <string name="app_long_description">
-        Jednoduchá baterka s jasným displejom a nastaviteľným stroboskopom. Ak bude zapnutá cez aplikáciu (nie widget), zabráni uspaniu zariadenia.
+        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
-        Poskytuje aj 1x1 widget s nastaviteľnou farbou.
+        All these functions can be hugely helpful under certain circumstances.
+
+        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+
+        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+
+        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+
+        Comes with a 1x1 widget with customizable color and transparency.
+
+        Táto apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
 
         Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
 

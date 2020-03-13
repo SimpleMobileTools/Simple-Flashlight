@@ -12,13 +12,23 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Luz na escuridão</string>
+    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Um lanterna básica.</string>
+    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
     <string name="app_long_description">
-        Uma lanterna simples com um brilho extra e um estroboscópio personalizável. Pode ser ativada na aplicação (não no widget), impedindo o adormecimento do dispositivo.
+        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
-        Disponibiliza um widget 1x1 com uma cor personalizável.
+        All these functions can be hugely helpful under certain circumstances.
+
+        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+
+        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+
+        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+
+        Comes with a 1x1 widget with customizable color and transparency.
+
+        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
 
         Não contém anúncios nem permissões desnecessárias. Disponibiliza um tema escuro e é totalmente \'open source\'.
 
