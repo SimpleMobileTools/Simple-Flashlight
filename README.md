@@ -1,5 +1,5 @@
 # Simple Flashlight
-<img alt="Logo" src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="80">
+<img alt="Logo" src="fastlane/metadata/android/en-US/images/icon.png" width="120" />
 
 A clean flashlight with an extra bright display and customizable stroboscope. If turned on via the app (not widget), it will prevent the device from falling asleep.
 
