@@ -18,7 +18,7 @@
             android:id="@+id/config_image"
             android:layout_width="@dimen/main_button_size"
             android:layout_height="@dimen/main_button_size"
-            android:background="@drawable/circles_big"/>
+            android:background="@drawable/ic_flashlight"/>
     </RelativeLayout>
 
     <ImageView
