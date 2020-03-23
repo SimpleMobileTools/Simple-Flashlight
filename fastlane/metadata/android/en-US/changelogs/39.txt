@@ -1,0 +1,2 @@
+ * Updated the app icon, make it more intuitive
+ * Added multiple Bright Display related improvements

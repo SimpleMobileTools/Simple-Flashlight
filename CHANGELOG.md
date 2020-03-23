@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.1.0 *(2020-03-23)*
+----------------------------
+
+ * Updated the app icon, make it more intuitive
+ * Added multiple Bright Display related improvements
+
 Version 5.0.6 *(2020-03-09)*
 ----------------------------
 
