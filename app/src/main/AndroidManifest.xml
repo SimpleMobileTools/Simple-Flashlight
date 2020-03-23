@@ -46,7 +46,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.BrightDisplayActivity"/>
+        <activity
+            android:name=".activities.BrightDisplayActivity"
+            android:theme="@style/FullScreenTheme"/>
 
         <activity
             android:name=".activities.SettingsActivity"

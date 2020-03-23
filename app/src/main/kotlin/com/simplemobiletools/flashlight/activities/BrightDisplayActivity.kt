@@ -13,6 +13,12 @@ import kotlinx.android.synthetic.main.activity_bright_display.*
 
 class BrightDisplayActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bright_display)
         supportActionBar?.hide()
