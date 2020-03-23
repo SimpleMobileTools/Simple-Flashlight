@@ -10,6 +10,7 @@ import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.setFillWithStroke
+import com.simplemobiletools.commons.helpers.DEFAULT_WIDGET_BG_COLOR
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
@@ -42,11 +43,10 @@ class WidgetConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
-        if (mWidgetColor == 1) {
-            mWidgetColor = resources.getColor(R.color.color_primary)
-            mWidgetAlpha = 1f
+        mWidgetAlpha = if (mWidgetColor == DEFAULT_WIDGET_BG_COLOR) {
+            1f
         } else {
-            mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
+            Color.alpha(mWidgetColor) / 255.toFloat()
         }
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
