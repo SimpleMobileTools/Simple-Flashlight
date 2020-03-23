@@ -69,7 +69,7 @@ class MyWidgetProvider : AppWidgetProvider() {
     }
 
     private fun getColoredCircles(context: Context, color: Int, alpha: Int): Bitmap {
-        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.circles_small, color, alpha)
+        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.ic_flashlight, color, alpha)
         return context.drawableToBitmap(drawable)
     }
 }
