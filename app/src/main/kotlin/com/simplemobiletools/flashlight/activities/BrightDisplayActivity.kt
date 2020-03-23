@@ -30,6 +30,10 @@ class BrightDisplayActivity : SimpleActivity() {
             }) { wasPositivePressed, color ->
                 if (wasPositivePressed) {
                     config.brightDisplayColor = color
+
+                    val contrastColor = color.getContrastColor()
+                    bright_display_change_color.setTextColor(contrastColor)
+                    bright_display_change_color.background.applyColorFilter(contrastColor)
                 } else {
                     setBackgroundColor(config.brightDisplayColor)
                 }
