@@ -138,7 +138,7 @@
                 android:background="@null"
                 android:clickable="false"
                 android:paddingStart="@dimen/medium_margin"
-                android:text="@string/bright_display"
+                android:text="@string/show_bright_display"
                 app:switchPadding="@dimen/medium_margin" />
 
         </RelativeLayout>

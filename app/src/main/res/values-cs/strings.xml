@@ -3,9 +3,10 @@
     <string name="app_launcher_name">Svítilna</string>
     <string name="camera_error">Přístup k fotoaparátu se nezdařil</string>
     <string name="camera_permission">Přístup k fotoaparátu je potřebný pro správný stroboskopický efekt</string>
+    <string name="bright_display">Bright display</string>
 
     <!-- Settings -->
-    <string name="bright_display">Zobrazit tlačítko pro jasný displej</string>
+    <string name="show_bright_display">Zobrazit tlačítko pro jasný displej</string>
     <string name="show_stroboscope">Zobrazit tlačítko pro stroboskop</string>
     <string name="show_sos">Zobrazit tlačítko SOS</string>
     <string name="turn_flashlight_on">Zapnout svítilnu po spuštění</string>

@@ -48,6 +48,7 @@
 
         <activity
             android:name=".activities.BrightDisplayActivity"
+            android:label="@string/bright_display"
             android:theme="@style/FullScreenTheme"/>
 
         <activity
