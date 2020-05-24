@@ -12,7 +12,7 @@ import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ImageView
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_OTTO
+import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
 import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import com.simplemobiletools.commons.helpers.isNougatPlus
@@ -20,12 +20,11 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.helpers.BusProvider
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
-import com.squareup.otto.Bus
-import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
 class MainActivity : SimpleActivity() {
@@ -34,7 +33,7 @@ class MainActivity : SimpleActivity() {
     private val FLASHLIGHT_STATE = "flashlight_state"
     private val STROBOSCOPE_STATE = "stroboscope_state"
 
-    private var mBus: Bus? = null
+    private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
 
@@ -43,7 +42,7 @@ class MainActivity : SimpleActivity() {
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
 
-        mBus = BusProvider.instance
+        mBus = EventBus.getDefault()
         changeIconColor(getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
@@ -151,7 +150,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_OTTO
+        val licenses = LICENSE_EVENT_BUS
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
