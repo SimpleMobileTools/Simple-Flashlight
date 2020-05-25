@@ -1,7 +1,24 @@
-Jednoduchá baterka s jasným displejom a nastaviteľným stroboskopom. Ak bude zapnutá cez aplikáciu (nie widget), zabráni uspaniu zariadenia.
+Čistá baterka s funkciou extra jasného displeja, voliteľným stroboskopom a SOS módom.
 
-Poskytuje aj 1x1 widget s nastaviteľnou farbou.
+Všetky tieto funkcie môžu byť v istých prípadoch veľmi užitočné.
+
+Jasný displej má meniteľnú farbu, čo vytvára celý svet nových možností. Viete si pomocou neho vysvietiť okolie bez toho, že by ste sa oslepili.
+
+Strokoskop má voliteľnú frekvenciu od veľmi rýchleho blikania po pomalé.
+
+Ak baterku zapnete štandardným spustením (not cez widget), zabráni uspatiu zariadenia. Baterka sa môže po spustení apky automaticky zapnúť, ale nie je to povinné.
+
+K dispozícií máte aj 1x1 widget s voliteľnou farbou a priesvitnosťou.
+
+Táto apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
 
 Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
 
-Táto aplikácia je iba jednou zo skupiny aplikácií. Ostatné viete nájsť na https://www.simplemobiletools.com
+<b>Pozrite si celú sadu aplikácií na:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools

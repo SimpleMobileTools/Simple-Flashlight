@@ -17,17 +17,17 @@
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">Moderná jednoduchá baterka s SOS, stroboskopom a jasným displejom bez reklám</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+        Čistá baterka s funkciou extra jasného displeja, voliteľným stroboskopom a SOS módom.
 
-        All these functions can be hugely helpful under certain circumstances.
+        Všetky tieto funkcie môžu byť v istých prípadoch veľmi užitočné.
 
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+        Jasný displej má meniteľnú farbu, čo vytvára celý svet nových možností. Viete si pomocou neho vysvietiť okolie bez toho, že by ste sa oslepili.
 
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+        Strokoskop má voliteľnú frekvenciu od veľmi rýchleho blikania po pomalé.
 
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+        Ak baterku zapnete štandardným spustením (not cez widget), zabráni uspatiu zariadenia. Baterka sa môže po spustení apky automaticky zapnúť, ale nie je to povinné.
 
-        Comes with a 1x1 widget with customizable color and transparency.
+        K dispozícií máte aj 1x1 widget s voliteľnou farbou a priesvitnosťou.
 
         Táto apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
 
