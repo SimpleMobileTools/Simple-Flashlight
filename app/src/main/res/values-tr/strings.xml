@@ -3,9 +3,10 @@
     <string name="app_launcher_name">Fener</string>
     <string name="camera_error">Kamera hatası</string>
     <string name="camera_permission">Düzgün stroboskop etkisi için kamera izni gereklidir</string>
+    <string name="bright_display">Bright display</string>
 
     <!-- Settings -->
-    <string name="bright_display">Parlak ekran düğmesini göster</string>
+    <string name="show_bright_display">Parlak ekran düğmesini göster</string>
     <string name="show_stroboscope">Stroboskop düğmesini göster</string>
     <string name="show_sos">SOS düğmesini göster</string>
     <string name="turn_flashlight_on">Başlangıçta feneri aç</string>

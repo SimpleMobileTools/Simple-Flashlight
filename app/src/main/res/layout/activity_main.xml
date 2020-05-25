@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_scrollview"
     android:layout_width="match_parent"
@@ -23,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/bright_display_btn"
@@ -37,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flashlight_btn"/>
+            app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
 
         <TextView
             android:id="@+id/sos_btn"
@@ -54,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bright_display_btn"/>
+            app:layout_constraintTop_toBottomOf="@+id/bright_display_btn" />
 
         <ImageView
             android:id="@+id/stroboscope_btn"
@@ -67,7 +66,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sos_btn"/>
+            app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
 
         <com.simplemobiletools.commons.views.MySeekBar
             android:id="@+id/stroboscope_bar"
@@ -81,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn"/>
+            app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

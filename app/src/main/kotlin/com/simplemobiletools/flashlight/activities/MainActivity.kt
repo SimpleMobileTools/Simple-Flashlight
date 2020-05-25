@@ -1,27 +1,31 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.ShortcutInfo
+import android.graphics.drawable.Icon
+import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.SeekBar
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_OTTO
+import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
+import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.helpers.BusProvider
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
-import com.squareup.otto.Bus
-import com.squareup.otto.Subscribe
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import java.util.*
 
 class MainActivity : SimpleActivity() {
     private val MAX_STROBO_DELAY = 2000L
@@ -29,7 +33,7 @@ class MainActivity : SimpleActivity() {
     private val FLASHLIGHT_STATE = "flashlight_state"
     private val STROBOSCOPE_STATE = "stroboscope_state"
 
-    private var mBus: Bus? = null
+    private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
     private var reTurnFlashlightOn = true
@@ -39,7 +43,7 @@ class MainActivity : SimpleActivity() {
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
 
-        mBus = BusProvider.instance
+        mBus = EventBus.getDefault()
         changeIconColor(getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
@@ -87,11 +91,14 @@ class MainActivity : SimpleActivity() {
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
-
-        if(config.turnFlashlightOn && reTurnFlashlightOn){
+      
+        if(config.turnFlashlightOn && reTurnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
         }
+        
         reTurnFlashlightOn = true
+        
+        checkShortcuts()
     }
 
     override fun onStart() {
@@ -157,10 +164,10 @@ class MainActivity : SimpleActivity() {
         val licenses = LICENSE_OTTO
 
         val faqItems = arrayListOf(
-                FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
-                FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
-                FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
-                FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
+            FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
+            FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
+            FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
+            FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
         )
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
@@ -176,22 +183,12 @@ class MainActivity : SimpleActivity() {
     private fun setupStroboscope() {
         stroboscope_bar.max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
         stroboscope_bar.progress = config.stroboscopeProgress
-        stroboscope_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar, progress: Int, b: Boolean) {
-                val frequency = stroboscope_bar.max - progress + MIN_STROBO_DELAY
-                mCameraImpl?.stroboFrequency = frequency
-                config.stroboscopeFrequency = frequency
-                config.stroboscopeProgress = progress
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar) {
-
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar) {
-
-            }
-        })
+        stroboscope_bar.onSeekBarChangeListener { progress ->
+            val frequency = stroboscope_bar.max - progress + MIN_STROBO_DELAY
+            mCameraImpl?.stroboFrequency = frequency
+            config.stroboscopeFrequency = frequency
+            config.stroboscopeProgress = progress
+        }
     }
 
     private fun toggleStroboscope(isSOS: Boolean) {
@@ -271,6 +268,37 @@ class MainActivity : SimpleActivity() {
 
     private fun changeIconColor(color: Int, imageView: ImageView?) {
         imageView!!.background.mutate().applyColorFilter(color)
+    }
+
+    @SuppressLint("NewApi")
+    private fun checkShortcuts() {
+        val appIconColor = config.appIconColor
+        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
+            val createNewContact = getBrightDisplayShortcut(appIconColor)
+
+            try {
+                shortcutManager.dynamicShortcuts = Arrays.asList(createNewContact)
+                config.lastHandledShortcutColor = appIconColor
+            } catch (ignored: Exception) {
+            }
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private fun getBrightDisplayShortcut(appIconColor: Int): ShortcutInfo {
+        val brightDisplay = getString(R.string.bright_display)
+        val drawable = resources.getDrawable(R.drawable.shortcut_bright_display)
+        (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_bright_display_background).applyColorFilter(appIconColor)
+        val bmp = drawable.convertToBitmap()
+
+        val intent = Intent(this, BrightDisplayActivity::class.java)
+        intent.action = Intent.ACTION_VIEW
+        return ShortcutInfo.Builder(this, "bright_display")
+            .setShortLabel(brightDisplay)
+            .setLongLabel(brightDisplay)
+            .setIcon(Icon.createWithBitmap(bmp))
+            .setIntent(intent)
+            .build()
     }
 
     @Subscribe

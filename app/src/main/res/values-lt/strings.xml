@@ -3,9 +3,10 @@
     <string name="app_launcher_name">Žibintuvėlis</string>
     <string name="camera_error">Fotoaparato įjungti nepavyko</string>
     <string name="camera_permission">Fotoaparato leidimas būtinas tinkamam stroboskopo efektui</string>
+    <string name="bright_display">Bright display</string>
 
     <!-- Settings -->
-    <string name="bright_display">Rodyti ryškaus ekrano mygtuką</string>
+    <string name="show_bright_display">Rodyti ryškaus ekrano mygtuką</string>
     <string name="show_stroboscope">Rodyti stroboskopo mygtuką</string>
     <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Įjungti žibintuvėlį paleidus programėlę</string>

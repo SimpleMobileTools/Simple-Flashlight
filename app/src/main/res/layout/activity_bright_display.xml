@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bright_display_holder"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +8,7 @@
         android:id="@+id/bright_display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"/>
+        android:background="@android:color/white" />
 
     <TextView
         android:id="@+id/bright_display_change_color"
@@ -20,6 +19,6 @@
         android:background="@drawable/button_background"
         android:padding="@dimen/activity_margin"
         android:text="@string/change_color"
-        android:textSize="@dimen/big_text_size"/>
+        android:textSize="@dimen/big_text_size" />
 
 </RelativeLayout>
