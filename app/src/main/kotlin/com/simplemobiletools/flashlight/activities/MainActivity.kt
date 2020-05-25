@@ -161,7 +161,7 @@ class MainActivity : SimpleActivity() {
 
     private fun launchAbout() {
         reTurnFlashlightOn = false
-        val licenses = LICENSE_OTTO
+        val licenses = LICENSE_EVENT_BUS
 
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
