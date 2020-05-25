@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.1.1 *(2020-05-25)*
+----------------------------
+
+ * Updated the app icon on lower Android versions
+ * Added a Bright Display shortcut
+ * Removed the Camera permission on Android 7+
+
 Version 5.1.0 *(2020-03-23)*
 ----------------------------
 
