@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.2.0 *(2020-08-20)*
+----------------------------
+
+ * Enable flashlight on resume too, when turning on at startup is enabled (by im-indrajeet)
+
 Version 5.1.1 *(2020-05-25)*
 ----------------------------
 
