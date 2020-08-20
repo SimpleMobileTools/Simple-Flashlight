@@ -36,6 +36,7 @@ class MainActivity : SimpleActivity() {
     private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
+    private var reTurnFlashlightOn = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,7 @@ class MainActivity : SimpleActivity() {
         changeIconColor(getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
+            reTurnFlashlightOn = false
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
@@ -89,6 +91,13 @@ class MainActivity : SimpleActivity() {
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
+      
+        if(config.turnFlashlightOn && reTurnFlashlightOn) {
+            mCameraImpl!!.enableFlashlight()
+        }
+        
+        reTurnFlashlightOn = true
+        
         checkShortcuts()
     }
 
@@ -146,10 +155,12 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchSettings() {
+        reTurnFlashlightOn = false
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
 
     private fun launchAbout() {
+        reTurnFlashlightOn = false
         val licenses = LICENSE_EVENT_BUS
 
         val faqItems = arrayListOf(
