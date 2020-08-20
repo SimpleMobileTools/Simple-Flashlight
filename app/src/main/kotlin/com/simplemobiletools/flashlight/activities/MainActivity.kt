@@ -91,13 +91,13 @@ class MainActivity : SimpleActivity() {
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
-      
-        if(config.turnFlashlightOn && reTurnFlashlightOn) {
+
+        if (config.turnFlashlightOn && reTurnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
         }
-        
+
         reTurnFlashlightOn = true
-        
+
         checkShortcuts()
     }
 
