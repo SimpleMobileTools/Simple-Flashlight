@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Flashlight</string>
-    <string name="camera_error">Obtaining the camera permission failed</string>
+    <string name="camera_error">Obtaining the camera failed</string>
     <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
     <string name="bright_display">Bright display</string>
 
