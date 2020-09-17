@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Fflacholau</string>
+    <string name="camera_error">Methwyd cael at y camera</string>
+    <string name="camera_permission">Rhaid cael caniatâd y camera i\'r effaith strobosgop</string>
+    <string name="bright_display">Bright display</string>
+
+    <!-- Settings -->
+    <string name="show_bright_display">Dangos botwm dangosydd llachar</string>
+    <string name="show_stroboscope">Dangos botwm strobosgop</string>
+    <string name="show_sos">Show an SOS button</string>
+    <string name="turn_flashlight_on">Troi\'r fflacholau ymlaen wrth ddechrau</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_long_description">
+        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+
+        All these functions can be hugely helpful under certain circumstances.
+
+        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+
+        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+
+        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+
+        Comes with a 1x1 widget with customizable color and transparency.
+
+        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+
+        Dim hysbysebion nac angen unrhyw ganiatâd di-angen. Mae\'n god agored a gellir addasu\'r lliwiau dy hun.
+
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

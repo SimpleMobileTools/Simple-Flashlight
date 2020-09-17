@@ -2,14 +2,12 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.annotation.TargetApi
 import android.content.Context
-import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Handler
 import com.simplemobiletools.flashlight.models.Events
-import com.squareup.otto.Bus
+import org.greenrobot.eventbus.EventBus
 
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 internal class MarshmallowCamera constructor(val context: Context) {
 
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
@@ -17,18 +15,18 @@ internal class MarshmallowCamera constructor(val context: Context) {
 
     init {
         try {
-            cameraId = manager.cameraIdList[0]
-        } catch (ignored: CameraAccessException) {
+            cameraId = manager.cameraIdList[0] ?: "0"
+        } catch (ignored: Exception) {
         }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    fun toggleMarshmallowFlashlight(bus: Bus, enable: Boolean) {
+    fun toggleMarshmallowFlashlight(enable: Boolean) {
         try {
             manager.setTorchMode(cameraId!!, enable)
-        } catch (e: CameraAccessException) {
+        } catch (e: Exception) {
             val mainRunnable = Runnable {
-                bus.post(Events.CameraUnavailable())
+                EventBus.getDefault().post(Events.CameraUnavailable())
             }
             Handler(context.mainLooper).post(mainRunnable)
         }

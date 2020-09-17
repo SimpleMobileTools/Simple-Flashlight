@@ -1,6 +1,108 @@
 Changelog
 ==========
 
+Version 5.2.0 *(2020-08-20)*
+----------------------------
+
+ * Enable flashlight on resume too, when turning on at startup is enabled (by im-indrajeet)
+
+Version 5.1.1 *(2020-05-25)*
+----------------------------
+
+ * Updated the app icon on lower Android versions
+ * Added a Bright Display shortcut
+ * Removed the Camera permission on Android 7+
+
+Version 5.1.0 *(2020-03-23)*
+----------------------------
+
+ * Updated the app icon, make it more intuitive
+ * Added multiple Bright Display related improvements
+
+Version 5.0.6 *(2020-03-09)*
+----------------------------
+
+ * Adding some translation improvements
+
+Version 5.0.5 *(2020-02-15)*
+----------------------------
+
+ * Couple smaller UI and translation improvements
+
+Version 5.0.4 *(2019-12-31)*
+----------------------------
+
+ * Updated some libraries and translations
+
+Version 5.0.3 *(2019-08-24)*
+----------------------------
+
+ * Added an initial implementation of SOS morse code
+
+Version 5.0.2 *(2019-07-03)*
+----------------------------
+
+ * Allow setting an even more frequent stroboscope
+ * Some translation improvements
+
+Version 5.0.1 *(2019-04-08)*
+----------------------------
+
+ * Fixed some smaller glitches
+ * Translation improvements
+
+Version 5.0.0 *(2018-10-12)*
+----------------------------
+
+ * Increased the minimal requested Android OS version to 5 (Lollipop)
+ * Replaced G+ button with Reddit
+
+Version 4.2.0 *(2018-10-05)*
+----------------------------
+
+ * Fixing a glitch at forcing portrait
+ * Some translation improvements
+
+Version 4.1.0 *(2018-08-10)*
+----------------------------
+
+ * Couple smaller improvements
+
+Version 4.0.0 *(2018-05-22)*
+----------------------------
+
+ * Allow changing the app launcher icon color
+ * Allow customizing the widget color without recreating
+
+Version 3.2.1 *(2018-04-15)*
+----------------------------
+
+ * Added a toggle for forcing portrait mode, enabled by default
+
+Version 3.2.0 *(2018-04-05)*
+----------------------------
+
+ * Allow changing the color of Bright Display
+ * Allow landscape orientation of the app
+ * Remember the last used stroboscope frequency
+
+Version 3.1.0 *(2018-01-24)*
+----------------------------
+
+ * Added a toggle for turning flashlight on at startup
+
+Version 3.0.1 *(2017-12-07)*
+----------------------------
+
+ * Fixed missing launcher icons on some devices
+ * Allow customizing the main screen background
+
+Version 3.0.0 *(2017-12-04)*
+----------------------------
+
+ * Improved primary color customization
+ * Added a quicksetting tile for Android 7+
+
 Version 2.0.0 *(2017-11-06)*
 ----------------------------
 

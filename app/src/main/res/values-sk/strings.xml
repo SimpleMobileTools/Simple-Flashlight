@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Jednoduchá baterka</string>
+    <string name="app_launcher_name">Baterka</string>
+    <string name="camera_error">Prístup ku kamere zlyhal Obtaining the camera failed</string>
+    <string name="camera_permission">Pre správny stroboskopický efekt je potrebný prístup ku kamere</string>
+    <string name="bright_display">Jasný displej</string>
+
+    <!-- Settings -->
+    <string name="show_bright_display">Zobraziť tlačidlo pre jasný displej</string>
+    <string name="show_stroboscope">Zobraziť tlačidlo pre stroboskop</string>
+    <string name="show_sos">Zobraziť tlačidlo SOS</string>
+    <string name="turn_flashlight_on">Aktivovať baterku po spustení</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Jednoduchá baterka - Jasný displej a baterka</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Moderná jednoduchá baterka s SOS, stroboskopom a jasným displejom bez reklám</string>
+    <string name="app_long_description">
+        Čistá baterka s funkciou extra jasného displeja, voliteľným stroboskopom a SOS módom.
+
+        Všetky tieto funkcie môžu byť v istých prípadoch veľmi užitočné.
+
+        Jasný displej má meniteľnú farbu, čo vytvára celý svet nových možností. Viete si pomocou neho vysvietiť okolie bez toho, že by ste sa oslepili.
+
+        Strokoskop má voliteľnú frekvenciu od veľmi rýchleho blikania po pomalé.
+
+        Ak baterku zapnete štandardným spustením (not cez widget), zabráni uspatiu zariadenia. Baterka sa môže po spustení apky automaticky zapnúť, ale nie je to povinné.
+
+        K dispozícií máte aj 1x1 widget s voliteľnou farbou a priesvitnosťou.
+
+        Táto apka je založená na Material dizajne a má prednastavenú tmavú tému, poskytuje výbornú používateľskú skúsenosť pre ľahké používanie. Chýbajúci prístup k internetu garantuje lepšie súkromie, bezpečnosť a stabilitu ako ostatné apky.
+
+        Neobsahuje žiadne reklamy a nepotrebné oprávnenia. Je opensource, poskytuje možnosť zmeny farieb.
+
+        <b>Pozrite si celú sadu aplikácií na:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

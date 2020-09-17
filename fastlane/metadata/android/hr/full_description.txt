@@ -1,0 +1,7 @@
+Jednostavna baterijska svjetiljka s izuzetno svijetlim zaslonom i prilagodljivim stroboskopom. Ako se uključi putem aplikacije (ne widgeta), on će spriječiti da uređaj prijeđe u stanje mirovanja.
+
+Dolazi s 1x1 widgetom i prilagodljivom bojom.
+
+Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje.
+
+Ova je aplikacija samo dio većeg broja aplikacija. Možete pronaći ostatak na https://www.simplemobiletools.com

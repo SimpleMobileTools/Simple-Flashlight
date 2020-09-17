@@ -1,0 +1,7 @@
+Latarka z dodatkowym trybem jasnego wyświetlania oraz konfiguralnym stroboskopem. Jeżeli zostanie włączona poprzez aplikację (nie widżet), aplikacja będzie zapobiegała usypianiu urządzenia.
+
+Zawiera widżet z konfigurowalnymi kolorami napisów i tła.
+
+Nie zawiera natomiast żadnych reklam i nie potrzebuje całej masy uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
+
+Niniejsza aplikacja jest tylko częścią naszej kolekcji prostych narzędzi. Ta, jak i pozostałe, dostępne są na stronie https://www.simplemobiletools.com

@@ -4,35 +4,38 @@ import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.adjustAlpha
+import com.simplemobiletools.commons.extensions.applyColorFilter
+import com.simplemobiletools.commons.extensions.setFillWithStroke
+import com.simplemobiletools.commons.helpers.DEFAULT_WIDGET_BG_COLOR
+import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
 import kotlinx.android.synthetic.main.widget_config.*
 
-class WidgetConfigureActivity : AppCompatActivity() {
+class WidgetConfigureActivity : SimpleActivity() {
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
     private var mWidgetColorWithoutTransparency = 0
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+        useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
         setContentView(R.layout.widget_config)
         initVariables()
 
-        val extras = intent.extras
-        if (extras != null)
-            mWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
+        val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
+        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
 
-        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
+        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
             finish()
+        }
 
         config_save.setOnClickListener { saveConfig() }
         config_widget_color.setOnClickListener { pickBackgroundColor() }
@@ -40,11 +43,10 @@ class WidgetConfigureActivity : AppCompatActivity() {
 
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
-        if (mWidgetColor == 1) {
-            mWidgetColor = resources.getColor(R.color.color_primary)
-            mWidgetAlpha = 1f
+        mWidgetAlpha = if (mWidgetColor == DEFAULT_WIDGET_BG_COLOR) {
+            1f
         } else {
-            mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
+            Color.alpha(mWidgetColor) / 255.toFloat()
         }
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
@@ -65,9 +67,11 @@ class WidgetConfigureActivity : AppCompatActivity() {
     }
 
     private fun pickBackgroundColor() {
-        ColorPickerDialog(this, mWidgetColorWithoutTransparency) {
-            mWidgetColorWithoutTransparency = it
-            updateColors()
+        ColorPickerDialog(this, mWidgetColorWithoutTransparency) { wasPositivePressed, color ->
+            if (wasPositivePressed) {
+                mWidgetColorWithoutTransparency = color
+                updateColors()
+            }
         }
     }
 
@@ -80,8 +84,8 @@ class WidgetConfigureActivity : AppCompatActivity() {
 
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        config_widget_color.setBackgroundColor(mWidgetColor)
-        config_image.background.mutate().setColorFilter(mWidgetColor, PorterDuff.Mode.SRC_IN)
+        config_widget_color.setFillWithStroke(mWidgetColor, Color.BLACK)
+        config_image.background.mutate().applyColorFilter(mWidgetColor)
     }
 
     private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {

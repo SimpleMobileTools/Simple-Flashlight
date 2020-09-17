@@ -1,45 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_holder"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_margin">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/toggle_btn"
-        android:layout_width="@dimen/main_button_size"
-        android:layout_height="@dimen/main_button_size"
-        android:layout_marginBottom="@dimen/activity_margin"
-        android:background="@drawable/circles_big"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/bright_display_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@drawable/ic_bright_display"
-        android:padding="@dimen/activity_margin"/>
+        <ImageView
+            android:id="@+id/flashlight_btn"
+            android:layout_width="@dimen/main_button_size"
+            android:layout_height="@dimen/main_button_size"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:background="@drawable/ic_flashlight"
+            app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/stroboscope_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/buttons_margin"
-        android:background="@drawable/ic_stroboscope"
-        android:padding="@dimen/activity_margin"/>
+        <ImageView
+            android:id="@+id/bright_display_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:background="@drawable/ic_bright_display"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintBottom_toTopOf="@+id/sos_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
 
-    <com.simplemobiletools.commons.views.MySeekBar
-        android:id="@+id/stroboscope_bar"
-        android:layout_width="@dimen/seekbar_width"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"
-        android:paddingBottom="@dimen/seekbar_vertical_padding"
-        android:paddingTop="@dimen/seekbar_vertical_padding"
-        android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/sos_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/activity_margin"
+            android:text="SOS"
+            android:textSize="@dimen/sos_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bright_display_btn" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/stroboscope_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:background="@drawable/ic_stroboscope"
+            android:padding="@dimen/activity_margin"
+            app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+
+        <com.simplemobiletools.commons.views.MySeekBar
+            android:id="@+id/stroboscope_bar"
+            android:layout_width="@dimen/seekbar_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin"
+            android:paddingTop="@dimen/medium_margin"
+            android:paddingBottom="@dimen/medium_margin"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

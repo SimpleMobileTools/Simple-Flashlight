@@ -3,20 +3,48 @@
     <string name="app_launcher_name">Latarka</string>
     <string name="camera_error">Uzyskanie dostępu do aparatu zakończone niepowodzeniem</string>
     <string name="camera_permission">Uprawnienia dostępu do aparatu są niezbędne w celu uzyskania efektu stroboskopowego</string>
+    <string name="bright_display">Bright display</string>
 
     <!-- Settings -->
-    <string name="bright_display">Pokazuj przycisk jasnego wyświetlania</string>
+    <string name="show_bright_display">Pokazuj przycisk jasnego wyświetlania</string>
     <string name="show_stroboscope">Pokazuj przycisk stroboskopu</string>
+    <string name="show_sos">Show an SOS button</string>
+    <string name="turn_flashlight_on">Włączaj latarkę po uruchomieniu aplikacji</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <string name="app_short_description">Prosta latarka bez reklam.</string>
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
     <string name="app_long_description">
-        Latarka z dodatkowym trybem jasnego wyświetlania oraz konfiguralnym stroboskopem. Jeżeli zostanie włączona poprzez aplikację (nie widżet), aplikacja będzie zapobiegała usypianiu urządzenia.
+        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
-        Zawiera widżet z konfigurowalnymi kolorami napisów i tła.
+        All these functions can be hugely helpful under certain circumstances.
+
+        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+
+        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+
+        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+
+        Comes with a 1x1 widget with customizable color and transparency.
+
+        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
 
         Nie zawiera natomiast żadnych reklam i nie potrzebuje całej masy uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
 
-        Niniejsza aplikacja jest tylko częścią naszej kolekcji prostych narzędzi. Ta, jak i pozostałe, dostępne są na stronie http://www.simplemobiletools.com
+        <b>Check out the full suite of Simple Tools here:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
     </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
 </resources>

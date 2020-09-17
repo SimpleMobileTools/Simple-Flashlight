@@ -26,13 +26,13 @@ class MyWidgetProvider : AppWidgetProvider() {
         val intent = Intent(context, MyWidgetProvider::class.java)
         intent.action = TOGGLE
 
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
-
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             val views = RemoteViews(context.packageName, R.layout.widget)
-            views.setOnClickPendingIntent(R.id.toggle_btn, pendingIntent)
-            views.setImageViewBitmap(R.id.toggle_btn, bmp)
+
+            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            views.setOnClickPendingIntent(R.id.flashlight_btn, pendingIntent)
+            views.setImageViewBitmap(R.id.flashlight_btn, bmp)
             appWidgetManager.updateAppWidget(it, views)
         }
     }
@@ -53,7 +53,7 @@ class MyWidgetProvider : AppWidgetProvider() {
 
     private fun toggleFlashlight(context: Context, intent: Intent) {
         if (intent.extras?.containsKey(IS_ENABLED) == true) {
-            val enable = intent.extras.getBoolean(IS_ENABLED)
+            val enable = intent.extras!!.getBoolean(IS_ENABLED)
             val widgetBgColor = context.config.widgetBgColor
             val alpha = Color.alpha(widgetBgColor)
             val selectedColor = if (enable) widgetBgColor else Color.WHITE
@@ -62,14 +62,14 @@ class MyWidgetProvider : AppWidgetProvider() {
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
                 val views = RemoteViews(context.packageName, R.layout.widget)
-                views.setImageViewBitmap(R.id.toggle_btn, bmp)
+                views.setImageViewBitmap(R.id.flashlight_btn, bmp)
                 appWidgetManager.updateAppWidget(it, views)
             }
         }
     }
 
     private fun getColoredCircles(context: Context, color: Int, alpha: Int): Bitmap {
-        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.circles_small, color, alpha)
+        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.ic_flashlight, color, alpha)
         return context.drawableToBitmap(drawable)
     }
 }

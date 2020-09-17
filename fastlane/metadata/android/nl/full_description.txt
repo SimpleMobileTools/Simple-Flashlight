@@ -1,0 +1,22 @@
+Een eenvoudige zaklamp met een extra fel scherm, een aanpasbare stroboscoop en een SOS-signaalmodus.
+
+De kleur van het felle scherm kan worden aangepast, wat een hoop nieuwe mogelijkheden geeft. Zo kan het uitstekend worden gebruikt om de directe omgeving te verkennen zonder dat het licht verblindend fel is.
+
+Bij de stroboscoop is de frequentie binnen een groot bereik aan te passen.
+
+Indien deze gratis zaklamp wordt aangezet via de app (dus niet de widget), zal worden voorkomen dat het scherm uitgaat. De sterke flitserlamp kan optioneel direct bij het starten de app worden ingeschakeld.
+
+Bevat een 1x1 widget met aanpasbare kleuren en transparantie.
+
+De app is ontworpen volgens material design en heeft standaard een donker thema. De app heeft geen toegang tot het internet nodig en voorziet van meer privacy, veiligheid en stabiliteit dan andere apps.
+
+Bevat geen advertenties of onnodige machtigingen. Volledig open-source. Kleuren van de app kunnen worden aangepast.
+
+<b>Probeer ook eens de andere apps van Simple Tools:</b>
+https://www.simplemobiletools.com
+
+<b>Facebook:</b>
+https://www.facebook.com/simplemobiletools
+
+<b>Reddit:</b>
+https://www.reddit.com/r/SimpleMobileTools

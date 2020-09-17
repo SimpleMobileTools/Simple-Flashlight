@@ -12,12 +12,12 @@ import com.simplemobiletools.flashlight.helpers.IS_ENABLED
 import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
 import com.simplemobiletools.flashlight.helpers.TOGGLE_WIDGET_UI
 
-val Context.config: Config get() = Config.newInstance(this)
+val Context.config: Config get() = Config.newInstance(applicationContext)
 
 fun Context.updateWidgets(isEnabled: Boolean) {
-    val widgetsCnt = AppWidgetManager.getInstance(this).getAppWidgetIds(ComponentName(this, MyWidgetProvider::class.java))
-    if (widgetsCnt.isNotEmpty()) {
-        Intent(this, MyWidgetProvider::class.java).apply {
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetProvider::class.java))
+    if (widgetIDs.isNotEmpty()) {
+        Intent(applicationContext, MyWidgetProvider::class.java).apply {
             action = TOGGLE_WIDGET_UI
             putExtra(IS_ENABLED, isEnabled)
             sendBroadcast(this)

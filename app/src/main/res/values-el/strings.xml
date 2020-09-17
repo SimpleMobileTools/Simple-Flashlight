@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Απλός φακός</string>
+    <string name="app_launcher_name">Φακός</string>
+    <string name="camera_error">Η εύρεση της κάμερας απέτυχε</string>
+    <string name="camera_permission">Χρειάζεται άδεια χρήσης της κάμερας για τη σωστή λειτουργία στροβοσκοπίου</string>
+    <string name="bright_display">Φωτεινή οθόνη</string>
+
+    <!-- Settings -->
+    <string name="show_bright_display">Προβολή κουμπιού φωτεινότητας</string>
+    <string name="show_stroboscope">Προβολή κουμπιού στροβοσκοπίου</string>
+    <string name="show_sos">Προβολή κουμπιού SOS</string>
+    <string name="turn_flashlight_on">Άνοιγμα του φακού κατά την εκκίνηση</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Απλός φακός - Φωτεινή οθόνη &amp; στροβοσκόπιο</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Απλός σύγχρονος φακός με SOS, στροβοσκόπιο &amp; φωτεινή οθόνη, χωρίς διαφημίσεις</string>
+    <string name="app_long_description">
+        Ένας καθαρός φακός με μια επιπλέον φωτεινή οθόνη, προσαρμόσιμο στροβοσκόπιο και μια προκαθορισμένη λειτουργία SOS.
+
+        Όλες αυτές οι λειτουργίες μπορεί να είναι εξαιρετικά χρήσιμες υπό ορισμένες συνθήκες.
+
+        Η φωτεινή οθόνη μπορεί να αλλάζει το χρώμα της, ανοίγοντας έναν νέο κόσμο των πιθανών χρήσεων. Μπορεί να φανεί πρακτικό σε περίπτωση που θέλετε να δείτε πολύ κοντά σας χωρίς να τυφλωθείτε.
+
+        Το στροβοσκόπιο μπορεί να αλλάξει τη συχνότητά του, που κυμαίνεται από πολύ γρήγορα μέχρι περιστασιακά.
+
+        Εάν αυτός ο δωρεάν φακός ενεργοποιηθεί μέσω της εφαρμογής (όχι widget), και αποτρέψει την αδρανοποίηση της συσκευής. Ο ισχυρός φακός μπορεί προαιρετικά να ενεργοποιείται κατά την εκκίνηση της εφαρμογής, αλλά δεν είναι υποχρεωτικό.
+
+        Παρέχεται με 1x1 γραφικό στοιχείο με προσαρμόσιμο χρώμα και διαφάνεια.
+
+        Διατίθεται με σχεδίαση υλικού και σκούρο θέμα από προεπιλογή, παρέχει εξαιρετική εμπειρία χρήστη για εύκολη χρήση. Η έλλειψη πρόσβασης στο διαδίκτυο σας παρέχει περισσότερο απόρρητο, ασφάλεια και σταθερότητα από ό,τι άλλες εφαρμογές.
+
+        Δεν περιέχει διαφημίσεις ή άσκοπη αδειοδότηση. Είναι πλήρως ανοιχτού κώδικα και παρέχει προσαρμόσιμες αποχρώσεις.
+
+        <b>Δείτε την πλήρη σειρά των Απλών Εργαλείων εδώ:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
