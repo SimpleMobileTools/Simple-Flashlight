@@ -6,7 +6,19 @@
         android:title="@string/settings"
         app:showAsAction="never"/>
     <item
+    android:id="@+id/rate"
+    android:title="Rate Us"
+    app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/share"
+        android:title="Share"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/about"
         android:title="@string/about"
         app:showAsAction="never"/>
+
+
 </menu>

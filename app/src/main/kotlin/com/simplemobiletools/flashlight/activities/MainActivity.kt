@@ -1,14 +1,17 @@
 package com.simplemobiletools.flashlight.activities
 
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import com.simplemobiletools.commons.extensions.*
@@ -130,6 +133,8 @@ class MainActivity : SimpleActivity() {
         when (item.itemId) {
             R.id.settings -> launchSettings()
             R.id.about -> launchAbout()
+            R.id.rate -> rate()
+            R.id.share -> share()
             else -> return super.onOptionsItemSelected(item)
         }
         return true
@@ -164,10 +169,10 @@ class MainActivity : SimpleActivity() {
         val licenses = LICENSE_EVENT_BUS
 
         val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
-            FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
-            FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
-            FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
+                FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
+                FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons),
+                FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons),
+                FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons)
         )
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
@@ -306,4 +311,24 @@ class MainActivity : SimpleActivity() {
         toast(R.string.camera_error)
         disableFlashlight()
     }
+
+    fun rate() {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.simplemobiletools.flashlight")))
+        //startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("market://details?id="+getPackageName())));
+
+    }
+
+    fun share() {
+
+        var intent =Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT,"http://play.google.com/store/apps/details?id=com.simplemobiletools.flashlight")
+            type ="text/plain"
+        }
+
+        startActivity(intent)
+
+    }
+
+
 }
