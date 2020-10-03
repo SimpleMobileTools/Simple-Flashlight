@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Lanterna</string>
+    <string name="camera_error">Erro ao obter a cámara</string>
+    <string name="camera_permission">O permiso da cámara é necesario para utilizar o efecto estroboscopio</string>
+    <string name="bright_display">Pantalal brillante</string>
+
+    <!-- Settings -->
+    <string name="show_bright_display">Mostrar botón para iluminar a pantalla</string>
+    <string name="show_stroboscope">Mostrar botón de estroboscopio</string>
+    <string name="show_sos">Mostrar un botón de SOS</string>
+    <string name="turn_flashlight_on">Activar lanterna ao iniciar</string>
+
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Bright flashlight with a bright display, stroboscope, torch and sos mode, no ads</string>
+    <string name="app_long_description">
+        Unha lanterna cunha pantalla extra brillante, estroboscopio personalizable e un modo SOS predeterminado. 
+
+        Todas estas funcións son de moita axuda en certas circunstancias.
+        
+        Á pantalla brillante pódeselle cambiar a cor e pódese minorar para que poidas ver o que tes ao teu redor sen cegarte.
+
+        Ao estroboscopio pódeselle cambiar a frecuencia.
+
+        Se prendes esta lanterna a través do aplicativo (e non a través do widget), evitará que o dispositivo se apague. A lanterna pódese acender opcionalmente cadno se inicia o aplicativo, pero non é obrigatorio.
+
+        Vén cun widget de 1x1 cunha cor personalizable e transparente. 
+
+        E, por último, vén cun deseño material e tema escuro por defecto, fornece unha experiencia boa para os usuarios cun uso fácil. Ao non necesitar acceso a Internet, tes moita máis privacidade, seguridade e estabilidade.
+
+        Non contén anuncios nin permisos innecesarias. Dispón dun tema escuro e é totalmente de código aberto.
+        
+        <b>Visita a nosa páxina a través desta ligazón:</b>
+        https://www.simplemobiletools.com
+
+        <b>Facebook:</b>
+        https://www.facebook.com/simplemobiletools
+
+        <b>Reddit:</b>
+        https://www.reddit.com/r/SimpleMobileTools
+    </string>
+
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
