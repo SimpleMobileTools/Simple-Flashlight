@@ -15,7 +15,7 @@
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Unha lanterna simple, moderna con SOS, estroboscopio &amp; pantalla brillante e sen anuncios.</string>
+    <string name="app_short_description">Bright flashlight with a bright display, stroboscope, torch and sos mode, no ads</string>
     <string name="app_long_description">
         Unha lanterna cunha pantalla extra brillante, estroboscopio personalizable e un modo SOS predeterminado. 
 
