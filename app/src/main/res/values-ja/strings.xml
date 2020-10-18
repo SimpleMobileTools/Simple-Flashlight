@@ -3,13 +3,13 @@
     <string name="app_launcher_name">フラッシュライト</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
     <string name="camera_permission">適切なストロボ効果のために、カメラのアクセス許可が必要です</string>
-    <string name="bright_display">Bright display</string>
+    <string name="bright_display">画面点灯</string>
 
     <!-- Settings -->
-    <string name="show_bright_display">明るく表示ボタンを表示</string>
+    <string name="show_bright_display">画面点灯ボタンを表示</string>
     <string name="show_stroboscope">ストロボボタンを表示</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="show_sos">SOSボタンを表示</string>
+    <string name="turn_flashlight_on">起動時にライトを点灯する</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
