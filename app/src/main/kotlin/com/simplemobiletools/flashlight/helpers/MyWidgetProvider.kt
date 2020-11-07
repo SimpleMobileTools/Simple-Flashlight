@@ -28,7 +28,7 @@ class MyWidgetProvider : AppWidgetProvider() {
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-            val views = RemoteViews(context.packageName, R.layout.widget)
+            val views = RemoteViews(context.packageName, R.layout.widget_torch)
 
             val pendingIntent = PendingIntent.getBroadcast(context, it, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             views.setOnClickPendingIntent(R.id.flashlight_btn, pendingIntent)
@@ -61,7 +61,7 @@ class MyWidgetProvider : AppWidgetProvider() {
 
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
-                val views = RemoteViews(context.packageName, R.layout.widget)
+                val views = RemoteViews(context.packageName, R.layout.widget_torch)
                 views.setImageViewBitmap(R.id.flashlight_btn, bmp)
                 appWidgetManager.updateAppWidget(it, views)
             }
