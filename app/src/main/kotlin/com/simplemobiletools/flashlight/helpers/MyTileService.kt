@@ -27,7 +27,7 @@ class MyTileService : TileService() {
     }
 
     private fun updateTile() {
-        qsTile.state = if (MyCameraImpl.isFlashlightOn) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
-        qsTile.updateTile()
+        qsTile?.state = if (MyCameraImpl.isFlashlightOn) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
+        qsTile?.updateTile()
     }
 }

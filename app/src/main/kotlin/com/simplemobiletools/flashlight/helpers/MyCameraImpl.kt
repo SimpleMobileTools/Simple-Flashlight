@@ -185,7 +185,7 @@ class MyCameraImpl(val context: Context) {
         if (isMarshmallow) {
             toggleMarshmallowFlashlight(true)
         } else {
-            if (camera == null || params == null) {
+            if (camera == null || params == null || camera!!.parameters == null) {
                 return
             }
 
@@ -206,7 +206,7 @@ class MyCameraImpl(val context: Context) {
         if (isMarshmallow) {
             toggleMarshmallowFlashlight(false)
         } else {
-            if (camera == null || params == null) {
+            if (camera == null || params == null || camera!!.parameters == null) {
                 return
             }
 
@@ -270,7 +270,7 @@ class MyCameraImpl(val context: Context) {
                 initCamera()
             }
 
-            val torchOn = camera!!.parameters
+            val torchOn = camera!!.parameters ?: return@Runnable
             val torchOff = camera!!.parameters
             torchOn.flashMode = Camera.Parameters.FLASH_MODE_TORCH
             torchOff.flashMode = Camera.Parameters.FLASH_MODE_OFF
