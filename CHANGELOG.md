@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.3.0 *(2020-11-07)*
+----------------------------
+
+ * Added a widget for Bright Display
+ * Couple stability and translation improvements
+
 Version 5.2.0 *(2020-08-20)*
 ----------------------------
 
