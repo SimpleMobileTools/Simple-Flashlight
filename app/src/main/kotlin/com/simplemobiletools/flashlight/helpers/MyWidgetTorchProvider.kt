@@ -14,7 +14,7 @@ import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.drawableToBitmap
 
-class MyWidgetProvider : AppWidgetProvider() {
+class MyWidgetTorchProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         performUpdate(context)
     }
@@ -22,8 +22,8 @@ class MyWidgetProvider : AppWidgetProvider() {
     private fun performUpdate(context: Context) {
         val selectedColor = context.config.widgetBgColor
         val alpha = Color.alpha(selectedColor)
-        val bmp = getColoredCircles(context, Color.WHITE, alpha)
-        val intent = Intent(context, MyWidgetProvider::class.java)
+        val bmp = getColoredIcon(context, Color.WHITE, alpha)
+        val intent = Intent(context, MyWidgetTorchProvider::class.java)
         intent.action = TOGGLE
 
         val appWidgetManager = AppWidgetManager.getInstance(context)
@@ -37,7 +37,7 @@ class MyWidgetProvider : AppWidgetProvider() {
         }
     }
 
-    private fun getComponentName(context: Context) = ComponentName(context, MyWidgetProvider::class.java)
+    private fun getComponentName(context: Context) = ComponentName(context, MyWidgetTorchProvider::class.java)
 
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
@@ -57,7 +57,7 @@ class MyWidgetProvider : AppWidgetProvider() {
             val widgetBgColor = context.config.widgetBgColor
             val alpha = Color.alpha(widgetBgColor)
             val selectedColor = if (enable) widgetBgColor else Color.WHITE
-            val bmp = getColoredCircles(context, selectedColor, alpha)
+            val bmp = getColoredIcon(context, selectedColor, alpha)
 
             val appWidgetManager = AppWidgetManager.getInstance(context)
             appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
@@ -68,7 +68,7 @@ class MyWidgetProvider : AppWidgetProvider() {
         }
     }
 
-    private fun getColoredCircles(context: Context, color: Int, alpha: Int): Bitmap {
+    private fun getColoredIcon(context: Context, color: Int, alpha: Int): Bitmap {
         val drawable = context.resources.getColoredDrawableWithColor(R.drawable.ic_flashlight, color, alpha)
         return context.drawableToBitmap(drawable)
     }

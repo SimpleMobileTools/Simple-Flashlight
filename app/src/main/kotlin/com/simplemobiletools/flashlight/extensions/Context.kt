@@ -7,19 +7,29 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
-import com.simplemobiletools.flashlight.helpers.Config
-import com.simplemobiletools.flashlight.helpers.IS_ENABLED
-import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
-import com.simplemobiletools.flashlight.helpers.TOGGLE_WIDGET_UI
+import com.simplemobiletools.flashlight.helpers.*
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
 fun Context.updateWidgets(isEnabled: Boolean) {
-    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetProvider::class.java))
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetTorchProvider::class.java))
     if (widgetIDs.isNotEmpty()) {
-        Intent(applicationContext, MyWidgetProvider::class.java).apply {
+        Intent(applicationContext, MyWidgetTorchProvider::class.java).apply {
             action = TOGGLE_WIDGET_UI
             putExtra(IS_ENABLED, isEnabled)
+            sendBroadcast(this)
+        }
+    }
+
+    updateBrightDisplayWidget()
+}
+
+fun Context.updateBrightDisplayWidget() {
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetBrightDisplayProvider::class.java))
+    if (widgetIDs.isNotEmpty()) {
+        Intent(applicationContext, MyWidgetBrightDisplayProvider::class.java).apply {
+            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIDs)
             sendBroadcast(this)
         }
     }

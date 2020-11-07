@@ -40,7 +40,16 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".activities.WidgetConfigureActivity"
+            android:name=".activities.WidgetTorchConfigureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyWidgetConfigTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.WidgetBrightDisplayConfigureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MyWidgetConfigTheme">
             <intent-filter>
@@ -79,7 +88,7 @@
             android:parentActivityName="com.simplemobiletools.commons.activities.AboutActivity" />
 
         <receiver
-            android:name=".helpers.MyWidgetProvider"
+            android:name=".helpers.MyWidgetTorchProvider"
             android:icon="@drawable/ic_flashlight">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -88,6 +97,18 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_torch" />
+        </receiver>
+
+        <receiver
+            android:name=".helpers.MyWidgetBrightDisplayProvider"
+            android:icon="@drawable/ic_bright_display">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_bright_display" />
         </receiver>
 
         <service

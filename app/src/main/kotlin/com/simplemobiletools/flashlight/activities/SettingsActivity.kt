@@ -55,7 +55,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupCustomizeWidgetColors() {
         settings_customize_widget_colors_holder.setOnClickListener {
-            Intent(this, WidgetConfigureActivity::class.java).apply {
+            Intent(this, WidgetTorchConfigureActivity::class.java).apply {
                 putExtra(IS_CUSTOMIZING_COLORS, true)
                 startActivity(this)
             }

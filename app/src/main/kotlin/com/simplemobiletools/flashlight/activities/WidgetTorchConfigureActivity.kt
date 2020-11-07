@@ -14,10 +14,11 @@ import com.simplemobiletools.commons.helpers.DEFAULT_WIDGET_BG_COLOR
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.helpers.MyWidgetProvider
-import kotlinx.android.synthetic.main.widget_config.*
+import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
+import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
+import kotlinx.android.synthetic.main.widget_torch_config.*
 
-class WidgetConfigureActivity : SimpleActivity() {
+class WidgetTorchConfigureActivity : SimpleActivity() {
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
@@ -27,7 +28,7 @@ class WidgetConfigureActivity : SimpleActivity() {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_config)
+        setContentView(R.layout.widget_torch_config)
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
@@ -76,10 +77,12 @@ class WidgetConfigureActivity : SimpleActivity() {
     }
 
     private fun requestWidgetUpdate() {
-        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetProvider::class.java).apply {
+        Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetTorchProvider::class.java).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
             sendBroadcast(this)
         }
+
+        updateBrightDisplayWidget()
     }
 
     private fun updateColors() {
