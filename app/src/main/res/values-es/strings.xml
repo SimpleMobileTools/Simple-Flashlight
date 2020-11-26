@@ -13,27 +13,27 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Linterna Simple - Pantalla brillante y estrobo</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">Linterna simple y moderna con SOS, estrobo y pantalla brillante, sin anuncios</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+        Una linterna limpia con pantalla brillante extra, estroboscopía personalizable y un modo SOS predefinido.
 
-        All these functions can be hugely helpful under certain circumstances.
+        Todas estas funciones pueden ser enormemente útiles en ciertas circunstancias.
 
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+        Puedes cambiar el color de la pantalla brillante, abriendo un nuevo mundo de posibilidades. Puede ser útil en caso de que quieras tu medidor de proximidad sin dejarte ciego.
 
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+        Puedes cambiar la frecuencia de la luz estroboscópica, desde muy rápido hasta parpadeos ocasionales.
 
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+        Si esta linterna gratuita es encendida a través de la aplicación (no desde el widget), evitará que el dispositivo se bloquee. La literna fuerte puede, opcionalmente, encenderce al aprir la aplicaicón, pero no es obligatorio.
 
-        Comes with a 1x1 widget with customizable color and transparency.
+        Incluye un widget de tamaño 1x1 con color y transparencia personalizables.
 
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+        Incluye diseño material y tema obscuro por defecto, provee una gran experiencia de usuario para uso sencillo. La falta del acceso a internet te da más privacidad, seguridad y estabilidad que otras aplicaciones.
 
-        No contiene anuncios ni permisos innecesarios. Es completamente OpenSource y además provee un tema oscuro.
+        No contiene anuncios o permisos innecesarios. Es completamente de código abierto, provee colores personalizables.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Mira la suite completa de herramientas Simples aquí:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
