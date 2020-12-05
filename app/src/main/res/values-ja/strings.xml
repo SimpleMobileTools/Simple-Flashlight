@@ -3,44 +3,42 @@
     <string name="app_launcher_name">フラッシュライト</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
     <string name="camera_permission">適切なストロボ効果のために、カメラのアクセス許可が必要です</string>
-    <string name="bright_display">Bright display</string>
+    <string name="bright_display">明るい画面</string>
 
     <!-- Settings -->
     <string name="show_bright_display">明るく表示ボタンを表示</string>
     <string name="show_stroboscope">ストロボボタンを表示</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="show_sos">SOSボタンを表示</string>
+    <string name="turn_flashlight_on">起動時にフラッシュライトを点灯</string>
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">シンプルな懐中電灯-明るいディスプレイとストロボ</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">無料の美しい懐中電灯、広告なし、 トーチ、SOS、ストロボ、明るいディスプレイ</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+        明るい照明を持つフラッシュライトは、ストロボスコープや既定のSOSモードなどにカスタマイズできます。
 
-        All these functions can be hugely helpful under certain circumstances.
+        全ての機能が様々な状況下で大いに役立ちます。
 
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+        ブライトディスプレイの色を変更すれば、新しい使い方を見つけることもできるでしょう。ユーザーが眩しくなることなく、広範囲を照らし見渡すことが出来ます。
 
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+        ストロボスコープは頻繁に点灯させることも、時間をおいて点灯させることも可能です。
 
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+        フラッシュライトをこの無料アプリを通して（ウィジェットではなく）使用すれば、ユーザーが眠りに落ちるのを防いでくれます。既定ではありませんが、このアプリを起動した時に強い光を放つ設定をすることができます。
 
-        Comes with a 1x1 widget with customizable color and transparency.
+        1×1サイズのウィジェットは色と透明度が変更可能です。
 
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+        広告や不要な権限はありません。 完全にオープンソースで、カラーもカスタマイズ可能。
 
-        広告や不要なアクセス許可は含まれていません。 完全にオープンソースで、ダークテーマも提供しています。
+        <b>シンプルツールの完全なリストはこちらからご確認ください：</b>
+         https://www.simplemobiletools.com
 
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
+        <b> Facebook：</b>
+         https://www.facebook.com/simplemobiletools
 
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
+        <b> Reddit：</b>
+         https://www.reddit.com/r/SimpleMobileTools
     </string>
 
     <!--
