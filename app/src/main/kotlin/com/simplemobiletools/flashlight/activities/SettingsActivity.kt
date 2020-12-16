@@ -3,11 +3,14 @@ package com.simplemobiletools.flashlight.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Button
+import android.widget.TextView
 import com.simplemobiletools.commons.extensions.beVisibleIf
 import com.simplemobiletools.commons.extensions.isThankYouInstalled
 import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
 import com.simplemobiletools.commons.extensions.updateTextColors
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
+import com.simplemobiletools.flashlight.App
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -17,6 +20,16 @@ class SettingsActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        val button = findViewById<Button>(R.id.timebutton)
+        button.setOnClickListener {
+            var timetext: Long = 15L
+            if(findViewById<TextView>(R.id.timetext).text.toString() != ""){
+                timetext = findViewById<TextView>(R.id.timetext).text.toString().toLong()
+            }
+            App.Companion.flashlight_end_time = timetext
+            val intent = Intent(this, MainActivity::class.java);
+            startActivity(intent);
+        }
     }
 
     override fun onResume() {

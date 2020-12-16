@@ -7,12 +7,15 @@ import android.os.Handler
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.isMarshmallowPlus
 import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.flashlight.App
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 import java.io.IOException
+import java.util.*
+import kotlin.concurrent.schedule
 
 class MyCameraImpl(val context: Context) {
     var stroboFrequency = 1000L
@@ -20,6 +23,8 @@ class MyCameraImpl(val context: Context) {
     companion object {
         var isFlashlightOn = false
         private val SOS = arrayListOf(250L, 250L, 250L, 250L, 250L, 250L, 500L, 250L, 500L, 250L, 500L, 250L, 250L, 250L, 250L, 250L, 250L, 1000L)
+
+        var timer = Timer()
 
         private var camera: Camera? = null
         private var params: Camera.Parameters? = null
@@ -176,6 +181,7 @@ class MyCameraImpl(val context: Context) {
     }
 
     fun enableFlashlight() {
+        timer = Timer()
         shouldStroboscopeStop = true
         if (isStroboscopeRunning || isSOSRunning) {
             shouldEnableFlashlight = true
@@ -196,9 +202,14 @@ class MyCameraImpl(val context: Context) {
 
         val mainRunnable = Runnable { stateChanged(true) }
         Handler(context.mainLooper).post(mainRunnable)
+        val end_time = App.Companion.flashlight_end_time*1000
+        timer.schedule(end_time) {
+            toggleFlashlight()
+        }
     }
 
     private fun disableFlashlight() {
+        timer.cancel()
         if (isStroboscopeRunning || isSOSRunning) {
             return
         }
