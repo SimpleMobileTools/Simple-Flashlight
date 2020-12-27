@@ -3,7 +3,7 @@
     <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Toegang tot de camera geweigerd</string>
     <string name="camera_permission">De permissie Camera is nodig voor het stroboscoopeffect</string>
-    <string name="bright_display">Bright display</string>
+    <string name="bright_display">Fel scherm</string>
 
     <!-- Settings -->
     <string name="show_bright_display">Knop voor fel scherm tonen</string>
