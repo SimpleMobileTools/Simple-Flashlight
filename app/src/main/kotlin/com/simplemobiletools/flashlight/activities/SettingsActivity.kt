@@ -3,10 +3,7 @@ package com.simplemobiletools.flashlight.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.simplemobiletools.commons.extensions.beVisibleIf
-import com.simplemobiletools.commons.extensions.isThankYouInstalled
-import com.simplemobiletools.commons.extensions.launchPurchaseThankYouIntent
-import com.simplemobiletools.commons.extensions.updateTextColors
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
@@ -40,16 +37,17 @@ class SettingsActivity : SimpleActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setupCustomizeColors() {
-        settings_customize_colors_holder.setOnClickListener {
-            startCustomizationActivity()
+    private fun setupPurchaseThankYou() {
+        settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled())
+        settings_purchase_thank_you_holder.setOnClickListener {
+            launchPurchaseThankYouIntent()
         }
     }
 
-    private fun setupPurchaseThankYou() {
-        settings_purchase_thank_you_holder.beVisibleIf(!isThankYouInstalled())
-        settings_purchase_thank_you_holder.setOnClickListener {
-            launchPurchaseThankYouIntent()
+    private fun setupCustomizeColors() {
+        settings_customize_colors_label.text = getCustomizeColorsString()
+        settings_customize_colors_holder.setOnClickListener {
+            handleCustomizeColorsClick()
         }
     }
 
