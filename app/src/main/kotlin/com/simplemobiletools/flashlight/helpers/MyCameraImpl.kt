@@ -12,7 +12,6 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
-import java.io.IOException
 
 class MyCameraImpl(val context: Context) {
     var stroboFrequency = 1000L
@@ -191,7 +190,11 @@ class MyCameraImpl(val context: Context) {
 
             params!!.flashMode = Camera.Parameters.FLASH_MODE_TORCH
             camera!!.parameters = params
-            camera!!.startPreview()
+            try {
+                camera!!.startPreview()
+            } catch (e: Exception) {
+                disableFlashlight()
+            }
         }
 
         val mainRunnable = Runnable { stateChanged(true) }
@@ -270,32 +273,26 @@ class MyCameraImpl(val context: Context) {
                 initCamera()
             }
 
-            val torchOn = camera!!.parameters ?: return@Runnable
-            val torchOff = camera!!.parameters
-            torchOn.flashMode = Camera.Parameters.FLASH_MODE_TORCH
-            torchOff.flashMode = Camera.Parameters.FLASH_MODE_OFF
-
-            val dummy = SurfaceTexture(1)
             try {
+                val torchOn = camera!!.parameters ?: return@Runnable
+                val torchOff = camera!!.parameters
+                torchOn.flashMode = Camera.Parameters.FLASH_MODE_TORCH
+                torchOff.flashMode = Camera.Parameters.FLASH_MODE_OFF
+
+                val dummy = SurfaceTexture(1)
                 camera!!.setPreviewTexture(dummy)
-            } catch (e: IOException) {
-            }
 
-            camera!!.startPreview()
+                camera!!.startPreview()
 
-            while (!shouldStroboscopeStop) {
-                try {
+                while (!shouldStroboscopeStop) {
                     camera!!.parameters = torchOn
                     val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                     Thread.sleep(onDuration)
                     camera!!.parameters = torchOff
                     val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                     Thread.sleep(offDuration)
-                } catch (e: Exception) {
                 }
-            }
 
-            try {
                 if (camera != null) {
                     camera!!.parameters = torchOff
                     if (!shouldEnableFlashlight || isMarshmallow) {
@@ -304,6 +301,7 @@ class MyCameraImpl(val context: Context) {
                     }
                 }
             } catch (e: RuntimeException) {
+                shouldStroboscopeStop = true
             }
         }
 
