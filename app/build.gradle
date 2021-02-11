@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.simplemobiletools:commons:5.32.16'
+    implementation 'com.simplemobiletools:commons:5.33.25'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 }
