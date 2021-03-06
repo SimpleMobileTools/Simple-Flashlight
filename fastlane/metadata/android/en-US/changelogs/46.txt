@@ -1,0 +1,2 @@
+ * Allow selecting an accent color at Black & White theme
+ * Some design and translation improvements

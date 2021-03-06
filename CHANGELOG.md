@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.4.2 *(2021-03-06)*
+----------------------------
+
+ * Allow selecting an accent color at Black & White theme
+ * Some design and translation improvements
+
 Version 5.4.1 *(2021-02-11)*
 ----------------------------
 
