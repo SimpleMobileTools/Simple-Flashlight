@@ -184,7 +184,11 @@ class MyCameraImpl(val context: Context) {
         if (isMarshmallow) {
             toggleMarshmallowFlashlight(true)
         } else {
-            if (camera == null || params == null || camera!!.parameters == null) {
+            try {
+                if (camera == null || params == null || camera!!.parameters == null) {
+                    return
+                }
+            } catch (e: Exception) {
                 return
             }
 
@@ -209,7 +213,11 @@ class MyCameraImpl(val context: Context) {
         if (isMarshmallow) {
             toggleMarshmallowFlashlight(false)
         } else {
-            if (camera == null || params == null || camera!!.parameters == null) {
+            try {
+                if (camera == null || params == null || camera!!.parameters == null) {
+                    return
+                }
+            } catch (e: Exception) {
                 return
             }
 
