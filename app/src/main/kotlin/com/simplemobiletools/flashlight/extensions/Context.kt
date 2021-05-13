@@ -12,7 +12,7 @@ import com.simplemobiletools.flashlight.helpers.*
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
 fun Context.updateWidgets(isEnabled: Boolean) {
-    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetTorchProvider::class.java))
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetTorchProvider::class.java)) ?: return
     if (widgetIDs.isNotEmpty()) {
         Intent(applicationContext, MyWidgetTorchProvider::class.java).apply {
             action = TOGGLE_WIDGET_UI
@@ -25,7 +25,7 @@ fun Context.updateWidgets(isEnabled: Boolean) {
 }
 
 fun Context.updateBrightDisplayWidget() {
-    val widgetIDs = AppWidgetManager.getInstance(applicationContext).getAppWidgetIds(ComponentName(applicationContext, MyWidgetBrightDisplayProvider::class.java))
+    val widgetIDs = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetBrightDisplayProvider::class.java)) ?: return
     if (widgetIDs.isNotEmpty()) {
         Intent(applicationContext, MyWidgetBrightDisplayProvider::class.java).apply {
             action = AppWidgetManager.ACTION_APPWIDGET_UPDATE

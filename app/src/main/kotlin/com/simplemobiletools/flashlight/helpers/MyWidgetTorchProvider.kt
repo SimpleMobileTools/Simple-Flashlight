@@ -26,7 +26,7 @@ class MyWidgetTorchProvider : AppWidgetProvider() {
         val intent = Intent(context, MyWidgetTorchProvider::class.java)
         intent.action = TOGGLE
 
-        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             val views = RemoteViews(context.packageName, R.layout.widget_torch)
 
@@ -59,7 +59,7 @@ class MyWidgetTorchProvider : AppWidgetProvider() {
             val selectedColor = if (enable) widgetBgColor else Color.WHITE
             val bmp = getColoredIcon(context, selectedColor, alpha)
 
-            val appWidgetManager = AppWidgetManager.getInstance(context)
+            val appWidgetManager = AppWidgetManager.getInstance(context) ?: return
             appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
                 val views = RemoteViews(context.packageName, R.layout.widget_torch)
                 views.setImageViewBitmap(R.id.flashlight_btn, bmp)
