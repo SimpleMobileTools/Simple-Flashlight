@@ -3,7 +3,7 @@
     <string name="app_launcher_name">Fener</string>
     <string name="camera_error">Kamera hatası</string>
     <string name="camera_permission">Düzgün stroboskop etkisi için kamera izni gereklidir</string>
-    <string name="bright_display">Bright display</string>
+    <string name="bright_display">Parlak ekran</string>
 
     <!-- Settings -->
     <string name="show_bright_display">Parlak ekran düğmesini göster</string>
@@ -13,27 +13,27 @@
 
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Basit Fener - Parlak ekran ve stroboskop</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">SOS, stroboskop ve parlak ekran ile basit, modern bir fener, reklam içermez.</string>
     <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
+        Fazladan parlak ekrana, özelleştirilebilir stroboskopa ve önceden tanımlanmış bir SOS moduna sahip temiz bir el feneri.
 
-        All these functions can be hugely helpful under certain circumstances.
+        Tüm bu işlevler, belirli koşullar altında son derece faydalı olabilir.
 
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
+        Parlak ekranın rengi değiştirilebilir, bu birçok olası kullanım durumuna kapı açar. Kendinizi kör etmeden etrafınızdaki daha geniş bir alanı görmek istemeniz durumunda kullanışlı olabilir.
 
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
+        Stroboskopun frekansı, çok hızlı ile ara sıra yanıp sönme arasında değiştirilebilir.
 
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
+        Bu ücretsiz fener, widget aracılığıyla değil de uygulama aracılığıyla açılırsa aygıtın uykuya geçmesini önler. Güçlü el feneri, uygulama başlangıcında isteğe bağlı olarak açılabilir, ancak bu zorunlu değildir.
 
-        Comes with a 1x1 widget with customizable color and transparency.
+        Özelleştirilebilir renk ve şeffaflığa sahip 1x1 widget ile birlikte gelir.
 
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+        Varsayılan olarak materyal tasarım ve koyu tema ile birlikte gelir, kolay kullanım için harika bir kullanıcı deneyimi sağlar. İnternet erişiminin olmaması size diğer uygulamalardan daha fazla gizlilik, güvenlik ve istikrar sağlar.
 
         Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar.
 
-        <b>Check out the full suite of Simple Tools here:</b>
+        <b>Basit Araçlar paketinin tamamını buradan inceleyin:</b>
         https://www.simplemobiletools.com
 
         <b>Facebook:</b>
