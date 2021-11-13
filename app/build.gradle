@@ -55,7 +55,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:c615eda325'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:820461691b'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 }

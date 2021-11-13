@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="AppTheme.Base"/>
+    <style name="AppTheme" parent="AppTheme.Base" />
 
     <style name="FullScreenTheme" parent="AppTheme">
         <item name="android:windowContentOverlay">@null</item>
