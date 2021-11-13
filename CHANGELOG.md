@@ -1,6 +1,11 @@
 Changelog
 ==========
 
+Version 5.5.0 *(2021-11-13)*
+----------------------------
+
+ * Redesigned some parts of the app, added an Auto theme
+
 Version 5.4.3 *(2021-04-16)*
 ----------------------------
 
