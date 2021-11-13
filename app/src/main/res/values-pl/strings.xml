@@ -1,48 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Prosta Latarka</string>
+    <string name="app_name">Prosta latarka</string>
     <string name="app_launcher_name">Latarka</string>
-    <string name="camera_error">Uzyskanie dostępu do aparatu zakończone niepowodzeniem</string>
-    <string name="camera_permission">Uprawnienia dostępu do aparatu są niezbędne w celu uzyskania efektu stroboskopowego</string>
-    <string name="bright_display">Bright display</string>
-
+    <string name="camera_error">Nie udało się uzyskać dostępu do aparatu</string>
+    <string name="camera_permission">Dostęp do aparatu jest niezbędny dla prawidłowego efektu stroboskopowego</string>
+    <string name="bright_display">Jasny wyświetlacz</string>
     <!-- Settings -->
-    <string name="show_bright_display">Pokazuj przycisk jasnego wyświetlania</string>
+    <string name="show_bright_display">Pokazuj przycisk jasnego wyświetlacza</string>
     <string name="show_stroboscope">Pokazuj przycisk stroboskopu</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Włączaj latarkę po uruchomieniu aplikacji</string>
-
+    <string name="show_sos">Pokazuj przycisk SOS</string>
+    <string name="turn_flashlight_on">Włączaj latarkę przy uruchomieniu</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Prosta latarka - Jasny wyświetlacz i stroboskop</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
-    <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
-
-        All these functions can be hugely helpful under certain circumstances.
-
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
-
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
-
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
-
-        Comes with a 1x1 widget with customizable color and transparency.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        Nie zawiera natomiast żadnych reklam i nie potrzebuje całej masy uprawnień. Jest w pełni otwartoźródłowa i w pełni podatna na kolorowanie.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Prosta, nowoczesna latarka z SOS, stroboskopem i jasnym ekranem, bez reklam</string>
+    <string name="app_long_description"> Czysta latarka z bardzo jasnym wyświetlaczem, konfigurowalnym stroboskopem i predefiniowanym trybem SOS. Wszystkie te funkcje mogą być bardzo pomocne w pewnych okolicznościach. Jasny wyświetlacz może mieć zmieniany kolor, otwierając świat nowych możliwości. Może się przydać, jeśli chcesz szerzej zobaczyć to, co jest blisko, bez oślepiania siebie. Stroboskop może mieć zmienianą częstotliwość w zakresie od naprawdę szybkiego migania do sporadycznego. Jeśli ta darmowa latarka zostanie włączona przez aplikację (nie widżet), zapobiegnie to przejściu urządzenia w tryb uśpienia. Mocna latarka może opcjonalnie włączać się przy uruchomieniu aplikacji, ale nie jest to obowiązkowe. Zawiera widżet 1x1 z konfigurowalnym kolorem i przezroczystością. Domyślnie jest wyposażona w Material Design i ciemny motyw, zapewniając doskonałe doświadczenie użytkownika dla łatwego użytkowania. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje. Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę. <b>Sprawdź pełen zestaw od Simple Tools tutaj:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
