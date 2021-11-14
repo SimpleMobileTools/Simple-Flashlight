@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="camera_permission">Kameratilgang kreves for stroboskopeffekten</string>
+    <string name="bright_display">Lys skjerm</string>
+    <string name="show_bright_display">Vis en knapp for lys skjerm</string>
+    <string name="app_name">Enkel lommelykt</string>
+    <string name="app_launcher_name">Lommelykt</string>
+    <string name="show_stroboscope">Vis en stroboskop-knapp</string>
+    <string name="show_sos">Vis SOS-knapp</string>
+    <string name="turn_flashlight_on">Skru på lommelykt ved oppstart</string>
+</resources>
