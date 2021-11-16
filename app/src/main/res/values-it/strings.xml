@@ -1,48 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Semplice torcia</string>
     <string name="app_launcher_name">Torcia</string>
     <string name="camera_error">Impossibile rilevare la fotocamera</string>
     <string name="camera_permission">Il permesso per la fotocamera è necessario per l\'effetto stroboscopico</string>
-    <string name="bright_display">Bright display</string>
-
+    <string name="bright_display">Schermo luminoso</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostra un pulsante per lo schermo luminoso</string>
     <string name="show_stroboscope">Mostra un pulsante per l\'effetto stroboscopico</string>
-    <string name="show_sos">Show an SOS button</string>
+    <string name="show_sos">Mostra un pulsante SOS</string>
     <string name="turn_flashlight_on">Accendi la torcia all\'avvio</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Torcia semplice – Schermo luminoso e stroboscopio</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
-    <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
-
-        All these functions can be hugely helpful under certain circumstances.
-
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
-
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
-
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
-
-        Comes with a 1x1 widget with customizable color and transparency.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        L\'applicazione non contiene pubblicità o permessi non necessari; è completamente opensource e la si può personalizzare con i propri colori preferiti.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Una semplice torcia moderna con SOS, stroboscopio e schermo luminoso, senza pubblicità.</string>
+    <string name="app_long_description"> Una torcia pulita con un display extra luminoso, stroboscopio personalizzabile e una modalità SOS predefinita. Tutte queste funzioni possono essere enormemente utili in determinate circostanze. Il display luminoso può avere il suo colore cambiato, aprendo un nuovo mondo di possibili usi. Può essere utile nel caso in cui si voglia vedere la propria vicinanza più ampia senza accecarsi. Lo stroboscopio può cambiare la sua frequenza, da lampeggi molto veloci a quelli occasionali. Se questa torcia gratuita è accesa tramite l\'app (non il widget), impedirà al dispositivo di addormentarsi. La torcia forte può opzionalmente accendersi all\'avvio dell\'app, ma non è obbligatorio. Viene fornito con un widget 1x1 con colore e trasparenza personalizzabili. Viene fornito con material design e tema scuro per impostazione predefinita, fornisce una grande esperienza utente per un facile utilizzo. La mancanza di accesso a internet ti dà più privacy, sicurezza e stabilità rispetto ad altre app. Non contiene annunci o permessi inutili. È completamente opensource, fornisce colori personalizzabili. <b>Scopri la suite completa di Simple Tools qui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
