@@ -12,7 +12,7 @@
     <string name="turn_flashlight_on">Başlangıçta feneri aç</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Basit Fener - Parlak ekran ve stroboskop</string>
+    <string name="app_title">Basit Fener — Parlak ekran ve stroboskop</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">SOS, stroboskop ve parlak ekrana sahip, reklamsız, basit ve modern bir el feneri.</string>
     <string name="app_long_description">
