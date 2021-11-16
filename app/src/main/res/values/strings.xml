@@ -12,7 +12,7 @@
     <string name="turn_flashlight_on">Turn flashlight on at startup</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight — Bright display and stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">A simple modern flashlight with SOS, stroboscope and bright display, without ads.</string>
     <string name="app_long_description">
