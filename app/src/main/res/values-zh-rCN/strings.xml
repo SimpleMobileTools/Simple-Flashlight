@@ -12,7 +12,7 @@
     <string name="turn_flashlight_on">启动时打开手电筒</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">简易手电筒 - 高亮屏幕 &amp; 频闪仪</string>
+    <string name="app_title">简易手电筒 - 明亮显示&amp; 频闪仪</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">一个简单的现代手电筒，带有 SOS、频闪仪和明亮的显示屏，没有广告。</string>
     <string name="app_long_description">
