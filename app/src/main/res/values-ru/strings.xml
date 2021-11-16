@@ -1,19 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Фонарик</string>
     <string name="camera_error">Не удалось получить доступ к камере</string>
     <string name="camera_permission">Разрешение на доступ к камере необходимо для создания эффекта стробоскопа</string>
     <string name="bright_display">Bright display</string>
-
     <!-- Settings -->
     <string name="show_bright_display">Показать кнопку переключения на белый экран</string>
     <string name="show_stroboscope">Показать кнопку стробоскопа</string>
     <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Включать фонарик при запуске</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight — яркий дисплей и стробоскоп</string>
     <!-- Short description has to have less than 80 chars -->
     <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
     <string name="app_long_description">
@@ -42,7 +41,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
