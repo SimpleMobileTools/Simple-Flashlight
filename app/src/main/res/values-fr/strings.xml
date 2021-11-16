@@ -1,21 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lampe de poche simple</string>
     <string name="app_launcher_name">Lampe de poche</string>
     <string name="camera_error">Échec de l\'obtention de l\'appareil photo</string>
     <string name="camera_permission">L\'autorisation d\'accès à l\'appareil photo est nécessaire pour un effet stroboscope correct</string>
-    <string name="bright_display">Bright display</string>
-
+    <string name="bright_display">Affichage lumineux</string>
     <!-- Settings -->
     <string name="show_bright_display">Afficher un bouton écran lumineux</string>
     <string name="show_stroboscope">Afficher un bouton stroboscope</string>
-    <string name="show_sos">Show an SOS button</string>
+    <string name="show_sos">Afficher un bouton SOS</string>
     <string name="turn_flashlight_on">Activer la lampe de poche au démarrage</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Lampe de poche simple - Affichage lumineux et stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">Une simple lampe de poche moderne avec SOS, stroboscope et écran lumineux, sans publicité.</string>
     <string name="app_long_description">
         A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
@@ -42,7 +41,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
