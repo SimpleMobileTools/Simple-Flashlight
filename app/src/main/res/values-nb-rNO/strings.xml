@@ -8,4 +8,6 @@
     <string name="show_stroboscope">Vis en stroboskop-knapp</string>
     <string name="show_sos">Vis SOS-knapp</string>
     <string name="turn_flashlight_on">Skru på lommelykt ved oppstart</string>
+    <string name="app_short_description">En enkel moderne lommelykt med SOS, stroboskop og lys skjerm, uten reklame.</string>
+    <string name="app_title">Enkel lommelykt – lys skjerm og stroboskop</string>
 </resources>
