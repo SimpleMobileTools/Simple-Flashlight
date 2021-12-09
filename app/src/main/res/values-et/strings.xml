@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Lihtne taskulamp</string>
+    <string name="app_launcher_name">Taskulamp</string>
+    <string name="camera_error">Kaamera liidestamine ei õnnestunud</string>
+    <string name="camera_permission">Toimiva stroboskoopilise efekti jaoks on vajalik kaamera kasutamise luba</string>
+    <string name="bright_display">Kirgas ekraan</string>
+    <string name="show_bright_display">Näita nuppu ekraanil kirkana</string>
+    <string name="show_stroboscope">Näita stroboskoobi nuppu</string>
+    <string name="show_sos">Näita SOS-nuppu</string>
+    <string name="turn_flashlight_on">Rakenduse käivitamisel lülita taskulamp sisse</string>
+    <string name="app_title">Lihtne taskulamp, mis kasutab kirgast ekraani ja pakub stroboskoobi võimalust</string>
+    <string name="app_short_description">Lihtne tänapäevane taskulamp, mis kasutab kirgast ekraani ja pakub SOS- ja stroboskoobi võimalust ning kus puuduvad reklaamid.</string>
+</resources>
