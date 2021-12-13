@@ -1,48 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lampe de poche simple</string>
     <string name="app_launcher_name">Lampe de poche</string>
     <string name="camera_error">Échec de l\'obtention de l\'appareil photo</string>
     <string name="camera_permission">L\'autorisation d\'accès à l\'appareil photo est nécessaire pour un effet stroboscope correct</string>
-    <string name="bright_display">Bright display</string>
-
+    <string name="bright_display">Affichage lumineux</string>
     <!-- Settings -->
     <string name="show_bright_display">Afficher un bouton écran lumineux</string>
     <string name="show_stroboscope">Afficher un bouton stroboscope</string>
-    <string name="show_sos">Show an SOS button</string>
+    <string name="show_sos">Afficher un bouton SOS</string>
     <string name="turn_flashlight_on">Activer la lampe de poche au démarrage</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Lampe de poche simple – Affichage lumineux et stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
-    <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
-
-        All these functions can be hugely helpful under certain circumstances.
-
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
-
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
-
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
-
-        Comes with a 1x1 widget with customizable color and transparency.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-        
-        Ne contient pas de publicités ou d\'autorisations inutiles. Elle est totalement opensouce et propose des couleurs personnalisables.
-        
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Une simple lampe de poche moderne avec SOS, stroboscope et écran lumineux, sans publicité.</string>
+    <string name="app_long_description"> Une lampe de poche propre avec un écran très lumineux, un stroboscope personnalisable et un mode SOS prédéfini. Toutes ces fonctions peuvent s\'avérer extrêmement utiles dans certaines circonstances. La couleur de l\'écran lumineux peut être modifiée, ce qui ouvre un nouveau monde d\'utilisations possibles. Il peut s\'avérer pratique dans le cas où vous souhaitez voir votre plus grande proximité sans vous aveugler. La fréquence du stroboscope peut être modifiée, allant de clignotements très rapides à des clignotements occasionnels. Si cette lampe de poche gratuite est allumée via l\'application (pas le widget), elle empêchera l\'appareil de s\'endormir. La torche puissante peut s\'allumer de manière facultative au lancement de l\'application, mais ce n\'est pas obligatoire. Livré avec un widget 1×1 avec couleur et transparence personnalisables. Il est livré avec un design matériel et un thème sombre par défaut, offrant une grande expérience utilisateur pour une utilisation facile. L\'absence d\'accès à Internet vous offre plus de confidentialité, de sécurité et de stabilité que les autres applications. Ne contient pas de publicités ou de permissions inutiles. Il est entièrement opensource, fournit des couleurs personnalisables. <b>Découvrez la suite complète de Simple Tools ici :</b> https://www.simplemobiletools.com <b>Facebook :</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

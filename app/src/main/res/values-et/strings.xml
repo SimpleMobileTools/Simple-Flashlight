@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Фонарик</string>
-    <string name="camera_error">Не удалось получить доступ к камере</string>
-    <string name="camera_permission">Разрешение на доступ к камере необходимо для создания эффекта стробоскопа</string>
-    <string name="bright_display">Яркий экран</string>
+    <string name="app_name">Lihtne taskulamp</string>
+    <string name="app_launcher_name">Taskulamp</string>
+    <string name="camera_error">Kaamera liidestamine ei õnnestunud</string>
+    <string name="camera_permission">Toimiva stroboskoopilise efekti jaoks on vajalik kaamera kasutamise luba</string>
+    <string name="bright_display">Kirgas ekraan</string>
     <!-- Settings -->
-    <string name="show_bright_display">Показать кнопку яркого экрана</string>
-    <string name="show_stroboscope">Показать кнопку стробоскопа</string>
-    <string name="show_sos">Показать кнопку SOS</string>
-    <string name="turn_flashlight_on">Включать фонарик при запуске</string>
+    <string name="show_bright_display">Näita nuppu ekraanil kirkana</string>
+    <string name="show_stroboscope">Näita stroboskoobi nuppu</string>
+    <string name="show_sos">Näita SOS-nuppu</string>
+    <string name="turn_flashlight_on">Rakenduse käivitamisel lülita taskulamp sisse</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight — яркий экран и стробоскоп</string>
+    <string name="app_title">Lihtne taskulamp, mis kasutab kirgast ekraani ja pakub stroboskoobi võimalust</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Простой современный фонарик с SOS, стробоскопом и ярким экраном без рекламы.</string>
+    <string name="app_short_description">Lihtne tänapäevane taskulamp, mis kasutab kirgast ekraani ja pakub SOS- ja stroboskoobi võimalust ning kus puuduvad reklaamid.</string>
     <string name="app_long_description">
         A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
@@ -41,6 +41,7 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

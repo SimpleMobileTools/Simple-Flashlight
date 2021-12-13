@@ -1,48 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Taskulammpu</string>
     <string name="camera_error">Kameran saanti epäonnistui</string>
     <string name="camera_permission">Lupa kameraan vaaditaan oikean stroboskooppisen vaikutuksen saavuttamiseksi</string>
     <string name="bright_display">Kirkas näyttö</string>
-
     <!-- Settings -->
     <string name="show_bright_display">Näytä kirkas näyttö -painike</string>
     <string name="show_stroboscope">Näytä stroboskooppipainike</string>
     <string name="show_sos">Näytä SOS-painike</string>
     <string name="turn_flashlight_on">Kytke taskulamppu päälle käynnistyksen yhteydessä</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight - Kirkas näyttö ja stroboskooppi</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
-    <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
-
-        All these functions can be hugely helpful under certain circumstances.
-
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
-
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
-
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
-
-        Comes with a 1x1 widget with customizable color and transparency.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Yksinkertainen, mainokseton taskulamppu - SOS, stroboskooppi, kirkas näyttö.</string>
+    <string name="app_long_description"> Selkeä taskulamppu extrakirkkaalla näytöllä, mukautettavalla stroboskoopilla ja esiasetetulla SOS-tilalla - toiminnot voivat olla todella hyödyllisiä tietyissä tilanteissa. Kirkkaalle näytölle voi valita värin - tämä laajentaa käyttömahdollisuuksia. Siitä voi olla hyötyä kun haluat nähdä pidemmälle ilman itsesi sokaistamista. Stroboskoopin taajuutta voi vaihtaa erittäin nopeasta harvakseltaan välkkyvään. Jos tämä ilmainen taskulamppu on kytketty päälle sovelluksesta (ei aloitusnäytön piensovelluksesza), se estää laitteen nukahtamisen. Voimakkain valo voidaan valinnaisesti valita kytkeytymään päälle heti sovelluksen käynnistyttyä. Mukana tulevan 1x1-pienoissovelluksen väriä ja läpinäkyvyyttä voi säätää. Sovellus noudattelee material designia ja oletuksena tummaa teemaa. Sovellus tarjoaa hienon käyttäjäkokemuksen helpolla käytöllä. Yksityisyys ja vakaus on taattu, sovellus ei käytä internet-yhteyttä. Ei sisällä mainoksia eikä vaadi tarpeettomia käyttöoikeuksia. Sovellus on täysin vapaata lähdekoodia. Sovelluksen värit ovat mukautettavissa. <b>Katso koko Simple Tools-sovellusvalikoima täältä:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

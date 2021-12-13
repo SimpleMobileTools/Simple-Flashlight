@@ -1,21 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">简易手电筒</string>
     <string name="app_launcher_name">手电筒</string>
     <string name="camera_error">获取相机失败</string>
     <string name="camera_permission">相机权限对于正确的频闪仪效果是必须的</string>
     <string name="bright_display">高亮屏幕</string>
-
     <!-- Settings -->
     <string name="show_bright_display">显示高亮屏幕按钮</string>
     <string name="show_stroboscope">显示频闪仪按钮</string>
     <string name="show_sos">显示紧急求助按钮</string>
     <string name="turn_flashlight_on">启动时打开手电筒</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">简易手电筒 - 高亮屏幕 &amp; 频闪仪</string>
+    <string name="app_title">简易手电筒 - 明亮显示&amp; 频闪仪</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">一个简单又现代的手电筒，包括紧急求助、频闪仪 &amp; 高亮屏幕功能，没有广告。</string>
+    <string name="app_short_description">一个简单的现代手电筒，带有 SOS、频闪仪和明亮的显示屏，没有广告。</string>
     <string name="app_long_description">
         一个清爽的手电筒，包含高亮屏幕、自定义频闪仪和预定义好的紧急求助模式。
 
@@ -42,7 +41,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
