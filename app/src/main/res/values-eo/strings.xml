@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Paprastas žibintuvėlis</string>
-    <string name="app_launcher_name">Žibintuvėlis</string>
-    <string name="camera_error">Nepavyko gauti prieigos prie kameros</string>
-    <string name="camera_permission">Fotoaparato leidimas būtinas tinkamam stroboskopo efektui</string>
-    <string name="bright_display">Bright display</string>
+    <string name="app_name">Simpla Lanterno</string>
+    <string name="app_launcher_name">Lanterno</string>
+    <string name="camera_error">Obtaining the camera failed</string>
+    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
+    <string name="bright_display">Hela ekrano</string>
     <!-- Settings -->
-    <string name="show_bright_display">Rodyti ryškaus ekrano mygtuką</string>
-    <string name="show_stroboscope">Rodyti stroboskopo mygtuką</string>
+    <string name="show_bright_display">Montri butonon por hela ekrano</string>
+    <string name="show_stroboscope">Show a stroboscope button</string>
     <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Įjungti žibintuvėlį paleidus programėlę</string>
+    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight — Bright display and stroboscope</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope and bright display, without ads.</string>
     <string name="app_long_description">
         A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
@@ -30,7 +30,7 @@
 
         It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
 
-        Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas.
+        Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
 
         <b>Check out the full suite of Simple Tools here:</b>
         https://www.simplemobiletools.com

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Flashlight</string>
+    <string name="app_launcher_name">Llanterna</string>
+    <string name="camera_error">Ha fallat l\'accés a la càmera</string>
+    <string name="camera_permission">És necessari el permís de la càmera per a un efecte estroboscòpic adequat</string>
+    <string name="bright_display">Pantalla lluminosa</string>
+    <!-- Settings -->
+    <string name="show_bright_display">Mostra un botó de pantalla lluminosa</string>
+    <string name="show_stroboscope">Mostra un botó d\'estroboscopi</string>
+    <string name="show_sos">Mostra un botó de SOS</string>
+    <string name="turn_flashlight_on">Activa la llanterna a l\'inici</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Llanterna simple: pantalla brillant i estroboscopi</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">Una llanterna senzilla i moderna amb SOS, estroboscopi i pantalla brillant, sense anuncis.</string>
+    <string name="app_long_description"> Una llanterna neta amb una pantalla molt brillant, un estroboscopi personalitzable i un mode SOS predefinit. Totes aquestes funcions poden ser molt útils en determinades circumstàncies. La pantalla brillant pot canviar el seu color, obrint un món nou d\'usos possibles. Pot ser útil si voleu veure el vostre entorn sense encegar-vos. L\'estroboscopi pot canviar la seva freqüència, que va des de parpelleig molt ràpid fins a un de més lent. Si aquesta llanterna gratuïta s\'encén mitjançant l\'aplicació (no el giny), evitarà que el dispositiu s\'adormi. La torxa intensa es pot activar opcionalment en iniciar l\'aplicació, però no és obligatori. Ve amb un giny 1x1 amb color i transparència personalitzables. De manera predeterminada, inclou el «material design» i un tema fosc, proporciona una gran experiència d\'usuari per a un ús fàcil. La manca d\'accés a Internet us ofereix més privadesa, seguretat i estabilitat que altres aplicacions. No conté anuncis ni permisos innecessaris. És totalment de codi obert, proporciona colors personalitzables. <b>Consulteu el conjunt complet d\'eines Simples aquí:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
