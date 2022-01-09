@@ -1,21 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Ficklampa</string>
     <string name="camera_error">Det gick inte att komma åt kameran</string>
     <string name="camera_permission">Kamerabehörigheten behövs för en riktig stroboskopeffekt</string>
     <string name="bright_display">Bright display</string>
-
     <!-- Settings -->
     <string name="show_bright_display">Visa en knapp för ljus skärm</string>
     <string name="show_stroboscope">Visa en stroboskopknapp</string>
     <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Slå på ficklampan vid start</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Enkel ficklampa — Ljusstark display och stroboskop</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
+    <string name="app_short_description">En enkel modern ficklampa med SOS, stroboskop och ljusstark display, utan annonser.</string>
     <string name="app_long_description">
         A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
 
@@ -42,7 +41,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
