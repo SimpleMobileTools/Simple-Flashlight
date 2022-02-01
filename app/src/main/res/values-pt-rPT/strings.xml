@@ -1,48 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight</string>
+    <string name="app_name">Simple Flashlight – Lanterna</string>
     <string name="app_launcher_name">Lanterna</string>
-    <string name="camera_error">Falha ao obter a câmara</string>
-    <string name="camera_permission">A permissão da câmara é necessária para utilizar o efeito estroboscópio</string>
-    <string name="bright_display">Bright display</string>
-
+    <string name="camera_error">Falha no acesso à câmera</string>
+    <string name="camera_permission">O efeito estroboscópico requer a permissão da câmara</string>
+    <string name="bright_display">Ecrã luminoso</string>
     <!-- Settings -->
-    <string name="show_bright_display">Mostrar botão para iluminar o ecrã</string>
-    <string name="show_stroboscope">Mostrar botão de estroboscópio</string>
-    <string name="show_sos">Mostrar um botão de SOS</string>
-    <string name="turn_flashlight_on">Ativar lanterna ao iniciar</string>
-
+    <string name="show_bright_display">Mostrar botão de ecrã luminoso</string>
+    <string name="show_stroboscope">Mostrar botão do estroboscópio</string>
+    <string name="show_sos">Mostrar botão de SOS</string>
+    <string name="turn_flashlight_on">Acender a lanterna ao iniciar</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight – Lanterna , ecrã luminoso e estroboscópio</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope &amp; bright display, has no ads.</string>
-    <string name="app_long_description">
-        A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode.
-
-        All these functions can be hugely helpful under certain circumstances.
-
-        The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself.
-
-        The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones.
-
-        If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory.
-
-        Comes with a 1x1 widget with customizable color and transparency.
-
-        It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
-
-        Não contém anúncios nem permissões desnecessárias. Disponibiliza um tema escuro e é totalmente \'open source\'.
-
-        <b>Check out the full suite of Simple Tools here:</b>
-        https://www.simplemobiletools.com
-
-        <b>Facebook:</b>
-        https://www.facebook.com/simplemobiletools
-
-        <b>Reddit:</b>
-        https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">Uma lanterna simples com função SOS, estroboscópio e ecrã luminoso, sem anúncios.</string>
+    <string name="app_long_description"> Uma lanterna simples com ecrã extra-luminoso, estroboscópio e função SOS. O ecrã luminoso permite mudar de cor e é ideal para ver ao perto sem ficar encandeado. Pode variar a frequência do estroboscópio para espaçar mais, ou menos, a sua intermitência i.e, piscar mais, ou menos, rápido. Se acender a lanterna a partir da aplicação (e não do widget), o dispositivo não se apaga. Como opção, pode também fazer com que a lanterna se acenda imediatamente ao iniciar a aplicação. Traz um widget de 1x1, personalizável em cor e transparência. Com design material num tema escuro por definição. Não requer acesso à internet o que lhe confere mais privacidade, segurança e estabilidade. Não contém anúncios nem permissões desnecessárias. É totalmente open source e oferece cores personalizáveis a gosto. <b>Consulte a gama completa de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
