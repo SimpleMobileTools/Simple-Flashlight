@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lanterna Simples</string>
+    <string name="app_name">Simple Flashlight – Lanterna</string>
     <string name="app_launcher_name">Lanterna</string>
-    <string name="camera_error">Acesso à câmera falhou</string>
-    <string name="camera_permission">O efeito estroboscópico requer permissão da câmera</string>
-    <string name="bright_display">Tela brilhante</string>
+    <string name="camera_error">Falha ao aceder à câmera</string>
+    <string name="camera_permission">O efeito estroboscópico requer a permissão da câmara</string>
+    <string name="bright_display">Ecrã luminoso</string>
     <!-- Settings -->
-    <string name="show_bright_display">Mostrar botão para iluminar o ecrã</string>
+    <string name="show_bright_display">Mostrar botão de ecrã luminoso</string>
     <string name="show_stroboscope">Mostrar botão do estroboscópio</string>
-    <string name="show_sos">Mostrar botão SOS</string>
+    <string name="show_sos">Mostrar botão de SOS</string>
     <string name="turn_flashlight_on">Acender a lanterna ao iniciar</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Bright display &amp; stroboscope</string>
+    <string name="app_title">Simple Flashlight – Lanterna , ecrã luminoso e estroboscópio</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Uma lanterna simples com função, estroboscópio e sem anúncios.</string>
-    <string name="app_long_description"> Uma lanterna simples com uma tela extra brilhante, estroboscópio personalizável e um modo SOS pré-definido. Todas estas funções podem ser extremamente úteis em certas circunstâncias. A tela brilhante pode ter a sua cor alterada, abrindo um novo mundo de usos possíveis. Ele pode ser útil caso você queira ver sua proximidade mais ampla sem se cegar. O estroboscópio pode ter sua frequência alterada, variando de piscar muito rápido a ocasionalmente. Se esta lanterna gratuita for ligada pelo aplicativo (não pelo widget), impedirá que o aparelho adormeça. A lanterna forte pode opcionalmente ser ligada ao iniciar a aplicação, mas não é obrigatória. Vem com um widget 1x1 com cores e transparência personalizáveis. Ele vem com Material Design e tema escuro por padrão, oferece uma ótima experiência para o usuário para uma fácil utilização. A falta de acesso à Internet dá mais privacidade, segurança e estabilidade do que outros aplicativos. Não contém anúncios ou permissões desnecessárias. É totalmente de código aberto, fornece cores personalizáveis. <b>Cheque o conjunto completo de Ferramentas Simples aqui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <string name="app_short_description">Uma lanterna simples com função SOS, estroboscópio e ecrã luminoso, sem anúncios.</string>
+    <string name="app_long_description"> Uma lanterna simples com ecrã extra-luminoso, estroboscópio e função SOS. O ecrã luminoso permite mudar de cor e é ideal para ver ao perto sem ficar encandeado. Pode variar a frequência do estroboscópio para espaçar mais, ou menos, a sua intermitência i.e, piscar mais, ou menos, rápido. Se acender a lanterna a partir da aplicação (e não do widget), o dispositivo não se apaga. Como opção, pode também fazer com que a lanterna se acenda imediatamente ao iniciar a aplicação. Traz um widget de 1x1, personalizável em cor e transparência. Com design material num tema escuro por definição. Não requer acesso à internet o que lhe confere mais privacidade, segurança e estabilidade. Não contém anúncios nem permissões desnecessárias. É totalmente open source e oferece cores personalizáveis a gosto. <b>Consulte a gama completa de aplicações Simple Tools aqui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
