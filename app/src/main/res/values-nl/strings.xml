@@ -1,16 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Eenvoudige Zaklamp</string>
     <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Toegang tot de camera geweigerd</string>
     <string name="camera_permission">De permissie Camera is nodig voor het stroboscoopeffect</string>
     <string name="bright_display">Fel scherm</string>
-
     <!-- Settings -->
     <string name="show_bright_display">Knop voor fel scherm tonen</string>
     <string name="show_stroboscope">Knop voor stroboscoop tonen</string>
     <string name="show_sos">Knop voor SOS-noodsignaal tonen</string>
     <string name="turn_flashlight_on">Zaklamp bij starten aanzetten</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">Eenvoudige Zaklamp - Met fel scherm &amp; stroboscoop</string>
@@ -40,7 +39,6 @@
         <b>Reddit:</b>
         https://www.reddit.com/r/SimpleMobileTools
     </string>
-
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
