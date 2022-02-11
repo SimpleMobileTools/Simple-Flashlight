@@ -155,6 +155,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun launchSettings() {
+        hideKeyboard()
         reTurnFlashlightOn = false
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
