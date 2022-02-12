@@ -5,6 +5,7 @@ import android.content.Context
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Handler
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 
@@ -25,6 +26,7 @@ internal class MarshmallowCamera constructor(val context: Context) {
         try {
             manager.setTorchMode(cameraId!!, enable)
         } catch (e: Exception) {
+            context.showErrorToast(e)
             val mainRunnable = Runnable {
                 EventBus.getDefault().post(Events.CameraUnavailable())
             }
