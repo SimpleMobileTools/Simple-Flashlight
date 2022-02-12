@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.SurfaceTexture
 import android.hardware.Camera
 import android.os.Handler
+import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.commons.helpers.isMarshmallowPlus
 import com.simplemobiletools.commons.helpers.isNougatPlus
@@ -197,6 +198,7 @@ class MyCameraImpl(val context: Context) {
             try {
                 camera!!.startPreview()
             } catch (e: Exception) {
+                context.showErrorToast(e)
                 disableFlashlight()
             }
         }
