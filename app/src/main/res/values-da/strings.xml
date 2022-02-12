@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Simpel lommelygte</string>
+    <string name="app_launcher_name">Lommelygte</string>
+    <string name="camera_error">Forbindelse til kameraet mislykkedes</string>
+    <string name="camera_permission">Kameratilladelse er nødvendig for korrekt stroboskopeffekt</string>
+    <string name="bright_display">Lyst display</string>
+    <string name="show_bright_display">Vis en lys skærmknap</string>
+    <string name="show_stroboscope">Vis en stroboskop-knap</string>
+    <string name="show_sos">Vis en SOS-knap</string>
+    <string name="turn_flashlight_on">Slå lommelygte til ved start</string>
+    <string name="app_title">Simpel lommelygte — Lyst display og stroboskop</string>
+    <string name="app_short_description">En simpel, moderne lommelygte med SOS, stroboskop og et lyst display uden reklamer.</string>
+</resources>
