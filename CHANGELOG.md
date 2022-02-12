@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.5.3 *(2022-02-12)*
+----------------------------
+
+ * Catch and show errors thrown in some cases, do not ignore them
+ * Added many translation improvements
+
 Version 5.5.2 *(2022-01-31)*
 ----------------------------
 
