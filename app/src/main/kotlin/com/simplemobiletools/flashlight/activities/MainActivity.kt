@@ -219,7 +219,7 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    private fun getContrastColor() = config.backgroundColor.getContrastColor()
+    private fun getContrastColor() = getProperBackgroundColor().getContrastColor()
 
     private fun releaseCamera() {
         mCameraImpl?.releaseCamera()
