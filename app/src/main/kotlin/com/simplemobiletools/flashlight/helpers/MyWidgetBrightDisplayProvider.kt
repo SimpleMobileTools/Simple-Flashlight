@@ -38,7 +38,7 @@ class MyWidgetBrightDisplayProvider : AppWidgetProvider() {
 
     private fun setupAppOpenIntent(context: Context, views: RemoteViews) {
         Intent(context, BrightDisplayActivity::class.java).apply {
-            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = PendingIntent.getActivity(context, OPEN_APP_INTENT_ID, this, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.bright_display_btn, pendingIntent)
         }
     }

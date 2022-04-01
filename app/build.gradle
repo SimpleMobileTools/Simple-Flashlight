@@ -9,12 +9,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.simplemobiletools.flashlight"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 51
         versionName "5.5.3"
         setProperty("archivesBaseName", "flashlight")
@@ -61,7 +61,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.SimpleMobileTools:Simple-Commons:03e4d214b1'
+    implementation 'com.github.SimpleMobileTools:Simple-Commons:7e87bb9089'
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 }

@@ -30,7 +30,7 @@ class MyWidgetTorchProvider : AppWidgetProvider() {
         appWidgetManager.getAppWidgetIds(getComponentName(context)).forEach {
             val views = RemoteViews(context.packageName, R.layout.widget_torch)
 
-            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent = PendingIntent.getBroadcast(context, it, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.flashlight_btn, pendingIntent)
             views.setImageViewBitmap(R.id.flashlight_btn, bmp)
             appWidgetManager.updateAppWidget(it, views)

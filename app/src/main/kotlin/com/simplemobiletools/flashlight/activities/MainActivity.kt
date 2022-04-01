@@ -210,11 +210,11 @@ class MainActivity : SimpleActivity() {
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
-            sos_btn.setTextColor(if (isSOSRunning) getAdjustedPrimaryColor() else getContrastColor())
+            sos_btn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
         } else {
             if (mCameraImpl!!.toggleStroboscope()) {
                 stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-                changeIconColor(if (stroboscope_bar.isVisible()) getAdjustedPrimaryColor() else getContrastColor(), stroboscope_btn)
+                changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
             }
         }
     }
@@ -251,7 +251,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun enableFlashlight() {
-        changeIconColor(getAdjustedPrimaryColor(), flashlight_btn)
+        changeIconColor(getProperPrimaryColor(), flashlight_btn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
 
