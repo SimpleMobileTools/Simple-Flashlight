@@ -1,46 +1,21 @@
-﻿<resources>
-    <string name="app_name">シンプル フラッシュライト</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">シンプルフラッシュライト</string>
     <string name="app_launcher_name">フラッシュライト</string>
     <string name="camera_error">カメラの取得に失敗しました</string>
     <string name="camera_permission">適切なストロボ効果のために、カメラのアクセス許可が必要です</string>
     <string name="bright_display">明るい画面</string>
-
     <!-- Settings -->
     <string name="show_bright_display">明るく表示ボタンを表示</string>
     <string name="show_stroboscope">ストロボボタンを表示</string>
     <string name="show_sos">SOSボタンを表示</string>
     <string name="turn_flashlight_on">起動時にフラッシュライトを点灯</string>
-
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">シンプルな懐中電灯-明るいディスプレイとストロボ</string>
+    <string name="app_title">シンプルな懐中電灯—明るいディスプレイとストロボスコープ</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">無料の美しい懐中電灯、広告なし、 トーチ、SOS、ストロボ、明るいディスプレイ</string>
-    <string name="app_long_description">
-        明るい照明を持つフラッシュライトは、ストロボスコープや既定のSOSモードなどにカスタマイズできます。
-
-        全ての機能が様々な状況下で大いに役立ちます。
-
-        ブライトディスプレイの色を変更すれば、新しい使い方を見つけることもできるでしょう。ユーザーが眩しくなることなく、広範囲を照らし見渡すことが出来ます。
-
-        ストロボスコープは頻繁に点灯させることも、時間をおいて点灯させることも可能です。
-
-        フラッシュライトをこの無料アプリを通して（ウィジェットではなく）使用すれば、ユーザーが眠りに落ちるのを防いでくれます。既定ではありませんが、このアプリを起動した時に強い光を放つ設定をすることができます。
-
-        1×1サイズのウィジェットは色と透明度が変更可能です。
-
-        広告や不要な権限はありません。 完全にオープンソースで、カラーもカスタマイズ可能。
-
-        <b>シンプルツールの完全なリストはこちらからご確認ください：</b>
-         https://www.simplemobiletools.com
-
-        <b> Facebook：</b>
-         https://www.facebook.com/simplemobiletools
-
-        <b> Reddit：</b>
-         https://www.reddit.com/r/SimpleMobileTools
-    </string>
-
+    <string name="app_short_description">SOS、ストロボスコープ、明るいディスプレイを備えた、広告のないシンプルでモダンな懐中電灯です。</string>
+    <string name="app_long_description"> 明るいディスプレイ、カスタマイズ可能なストロボスコープ、あらかじめ設定されたSOSモードを備えたクリーンな懐中電灯です。これらの機能は特定の状況下で大いに役立ちます。明るい画面の色を変更することで、新たな使い方を見つけることもできるでしょう。眩しくなることなく辺りを見渡したいときに便利です。ストロボスコープは、頻繁に点滅させることも、時間を置いて点滅させることもできます。アプリで (ウィジェットではない) この無料の懐中電灯をオンにすると、デバイスがスリープ状態になるのを防げます。既定ではありませんが、アプリを起動時に強い光を放つように設定できます。色と透明度をカスタマイズできる1 x 1ウィジェットが付属しています。デフォルトでマテリアルデザインとダークテーマが搭載されており、使いやすい優れたユーザー体験を提供します。インターネットアクセスがないため、他のアプリよりもプライバシー、セキュリティ、安定性が高くなっています。広告や不要なアクセス許可は含まれていません。完全にオープンソースで、色のカスタマイズも可能です。<b>Simple Toolsの全製品はこちらをご確認ください。</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

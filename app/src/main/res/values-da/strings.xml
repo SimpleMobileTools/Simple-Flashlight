@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simpel lommelygte</string>
+    <string name="app_launcher_name">Lommelygte</string>
+    <string name="camera_error">Forbindelse til kameraet mislykkedes</string>
+    <string name="camera_permission">Kameratilladelse er nødvendig for korrekt stroboskopeffekt</string>
+    <string name="bright_display">Lyst display</string>
+    <!-- Settings -->
+    <string name="show_bright_display">Vis en lys skærmknap</string>
+    <string name="show_stroboscope">Vis en stroboskop-knap</string>
+    <string name="show_sos">Vis en SOS-knap</string>
+    <string name="turn_flashlight_on">Slå lommelygte til ved start</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
+    <string name="app_title">Simpel lommelygte — Lyst display og stroboskop</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">En simpel, moderne lommelygte med SOS, stroboskop og et lyst display uden reklamer.</string>
+    <string name="app_long_description"> En simpel lommelygte med en ekstra lys skærm, strøgeskop, der kan tilpasses, og en foruddefineret SOS-tilstand. Alle disse funktioner kan være enormt nyttige under visse omstændigheder. Bright-skærmen kan få sin farve ændret, hvilket åbner en ny verden af mulige anvendelser. Det kan være praktisk, hvis du vil se din bredere nærhed uden at blænde dig selv. Stroboskopet kan få sin frekvens ændret, lige fra virkelig hurtigt blinkende til lejlighedsvis dem. Hvis denne gratis lommelygte er tændt via appen (ikke widget), forhindrer den enheden i at falde i søvn. Den stærke fakkel kan eventuelt tænde ved lanceringen af appen, men det er ikke obligatorisk. Leveres med en 1x1 widget med tilpasselig farve og gennemsigtighed. Det leveres med materialedesign og mørkt tema som standard giver stor brugeroplevelse for nem brug. Manglen på internetadgang giver dig mere privatliv, sikkerhed og stabilitet end andre apps. Indeholder ingen annoncer eller unødvendige tilladelser. Det er fuldt opensource, giver tilpassede farver. <b> Se hele pakken med enkle værktøjer her:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
