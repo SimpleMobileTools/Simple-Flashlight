@@ -105,7 +105,8 @@
         <receiver
             android:name=".helpers.MyWidgetTorchProvider"
             android:exported="true"
-            android:icon="@drawable/ic_flashlight">
+            android:icon="@drawable/ic_flashlight"
+            android:label="@string/app_launcher_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -118,7 +119,8 @@
         <receiver
             android:name=".helpers.MyWidgetBrightDisplayProvider"
             android:exported="true"
-            android:icon="@drawable/ic_bright_display">
+            android:icon="@drawable/ic_bright_display"
+            android:label="@string/bright_display">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
