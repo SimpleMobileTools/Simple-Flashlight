@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.widget.SeekBar
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.DEFAULT_WIDGET_BG_COLOR
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
@@ -44,11 +43,7 @@ class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
-        mWidgetAlpha = if (mWidgetColor == DEFAULT_WIDGET_BG_COLOR) {
-            1f
-        } else {
-            Color.alpha(mWidgetColor) / 255.toFloat()
-        }
+        mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
         config_widget_seekbar.setOnSeekBarChangeListener(seekbarChangeListener)
