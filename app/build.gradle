@@ -15,8 +15,8 @@ android {
         applicationId "com.simplemobiletools.flashlight"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 52
-        versionName "5.6.0"
+        versionCode 53
+        versionName "5.6.1"
         setProperty("archivesBaseName", "flashlight")
     }
 
