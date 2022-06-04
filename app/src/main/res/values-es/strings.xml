@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simple Flashlight</string>
+    <string name="app_name">Linterna Simple</string>
     <string name="app_launcher_name">Linterna</string>
     <string name="camera_error">Ha fallado el acceso a la cámara</string>
     <string name="camera_permission">El permiso de acceso a la cámara es necesario para un apropiado efecto estroboscópico</string>
