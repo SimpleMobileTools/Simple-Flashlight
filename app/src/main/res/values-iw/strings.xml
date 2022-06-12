@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_short_description">A simple modern flashlight with SOS, stroboscope and bright display, without ads.</string>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Flashlight</string>
-    <string name="camera_error">Obtaining the camera failed</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
-    <string name="bright_display">Bright display</string>
-    <string name="show_bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
-    <string name="app_title">Simple Flashlight — Bright display and stroboscope</string>
-    <string name="app_long_description"> A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode. All these functions can be hugely helpful under certain circumstances. The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory. Comes with a 1x1 widget with customizable color and transparency. It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps. Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors. <b>Check out the full suite of Simple Tools here:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <string name="app_short_description">פנס פשוט - תצוגה בהירה וסטרובוסקופ</string>
+    <string name="app_name">פנס פשוט</string>
+    <string name="app_launcher_name">פנס</string>
+    <string name="camera_error">השגת המצלמה נכשלה</string>
+    <string name="camera_permission">הרשאת מצלמה נחוצה לאפקט סטרובוסקופ תקין</string>
+    <string name="bright_display">תצוגה בהירה</string>
+    <string name="show_bright_display">הצג כפתור תצוגה בהיר</string>
+    <string name="show_stroboscope">הצג כפתור סטרובוסקופ</string>
+    <string name="show_sos">הצג כפתור SOS</string>
+    <string name="turn_flashlight_on">הדלק את הפנס בעת ההפעלה</string>
+    <string name="app_title">פנס פשוט - תצוגה בהירה וסטרובוסקופ</string>
+    <string name="app_long_description"> פנס נקי עם תצוגה בהירה במיוחד, סטרובוסקופ הניתן להתאמה אישית ומצב SOS מוגדר מראש. כל הפונקציות הללו יכולות להועיל מאוד בנסיבות מסוימות. ניתן לשנות את הצבע של התצוגה הבהירה, ולפתוח עולם חדש של שימושים אפשריים. זה יכול להיות שימושי במקרה שאתה רוצה לראות את הקרבה הרחבה יותר שלך מבלי לסנוור את עצמך. ניתן לשנות את התדר של הסטרובוסקופ, החל מהבהוב מהיר ממש ועד למצמוץ מדי פעם. אם הפנס החינמי הזה יופעל דרך האפליקציה (לא ווידג\'ט), זה ימנע מהמכשיר להירדם. הלפיד החזק יכול להידלק באופן אופציונלי בעת הפעלת האפליקציה, אבל זה לא חובה. מגיע עם ווידג\'ט 1x1 עם צבע ושקיפות הניתנים להתאמה אישית. זה מגיע עם עיצוב חומר וערכת נושא כהה כברירת מחדל, מספק חווית משתמש נהדרת לשימוש קל. היעדר גישה לאינטרנט נותן לך יותר פרטיות, אבטחה ויציבות מאשר אפליקציות אחרות. אינו מכיל פרסומות או הרשאות מיותרות. זה קוד פתוח לחלוטין, מספק צבעים הניתנים להתאמה אישית. <b>בדוק את החבילה המלאה של כלים פשוטים כאן:</b> https://www.simplemobiletools.com <b>פייסבוק:</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
 </resources>
