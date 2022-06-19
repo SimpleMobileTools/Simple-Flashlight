@@ -1,1 +1,1 @@
-A simple flashlight without ads.
+Led light controller with brightness control and customizable color, stroboscope
