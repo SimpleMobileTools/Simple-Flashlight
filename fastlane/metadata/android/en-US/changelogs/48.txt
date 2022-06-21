@@ -1,1 +1,0 @@
-Redesigned some parts of the app, added an Auto theme

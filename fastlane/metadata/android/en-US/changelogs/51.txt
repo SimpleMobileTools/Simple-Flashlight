@@ -1,2 +1,0 @@
- * Catch and show errors thrown in some cases, do not ignore them
- * Added many translation improvements

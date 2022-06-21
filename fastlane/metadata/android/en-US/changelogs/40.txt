@@ -1,3 +1,0 @@
- * Updated the app icon on lower Android versions
- * Added a Bright Display shortcut
- * Removed the Camera permission on Android 7+

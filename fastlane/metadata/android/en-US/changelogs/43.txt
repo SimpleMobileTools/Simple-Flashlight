@@ -1,2 +1,0 @@
- * Added a widget for Bright Display
- * Couple stability and translation improvements

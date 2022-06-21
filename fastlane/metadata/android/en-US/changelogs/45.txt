@@ -1,2 +1,0 @@
- * Added a special white theme
- * Added some translation improvements
