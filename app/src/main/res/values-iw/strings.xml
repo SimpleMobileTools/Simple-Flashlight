@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_short_description">פנס פשוט - תצוגה בהירה וסטרובוסקופ</string>
     <string name="app_name">פנס פשוט</string>
     <string name="app_launcher_name">פנס</string>
     <string name="camera_error">השגת המצלמה נכשלה</string>
     <string name="camera_permission">הרשאת מצלמה נחוצה לאפקט סטרובוסקופ תקין</string>
     <string name="bright_display">תצוגה בהירה</string>
+    <!-- Settings -->
     <string name="show_bright_display">הצג כפתור תצוגה בהיר</string>
     <string name="show_stroboscope">הצג כפתור סטרובוסקופ</string>
     <string name="show_sos">הצג כפתור SOS</string>
     <string name="turn_flashlight_on">הדלק את הפנס בעת ההפעלה</string>
+    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
+    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
     <string name="app_title">פנס פשוט - תצוגה בהירה וסטרובוסקופ</string>
+    <!-- Short description has to have less than 80 chars -->
+    <string name="app_short_description">פנס פשוט - תצוגה בהירה וסטרובוסקופ</string>
     <string name="app_long_description"> פנס נקי עם תצוגה בהירה במיוחד, סטרובוסקופ הניתן להתאמה אישית ומצב SOS מוגדר מראש. כל הפונקציות הללו יכולות להועיל מאוד בנסיבות מסוימות. ניתן לשנות את הצבע של התצוגה הבהירה, ולפתוח עולם חדש של שימושים אפשריים. זה יכול להיות שימושי במקרה שאתה רוצה לראות את הקרבה הרחבה יותר שלך מבלי לסנוור את עצמך. ניתן לשנות את התדר של הסטרובוסקופ, החל מהבהוב מהיר ממש ועד למצמוץ מדי פעם. אם הפנס החינמי הזה יופעל דרך האפליקציה (לא ווידג\'ט), זה ימנע מהמכשיר להירדם. הלפיד החזק יכול להידלק באופן אופציונלי בעת הפעלת האפליקציה, אבל זה לא חובה. מגיע עם ווידג\'ט 1x1 עם צבע ושקיפות הניתנים להתאמה אישית. זה מגיע עם עיצוב חומר וערכת נושא כהה כברירת מחדל, מספק חווית משתמש נהדרת לשימוש קל. היעדר גישה לאינטרנט נותן לך יותר פרטיות, אבטחה ויציבות מאשר אפליקציות אחרות. אינו מכיל פרסומות או הרשאות מיותרות. זה קוד פתוח לחלוטין, מספק צבעים הניתנים להתאמה אישית. <b>בדוק את החבילה המלאה של כלים פשוטים כאן:</b> https://www.simplemobiletools.com <b>פייסבוק:</b> https://www.facebook.com/simplemobiletools <b>Reddit :</b> https://www.reddit.com/r/SimpleMobileTools </string>
 </resources>
