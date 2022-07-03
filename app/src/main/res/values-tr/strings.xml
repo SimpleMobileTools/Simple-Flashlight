@@ -10,12 +10,6 @@
     <string name="show_stroboscope">Stroboskop düğmesini göster</string>
     <string name="show_sos">SOS düğmesini göster</string>
     <string name="turn_flashlight_on">Başlangıçta feneri aç</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Basit Fener — Parlak ekran ve stroboskop</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">SOS, stroboskop ve parlak ekrana sahip, reklamsız, basit ve modern bir el feneri.</string>
-    <string name="app_long_description"> Fazladan parlak ekrana, özelleştirilebilir stroboskopa ve önceden tanımlanmış bir SOS moduna sahip temiz bir el feneri. Tüm bu işlevler, belirli koşullar altında son derece faydalı olabilir. Parlak ekranın rengi değiştirilebilir, bu birçok olası kullanım durumuna kapı açar. Kendinizi kör etmeden etrafınızdaki daha geniş bir alanı görmek istemeniz durumunda kullanışlı olabilir. Stroboskopun frekansı, çok hızlı ile ara sıra yanıp sönme arasında değiştirilebilir. Bu ücretsiz fener, widget aracılığıyla değil de uygulama aracılığıyla açılırsa aygıtın uykuya geçmesini önler. Güçlü el feneri, uygulama başlangıcında isteğe bağlı olarak açılabilir, ancak bu zorunlu değildir. Özelleştirilebilir renk ve şeffaflığa sahip 1x1 widget ile birlikte gelir. Öntanımlı olarak materyal tasarım ve koyu tema ile birlikte gelir, kolay kullanım için harika bir kullanıcı deneyimi sağlar. İnternet erişiminin olmaması size diğer uygulamalardan daha fazla gizlilik, güvenlik ve istikrar sağlar. Reklam veya gereksiz izinler içermez. Tamamen açık kaynaktır, özelleştirilebilir renkler sunar. <b>Basit Araçlar paketinin tamamını buradan inceleyin:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

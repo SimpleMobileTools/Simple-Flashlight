@@ -10,12 +10,6 @@
     <string name="show_stroboscope">Mostra un pulsante per l\'effetto stroboscopico</string>
     <string name="show_sos">Mostra un pulsante SOS</string>
     <string name="turn_flashlight_on">Accendi la torcia all\'avvio</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Torcia semplice – Schermo luminoso e stroboscopio</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Una semplice torcia moderna con SOS, stroboscopio e schermo luminoso, senza pubblicità.</string>
-    <string name="app_long_description"> Una torcia pulita con un display extra luminoso, stroboscopio personalizzabile e una modalità SOS predefinita. Tutte queste funzioni possono essere enormemente utili in determinate circostanze. Il display luminoso può avere il suo colore cambiato, aprendo un nuovo mondo di possibili usi. Può essere utile nel caso in cui si voglia vedere la propria vicinanza più ampia senza accecarsi. Lo stroboscopio può cambiare la sua frequenza, da lampeggi molto veloci a quelli occasionali. Se questa torcia gratuita è accesa tramite l\'app (non il widget), impedirà al dispositivo di addormentarsi. La torcia forte può opzionalmente accendersi all\'avvio dell\'app, ma non è obbligatorio. Viene fornito con un widget 1x1 con colore e trasparenza personalizzabili. Viene fornito con material design e tema scuro per impostazione predefinita, fornisce una grande esperienza utente per un facile utilizzo. La mancanza di accesso a internet ti dà più privacy, sicurezza e stabilità rispetto ad altre app. Non contiene annunci o permessi inutili. È completamente opensource, fornisce colori personalizzabili. <b>Scopri la suite completa di Simple Tools qui:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

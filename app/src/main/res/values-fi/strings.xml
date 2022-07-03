@@ -10,12 +10,6 @@
     <string name="show_stroboscope">Näytä stroboskooppipainike</string>
     <string name="show_sos">Näytä SOS-painike</string>
     <string name="turn_flashlight_on">Kytke taskulamppu päälle käynnistyksen yhteydessä</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight - Kirkas näyttö ja stroboskooppi</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Yksinkertainen, mainokseton taskulamppu - SOS, stroboskooppi, kirkas näyttö.</string>
-    <string name="app_long_description"> Selkeä taskulamppu extrakirkkaalla näytöllä, mukautettavalla stroboskoopilla ja esiasetetulla SOS-tilalla - toiminnot voivat olla todella hyödyllisiä tietyissä tilanteissa. Kirkkaalle näytölle voi valita värin - tämä laajentaa käyttömahdollisuuksia. Siitä voi olla hyötyä kun haluat nähdä pidemmälle ilman itsesi sokaistamista. Stroboskoopin taajuutta voi vaihtaa erittäin nopeasta harvakseltaan välkkyvään. Jos tämä ilmainen taskulamppu on kytketty päälle sovelluksesta (ei aloitusnäytön piensovelluksesza), se estää laitteen nukahtamisen. Voimakkain valo voidaan valinnaisesti valita kytkeytymään päälle heti sovelluksen käynnistyttyä. Mukana tulevan 1x1-pienoissovelluksen väriä ja läpinäkyvyyttä voi säätää. Sovellus noudattelee material designia ja oletuksena tummaa teemaa. Sovellus tarjoaa hienon käyttäjäkokemuksen helpolla käytöllä. Yksityisyys ja vakaus on taattu, sovellus ei käytä internet-yhteyttä. Ei sisällä mainoksia eikä vaadi tarpeettomia käyttöoikeuksia. Sovellus on täysin vapaata lähdekoodia. Sovelluksen värit ovat mukautettavissa. <b>Katso koko Simple Tools-sovellusvalikoima täältä:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

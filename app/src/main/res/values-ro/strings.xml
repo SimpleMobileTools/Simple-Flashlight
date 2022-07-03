@@ -10,12 +10,6 @@
     <string name="show_stroboscope">Afișaţi un buton pentru stroboscop</string>
     <string name="show_sos">Afișați un buton SOS</string>
     <string name="turn_flashlight_on">Porniți lanterna la pornire</string>
-    <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
-    <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Lanternă simplă - Ecran luminos şi stroboscop</string>
-    <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">O lanternă simplă cu SOS, stroboscop &amp; afișaj luminos şi fără reclame.</string>
-    <string name="app_long_description"> O lanternă curată cu un afișaj foarte luminos, un stroboscop personalizabil și un mod SOS predefinit. Toate aceste funcții pot fi extrem de utile în anumite circumstanțe. Ecranul luminos își poate schimba culoarea. Acesta poate fi util în cazul în care doriți să vedeți în apropiere fără să vă orbiți. Frecvența stroboscopului poate fi modificată, variind de la clipiri foarte rapide la clipiri ocazionale. Dacă această lanternă gratuită este pornită prin intermediul aplicației (nu prin widget), aceasta va împiedica dispozitivul să adoarmă. Lanterna puternică poate fi pornită opțional la lansarea aplicației, dar nu este obligatoriu. Vine cu un widget 1x1 cu culoare și transparență personalizabile. Aplicaţia vine cu design material şi temă întunecată în mod implicit. Limitarea necesităţii accesului la internet vă oferă mai multă intimitate, securitate şi stabilitate decât alte aplicaţii. Nu conţine reclame sau permisiuni inutile. Codul sursă este complet open source şi oferă culori personalizabile. <b>Consultaţi întreaga suită de aplicaţii Simple Tools aici:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
