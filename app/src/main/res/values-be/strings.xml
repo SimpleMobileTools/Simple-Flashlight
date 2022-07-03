@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Flashlight</string>
+    <string name="app_launcher_name">Ліхтарык</string>
     <string name="camera_error">Obtaining the camera failed</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
-    <string name="bright_display">Bright display</string>
+    <string name="camera_permission">Дазвол на доступ да камеры неабходны для стварэння эфекту страбаскопа</string>
+    <string name="bright_display">Яркі экран</string>
     <!-- Settings -->
-    <string name="show_bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="show_bright_display">Паказваць кнопку яркага экрана</string>
+    <string name="show_stroboscope">Паказваць кнопку страбаскопа</string>
+    <string name="show_sos">Паказваць кнопку СОС</string>
+    <string name="turn_flashlight_on">Уключаць ліхтарык пры запуску</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
