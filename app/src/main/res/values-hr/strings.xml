@@ -3,19 +3,19 @@
     <string name="app_name">Jednostavna svjetiljka</string>
     <string name="app_launcher_name">Svjetiljka</string>
     <string name="camera_error">Nije moguće pristupiti kameri</string>
-    <string name="camera_permission">Dopuštenje za pristup fotoaparatu potrebno je za pravilan stroboskopski efekt</string>
-    <string name="bright_display">Svijetli zaslon</string>
+    <string name="camera_permission">Potrebna je dozvola za pristup kameri za pravilan stroboskopski efekt</string>
+    <string name="bright_display">Svijetli ekran</string>
     <!-- Settings -->
-    <string name="show_bright_display">Prikaži gumb za svijetli zaslon</string>
+    <string name="show_bright_display">Prikaži gumb za svijetli ekran</string>
     <string name="show_stroboscope">Prikaži gumb za stroboskop</string>
     <string name="show_sos">Prikaži SOS gumb</string>
     <string name="turn_flashlight_on">Uključi svjetiljku pri pokretanju</string>
     <!-- Strings displayed only on Google Playstore. Optional, but good to have -->
     <!-- App title has to have less than 50 characters. If you cannot squeeze it, just remove a part of it -->
-    <string name="app_title">Simple Flashlight – svjetli zaslon i stroboskop</string>
+    <string name="app_title">Jednostavna svjetiljka – Svijetli ekran i stroboskop</string>
     <!-- Short description has to have less than 80 chars -->
-    <string name="app_short_description">Moderni fleš sa SOS-om, stroboskopom i svijetlim zaslonom, bez oglasa.</string>
-    <string name="app_long_description"> A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode. All these functions can be hugely helpful under certain circumstances. The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory. Comes with a 1x1 widget with customizable color and transparency. It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps. Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje. <b>Check out the full suite of Simple Tools here:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
+    <string name="app_short_description">Jednostavna svjetiljka sa SOS-om, stroboskopom i svijetlim ekranom, bez oglasa.</string>
+    <string name="app_long_description"> A clean flashlight with an extra bright display, customizable stroboscope and a predefined SOS mode. All these functions can be hugely helpful under certain circumstances. The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. If this free flashlight is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn\'t mandatory. Comes with a 1x1 widget with customizable color and transparency. Aplikacija je izrađena u material-dizajnu i standardno koristi tamnu temu, pruža izvrsno korisničko iskustvo za jednostavnu upotrebu. Nedostatak pristupa internetu pruža bolju privatnost, sigurnost i stabilnost od drugih aplikacija. Ne sadrži oglase niti nepotrebne dozvole. Potpuno je otvorenog koda, pruža prilagodljive boje. <b>Pogledaj cijeli paket „Jednostavni alati” ovdje:</b> https://www.simplemobiletools.com <b>Facebook:</b> https://www.facebook.com/simplemobiletools <b>Reddit:</b> https://www.reddit.com/r/SimpleMobileTools </string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
