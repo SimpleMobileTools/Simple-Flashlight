@@ -76,7 +76,11 @@ class MainActivity : SimpleActivity() {
         changeIconColor(contrastColor, bright_display_btn)
         bright_display_btn.beVisibleIf(config.brightDisplay)
         sos_btn.beVisibleIf(config.sos)
-        sos_btn.setTextColor(contrastColor)
+
+        if (sos_btn.currentTextColor != getProperPrimaryColor()) {
+            sos_btn.setTextColor(contrastColor)
+        }
+
         stroboscope_btn.beVisibleIf(config.stroboscope)
 
         if (!config.stroboscope) {
@@ -214,11 +218,9 @@ class MainActivity : SimpleActivity() {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
             sos_btn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
-        } else {
-            if (mCameraImpl!!.toggleStroboscope()) {
-                stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-                changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
-            }
+        } else if (mCameraImpl!!.toggleStroboscope()) {
+            stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
+            changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
         }
     }
 

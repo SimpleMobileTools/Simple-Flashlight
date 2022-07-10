@@ -55,7 +55,8 @@ class MyCameraImpl(val context: Context) {
     fun toggleStroboscope(): Boolean {
         if (isSOSRunning) {
             stopSOS()
-            return false
+            toggleStroboscope()
+            return true
         }
 
         isStroboSOS = false
@@ -84,7 +85,8 @@ class MyCameraImpl(val context: Context) {
     fun toggleSOS(): Boolean {
         if (isStroboscopeRunning) {
             stopStroboscope()
-            return false
+            toggleSOS()
+            return true
         }
 
         isStroboSOS = true
