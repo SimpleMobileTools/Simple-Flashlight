@@ -25,6 +25,8 @@ class MyCameraImpl(val context: Context) {
         private var params: Camera.Parameters? = null
         private var isMarshmallow = false
         private var shouldEnableFlashlight = false
+        private var shouldEnableStroboscope = false
+        private var shouldEnableSOS = false
         private var isStroboSOS = false     // are we sending SOS, or casual stroboscope?
 
         private var marshmallowCamera: MarshmallowCamera? = null
@@ -55,7 +57,7 @@ class MyCameraImpl(val context: Context) {
     fun toggleStroboscope(): Boolean {
         if (isSOSRunning) {
             stopSOS()
-            toggleStroboscope()
+            shouldEnableStroboscope = true
             return true
         }
 
@@ -85,7 +87,7 @@ class MyCameraImpl(val context: Context) {
     fun toggleSOS(): Boolean {
         if (isStroboscopeRunning) {
             stopStroboscope()
-            toggleSOS()
+            shouldEnableSOS = true
             return true
         }
 
@@ -324,9 +326,19 @@ class MyCameraImpl(val context: Context) {
             isStroboscopeRunning = false
         }
 
-        if (shouldEnableFlashlight) {
-            enableFlashlight()
-            shouldEnableFlashlight = false
+        when {
+            shouldEnableFlashlight -> {
+                enableFlashlight()
+                shouldEnableFlashlight = false
+            }
+            shouldEnableSOS -> {
+                toggleSOS()
+                shouldEnableSOS = false
+            }
+            shouldEnableStroboscope -> {
+                toggleStroboscope()
+                shouldEnableStroboscope = false
+            }
         }
     }
 }
