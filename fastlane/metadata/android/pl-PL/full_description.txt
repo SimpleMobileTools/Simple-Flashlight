@@ -1,20 +1,22 @@
-Czysta lampa błyskowa z bardzo jasnym wyświetlaczem, konfigurowalnym stroboskopem z funkcją światła stroboskopowego i predefiniowanym trybem SOS. Ta latarka LED szybkiego startu jest lekka na Twoim urządzeniu i działa jak prawdziwe światło LED w ciemności. Korzystając z tego ukośnego światła, możesz z łatwością pracować w różnych okolicznościach, a ta szybka latarka LED może ci pomóc, gdy jesteś w tragicznej sytuacji.
+Czysta latarka z bardzo jasnym wyświetlaczem, konfigurowalnym stroboskopem i predefiniowanym trybem SOS.
 
-Wszystkie te funkcje mogą być niezwykle pomocne w pewnych okolicznościach. Niezależnie od tego, czy wędrujesz w ciemności i potrzebujesz światła LED, aby zobaczyć drogę, czy też musisz znaleźć coś w słabym oświetleniu, ta szybka lampa błyskowa pomoże Ci we wszystkich możliwych okolicznościach. Światło stroboskopowe w tej aplikacji może Ci pomóc, gdy potrzebujesz pomocy. Szybka lampka LED z lampą błyskową może pomóc wezwać pomoc, jeśli jej potrzebujesz.
+Ta szybko uruchamiająca się latarka ledowa jest lekka dla Twojego urządzenia i działa jak prawdziwe światło ledowe w ciemności. Za jej pomocą możesz z łatwością pracować w różnych warunkach, a dzięki szybkiemu włączaniu może Ci pomóc, gdy jesteś w trudnej sytuacji.
 
-Jasny wyświetlacz może zmienić kolor, otwierając nowy świat możliwych zastosowań. Może się przydać, jeśli chcesz zobaczyć swoją szerszą bliskość bez oślepiania siebie. Dzięki różnym kolorom możesz używać tego światła LED, gdy jesteś z przyjaciółmi i chcesz urządzić imprezę. Lub możesz użyć tej funkcji, aby wezwać kogoś po pomoc w zależności od osoby.
+Wszystkie te funkcje mogą być bardzo pomocne w pewnych okolicznościach, niezależnie od tego, czy wędrujesz w ciemności i potrzebujesz światła ledowego, aby zobaczyć drogę, czy też musisz znaleźć coś w słabo oświetlonym miejscu. Światło stroboskopowe w tej aplikacji może się przydać, gdy potrzebujesz pomocy, i może nadać się do wezwania ratunku, jeśli istnieje taka konieczność.
 
-W stroboskopie można zmieniać częstotliwość, od bardzo szybkich mrugnięć do sporadycznych. Tę aplikację szybkiego startu można dostosować do własnych potrzeb. Możesz bez problemu zmienić wszystkie funkcje tej aplikacji zgodnie ze swoimi potrzebami.
+Jasny wyświetlacz może mieć zmieniany kolor, otwierając świat nowych możliwości. Może się przydać, jeśli chcesz szerzej zobaczyć to, co jest blisko, bez oślepiania siebie. Dzięki różnym kolorom możesz użyć tego światła ledowego, gdy jesteś z przyjaciółmi i chcesz urządzić imprezę, bądź aby wezwać kogoś po pomoc tak, jak chcesz.
 
-Jeśli ta bezpłatna lampa błyskowa zostanie włączona za pośrednictwem aplikacji (nie widżetu), zapobiegnie zasypianiu urządzenia. Mocną latarkę można opcjonalnie włączyć podczas uruchamiania aplikacji, ale nie jest to obowiązkowe.
+Stroboskop może mieć zmienianą częstotliwość w zakresie od naprawdę szybkiego migania do sporadycznego. Aplikację można dostosować do własnych potrzeb – bez problemu zmienisz wszystkie jej funkcje.
 
-W zestawie widżet 1x1 z możliwością dostosowania koloru i przezroczystości. Ten widżet może pomóc w szybkim uruchomieniu aplikacji z oświetleniem LED, kiedy tylko jej potrzebujesz.
+Jeśli ta darmowa latarka zostanie włączona przez aplikację (nie widżet), zapobiegnie to przejściu urządzenia w tryb uśpienia. Mocna latarka może opcjonalnie włączać się przy uruchomieniu aplikacji, ale nie jest to obowiązkowe.
 
-Domyślnie jest wyposażony w materiałowy wygląd i ciemny motyw, zapewnia doskonałą obsługę i łatwe użytkowanie. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje.
+Zawiera widżet 1x1 z konfigurowalnym kolorem i przezroczystością. Może on pomóc Ci w szybkim uruchomieniu latarki, gdy tylko jej potrzebujesz.
 
-Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni open source, zapewnia konfigurowalne kolory.
+Domyślnie jest wyposażona w Material Design i ciemny motyw, zapewniając doskonałe doświadczenie użytkownika dla łatwego użytkowania. Brak dostępu do Internetu zapewnia większą prywatność, bezpieczeństwo i stabilność niż inne aplikacje.
 
-Zapoznaj się z pełnym zestawem prostych narzędzi tutaj:
+Nie zawiera reklam ani niepotrzebnych uprawnień. Jest w pełni otwartoźródłowa, zapewnia konfigurowalną kolorystykę.
+
+Sprawdź pełen zestaw od Simple Tools tutaj:
 https://www.simplemobiletools.com
 
 Facebook:
