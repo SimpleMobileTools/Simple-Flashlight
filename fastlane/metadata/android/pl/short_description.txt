@@ -1,1 +1,0 @@
-Sterownik światła LED z regulacją jasności i konfigurowalnym kolorem, stroboskop

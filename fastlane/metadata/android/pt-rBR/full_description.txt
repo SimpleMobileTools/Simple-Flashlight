@@ -1,7 +1,0 @@
-Um app simples e funcional com opções de lanterna pelo flash da câmera e pelo aumento do brilho da tela, conta ainda com um estroboscópio customizável!
-
-Disponibiliza também um atalho com cor personalizável na tela inicial do Android.
-
-Não tem anúncios nem pede permissões desnecessárias. Disponibiliza um tema escuro e é totalmente open source.
-
-Esta aplicação é apenas uma dentro de um conjunto mais vasto de aplicações que seguem esta mesma linha. Saiba mais em https://www.simplemobiletools.com

@@ -1,1 +1,0 @@
-Regolatore LED con controllo luminosità e colore personalizzabile, stroboscopio

@@ -1,0 +1,17 @@
+En ren ficklampa med en extra ljus skärm och ett anpassningsbart stroboskop. Om den slås på via appen (inte widgeten), hindrar den enheten från att försättas i viloläge.
+
+Har en 1x1-widget med anpassningsbar färg.
+
+Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och anpassningsbara färger.
+
+Check out the full suite of Simple Tools here:
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

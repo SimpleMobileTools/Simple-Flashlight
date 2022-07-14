@@ -1,0 +1,17 @@
+一個有超亮螢幕和可自訂閃爍效果的乾淨手電筒。如果使用應用程式(不是小工具)打開手電筒，會防止裝置進入睡眠。
+
+帶有一個可自訂顏色的1x1小工具。
+
+不包含廣告及非必要的權限，而且完全開放原始碼，並提供自訂顏色。
+		
+Check out the full suite of Simple Tools here:
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
