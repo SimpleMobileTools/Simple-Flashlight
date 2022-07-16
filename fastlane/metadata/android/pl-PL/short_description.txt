@@ -1,1 +1,1 @@
-Jasna latarka z jasnym wyświetlaczem, stroboskopem, latarką i trybem SOS
+Sterownik światła LED z regulacją jasności i konfigurowalnym kolorem, stroboskop
