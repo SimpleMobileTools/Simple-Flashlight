@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
+import android.content.res.ColorStateList
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.ImageView
 import com.simplemobiletools.commons.extensions.*
@@ -42,6 +41,7 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         appLaunched(BuildConfig.APPLICATION_ID)
+        setupOptionsMenu()
 
         mBus = EventBus.getDefault()
         changeIconColor(getContrastColor(), stroboscope_btn)
@@ -69,6 +69,7 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        setupToolbar(main_toolbar)
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
@@ -124,19 +125,15 @@ class MainActivity : SimpleActivity() {
         releaseCamera()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        updateMenuItemColors(menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings -> launchSettings()
-            R.id.about -> launchAbout()
-            else -> return super.onOptionsItemSelected(item)
+    private fun setupOptionsMenu() {
+        main_toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.settings -> launchSettings()
+                R.id.about -> launchAbout()
+                else -> return@setOnMenuItemClickListener false
+            }
+            return@setOnMenuItemClickListener true
         }
-        return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

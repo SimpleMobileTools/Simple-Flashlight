@@ -1,86 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_scrollview"
+    android:id="@+id/main_coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_holder"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/flashlight_btn"
-            android:layout_width="@dimen/main_button_size"
-            android:layout_height="@dimen/main_button_size"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:background="@drawable/ic_flashlight"
-            app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color_primary"
+            app:menu="@menu/menu"
+            app:title="@string/app_launcher_name"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
 
-        <ImageView
-            android:id="@+id/bright_display_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:background="@drawable/ic_bright_display"
-            android:padding="@dimen/activity_margin"
-            app:layout_constraintBottom_toTopOf="@+id/sos_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/sos_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="@dimen/activity_margin"
-            android:text="SOS"
-            android:textSize="@dimen/sos_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bright_display_btn" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <ImageView
-            android:id="@+id/stroboscope_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:background="@drawable/ic_stroboscope"
-            android:padding="@dimen/activity_margin"
-            app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.simplemobiletools.commons.views.MySeekBar
-            android:id="@+id/stroboscope_bar"
-            android:layout_width="@dimen/seekbar_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_margin"
-            android:paddingTop="@dimen/medium_margin"
-            android:paddingBottom="@dimen/medium_margin"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
+            <ImageView
+                android:id="@+id/flashlight_btn"
+                android:layout_width="@dimen/main_button_size"
+                android:layout_height="@dimen/main_button_size"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="@drawable/ic_flashlight"
+                app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <ImageView
+                android:id="@+id/bright_display_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="@drawable/ic_bright_display"
+                android:padding="@dimen/activity_margin"
+                app:layout_constraintBottom_toTopOf="@+id/sos_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
+
+            <TextView
+                android:id="@+id/sos_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/activity_margin"
+                android:text="SOS"
+                android:textSize="@dimen/sos_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bright_display_btn" />
+
+            <ImageView
+                android:id="@+id/stroboscope_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:background="@drawable/ic_stroboscope"
+                android:padding="@dimen/activity_margin"
+                app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+
+            <com.simplemobiletools.commons.views.MySeekBar
+                android:id="@+id/stroboscope_bar"
+                android:layout_width="@dimen/seekbar_width"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_margin"
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingBottom="@dimen/medium_margin"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
