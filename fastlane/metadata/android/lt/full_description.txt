@@ -1,13 +1,25 @@
-Švarus žibintuvėlis su papildomu ryškiu ekranu ir tinkamu stroboskopu. Jei įjungta per programą (ne valdiklį), tai neleis įrenginiui užmigti.
+Švarus žibintuvėlis su ypač ryškiu ekranu, pritaikomu stroboskopu su stroboskopinės šviesos funkcija ir iš anksto nustatytu SOS režimu. 
 
-Suderinamas su 1x1 valdikliu su pritaikoma spalva.
+Šis greitai įsijungiantis LED žibintuvėlis yra lengvas jūsų prietaise ir veikia kaip tikra LED lemputė, kai yra tamsu. Naudodamiesi šia žibintuvėliu galite lengvai dirbti įvairiomis aplinkybėmis, o šis greito paleidimo led žibintuvėlis gali jums padėti, kai atsidursite sunkioje padėtyje.
 
-Neturi reklamų ar nereikalingų leidimų. Programėlė visiškai atviro kodo, yra galimybė keisti spalvas.
+Visos šios funkcijos gali būti nepaprastai naudingos tam tikromis aplinkybėmis. Nesvarbu, ar klaidžiojate tamsoje ir jums reikia led lemputės, kad pamatytumėte kelią, ar turite ką nors rasti prastai apšviestoje vietoje, šis greitai įsijungiantis žibintuvėlis gali jums padėti visomis įmanomomis aplinkybėmis. Šioje programoje esanti stroboskopinė šviesa gali padėti, kai jums reikia pagalbos. Greito paleidimo blykstės led lemputė gali padėti išsikviesti gelbėtojus, jei jums to prireiktų.
 
-Check out the full suite of Simple Tools here:
-https://www.simplemobiletools.com
+Ryškus ekranas gali keisti savo spalvą, atverdamas naują galimų panaudojimo būdų pasaulį. Jis gali praversti tuo atveju, jei norite matyti platesnę savo artumą neapakindami savęs. Turėdami skirtingų spalvų, galite naudoti šią LED lemputę, kai esate su draugais ir norite surengti vakarėlį. Arba galite naudoti šią funkciją norėdami išsikviesti pagalbą pagal asmenį. 
 
-Facebook:
+Stroboskopo dažnis gali būti keičiamas - nuo tikrai greito mirksėjimo iki atsitiktinio. Šią greito paleidimo programėlę galima pritaikyti pagal savo poreikius. Visas šios programėlės funkcijas galite keisti pagal savo poreikius be jokių problemų.
+
+Jei šis nemokamas žibintuvėlis įjungiamas per programėlę (ne valdiklį), jis neleis prietaisui užmigti. Stiprus žibintuvėlis gali būti pasirinktinai įjungiamas paleidžiant programėlę, tačiau tai nėra privaloma.
+
+Pridedamas 1x1 valdiklis su pritaikoma spalva ir skaidrumu. Šis valdiklis gali padėti greitai paleisti LED žibintuvėlio programėlę, kai tik jums to prireikia.
+
+Pagal numatytuosius nustatymus jis turi materialų dizainą ir tamsią temą, užtikrinančią puikią naudotojo patirtį, kad būtų lengva naudoti. Interneto prieigos nebuvimas suteikia daugiau privatumo, saugumo ir stabilumo nei kitos programos.
+
+Joje nėra reklamų ar nereikalingų leidimų. Ji yra visiškai atviro kodo ir suteikia galimybę keisti spalvas.
+
+Visą "Simple Tools" rinkinį rasite čia:
+https://www.simplemobiletools.com.
+
+"Facebook":
 https://www.facebook.com/simplemobiletools
 
 Reddit:
