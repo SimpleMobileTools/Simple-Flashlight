@@ -1,12 +1,22 @@
-En ren ficklampa med en extra ljus skärm och ett anpassningsbart stroboskop. Om den slås på via appen (inte widgeten), hindrar den enheten från att försättas i viloläge.
+En ren ficklampa med extra ljusstark display, anpassningsbart stroboskop med stroboskopfunktion och ett fördefinierat SOS-läge. 
 
-Har en 1x1-widget med anpassningsbar färg.
+Den här snabbstartade ledficklampan är lätt på din enhet och fungerar som en riktig ledlampa när det är mörkt. Med hjälp av den här snedslampan kan du enkelt arbeta under olika omständigheter och den här snabbstarts led ficklampan kan hjälpa dig när du befinner dig i en svår situation.
 
-Den levereras med Material Design och mörkt tema som standard, och ger en bra användarupplevelse för enkel användning. Avsaknaden av internetåtkomst ger dig mer integritet, säkerhet och stabilitet än andra appar.
+Alla dessa funktioner kan vara enormt hjälpsamma under vissa omständigheter. Oavsett om du vandrar i mörker och behöver ett led-ljus för att se vägen, eller om du måste hitta något på en plats med dåligt ljus, kan denna snabbstartslampa hjälpa dig under alla tänkbara omständigheter. Stroboskopljuset i den här appen kan hjälpa dig när du är i behov av hjälp. Den snabbstartade blixtledslampan kan hjälpa dig att kalla på räddning om du behöver det.
 
-Innehåller ingen reklam eller onödiga behörigheter. Den har helt öppen källkod och anpassningsbara färger.
+Den ljusa displayen kan få sin färg ändrad, vilket öppnar en ny värld av möjliga användningsområden. Det kan vara praktiskt om du vill se din större närhet utan att blända dig själv. Med olika färger kan du använda denna ledlampa när du är med vänner och vill ha en fest. Eller så kan du använda den här funktionen för att kalla någon på hjälp beroende på person. 
 
-Kolla in hela uppsättningen enkla verktyg här:
+Stroboskopet kan få sin frekvens ändrad, allt från riktigt snabba blinkningar till tillfälliga blinkningar. Den här snabbstartsappen kan anpassas efter dina behov. Du kan ändra alla funktioner i den här appen enligt dina behov utan problem.
+
+Om den här gratis ficklampan slås på via appen (inte widgeten) förhindrar den att enheten somnar. Den starka ficklampan kan valfritt slås på vid start av appen, men det är inte obligatoriskt.
+
+Levereras med en 1x1 widget med anpassningsbar färg och transparens. Den här widgeten kan hjälpa dig att snabbt starta din ledljusapp när du behöver den.
+
+Den levereras med en materialdesign och ett mörkt tema som standard, vilket ger en bra användarupplevelse för enkel användning. Avsaknaden av internetåtkomst ger dig mer integritet, säkerhet och stabilitet än andra appar.
+
+Innehåller inga annonser eller onödiga behörigheter. Den är helt öppen källkod och ger anpassningsbara färger.
+
+Kolla in hela sviten av Simple Tools här:
 https://www.simplemobiletools.com
 
 Facebook:
