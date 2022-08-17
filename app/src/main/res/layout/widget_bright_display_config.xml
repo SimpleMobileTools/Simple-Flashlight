@@ -76,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/tiny_margin"
             android:text="@string/ok" />
 
     </RelativeLayout>
