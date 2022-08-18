@@ -49,6 +49,7 @@ class SettingsActivity : SimpleActivity() {
         // make sure the corners at ripple fit the stroke rounded corners
         if (settings_purchase_thank_you_holder.isGone()) {
             settings_use_english_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
+            settings_language_holder.background = resources.getDrawable(R.drawable.ripple_top_corners, theme)
         }
 
         settings_purchase_thank_you_holder.setOnClickListener {
