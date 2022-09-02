@@ -1,20 +1,22 @@
-Una luz de flash limpia con una pantalla extra brillante, un estroboscopio personalizable con función de luz estroboscópica y un modo SOS predefinido. Esta linterna LED de inicio rápido es ligera en su dispositivo y funciona como una luz LED real cuando está oscuro. Con esta luz de barra, puede trabajar fácilmente en diferentes circunstancias y esta linterna LED de inicio rápido puede ayudarlo cuando se encuentra en una situación desesperada.
+Una linterna limpia con una pantalla extra brillante, estroboscopio personalizable con función de luz estroboscópica y un modo SOS predefinido.
 
-Todas estas funciones pueden resultar de gran ayuda en determinadas circunstancias. Ya sea que esté deambulando en la oscuridad y necesite una luz LED para ver el camino, o tenga que encontrar algo en un lugar con poca luz, esta luz de flash de inicio rápido puede ayudarlo en todas las circunstancias posibles. La luz estroboscópica de esta aplicación puede ayudarlo cuando necesite ayuda. La luz LED de flash de inicio rápido puede ayudar a llamar al rescate si lo necesita.
+Esta linterna LED de inicio rápido es ligera en su dispositivo y funciona como una luz LED real cuando está oscuro. Con esta luz de barra, puede trabajar fácilmente en diferentes circunstancias y esta linterna LED de inicio rápido puede ayudarlo cuando se encuentre en una situación desesperada.
 
-La pantalla Bright puede cambiar de color, abriendo un nuevo mundo de posibles usos. Puede ser útil en caso de que desee ver su proximidad más amplia sin cegarse. Con diferentes colores, puedes usar esta luz led cuando estás con amigos y quieres hacer una fiesta. O puede usar esta función para llamar a alguien y pedir ayuda según la persona.
+Todas estas funciones pueden ser de gran ayuda en determinadas circunstancias. Ya sea que esté deambulando en la oscuridad y necesite una luz LED para ver el camino, o si tiene que encontrar algo en un lugar con poca luz, esta luz de flash de inicio rápido puede ayudarlo en todas las circunstancias posibles. La luz estroboscópica de esta aplicación puede ayudarte cuando necesites ayuda. La luz LED de flash de inicio rápido puede ayudar a llamar al rescate si lo necesita.
 
-Se puede cambiar la frecuencia del estroboscopio, desde parpadeos muy rápidos hasta ocasionales. Esta aplicación de inicio rápido se puede personalizar según sus necesidades. Puedes cambiar todas las funciones de esta aplicación según tus necesidades sin ningún problema.
+La pantalla brillante puede tener su color cambiado, abriendo un nuevo mundo de posibles usos. Puede ser útil en caso de que quieras ver tu proximidad más amplia sin cegarte. Con diferentes colores, puedes utilizar esta luz led cuando estés con amigos y quieras celebrar una fiesta. O puede utilizar esta función para pedir ayuda a alguien según la persona.
 
-Si esta luz de flash gratuita se enciende a través de la aplicación (no el widget), evitará que el dispositivo se duerma. La linterna potente puede encenderse opcionalmente al iniciar la aplicación, pero no es obligatorio.
+El estroboscopio puede tener su frecuencia cambiada, desde un parpadeo muy rápido hasta uno ocasional. Esta aplicación de inicio rápido se puede personalizar según tus necesidades. Puedes cambiar todas las características de esta app según tus necesidades sin ningún problema.
 
-Viene con un widget de 1x1 con color y transparencia personalizables. Este widget puede ayudarlo a iniciar rápidamente su aplicación de luz LED cuando lo necesite.
+Si esta linterna gratuita se enciende a través de la app (no del widget), evitará que el dispositivo se quede dormido. La linterna fuerte puede encenderse opcionalmente al lanzar la app, pero no es obligatorio.
 
-Viene con diseño de material y tema oscuro de forma predeterminada, brinda una excelente experiencia de usuario para un uso fácil. La falta de acceso a Internet le brinda más privacidad, seguridad y estabilidad que otras aplicaciones.
+Viene con un widget de 1x1 con color y transparencia personalizables. Este widget puede ayudarte a iniciar rápidamente tu aplicación de luz led cuando lo necesites.
 
-No contiene anuncios ni permisos innecesarios. Es totalmente de código abierto, proporciona colores personalizables.
+Viene con diseño material y tema oscuro por defecto, proporciona una gran experiencia de usuario para un uso fácil. La falta de acceso a Internet le da más privacidad, seguridad y estabilidad que otras aplicaciones.
 
-Consulte el conjunto completo de herramientas simples aquí:
+No contiene anuncios ni permisos innecesarios. Es totalmente opensource, proporciona colores personalizables.
+
+Consulta el conjunto completo de Simple Tools aquí:
 https://www.simplemobiletools.com
 
 Facebook:
