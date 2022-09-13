@@ -1,25 +1,25 @@
-A clean flashlight with an extra bright display, customizable stroboscope with strobe light function and a predefined SOS mode. 
+Изчистено фенерче с изключително ярък дисплей, регулируем стробоскоп с функция за светлинна прожекция и предварително зададен SOS режим. 
 
-This quick start led flashlight is light on your device and works as a real led light when in dark. Using this slash light, you can easily work in different circumstances and this quick start led flashlight can help you when you are in a dire situation.
+Това бързо стартиращо светодиодно фенерче е щадящо за вашето устройство и работи като истинска LED светлина, когато е на тъмно. Използвайки това фенерче, можете лесно да работите при различни обстоятелства и бързо стартиращоtо led фенерче може да ви помогне, когато сте в тежка ситуация.
 
-All these functions can be hugely helpful under certain circumstances. Whether you are wandering in dark and need a led light to see the way, or you have to find something in a a low light place, this quick start flash light can help you in all the possible circumstances. The strobe light in this app can help you when you are in need of help. The quick start flash led light can help calling for rescue if you need it.
+Всички тези функции могат да бъдат изключително полезни при определени обстоятелства. Независимо дали се лутате в тъмното и се нуждаете от led светлина, за да виждате пред вас, или трябва да намерите нещо на слабо осветено място, тази бързо стартираща светкавица може да ви помогне при всички възможни обстоятелства. Премигващата светлина в това приложение може да ви помогне, когато имате нужда от помощ. Бързото стартиране на LED светкавицата може да ви помогне да извикате спасителна помощ, ако имате нужда от нея.
 
-The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. With different colors, you can use this led light when you are with friends and want to have a party. Or you can use this feature to call someone for help according to the person. 
+Яркият дисплей може да променя цвета си, което отваря нов свят на възможни приложения. Той може да ви бъде полезен в случай, че искате да видите своята по-широка околност, без да се заслепявате. С различните си цветове можете да използвате тази светодиодна светлина, когато сте с приятели и искате да организирате парти. Или можете да използвате тази функция, за да повикате някого на помощ според човека. 
 
-The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. This quick start app can be customized according to your needs. You can change all the features of of this app according to your needs without any problem.
+Честотата на премигането може да се променя, като варира от наистина бързи мигания до епизодични такива. Това приложение за бързо стартиране може да бъде персонализирано според вашите нужди. Можете да променяте всички функции на това приложение в съответствие с вашите нужди без никакъв проблем.
 
-If this free flash light is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn't mandatory.
+Ако тази безплатна светкавица е включена чрез приложението (а не чрез уиджета), тя ще предотврати заспиването на устройството. Силното фенерче може да се включи по желание при стартиране на приложението, но това не е задължително.
 
-Comes with a 1x1 widget with customizable color and transparency. This widget can help you in quick start your led light app whenever you need it.
+Предлага се с уиджет 1х1 с възможност за персонализиране на цвета и прозрачността. Този уиджет може да ви помогне при бързото стартиране на приложението за LED светлина, когато ви е необходимо.
 
-It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+По подразбиране идва с материален дизайн и тъмна тема, осигурява страхотно потребителско изживяване за лесно използване. Липсата на достъп до интернет ви осигурява повече поверителност, сигурност и стабилност в сравнение с други приложения.
 
-Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+Не съдържа реклами или ненужни разрешения. С напълно отворен код, предоставя възможност за персонализиране на цветовете.
 
-Check out the full suite of Simple Tools here:
+Разгледайте пълния набор от Простички инструменти тук:
 https://www.simplemobiletools.com
 
-Facebook:
+Фейсбук:
 https://www.facebook.com/simplemobiletools
 
 Reddit:
