@@ -3,11 +3,11 @@
     <string name="app_name">Обикновен фенер</string>
     <string name="app_launcher_name">Фенер</string>
     <string name="camera_error">Неуспешен достъп до камера</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
-    <string name="bright_display">Bright display</string>
+    <string name="camera_permission">Разрешение за използване на камерата е необходимо за постигане на подходящ стробоскопичен ефект</string>
+    <string name="bright_display">Ярък дисплей</string>
     <!-- Settings -->
-    <string name="show_bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
+    <string name="show_bright_display">Покажи ярък дисплей бутон</string>
+    <string name="show_stroboscope">Покажи стробинг бутон</string>
     <string name="show_sos">Показване на SOS бутон</string>
     <string name="turn_flashlight_on">Включване на фенер при стартиране</string>
     <!--
