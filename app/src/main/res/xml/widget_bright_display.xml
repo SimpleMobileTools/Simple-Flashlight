@@ -4,5 +4,5 @@
     android:initialLayout="@layout/widget_bright_display"
     android:minWidth="40dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/ic_bright_display"
+    android:previewImage="@drawable/img_bright_display_widget_preview"
     android:updatePeriodMillis="86400000" />
