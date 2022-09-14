@@ -1,0 +1,29 @@
+Egyszerű zseblámpa extra fényes kijelzővel, testreszabható stroboszkóp fény funkcióval és előre beállított SOS üzemmóddal. 
+
+Ez a gyorsindítású ledes zseblámpa világít a készülékeden és sötétben valódi ledes fényként működik. Ezzel a fény segítségével könnyedén dolgozhatsz különböző körülmények között és ez a gyorsindítású led zseblámpa segíthet, ha vészhelyzetben vagy.
+
+Mindezek a funkciók bizonyos körülmények között rendkívül hasznosak lehetnek. Akár sötétben bolyonsz és szükséged van egy led fényre, hogy lásd az utat, vagy meg kell találnod valamit egy gyenge megvilágítású helyen, ez a gyorsindítású szeblámpa minden lehetséges körülmények között segíthet. Az alkalmazásban található villanófény segíthet, ha segítségre van szükséged. A gyorsindítású villanó led fény segíthet a mentés hívásában, ha szükséged van rá.
+
+A fényes kijelző színe megváltoztatható, ami a lehetséges felhasználási módok új világát nyitja meg. Hasznos lehet abban az esetben, ha szeretnéd látni a tágabb környezetét anélkül, hogy elvakítanád magadat. A különböző színekkel ezt a ledes fényt használhatod, ha barátaiddal vagy és bulizni szeretnél. Vagy használhatod ezt a funkciót, hogy segítséget hívj. 
+
+A stroboszkóp frekvenciája változtatható, az igazán gyors villogástól az alkalmi villogásig. Ez a gyorsindító alkalmazás testre szabható. Az alkalmazás minden funkcióját gond nélkül megváltoztathatod az igényeidnek megfelelően.
+
+Ha ez az ingyenes villanófény az alkalmazáson keresztül van bekapcsolva (nem widget), akkor megakadályozza a készülék kikapcsolását. Az erős zseblámpa opcionálisan bekapcsolható az alkalmazás indításakor, de ez nem kötelező.
+
+Egy 1x1-es widgetet tartalmaz, testreszabható színnel és átlátszósággal. Ez a widget segíthet a ledfény alkalmazás gyors indításában, amikor csak szükséged lenne rá.
+
+Alapértelmezés szerint anyagi dizájnnal és sötét témával rendelkezik, nagyszerű felhasználói élményt nyújt a könnyű használathoz. Az internet-hozzáférés hiánya nagyobb magánéletet, biztonságot és stabilitást biztosít, mint más alkalmazások.
+
+Nem tartalmaz hirdetéseket vagy felesleges engedélyeket. Teljesen nyílt forráskódú, testreszabható színeket biztosít.
+
+Nézd meg a Simple Tools teljes csomagját itt:
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
