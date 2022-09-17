@@ -1,22 +1,22 @@
-A clean flashlight with an extra bright display, customizable stroboscope with strobe light function and a predefined SOS mode. 
+Puhas taskulamp, millel on eriti ere ekraan, kohandatav stroboskoop koos stroboskoobi funktsiooniga ja eelseadistatud SOS-režiim. 
 
-This quick start led flashlight is light on your device and works as a real led light when in dark. Using this slash light, you can easily work in different circumstances and this quick start led flashlight can help you when you are in a dire situation.
+See kiire käivitusega led-taskulamp on teie seadmel kerge ja töötab pimedas kui tõeline led-valgus. Kasutades seda slash light, saate hõlpsasti töötada erinevates olukordades ja see kiirestart led-taskulamp võib aidata teid, kui olete raskes olukorras.
 
-All these functions can be hugely helpful under certain circumstances. Whether you are wandering in dark and need a led light to see the way, or you have to find something in a a low light place, this quick start flash light can help you in all the possible circumstances. The strobe light in this app can help you when you are in need of help. The quick start flash led light can help calling for rescue if you need it.
+Kõik need funktsioonid võivad teatud tingimustel olla tohutult kasulikud. Ükskõik, kas ekslete pimedas ja vajate tee nägemiseks led-valgustit või peate leidma midagi hämaras kohas, võib see kiirkäivituse välklamp teid aidata kõigis võimalikes olukordades. Selle rakenduse strobe tuli aitab teid, kui vajate abi. Kiirkäivituse välklambi led-valgus võib aidata päästetööde kutsumisel, kui seda vajate. 
 
-The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. With different colors, you can use this led light when you are with friends and want to have a party. Or you can use this feature to call someone for help according to the person. 
+Heledat ekraani saab muuta värvi, mis avab uue maailma võimalike kasutusvõimaluste kohta. See võib tulla kasuks juhul, kui soovite näha oma laiemat lähedust ilma end pimestamata. Erinevate värvidega saate seda led-valgustit kasutada, kui olete koos sõpradega ja soovite pidada pidu. Või saate seda funktsiooni kasutada selleks, et kutsuda kedagi appi vastavalt isikule. 
 
-The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. This quick start app can be customized according to your needs. You can change all the features of of this app according to your needs without any problem.
+Stroboskoobi sagedust saab muuta, alates väga kiirest vilkumisest kuni aeg-ajalt vilkumiseni. Seda kiirrakendust saab kohandada vastavalt teie vajadustele. Selle rakenduse kõiki funktsioone saate muuta vastavalt oma vajadustele ilma probleemideta.
 
-If this free flash light is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn't mandatory.
+Kui see tasuta välklambi on rakenduse (mitte vidina) kaudu sisse lülitatud, takistab see seadme uinumist. Tugev taskulamp võib valikuliselt lülituda sisse rakenduse käivitamisel, kuid see ei ole kohustuslik.
 
-Comes with a 1x1 widget with customizable color and transparency. This widget can help you in quick start your led light app whenever you need it.
+Komplektis on 1x1 vidin kohandatava värvi ja läbipaistvusega. See vidin võib aidata teil kiiresti käivitada oma LED-valgusrakendust, kui seda vajate.
 
-It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+See on vaikimisi varustatud materiaalse disaini ja tumeda teemaga, pakub suurepärast kasutajakogemust lihtsaks kasutamiseks. Interneti-ühenduse puudumine annab teile rohkem privaatsust, turvalisust ja stabiilsust kui teised rakendused.
 
-Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+Ei sisalda reklaame ega tarbetuid lubasid. See on täielikult avatud lähtekoodiga, pakub kohandatavaid värve.
 
-Check out the full suite of Simple Tools here:
+Vaadake lihtsate tööriistade täielikku komplekti siin:
 https://www.simplemobiletools.com
 
 Facebook:
