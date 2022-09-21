@@ -1,0 +1,29 @@
+Puhdas taskulamppu, jossa on erittäin kirkas näyttö, mukautettava stroboskooppi, jossa on stroboskooppivalotoiminto ja ennalta määritetty SOS-tila. 
+
+Tämä pikakäynnistys led-taskulamppu on kevyt laitteessasi ja toimii oikeana led-valona pimeässä. Käyttämällä tätä slash-valoa voit helposti työskennellä erilaisissa olosuhteissa ja tämä pikakäynnistys led-taskulamppu voi auttaa sinua, kun olet vaikeassa tilanteessa.
+
+Kaikki nämä toiminnot voivat olla valtavan hyödyllisiä tietyissä olosuhteissa. Olitpa sitten vaeltamassa pimeässä ja tarvitset led-valoa nähdäksesi tien, tai sinun on löydettävä jotain hämärässä paikassa, tämä pikakäynnistys-salamavalo voi auttaa sinua kaikissa mahdollisissa olosuhteissa. Tämän sovelluksen stroboskooppivalo voi auttaa sinua, kun tarvitset apua. Pikakäynnistysvilkku led-valo voi auttaa soittamaan pelastukseen, jos tarvitset sitä.
+
+Bright-näytön väriä voidaan muuttaa, mikä avaa uusia käyttömahdollisuuksia. Se voi olla kätevä, jos haluat nähdä laajemman etäisyyden sokaisematta itseäsi. Eri värien ansiosta voit käyttää tätä led-valoa, kun olet ystävien kanssa ja haluat pitää juhlat. Tai voit käyttää tätä ominaisuutta soittaa jollekin apua henkilön mukaan. 
+
+Stroboskoopin taajuutta voidaan muuttaa, vaihdellen todella nopeasta vilkkumisesta satunnaiseen vilkkumiseen. Tämä pikakäynnistyssovellus voidaan räätälöidä tarpeidesi mukaan. Voit muuttaa tämän sovelluksen kaikkia ominaisuuksia tarpeidesi mukaan ilman ongelmia.
+
+Jos tämä ilmainen salamavalo kytketään päälle sovelluksen (ei widgetin) kautta, se estää laitteen nukahtamisen. Vahva taskulamppu voi valinnaisesti kytkeytyä päälle sovellusta käynnistettäessä, mutta se ei ole pakollista.
+
+Mukana 1x1 widget, jossa on muokattavissa väri ja läpinäkyvyys. Tämä widget voi auttaa sinua nopeasti käynnistämään led-valosovelluksen aina kun tarvitset sitä.
+
+Siinä on oletusarvoisesti materiaalisuunnittelu ja tumma teema, joka tarjoaa erinomaisen käyttökokemuksen helppokäyttöisyyttä varten. Internet-yhteyden puuttuminen antaa sinulle enemmän yksityisyyttä, turvallisuutta ja vakautta kuin muut sovellukset.
+
+Ei sisällä mainoksia tai tarpeettomia lupia. Se on täysin avoimen lähdekoodin, tarjoaa muokattavat värit.
+
+Tutustu koko Yksinkertaiset työkalut -pakettiin täällä:
+https://www.simplemobiletools.com
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools
