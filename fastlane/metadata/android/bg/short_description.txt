@@ -1,1 +1,1 @@
-Torch flashlight with torch color and brightness control, led flashlight
+Фенерче с контрол на цвета и яркостта, светодиодно фенерче
