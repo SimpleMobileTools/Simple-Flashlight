@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Semplice torcia</string>
+    <string name="app_name">Torcia Semplice</string>
     <string name="app_launcher_name">Torcia</string>
     <string name="camera_error">Impossibile rilevare la fotocamera</string>
     <string name="camera_permission">Il permesso per la fotocamera è necessario per l\'effetto stroboscopico</string>
