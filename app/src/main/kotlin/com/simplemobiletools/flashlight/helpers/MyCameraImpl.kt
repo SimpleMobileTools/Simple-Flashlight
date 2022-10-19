@@ -19,7 +19,9 @@ class MyCameraImpl(val context: Context) {
 
     companion object {
         var isFlashlightOn = false
-        private val SOS = arrayListOf(250L, 250L, 250L, 250L, 250L, 250L, 500L, 250L, 500L, 250L, 500L, 250L, 250L, 250L, 250L, 250L, 250L, 1000L)
+
+        private var u = 200L // The length of one dit (Time unit)
+        private val SOS = arrayListOf(u, u, u, u, u, u * 3, u * 3, u, u * 3, u, u * 3, u * 3, u, u, u, u, u, u * 7)
 
         private var camera: Camera? = null
         private var params: Camera.Parameters? = null
