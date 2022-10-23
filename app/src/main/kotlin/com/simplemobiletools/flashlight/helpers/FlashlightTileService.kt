@@ -6,7 +6,7 @@ import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 
 @TargetApi(Build.VERSION_CODES.N)
-class MyTileService : TileService() {
+class FlashlightTileService : TileService() {
 
     override fun onClick() {
         MyCameraImpl.newInstance(this).toggleFlashlight()

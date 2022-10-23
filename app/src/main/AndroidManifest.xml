@@ -63,6 +63,7 @@
         <activity
             android:name=".activities.BrightDisplayActivity"
             android:exported="false"
+            android:launchMode="singleInstance"
             android:label="@string/bright_display"
             android:theme="@style/FullScreenTheme" />
 
@@ -131,10 +132,21 @@
         </receiver>
 
         <service
-            android:name=".helpers.MyTileService"
+            android:name=".helpers.FlashlightTileService"
             android:exported="true"
             android:icon="@drawable/img_torch_widget_preview"
             android:label="@string/app_launcher_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".helpers.BrightDisplayTileService"
+            android:exported="true"
+            android:icon="@drawable/img_bright_display_widget_preview"
+            android:label="@string/bright_display"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
