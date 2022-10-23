@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
-import android.content.res.ColorStateList
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.DEFAULT_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
 import kotlinx.android.synthetic.main.activity_main.*
@@ -53,6 +54,10 @@ class MainActivity : SimpleActivity() {
 
         flashlight_btn.setOnClickListener {
             mCameraImpl!!.toggleFlashlight()
+            if (mCameraImpl?.supportsBrightnessControl() == true) {
+                brightness_bar.beInvisibleIf(brightness_bar.isVisible)
+                stroboscope_bar.beInvisible()
+            }
         }
 
         sos_btn.setOnClickListener {
@@ -183,6 +188,7 @@ class MainActivity : SimpleActivity() {
         if (config.turnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
         }
+        setupBrightness()
     }
 
     private fun setupStroboscope() {
@@ -211,12 +217,23 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    private fun setupBrightness() {
+        brightness_bar.max = mCameraImpl?.getMaximumBrightnessLevel() ?: DEFAULT_BRIGHTNESS_LEVEL
+        brightness_bar.progress = config.brightnessLevel
+        brightness_bar.onSeekBarChangeListener { level ->
+            val newLevel = level.coerceAtLeast(DEFAULT_BRIGHTNESS_LEVEL)
+            mCameraImpl?.updateBrightnessLevel(newLevel)
+            config.brightnessLevel = newLevel
+        }
+    }
+
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
             sos_btn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
         } else if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
+            brightness_bar.beInvisible()
             changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
         }
     }

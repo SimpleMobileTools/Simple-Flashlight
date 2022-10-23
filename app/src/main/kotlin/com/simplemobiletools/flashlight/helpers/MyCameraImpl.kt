@@ -29,7 +29,7 @@ class MyCameraImpl(val context: Context) {
         private var shouldEnableSOS = false
         private var isStroboSOS = false     // are we sending SOS, or casual stroboscope?
 
-        private var marshmallowCamera: MarshmallowCamera? = null
+        private var marshmallowCamera: PostMarshmallowCamera? = null
 
         @Volatile
         private var shouldStroboscopeStop = false
@@ -142,7 +142,7 @@ class MyCameraImpl(val context: Context) {
 
     private fun setupMarshmallowCamera() {
         if (marshmallowCamera == null) {
-            marshmallowCamera = MarshmallowCamera(context)
+            marshmallowCamera = PostMarshmallowCamera(context)
         }
     }
 
@@ -339,6 +339,24 @@ class MyCameraImpl(val context: Context) {
                 toggleStroboscope()
                 shouldEnableStroboscope = false
             }
+        }
+    }
+
+    fun getMaximumBrightnessLevel(): Int {
+        return if (isMarshmallow) {
+            marshmallowCamera?.getMaximumBrightnessLevel() ?: DEFAULT_BRIGHTNESS_LEVEL
+        } else DEFAULT_BRIGHTNESS_LEVEL
+    }
+
+    fun supportsBrightnessControl(): Boolean {
+        return if (isMarshmallow) {
+            marshmallowCamera?.supportsBrightnessControl() ?: false
+        } else false
+    }
+
+    fun updateBrightnessLevel(level: Int) {
+        if (isMarshmallow) {
+            marshmallowCamera?.changeTorchBrightness(level)
         }
     }
 }
