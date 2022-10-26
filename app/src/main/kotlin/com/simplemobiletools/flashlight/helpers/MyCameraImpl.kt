@@ -344,8 +344,14 @@ class MyCameraImpl(val context: Context) {
 
     fun getMaximumBrightnessLevel(): Int {
         return if (isMarshmallow) {
-            marshmallowCamera?.getMaximumBrightnessLevel() ?: DEFAULT_BRIGHTNESS_LEVEL
-        } else DEFAULT_BRIGHTNESS_LEVEL
+            marshmallowCamera?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        } else MIN_BRIGHTNESS_LEVEL
+    }
+
+    fun getCurrentBrightnessLevel(): Int {
+        return if (isMarshmallow) {
+            marshmallowCamera?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        } else MIN_BRIGHTNESS_LEVEL
     }
 
     fun supportsBrightnessControl(): Boolean {

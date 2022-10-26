@@ -19,7 +19,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.helpers.DEFAULT_BRIGHTNESS_LEVEL
+import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
 import kotlinx.android.synthetic.main.activity_main.*
@@ -218,10 +218,10 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupBrightness() {
-        brightness_bar.max = mCameraImpl?.getMaximumBrightnessLevel() ?: DEFAULT_BRIGHTNESS_LEVEL
-        brightness_bar.progress = config.brightnessLevel
+        brightness_bar.max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        brightness_bar.progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
         brightness_bar.onSeekBarChangeListener { level ->
-            val newLevel = level.coerceAtLeast(DEFAULT_BRIGHTNESS_LEVEL)
+            val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
             mCameraImpl?.updateBrightnessLevel(newLevel)
             config.brightnessLevel = newLevel
         }

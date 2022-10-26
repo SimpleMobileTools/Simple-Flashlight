@@ -30,7 +30,8 @@ internal class PostMarshmallowCamera constructor(val context: Context) {
         try {
             manager.setTorchMode(cameraId!!, enable)
             if (enable) {
-                changeTorchBrightness(context.config.brightnessLevel)
+                val brightnessLevel = getCurrentBrightnessLevel()
+                changeTorchBrightness(brightnessLevel)
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
@@ -50,14 +51,22 @@ internal class PostMarshmallowCamera constructor(val context: Context) {
     fun getMaximumBrightnessLevel(): Int {
         return if (isTiramisuPlus()) {
             val characteristics = manager.getCameraCharacteristics(cameraId!!)
-            characteristics.get(CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL) ?: DEFAULT_BRIGHTNESS_LEVEL
+            characteristics.get(CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL) ?: MIN_BRIGHTNESS_LEVEL
         } else {
-            DEFAULT_BRIGHTNESS_LEVEL
+            MIN_BRIGHTNESS_LEVEL
         }
     }
 
     fun supportsBrightnessControl(): Boolean {
         val maxBrightnessLevel = getMaximumBrightnessLevel()
-        return maxBrightnessLevel > DEFAULT_BRIGHTNESS_LEVEL
+        return maxBrightnessLevel > MIN_BRIGHTNESS_LEVEL
+    }
+
+    fun getCurrentBrightnessLevel(): Int {
+        var brightnessLevel = context.config.brightnessLevel
+        if (brightnessLevel == DEFAULT_BRIGHTNESS_LEVEL) {
+            brightnessLevel = getMaximumBrightnessLevel()
+        }
+        return brightnessLevel
     }
 }
