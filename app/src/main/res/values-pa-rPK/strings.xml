@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Flashlight</string>
-    <string name="camera_error">Obtaining the camera failed</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
-    <string name="show_bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
-    <string name="bright_display">Bright display</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="app_name">سادہ ٹورچ</string>
+    <string name="app_launcher_name">ٹورچ</string>
+    <string name="camera_error">کیمرہ پہنچ نہیں سکدا</string>
+    <string name="camera_permission">سٹروبوسکوپ لئی کیمرہ دی اِجازت ضروری اے</string>
+    <string name="show_bright_display">چمکدار ڈیسپلے بٹن دکھاؤ</string>
+    <string name="show_stroboscope">سٹروبوسکوپ بٹن دکھاؤ</string>
+    <string name="bright_display">چمکدار ڈیسپلے</string>
+    <string name="show_sos">ایس‌اوایس بٹن دکھاؤ</string>
+    <string name="turn_flashlight_on">جدوں شروع کرن ٹورچ نوں چالو کرو</string>
 </resources>
