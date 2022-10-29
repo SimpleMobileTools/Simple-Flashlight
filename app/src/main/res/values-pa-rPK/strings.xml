@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">سادہ ٹورچ</string>
+    <string name="app_launcher_name">ٹورچ</string>
+    <string name="camera_error">کیمرہ پہنچ نہیں سکدا</string>
+    <string name="camera_permission">سٹروبوسکوپ لئی کیمرہ دی اِجازت ضروری اے</string>
+    <string name="bright_display">چمکدار ڈیسپلے</string>
+    <!-- Settings -->
+    <string name="show_bright_display">چمکدار ڈیسپلے بٹن دکھاؤ</string>
+    <string name="show_stroboscope">سٹروبوسکوپ بٹن دکھاؤ</string>
+    <string name="show_sos">ایس‌اوایس بٹن دکھاؤ</string>
+    <string name="turn_flashlight_on">جدوں شروع کرن ٹورچ نوں چالو کرو</string>
+</resources>

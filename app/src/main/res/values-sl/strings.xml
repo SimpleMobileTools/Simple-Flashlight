@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Enostavna svetilka</string>
+    <string name="app_launcher_name">Svetilka</string>
+    <string name="camera_error">Pridobivanje kamere ni uspelo</string>
+    <string name="camera_permission">Za ustrezen učinek stroboskopa je pogoj dovoljenje kamere</string>
+    <string name="bright_display">Svetli zaslon</string>
+    <!-- Settings -->
+    <string name="show_bright_display">Pokažite gumb za svetel zaslon</string>
+    <string name="show_stroboscope">Prikaži gumb stroboskopa</string>
+    <string name="show_sos">Prikaz gumba SOS</string>
+    <string name="turn_flashlight_on">Vklop svetilke ob zagonu</string>
+</resources>

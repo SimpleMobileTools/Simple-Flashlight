@@ -4,12 +4,12 @@
     <string name="app_launcher_name">Lanterna</string>
     <string name="camera_error">Erro ao obter a cámara</string>
     <string name="camera_permission">O permiso da cámara é necesario para utilizar o efecto estroboscopio</string>
-    <string name="bright_display">Pantalal brillante</string>
+    <string name="bright_display">Pantalla brillante</string>
     <!-- Settings -->
-    <string name="show_bright_display">Mostrar botón para iluminar a pantalla</string>
-    <string name="show_stroboscope">Mostrar botón de estroboscopio</string>
+    <string name="show_bright_display">Mostrar un botón para iluminala pantalla</string>
+    <string name="show_stroboscope">Mostrar un botón estroboscopio</string>
     <string name="show_sos">Mostrar un botón de SOS</string>
-    <string name="turn_flashlight_on">Activar lanterna ao iniciar</string>
+    <string name="turn_flashlight_on">Acendela lanterna ao iniciar</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

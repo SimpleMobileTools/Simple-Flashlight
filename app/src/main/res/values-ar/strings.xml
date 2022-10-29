@@ -2,14 +2,14 @@
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Flashlight</string>
-    <string name="camera_error">Obtaining the camera failed</string>
-    <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
-    <string name="bright_display">Bright display</string>
+    <string name="camera_error">فشل الحصول على الكاميرا</string>
+    <string name="camera_permission">الحصول على إذن تصوير ضروري للتأثيرات</string>
+    <string name="bright_display">شاشة ساطعة</string>
     <!-- Settings -->
-    <string name="show_bright_display">Show a bright display button</string>
-    <string name="show_stroboscope">Show a stroboscope button</string>
-    <string name="show_sos">Show an SOS button</string>
-    <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="show_bright_display">إظهار زر عرض ساطع</string>
+    <string name="show_stroboscope">إظهار زر ستروبوسكوب</string>
+    <string name="show_sos">إظهار زر SOS</string>
+    <string name="turn_flashlight_on">قم بتشغيل المصباح عند بدء التشغيل</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

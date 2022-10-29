@@ -1,0 +1,29 @@
+Čista svetilka ssvetlim zaslonom, prilagodljivim stroboskopom s funkcijo svetlobe in vnaprej določenim načinom SOS. 
+
+Ta hitro zagonska led svetilka je lahka na vaši napravi in deluje kot led luč, ko je tema. Z uporabo lomljive svetilke brez težav delate v različnih okoliščinah, hitra zagonska led svetilka vam pomaga, ko ste v težkem položaju.
+
+Vse funkcije so v določenih okoliščinah koristne. Ne glede na to, ali tavate v temi in potrebujete led lučko, da vidite pot, ali morate nekaj najti na slabo osvetljenem mestu, vam ta bliskavica za zagon pomaga v vseh okoliščinah. Stroboskopska luč v aplikaciji lahko pomaga, ko potrebujete pomoč. Hitri zagon bliskovne led luči vam pomaga pri klicu na pomoč, če jo potrebujete.
+
+Svetlemu zaslonu spremenite barvo, s čimer se odpre nov svet možnih uporab. Priročen je lahko v primeru, ko želite videti svojo širšo bližino, ne da bi se oslepili. Z barvami led lučko uporabite, ko ste s prijatelji in se želite zabavati. Lahko pa to funkcijo uporabite tudi za to, da glede na osebo koga pokličete na pomoč. 
+
+Stroboskopu lahko spreminjate frekvenco, od zelo hitrega utripanja do občasnega. To aplikacijo za hiter zagon lahko prilagodite glede na svoje potrebe. Vse funkcije te aplikacije lahko brez težav spremenite glede na svoje potrebe.
+
+Če je brezplačna utripalka vklopljena prek aplikacije (in ne pripomočka), bo preprečila, da bi naprava zaspala. Močna svetilka se lahko po želji vklopi ob zagonu aplikacije, vendar to ni obvezno.
+
+Priložen je gradnik 1x1 z možnostjo prilagajanja barve in prosojnosti. Ta gradnik vam pomaga pri hitrem zagonu aplikacije LED lučka, kadar koli jo potrebujete.
+
+Priložena je z materialnim oblikovanjem in temno temo po privzetem, ki zagotavlja uporabniško izkušnjo za enostavno uporabo. Pomanjkanje dostopa do interneta zagotavlja več zasebnosti, varnosti in stabilnosti kot druge aplikacije.
+
+Ne vsebuje oglasov ali nepotrebnih dovoljenj. Je v celoti odprtokodna, zagotavlja prilagodljive barve.
+
+Celoten nabor preprostih orodij si oglejte tukaj:
+https://www.simplemobiletools.com.
+
+Facebook:
+https://www.facebook.com/simplemobiletools
+
+Reddit:
+https://www.reddit.com/r/SimpleMobileTools
+
+Telegram:
+https://t.me/SimpleMobileTools

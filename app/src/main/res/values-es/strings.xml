@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Linterna Simple</string>
+    <string name="app_name">Linterna sencilla</string>
     <string name="app_launcher_name">Linterna</string>
     <string name="camera_error">Ha fallado el acceso a la cámara</string>
     <string name="camera_permission">El permiso de acceso a la cámara es necesario para un apropiado efecto estroboscópico</string>
@@ -8,8 +8,8 @@
     <!-- Settings -->
     <string name="show_bright_display">Mostrar botón de pantalla brillante</string>
     <string name="show_stroboscope">Mostrar botón de estroboscopio</string>
-    <string name="show_sos">Mostrar botón de SOS</string>
-    <string name="turn_flashlight_on">Encender la linterna al iniciar</string>
+    <string name="show_sos">Mostrar un botón de SOS</string>
+    <string name="turn_flashlight_on">Encender la linterna al inicio</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
