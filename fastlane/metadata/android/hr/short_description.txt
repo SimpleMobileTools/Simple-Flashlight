@@ -1,1 +1,1 @@
-Jednostavna svjetiljka bez oglasa.
+Kontroler LED svjetla s kontrolom svjetline i boje, stroboskop

@@ -1,10 +1,22 @@
-Jednostavna baterijska svjetiljka s izuzetno svijetlim zaslonom i prilagodljivim stroboskopom. Ako se uključi putem aplikacije (ne widgeta), on će spriječiti da uređaj prijeđe u stanje mirovanja.
+Čista svjetiljka s svijetlim zaslonom, prilagodljivim stroboskopom s funkcijom stroboskopskog svjetla i unaprijed definiranim SOS načinom rada.
 
-Dolazi s 1x1 widgetom i prilagodljivom bojom.
+Ova LED svjetiljka za brzo pokretanje svijetli na vašem uređaju i radi kao pravo LED svjetlo kada je u mraku. Koristeći ovo svjetlo s kosom linijom, možete jednostavno raditi u različitim okolnostima, a ova LED svjetiljka za brzo pokretanje može vam pomoći kada se nađete u teškoj situaciji.
 
-Ne sadrži oglase ili nepotrebne dozvole. Aplikacije je otvorenog koda, pruža prilagodljive boje.
+Sve ove funkcije mogu pomoći pod okolnostima. Bilo da lutate u mraku i trebate LED svjetlo da vidite put, ili morate pronaći nešto na slabo osvijetljenom mjestu, ova bljeskalica za brzo pokretanje može vam pomoći u svim mogućim okolnostima. Stroboskop u ovoj aplikaciji može vam pomoći kada vam je potrebna pomoć. LED svjetlo s bljeskalicom za početak može pomoći pri pozivu spašavanja ako vam zatreba.
 
-Check out the full suite of Simple Tools here:
+Svijetli zaslon može promijeniti svoju boju, otvarajući novi svijet mogućih upotreba. Može vam dobro doći ako želite vidjeti širu blizinu bez da se zaslijepite. Uz različite boje, možete koristiti ovo led svjetlo kada ste s prijateljima i želite imati zabavu. Ili možete koristiti ovu značajku da pozovete nekoga u pomoć prema osobi.
+
+Stroboskopu se može mijenjati frekvencija, u rasponu od jako brzog treptanja do povremenog. Ova aplikacija za brzi početak prilagodi se prema vašim potrebama. Možete promijeniti sve značajke ove aplikacije prema potrebama bez problema.
+
+Ako se ova besplatna bljeskalica uključi putem aplikacije (ne dodatka), spriječit će uređaj da zaspi. Jaka svjetiljka se po želji ukljući pri pokretanju aplikacije, ali nije obavezna.
+
+Dolazi s widgetom 1x1 s prilagodljivom bojom i prozirnošću. Ovaj vam widget može pomoći u pokretanju aplikacije za LED svjetlo kad god vam zatreba.
+
+Dolazi s materijalnim dizajnom i tamnom temom prema zadanim postavkama, pruža izvrsno korisničko iskustvo za jednostavno korištenje. Nedostatak pristupa internetu daje vam više privatnosti, sigurnosti i stabilnosti od drugih aplikacija.
+
+Ne sadrži oglase ili dopuštenja. Otvorenog je koda, pruža boje.
+
+Ovdje pogledajte kompletan paket jednostavnih alata:
 https://www.simplemobiletools.com
 
 Facebook:
