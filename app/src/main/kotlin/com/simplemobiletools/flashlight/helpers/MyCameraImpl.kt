@@ -1,5 +1,6 @@
 package com.simplemobiletools.flashlight.helpers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.SurfaceTexture
 import android.hardware.Camera
@@ -14,7 +15,7 @@ import com.simplemobiletools.flashlight.extensions.updateWidgets
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 
-class MyCameraImpl(val context: Context) {
+class MyCameraImpl private constructor(val context: Context, private val cameraTorchListener: CameraTorchListener?) {
     var stroboFrequency = 1000L
 
     companion object {
@@ -40,7 +41,7 @@ class MyCameraImpl(val context: Context) {
         @Volatile
         private var isSOSRunning = false
 
-        fun newInstance(context: Context) = MyCameraImpl(context)
+        fun newInstance(context: Context, cameraTorchListener: CameraTorchListener? = null) = MyCameraImpl(context, cameraTorchListener)
     }
 
     init {
@@ -140,9 +141,10 @@ class MyCameraImpl(val context: Context) {
         }
     }
 
+    @SuppressLint("NewApi")
     private fun setupMarshmallowCamera() {
         if (marshmallowCamera == null) {
-            marshmallowCamera = PostMarshmallowCamera(context)
+            marshmallowCamera = PostMarshmallowCamera(context, cameraTorchListener)
         }
     }
 
@@ -209,6 +211,7 @@ class MyCameraImpl(val context: Context) {
 
         val mainRunnable = Runnable { stateChanged(true) }
         Handler(context.mainLooper).post(mainRunnable)
+        marshmallowCamera?.initialize()
     }
 
     private fun disableFlashlight() {
@@ -254,6 +257,7 @@ class MyCameraImpl(val context: Context) {
 
         isFlashlightOn = false
         shouldStroboscopeStop = true
+        marshmallowCamera?.cleanUp()
     }
 
     private val stroboscope = Runnable {

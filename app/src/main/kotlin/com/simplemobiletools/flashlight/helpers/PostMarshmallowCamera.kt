@@ -1,21 +1,31 @@
 package com.simplemobiletools.flashlight.helpers
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Handler
+import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 
-internal class PostMarshmallowCamera constructor(val context: Context) {
+@RequiresApi(Build.VERSION_CODES.M)
+internal class PostMarshmallowCamera(
+    private val context: Context,
+    private val cameraTorchListener: CameraTorchListener? = null,
+) {
 
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     private var cameraId: String? = null
+
+    private val torchCallback = object : CameraManager.TorchCallback() {
+        override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
+            cameraTorchListener?.onTorchEnabled(enabled)
+        }
+    }
 
     init {
         try {
@@ -25,7 +35,6 @@ internal class PostMarshmallowCamera constructor(val context: Context) {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     fun toggleMarshmallowFlashlight(enable: Boolean) {
         try {
             manager.setTorchMode(cameraId!!, enable)
@@ -68,5 +77,13 @@ internal class PostMarshmallowCamera constructor(val context: Context) {
             brightnessLevel = getMaximumBrightnessLevel()
         }
         return brightnessLevel
+    }
+
+    fun initialize() {
+        manager.registerTorchCallback(torchCallback, Handler(context.mainLooper))
+    }
+
+    fun cleanUp() {
+        manager.unregisterTorchCallback(torchCallback)
     }
 }

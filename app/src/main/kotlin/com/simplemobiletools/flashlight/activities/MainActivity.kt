@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.CameraTorchListener
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
@@ -54,10 +55,6 @@ class MainActivity : SimpleActivity() {
 
         flashlight_btn.setOnClickListener {
             mCameraImpl!!.toggleFlashlight()
-            if (mCameraImpl?.supportsBrightnessControl() == true) {
-                brightness_bar.beInvisibleIf(brightness_bar.isVisible)
-                stroboscope_bar.beInvisible()
-            }
         }
 
         sos_btn.setOnClickListener {
@@ -184,7 +181,13 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupCameraImpl() {
-        mCameraImpl = MyCameraImpl.newInstance(this)
+        mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
+            override fun onTorchEnabled(isEnabled: Boolean) {
+                if (mCameraImpl?.supportsBrightnessControl() == true) {
+                    brightness_bar.beVisibleIf(isEnabled)
+                }
+            }
+        })
         if (config.turnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
         }
@@ -233,7 +236,6 @@ class MainActivity : SimpleActivity() {
             sos_btn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
         } else if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-            brightness_bar.beInvisible()
             changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
         }
     }
