@@ -13,10 +13,10 @@ import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 
 @RequiresApi(Build.VERSION_CODES.M)
-internal class PostMarshmallowCamera(
+internal class MarshmallowPlusCameraFlash(
     private val context: Context,
-    private val cameraTorchListener: CameraTorchListener? = null,
-) {
+    private var cameraTorchListener: CameraTorchListener? = null,
+) : CameraFlash {
 
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     private var cameraId: String? = null
@@ -35,12 +35,13 @@ internal class PostMarshmallowCamera(
         }
     }
 
-    fun toggleMarshmallowFlashlight(enable: Boolean) {
+    override fun toggleFlashlight(enable: Boolean) {
         try {
-            manager.setTorchMode(cameraId!!, enable)
-            if (enable) {
+            if (supportsBrightnessControl() && enable) {
                 val brightnessLevel = getCurrentBrightnessLevel()
                 changeTorchBrightness(brightnessLevel)
+            } else {
+                manager.setTorchMode(cameraId!!, enable)
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
@@ -51,13 +52,13 @@ internal class PostMarshmallowCamera(
         }
     }
 
-    fun changeTorchBrightness(level: Int) {
+    override fun changeTorchBrightness(level: Int) {
         if (isTiramisuPlus()) {
             manager.turnOnTorchWithStrengthLevel(cameraId!!, level)
         }
     }
 
-    fun getMaximumBrightnessLevel(): Int {
+    override fun getMaximumBrightnessLevel(): Int {
         return if (isTiramisuPlus()) {
             val characteristics = manager.getCameraCharacteristics(cameraId!!)
             characteristics.get(CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL) ?: MIN_BRIGHTNESS_LEVEL
@@ -66,12 +67,12 @@ internal class PostMarshmallowCamera(
         }
     }
 
-    fun supportsBrightnessControl(): Boolean {
+    override fun supportsBrightnessControl(): Boolean {
         val maxBrightnessLevel = getMaximumBrightnessLevel()
         return maxBrightnessLevel > MIN_BRIGHTNESS_LEVEL
     }
 
-    fun getCurrentBrightnessLevel(): Int {
+    override fun getCurrentBrightnessLevel(): Int {
         var brightnessLevel = context.config.brightnessLevel
         if (brightnessLevel == DEFAULT_BRIGHTNESS_LEVEL) {
             brightnessLevel = getMaximumBrightnessLevel()
@@ -79,11 +80,15 @@ internal class PostMarshmallowCamera(
         return brightnessLevel
     }
 
-    fun initialize() {
+    override fun initialize() {
         manager.registerTorchCallback(torchCallback, Handler(context.mainLooper))
     }
 
-    fun cleanUp() {
+    override fun unregisterListeners() {
         manager.unregisterTorchCallback(torchCallback)
+    }
+
+    override fun release() {
+        cameraTorchListener = null
     }
 }

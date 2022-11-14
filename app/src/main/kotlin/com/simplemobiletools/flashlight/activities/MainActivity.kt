@@ -9,7 +9,6 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
-import androidx.core.view.isVisible
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
@@ -183,7 +182,7 @@ class MainActivity : SimpleActivity() {
     private fun setupCameraImpl() {
         mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
             override fun onTorchEnabled(isEnabled: Boolean) {
-                if (mCameraImpl?.supportsBrightnessControl() == true) {
+                if (mCameraImpl!!.supportsBrightnessControl()) {
                     brightness_bar.beVisibleIf(isEnabled)
                 }
             }
