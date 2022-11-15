@@ -1,6 +1,14 @@
 Changelog
 ==========
 
+Version 5.8.3 *(2022-11-15)*
+----------------------------
+
+ * Allow changing the flashlight brightness on Android 13+
+ * Added a Bright display settings tile
+ * Fixed SOS timing
+ * Added some translation and UX improvements
+
 Version 5.8.2 *(2022-10-06)*
 ----------------------------
 
