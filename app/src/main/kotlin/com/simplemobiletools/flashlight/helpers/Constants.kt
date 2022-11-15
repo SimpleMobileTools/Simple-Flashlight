@@ -11,3 +11,6 @@ const val STROBOSCOPE_FREQUENCY = "stroboscope_frequency"
 const val STROBOSCOPE_PROGRESS = "stroboscope_progress"
 const val FORCE_PORTRAIT_MODE = "force_portrait_mode"
 const val SOS = "sos"
+const val BRIGHTNESS_LEVEL = "brightness_level"
+const val MIN_BRIGHTNESS_LEVEL = 1
+const val DEFAULT_BRIGHTNESS_LEVEL = -1

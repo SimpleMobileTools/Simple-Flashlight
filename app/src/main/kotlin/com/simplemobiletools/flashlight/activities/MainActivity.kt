@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
-import android.content.res.ColorStateList
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
@@ -19,6 +18,8 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.CameraTorchListener
+import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
 import kotlinx.android.synthetic.main.activity_main.*
@@ -179,10 +180,17 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupCameraImpl() {
-        mCameraImpl = MyCameraImpl.newInstance(this)
+        mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
+            override fun onTorchEnabled(isEnabled: Boolean) {
+                if (mCameraImpl!!.supportsBrightnessControl()) {
+                    brightness_bar.beVisibleIf(isEnabled)
+                }
+            }
+        })
         if (config.turnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
         }
+        setupBrightness()
     }
 
     private fun setupStroboscope() {
@@ -208,6 +216,16 @@ class MainActivity : SimpleActivity() {
                     toast(R.string.camera_permission)
                 }
             }
+        }
+    }
+
+    private fun setupBrightness() {
+        brightness_bar.max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        brightness_bar.progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        brightness_bar.onSeekBarChangeListener { level ->
+            val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
+            mCameraImpl?.updateBrightnessLevel(newLevel)
+            config.brightnessLevel = newLevel
         }
     }
 
