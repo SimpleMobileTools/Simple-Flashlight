@@ -49,7 +49,6 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun toggleStroboscope(): Boolean {
         handleCameraSetup()
-        cameraFlash!!.unregisterListeners()
 
         if (isSOSRunning) {
             stopSOS()
@@ -61,6 +60,8 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         if (!isStroboscopeRunning) {
             disableFlashlight()
         }
+
+        cameraFlash!!.unregisterListeners()
 
         if (!tryInitCamera()) {
             return false
@@ -82,7 +83,6 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun toggleSOS(): Boolean {
         handleCameraSetup()
-        cameraFlash!!.unregisterListeners()
 
         if (isStroboscopeRunning) {
             stopStroboscope()
@@ -102,6 +102,8 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         if (isFlashlightOn) {
             disableFlashlight()
         }
+
+        cameraFlash!!.unregisterListeners()
 
         return if (isSOSRunning) {
             stopSOS()
