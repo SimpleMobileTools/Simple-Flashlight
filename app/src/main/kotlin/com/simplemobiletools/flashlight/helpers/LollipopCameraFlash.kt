@@ -10,9 +10,14 @@ class LollipopCameraFlash : CameraFlash {
     private var params: Camera.Parameters? = null
 
     override fun toggleFlashlight(enable: Boolean) {
-        if (camera == null || params == null || camera!!.parameters == null) {
+        try {
+            if (camera == null || params == null || camera!!.parameters == null) {
+                return
+            }
+        } catch (e: Exception) {
             return
         }
+
         val flashMode = if (enable) Camera.Parameters.FLASH_MODE_ON else Camera.Parameters.FLASH_MODE_OFF
         params!!.flashMode = flashMode
         camera!!.parameters = params
@@ -31,7 +36,7 @@ class LollipopCameraFlash : CameraFlash {
     }
 
     override fun release() {
-        camera!!.release()
+        camera?.release()
         camera = null
     }
 }
