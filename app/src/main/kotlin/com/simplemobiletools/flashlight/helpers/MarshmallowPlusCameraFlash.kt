@@ -12,7 +12,6 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 
-@RequiresApi(Build.VERSION_CODES.M)
 internal class MarshmallowPlusCameraFlash(
     private val context: Context,
     private var cameraTorchListener: CameraTorchListener? = null,

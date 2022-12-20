@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Handler
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.extensions.toast
-import com.simplemobiletools.commons.helpers.isMarshmallowPlus
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
@@ -133,7 +132,7 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     fun handleCameraSetup() {
         try {
             if (cameraFlash == null) {
-                cameraFlash = if (isMarshmallowPlus()) MarshmallowPlusCameraFlash(context, cameraTorchListener) else LollipopCameraFlash()
+                cameraFlash = MarshmallowPlusCameraFlash(context, cameraTorchListener)
             }
         } catch (e: Exception) {
             EventBus.getDefault().post(Events.CameraUnavailable())
