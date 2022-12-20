@@ -132,7 +132,7 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     fun handleCameraSetup() {
         try {
             if (cameraFlash == null) {
-                cameraFlash = MarshmallowPlusCameraFlash(context, cameraTorchListener)
+                cameraFlash = CameraFlash(context, cameraTorchListener)
             }
         } catch (e: Exception) {
             EventBus.getDefault().post(Events.CameraUnavailable())
