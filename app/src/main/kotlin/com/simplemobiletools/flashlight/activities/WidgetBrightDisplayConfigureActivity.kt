@@ -58,7 +58,6 @@ class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
-        setupToolbar(config_bright_display_toolbar)
 
         if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
             mFeatureLockedDialog?.dismissDialog()
@@ -67,6 +66,10 @@ class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
+        if (mWidgetColor == resources.getInteger(R.integer.default_widget_bg_color) && config.isUsingSystemTheme) {
+            mWidgetColor = resources.getColor(R.color.you_primary_color, theme)
+        }
+
         mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
