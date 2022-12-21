@@ -32,7 +32,7 @@
                 android:layout_height="@dimen/main_button_size"
                 android:layout_marginTop="@dimen/normal_margin"
                 android:layout_marginBottom="@dimen/normal_margin"
-                android:background="@drawable/ic_flashlight"
+                android:background="@drawable/ic_flashlight_vector"
                 app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

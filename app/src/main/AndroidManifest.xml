@@ -63,8 +63,8 @@
         <activity
             android:name=".activities.BrightDisplayActivity"
             android:exported="false"
-            android:launchMode="singleInstance"
             android:label="@string/bright_display"
+            android:launchMode="singleInstance"
             android:theme="@style/FullScreenTheme" />
 
         <activity
@@ -106,7 +106,7 @@
         <receiver
             android:name=".helpers.MyWidgetTorchProvider"
             android:exported="true"
-            android:icon="@drawable/ic_flashlight"
+            android:icon="@drawable/ic_flashlight_vector"
             android:label="@string/app_launcher_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

@@ -23,7 +23,7 @@
                 android:id="@+id/config_image"
                 android:layout_width="@dimen/main_button_size"
                 android:layout_height="@dimen/main_button_size"
-                android:background="@drawable/ic_flashlight" />
+                android:background="@drawable/ic_flashlight_vector" />
 
         </RelativeLayout>
 
