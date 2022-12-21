@@ -120,7 +120,7 @@
         <receiver
             android:name=".helpers.MyWidgetBrightDisplayProvider"
             android:exported="true"
-            android:icon="@drawable/ic_bright_display"
+            android:icon="@drawable/ic_bright_display_vector"
             android:label="@string/bright_display">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

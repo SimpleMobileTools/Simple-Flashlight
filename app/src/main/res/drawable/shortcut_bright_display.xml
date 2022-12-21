@@ -7,10 +7,10 @@
     </item>
 
     <item
-        android:bottom="@dimen/normal_margin"
-        android:drawable="@drawable/ic_bright_display"
-        android:left="@dimen/normal_margin"
-        android:right="@dimen/normal_margin"
-        android:top="@dimen/normal_margin" />
+        android:bottom="@dimen/shortcut_padding"
+        android:drawable="@drawable/ic_bright_display_vector"
+        android:left="@dimen/shortcut_padding"
+        android:right="@dimen/shortcut_padding"
+        android:top="@dimen/shortcut_padding" />
 
 </layer-list>

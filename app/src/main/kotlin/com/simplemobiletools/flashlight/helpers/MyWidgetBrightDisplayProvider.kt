@@ -44,7 +44,7 @@ class MyWidgetBrightDisplayProvider : AppWidgetProvider() {
     }
 
     private fun getColoredIcon(context: Context, color: Int, alpha: Int): Bitmap {
-        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.ic_bright_display, color, alpha)
+        val drawable = context.resources.getColoredDrawableWithColor(R.drawable.ic_bright_display_vector, color, alpha)
         return context.drawableToBitmap(drawable)
     }
 }
