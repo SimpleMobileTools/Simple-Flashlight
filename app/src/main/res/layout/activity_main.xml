@@ -75,7 +75,7 @@
                 android:layout_width="@dimen/smaller_button_size"
                 android:layout_height="@dimen/smaller_button_size"
                 android:layout_marginTop="@dimen/normal_margin"
-                android:background="@drawable/ic_stroboscope"
+                android:background="@drawable/ic_stroboscope_vector"
                 android:padding="@dimen/activity_margin"
                 app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
                 app:layout_constraintEnd_toEndOf="parent"
