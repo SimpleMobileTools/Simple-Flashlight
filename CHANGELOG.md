@@ -1,6 +1,13 @@
 Changelog
 ==========
 
+Version 5.9.0 *(2022-12-21)*
+----------------------------
+
+ * Use Material You design by default on Android 12+
+ * Increased minimal required Android OS version to 6
+ * Added some UI, stability and translation improvements
+
 Version 5.8.4 *(2022-11-17)*
 ----------------------------
 
