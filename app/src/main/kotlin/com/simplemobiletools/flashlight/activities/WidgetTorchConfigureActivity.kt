@@ -67,7 +67,7 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
 
     private fun initVariables() {
         mWidgetColor = config.widgetBgColor
-        if (mWidgetColor == resources.getInteger(R.integer.default_widget_bg_color) && config.isUsingSystemTheme) {
+        if (mWidgetColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
             mWidgetColor = resources.getColor(R.color.you_primary_color, theme)
         }
 

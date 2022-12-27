@@ -46,7 +46,7 @@ class MainActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder)
+        updateMaterialActivityViews(main_coordinator, main_holder, true)
         setupMaterialScrollListener(main_nested_scrollview, main_toolbar)
 
         mBus = EventBus.getDefault()
