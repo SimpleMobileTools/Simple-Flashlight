@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight – Lanterna</string>
+    <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Lanterna</string>
     <string name="camera_error">Falha ao aceder à câmera</string>
-    <string name="camera_permission">O efeito estroboscópico requer a permissão da câmara</string>
+    <string name="camera_permission">O efeito estroboscópio requer a permissão da câmara</string>
     <string name="bright_display">Ecrã luminoso</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostrar botão de ecrã luminoso</string>
