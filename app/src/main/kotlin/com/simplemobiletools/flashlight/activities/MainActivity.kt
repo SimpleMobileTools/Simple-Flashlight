@@ -196,6 +196,9 @@ class MainActivity : SimpleActivity() {
             override fun onTorchEnabled(isEnabled: Boolean) {
                 if (mCameraImpl!!.supportsBrightnessControl()) {
                     brightness_bar.beVisibleIf(isEnabled)
+
+                    brightness_value.beVisibleIf(isEnabled)
+                    brightness_value.text = "${mCameraImpl?.getCurrentBrightnessLevel()}"
                 }
             }
         })
@@ -238,6 +241,7 @@ class MainActivity : SimpleActivity() {
             val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
             mCameraImpl?.updateBrightnessLevel(newLevel)
             config.brightnessLevel = newLevel
+            brightness_value.text = "${mCameraImpl?.getCurrentBrightnessLevel()}"
         }
     }
 
