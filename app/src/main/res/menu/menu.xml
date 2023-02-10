@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/more_apps_from_us"
-        android:icon="@drawable/ic_google_play_vector"
-        android:title="@string/more_apps_from_us"
-        app:showAsAction="always" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction">
     <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings_cog_vector"
@@ -16,4 +13,8 @@
         android:icon="@drawable/ic_info_vector"
         android:title="@string/about"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/more_apps_from_us"
+        android:title="@string/more_apps_from_us"
+        app:showAsAction="never" />
 </menu>
