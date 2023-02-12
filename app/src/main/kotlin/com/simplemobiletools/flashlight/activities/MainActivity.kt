@@ -198,7 +198,7 @@ class MainActivity : SimpleActivity() {
                     brightness_bar.beVisibleIf(isEnabled)
 
                     brightness_value.beVisibleIf(isEnabled)
-                    brightness_value.text = "${mCameraImpl?.getCurrentBrightnessLevel()}"
+                    brightness_value.text = "${mCameraImpl?.getPercentageBrightnessLevel()}%"
                 }
             }
         })
@@ -241,7 +241,7 @@ class MainActivity : SimpleActivity() {
             val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
             mCameraImpl?.updateBrightnessLevel(newLevel)
             config.brightnessLevel = newLevel
-            brightness_value.text = "${mCameraImpl?.getCurrentBrightnessLevel()}"
+            brightness_value.text = "${mCameraImpl?.getPercentageBrightnessLevel()}%"
         }
     }
 

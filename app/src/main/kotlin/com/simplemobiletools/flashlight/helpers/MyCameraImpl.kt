@@ -276,4 +276,8 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     fun updateBrightnessLevel(level: Int) {
         cameraFlash!!.changeTorchBrightness(level)
     }
+
+    fun getPercentageBrightnessLevel(): Int {
+        return getCurrentBrightnessLevel() * getMaximumBrightnessLevel() / 100
+    }
 }
