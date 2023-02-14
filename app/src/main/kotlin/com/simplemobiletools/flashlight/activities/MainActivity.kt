@@ -198,6 +198,10 @@ class MainActivity : SimpleActivity() {
                     brightness_bar.beVisibleIf(isEnabled)
                 }
             }
+
+            override fun onTorchUnavailable() {
+                mCameraImpl!!.onCameraNotAvailable()
+            }
         })
         if (config.turnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
@@ -300,7 +304,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun changeIconColor(color: Int, imageView: ImageView?) {
-        imageView!!.background.mutate().applyColorFilter(color)
+        imageView!!.background.applyColorFilter(color)
     }
 
     @SuppressLint("NewApi")
