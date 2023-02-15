@@ -16,6 +16,7 @@ import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
+import com.simplemobiletools.flashlight.MorseFlashActivity
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.CameraTorchListener
@@ -63,6 +64,11 @@ class MainActivity : SimpleActivity() {
 
         sos_btn.setOnClickListener {
             toggleStroboscope(true)
+        }
+
+        morse_btn.setOnClickListener {
+            System.out.println("Ouverture de l'Activité MORSE CODE FLASH")
+            startActivity(Intent(applicationContext, MorseFlashActivity::class.java))
         }
 
         stroboscope_btn.setOnClickListener {

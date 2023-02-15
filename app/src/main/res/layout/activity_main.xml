@@ -83,6 +83,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
 
+            <ImageView
+                android:id="@+id/morse_btn"
+                android:layout_width="@dimen/smaller_button_size"
+                android:layout_height="@dimen/smaller_button_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.23"
+                app:layout_constraintStart_toEndOf="@+id/sos_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.619"
+                app:srcCompat="@drawable/ic_morse" />
+
             <com.simplemobiletools.commons.views.MySeekBar
                 android:id="@+id/stroboscope_bar"
                 android:layout_width="@dimen/seekbar_width"
