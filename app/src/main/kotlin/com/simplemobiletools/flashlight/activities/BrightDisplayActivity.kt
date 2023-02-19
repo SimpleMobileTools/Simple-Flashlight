@@ -2,6 +2,7 @@ package com.simplemobiletools.flashlight.activities
 
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ColorDrawable
+import android.hardware.camera2.CameraManager
 import android.os.Bundle
 import android.view.WindowManager
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog

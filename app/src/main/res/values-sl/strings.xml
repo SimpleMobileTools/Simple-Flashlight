@@ -10,4 +10,7 @@
     <string name="show_stroboscope">Prikaži gumb stroboskopa</string>
     <string name="show_sos">Prikaz gumba SOS</string>
     <string name="turn_flashlight_on">Vklop svetilke ob zagonu</string>
+    <!-- Morse Flash Activity need translation-->
+    <string name="title_activity">Morse Code Flash</string>
+    <string name="user_consign_input">Enter your message here</string>
 </resources>

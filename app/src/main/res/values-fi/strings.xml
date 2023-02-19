@@ -10,6 +10,9 @@
     <string name="show_stroboscope">Näytä stroboskooppipainike</string>
     <string name="show_sos">Näytä SOS-painike</string>
     <string name="turn_flashlight_on">Kytke taskulamppu päälle käynnistyksen yhteydessä</string>
+    <!-- Morse Flash Activity need translation-->
+    <string name="title_activity">Morse Code Flash</string>
+    <string name="user_consign_input">Enter your message here</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -7,8 +7,10 @@ import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import com.google.android.material.snackbar.Snackbar
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
@@ -16,6 +18,7 @@ import com.simplemobiletools.commons.helpers.isNougatMR1Plus
 import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
+import com.simplemobiletools.flashlight.MorseFlashActivity
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.CameraTorchListener
@@ -63,6 +66,10 @@ class MainActivity : SimpleActivity() {
 
         sos_btn.setOnClickListener {
             toggleStroboscope(true)
+        }
+
+        morse_btn.setOnClickListener {
+            startActivity(Intent(applicationContext, MorseFlashActivity::class.java))
         }
 
         stroboscope_btn.setOnClickListener {

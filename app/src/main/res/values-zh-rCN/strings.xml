@@ -10,6 +10,9 @@
     <string name="show_stroboscope">显示频闪仪按钮</string>
     <string name="show_sos">显示紧急求助按钮</string>
     <string name="turn_flashlight_on">启动时打开手电筒</string>
+    <!-- Morse Flash Activity need translation-->
+    <string name="title_activity">Morse Code Flash</string>
+    <string name="user_consign_input">Enter your message here</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

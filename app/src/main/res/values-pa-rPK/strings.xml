@@ -10,4 +10,7 @@
     <string name="show_stroboscope">سٹروبوسکوپ بٹن دکھاؤ</string>
     <string name="show_sos">ایس‌اوایس بٹن دکھاؤ</string>
     <string name="turn_flashlight_on">جدوں شروع کرن ٹورچ نوں چالو کرو</string>
+    <!-- Morse Flash Activity need translation-->
+    <string name="title_activity">Morse Code Flash</string>
+    <string name="user_consign_input">Enter your message here</string>
 </resources>
