@@ -21,8 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="25dp"
-            android:text="Enter Text :" />
+            android:layout_margin="45dp"
+            android:text="@string/title_activity" />
 
         <!-- User Input -->
         <EditText
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:hint="Enter Message"
+            android:hint="@string/user_consign_input"
             android:inputType="text"/>
 
         <!-- Result of the Morse Translation in text -->
@@ -44,8 +44,9 @@
         <!-- Launch Morse Flash Translation-->
         <Button
             android:id="@+id/btn_morseFlash"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flash" />
+            android:layout_gravity="center"
+            android:text="FLASH" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

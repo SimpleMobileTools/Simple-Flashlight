@@ -10,6 +10,9 @@
     <string name="show_stroboscope">Afficher un bouton stroboscope</string>
     <string name="show_sos">Afficher un bouton SOS</string>
     <string name="turn_flashlight_on">Activer la lampe de poche au démarrage</string>
+    <!-- Morse Flash Activity -->
+    <string name="title_activity">Entrez un Message</string>
+    <string name="user_consign_input">Entrez votre message ici</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

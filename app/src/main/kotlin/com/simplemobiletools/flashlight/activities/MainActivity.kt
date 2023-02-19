@@ -7,8 +7,10 @@ import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import com.google.android.material.snackbar.Snackbar
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
 import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
@@ -67,7 +69,6 @@ class MainActivity : SimpleActivity() {
         }
 
         morse_btn.setOnClickListener {
-            System.out.println("Ouverture de l'Activité MORSE CODE FLASH")
             startActivity(Intent(applicationContext, MorseFlashActivity::class.java))
         }
 
