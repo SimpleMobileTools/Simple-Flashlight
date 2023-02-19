@@ -57,6 +57,12 @@ class MainActivity : SimpleActivity() {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
+        bright_display_btn.setOnLongClickListener {
+            mCameraImpl!!.toggleFlashlight()
+            startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+            true
+        }
+
         flashlight_btn.setOnClickListener {
             mCameraImpl!!.toggleFlashlight()
         }
