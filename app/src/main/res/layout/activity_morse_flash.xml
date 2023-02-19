@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- text instruction -->
         <TextView
             android:id="@+id/textView_MorseFlash"
             android:layout_width="wrap_content"
@@ -23,16 +24,16 @@
             android:layout_margin="25dp"
             android:text="Enter Text :" />
 
-
-
+        <!-- User Input -->
         <EditText
-            android:id="@+id/editText_User"
+            android:id="@+id/editText_UserInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:hint="Enter Message"
             android:inputType="text"/>
 
+        <!-- Result of the Morse Translation in text -->
         <TextView
             android:id="@+id/textView_translation"
             android:layout_width="wrap_content"
@@ -40,8 +41,9 @@
             android:layout_gravity="center"
             android:text=" " />
 
+        <!-- Launch Morse Flash Translation-->
         <Button
-            android:id="@+id/button_morseFlash"
+            android:id="@+id/btn_morseFlash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Flash" />
