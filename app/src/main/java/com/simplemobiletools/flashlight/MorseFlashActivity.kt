@@ -126,42 +126,46 @@ class MorseFlashActivity : AppCompatActivity() {
 
             System.out.println("MSG vide ====> " + MSG)
 
-            resultMorseCode.forEach {
-                if (it == '/'){
-                    MSG.add(_u*7) // DEFAULT DELAY WORDS = u * 7
-                    cameraManager.setTorchMode(cameraId, false) // flash OFF
+            for (i in resultMorseCode.indices) {
+                if (resultMorseCode[i] == '/'){
+                    cameraManager.setTorchMode(cameraId, false)
                     System.out.println("flash OFF")
+                    MSG.add(_u*7) // DEFAULT DELAY WORDS = u * 7 // flash OFF
                     Thread.sleep(_u*7)
                 }
+                else if (resultMorseCode[i]==' '){
+                    cameraManager.setTorchMode(cameraId, false)
+                    System.out.println("flash OFF")
+                    if(resultMorseCode[i+1]!='/' && resultMorseCode[i-1]!='/'){// flash OFF
+                        Thread.sleep(_u*3)
+                        MSG.add(_u*3) // DEFAULT DELAY LETTERS = u * 3
+                    }}
 
-                else if (it==' '){
-                    MSG.removeLast()
-                    cameraManager.setTorchMode(cameraId, false) // flash OFF
-                    Thread.sleep(_u*3)
-                    MSG.add(_u*3) // DEFAULT DELAY LETTERS = u * 3
-                }
-
-                else if (it=='-'){
+                else if (resultMorseCode[i]=='-'){
                     cameraManager.setTorchMode(cameraId, true) // flash ON
                     System.out.println("flash ON")
                     MSG.add(_u*3) // DEFAULT LENGTH DASH = u * 3
                     Thread.sleep(_u*3)
-                    MSG.add(_u)
-                    cameraManager.setTorchMode(cameraId, false) // flash OFF
-                    System.out.println("flash OFF")
-                    Thread.sleep(_u*3)
-                }
+                    cameraManager.setTorchMode(cameraId, false)
+                    System.out.println("flash Off")
+                    if(i+1<resultMorseCode.length){
+                        if(resultMorseCode[i+1]!=' '){ // flash OFF
+                            Thread.sleep(_u)
+                            MSG.add(_u)
+                        }}}
 
-                else if (it=='.'){
+                else if (resultMorseCode[i]=='.'){
                     cameraManager.setTorchMode(cameraId, true) // flash ON
                     System.out.println("flash ON")
                     MSG.add(_u)
                     Thread.sleep(_u)
-                    MSG.add(_u)
-                    cameraManager.setTorchMode(cameraId, false) // flash OFF
+                    cameraManager.setTorchMode(cameraId, false)
                     System.out.println("flash OFF")
-                    Thread.sleep(_u)
-                }
+                    if(i+1<resultMorseCode.length){
+                        if(resultMorseCode[i+1]!=' '){
+                            Thread.sleep(_u)
+                            MSG.add(_u) // DEFAULT DELAY light off in a letter = u * 3
+                        }}}
             }
             MSG.removeLast()
             MSG.add(_u*7)

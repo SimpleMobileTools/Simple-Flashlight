@@ -12,7 +12,7 @@
     <string name="turn_flashlight_on">Acender a lanterna ao iniciar</string>
     <!-- Morse Flash Activity need translation-->
     <string name="title_activity">Morse Code Flash</string>
-    <string name="user_consign_input">Enter your message here</string>
+    <string name="user_consign_input">digite uma mensagem aqui</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
