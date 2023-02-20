@@ -278,6 +278,6 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     }
 
     fun getPercentageBrightnessLevel(): Int {
-        return getCurrentBrightnessLevel() * getMaximumBrightnessLevel() / 100
+        return (getCurrentBrightnessLevel() * 100) / getMaximumBrightnessLevel()
     }
 }
