@@ -41,6 +41,7 @@ class SettingsActivity : SimpleActivity() {
         arrayOf(settings_color_customization_section_label, settings_general_settings_label).forEach {
             it.setTextColor(getProperPrimaryColor())
         }
+
     }
 
     private fun setupPurchaseThankYou() {

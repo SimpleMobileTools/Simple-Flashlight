@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timer_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/timer_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_primary"
+        app:title="Timer"
+        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/timer_nested_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/timer_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/flashlight_btn"
+                android:layout_width="@dimen/main_button_size"
+                android:layout_height="@dimen/main_button_size"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="@drawable/ic_flashlight_vector"
+                app:layout_constraintBottom_toTopOf="@+id/bright_display_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/bright_display_btn"
+                android:layout_width="@dimen/smaller_button_size"
+                android:layout_height="@dimen/smaller_button_size"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="@drawable/ic_bright_display_vector"
+                android:padding="@dimen/activity_margin"
+                app:layout_constraintBottom_toTopOf="@+id/sos_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flashlight_btn" />
+
+            <TextView
+                android:id="@+id/sos_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/activity_margin"
+                android:text="SOS"
+                android:textSize="@dimen/sos_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/stroboscope_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bright_display_btn" />
+
+            <ImageView
+                android:id="@+id/stroboscope_btn"
+                android:layout_width="@dimen/smaller_button_size"
+                android:layout_height="@dimen/smaller_button_size"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:background="@drawable/ic_stroboscope_vector"
+                android:padding="@dimen/activity_margin"
+                app:layout_constraintBottom_toTopOf="@+id/stroboscope_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sos_btn" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -137,6 +137,7 @@ class MainActivity : SimpleActivity() {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
+                R.id.timer -> setTimer()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -172,6 +173,12 @@ class MainActivity : SimpleActivity() {
         hideKeyboard()
         reTurnFlashlightOn = false
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
+    }
+
+    private fun setTimer() {
+        hideKeyboard()
+        reTurnFlashlightOn = false
+        startActivity(Intent(applicationContext, TimerActivity::class.java))
     }
 
     private fun launchAbout() {
