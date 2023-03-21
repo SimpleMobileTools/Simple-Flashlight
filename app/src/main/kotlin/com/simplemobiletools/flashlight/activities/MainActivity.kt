@@ -53,7 +53,7 @@ class MainActivity : SimpleActivity() {
         changeIconColor(getContrastColor(), stroboscope_btn)
 
         bright_display_btn.setOnClickListener {
-            reTurnFlashlightOn = false
+            reTurnFlashlightOn = true
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
