@@ -3,7 +3,7 @@
     <string name="app_name">Schlichte Taschenlampe</string>
     <string name="app_launcher_name">Taschenlampe</string>
     <string name="camera_error">Beanspruchen der Kamera fehlgeschlagen</string>
-    <string name="camera_permission">Kamera-Berechtigung ist für den Stroboskopeffekt erforderlich</string>
+    <string name="camera_permission">Kameraberechtigung ist für den Stroboskopeffekt erforderlich</string>
     <string name="bright_display">Heller Bildschirm</string>
     <!-- Settings -->
     <string name="show_bright_display">Schaltfläche für hellen Bildschirm zeigen</string>
