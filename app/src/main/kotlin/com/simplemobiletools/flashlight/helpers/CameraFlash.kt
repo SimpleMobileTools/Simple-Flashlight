@@ -21,6 +21,10 @@ internal class CameraFlash(
         override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
             cameraTorchListener?.onTorchEnabled(enabled)
         }
+
+        override fun onTorchModeUnavailable(cameraId: String) {
+            cameraTorchListener?.onTorchUnavailable()
+        }
     }
 
     init {
