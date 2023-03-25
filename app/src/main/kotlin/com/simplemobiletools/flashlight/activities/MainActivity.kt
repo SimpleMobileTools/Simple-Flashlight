@@ -88,6 +88,10 @@ class MainActivity : SimpleActivity() {
             sos_btn.setTextColor(contrastColor)
         }
 
+        if (brightness_value.currentTextColor != getProperPrimaryColor()) {
+            brightness_value.setTextColor(contrastColor)
+        }
+
         stroboscope_btn.beVisibleIf(config.stroboscope)
 
         if (!config.stroboscope) {
