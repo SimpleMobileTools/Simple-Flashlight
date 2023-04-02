@@ -3,6 +3,9 @@
     <dimen name="main_button_size">180dp</dimen>
     <dimen name="smaller_button_size">60dp</dimen>
     <dimen name="shortcut_padding">60dp</dimen>
+    <dimen name="timer_button_small_size">50dp</dimen>
+    <dimen name="timer_button_size">56dp</dimen>
+    <dimen name="alarm_text_size">60sp</dimen>
 
     <dimen name="sos_text_size">26sp</dimen>
 </resources>
