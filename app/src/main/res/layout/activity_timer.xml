@@ -22,6 +22,11 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
         android:scrollbars="none">
+        <LinearLayout
+            android:id="@+id/myLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/timer_holder"
@@ -81,6 +86,11 @@
                 app:layout_constraintRight_toRightOf="@+id/bright_display_btn_2"
                 app:layout_constraintTop_toBottomOf="@+id/bright_display_btn_2" />
 
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            layout="@layout/timer" />
+    </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
