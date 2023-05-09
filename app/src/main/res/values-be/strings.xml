@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Simple Flashlight</string>
     <string name="app_launcher_name">Ліхтарык</string>
-    <string name="camera_error">Obtaining the camera failed</string>
+    <string name="camera_error">Не атрымалася атрымаць камеру</string>
     <string name="camera_permission">Дазвол на доступ да камеры неабходны для стварэння эфекту страбаскопа</string>
     <string name="bright_display">Яркі экран</string>
     <!-- Settings -->
