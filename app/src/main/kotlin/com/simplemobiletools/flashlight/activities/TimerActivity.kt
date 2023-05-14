@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus
 import kotlin.system.exitProcess
 import android.widget.Toast
 import android.widget.TextView
+import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
@@ -45,34 +46,6 @@ class TimerActivity : SimpleActivity() {
 
         updateMaterialActivityViews(timer_coordinator, timer_holder, true)
         setupMaterialScrollListener(timer_nested_scrollview, timer_toolbar)
-
-        /*val iv_click_me = findViewById(R.id.flashlight_btn_2) as ImageView
-        // set on-click listener
-        iv_click_me.setOnClickListener {
-            // your code to perform when the user clicks on the ImageView
-            Toast.makeText(this@TimerActivity, "You clicked on flashlight_btn_2.", Toast.LENGTH_SHORT).show()
-        }
-
-        val iv_click_me2 = findViewById(R.id.bright_display_btn_2) as ImageView
-        // set on-click listener
-        iv_click_me2.setOnClickListener {
-            // your code to perform when the user clicks on the ImageView
-            Toast.makeText(this@TimerActivity, "You clicked on bright_display_btn_2.", Toast.LENGTH_SHORT).show()
-        }
-
-        val iv_click_me3 = findViewById(R.id.stroboscope_btn_2) as ImageView
-        // set on-click listener
-        iv_click_me3.setOnClickListener {
-            // your code to perform when the user clicks on the ImageView
-            Toast.makeText(this@TimerActivity, "You clicked on stroboscope_btn_2.", Toast.LENGTH_SHORT).show()
-        }
-
-        val tv_click_me = findViewById(R.id.sos_btn_2) as TextView
-        // set on-click listener
-        tv_click_me.setOnClickListener {
-            // your code to perform when the user clicks on the TextView
-            Toast.makeText(this@TimerActivity, "You clicked on TextView sos_btn_2.", Toast.LENGTH_SHORT).show()
-        }*/
 
         mBus = EventBus.getDefault()
         changeIconColor(getContrastColor(), stroboscope_btn_2)
@@ -101,14 +74,12 @@ class TimerActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         setupToolbar(timer_toolbar, NavigationIcon.Arrow)
-
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
         val contrastColor = getContrastColor()
         changeIconColor(contrastColor, bright_display_btn_2)
         bright_display_btn_2.beVisibleIf(config.brightDisplay)
-
         sos_btn_2.beVisibleIf(config.sos)
 
         if (sos_btn_2.currentTextColor != getProperPrimaryColor()) {
@@ -126,9 +97,6 @@ class TimerActivity : SimpleActivity() {
         if (stroboscope_bar_2.isInvisible()) {
             changeIconColor(contrastColor, stroboscope_btn_2)
         }
-
-        requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
-        invalidateOptionsMenu()
 
         if (config.turnFlashlightOn && reTurnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
@@ -159,23 +127,9 @@ class TimerActivity : SimpleActivity() {
         releaseCamera()
     }
 
-    private fun setupCameraImpl() {
-        mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
-            override fun onTorchEnabled(isEnabled: Boolean) {
-                if (mCameraImpl!!.supportsBrightnessControl()) {
-                    brightness_bar.beVisibleIf(isEnabled)
-                }
-            }
-        })
-        if (config.turnFlashlightOn) {
-            mCameraImpl!!.enableFlashlight()
-        }
-        setupBrightness()
-    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(FLASHLIGHT_STATE, mIsFlashlightOn)
-        outState.putBoolean(STROBOSCOPE_STATE, stroboscope_bar.isVisible())
+        outState.putBoolean(STROBOSCOPE_STATE, stroboscope_bar_2.isVisible())
         super.onSaveInstanceState(outState)
     }
 
@@ -192,6 +146,20 @@ class TimerActivity : SimpleActivity() {
         }
     }
 
+    private fun setupCameraImpl() {
+        mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
+            override fun onTorchEnabled(isEnabled: Boolean) {
+                if (mCameraImpl!!.supportsBrightnessControl()) {
+                    brightness_bar_2.beVisibleIf(isEnabled)
+                }
+            }
+        })
+        if (config.turnFlashlightOn) {
+            mCameraImpl!!.enableFlashlight()
+        }
+        setupBrightness()
+    }
+
     private fun setupStroboscope() {
         stroboscope_bar_2.max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
         stroboscope_bar_2.progress = config.stroboscopeProgress
@@ -201,17 +169,6 @@ class TimerActivity : SimpleActivity() {
             config.stroboscopeFrequency = frequency
             config.stroboscopeProgress = progress
         }
-    }
-
-    private fun getContrastColor() = getProperBackgroundColor().getContrastColor()
-
-    private fun releaseCamera() {
-        mCameraImpl?.releaseCamera()
-        mCameraImpl = null
-    }
-
-    private fun changeIconColor(color: Int, imageView: ImageView?) {
-        imageView!!.background.mutate().applyColorFilter(color)
     }
 
     private fun toggleStroboscope(isSOS: Boolean) {
@@ -229,6 +186,16 @@ class TimerActivity : SimpleActivity() {
         }
     }
 
+    private fun setupBrightness() {
+        brightness_bar_2.max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        brightness_bar_2.progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+        brightness_bar_2.onSeekBarChangeListener { level ->
+            val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
+            mCameraImpl?.updateBrightnessLevel(newLevel)
+            config.brightnessLevel = newLevel
+        }
+    }
+
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
@@ -239,6 +206,27 @@ class TimerActivity : SimpleActivity() {
         }
     }
 
+    private fun getContrastColor() = getProperBackgroundColor().getContrastColor()
+
+    private fun releaseCamera() {
+        mCameraImpl?.releaseCamera()
+        mCameraImpl = null
+    }
+    @Subscribe
+    fun stateChangedEvent(event: Events.StateChanged) {
+        checkState(event.isEnabled)
+    }
+
+    @Subscribe
+    fun stopStroboscope(event: Events.StopStroboscope) {
+        stroboscope_bar_2.beInvisible()
+        changeIconColor(getContrastColor(), stroboscope_btn_2)
+    }
+
+    @Subscribe
+    fun stopSOS(event: Events.StopSOS) {
+        sos_btn_2.setTextColor(getContrastColor())
+    }
     private fun checkState(isEnabled: Boolean) {
         if (isEnabled) {
             enableFlashlight()
@@ -251,6 +239,11 @@ class TimerActivity : SimpleActivity() {
         changeIconColor(getProperPrimaryColor(), flashlight_btn_2)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
+
+        sos_btn_2.setTextColor(getContrastColor())
+
+        changeIconColor(getContrastColor(), stroboscope_btn_2)
+        stroboscope_bar_2.beInvisible()
     }
 
     private fun disableFlashlight() {
@@ -259,16 +252,11 @@ class TimerActivity : SimpleActivity() {
         mIsFlashlightOn = false
     }
 
-    private fun setupBrightness() {
-        brightness_bar_2.max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-        brightness_bar_2.progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-        brightness_bar_2.onSeekBarChangeListener { level ->
-            val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
-            mCameraImpl?.updateBrightnessLevel(newLevel)
-            config.brightnessLevel = newLevel
-        }
+    private fun changeIconColor(color: Int, imageView: ImageView?) {
+        imageView!!.background.mutate().applyColorFilter(color)
     }
 
+    @SuppressLint("NewApi")
     private fun checkShortcuts() {
         val appIconColor = config.appIconColor
         if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
@@ -282,6 +270,7 @@ class TimerActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("NewApi")
     private fun getBrightDisplayShortcut(appIconColor: Int): ShortcutInfo {
         val brightDisplay = getString(R.string.bright_display)
         val drawable = resources.getDrawable(R.drawable.shortcut_bright_display)

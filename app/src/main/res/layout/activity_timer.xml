@@ -51,19 +51,19 @@
 
             <ImageView
                 android:id="@+id/stroboscope_btn_2"
-                android:layout_width="80dp"
-                android:layout_height="82dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="52dp"
                 android:background="@drawable/ic_stroboscope_vector"
-                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintHorizontal_bias="0.525"
                 app:layout_constraintLeft_toLeftOf="@+id/flashlight_btn_2"
                 app:layout_constraintRight_toRightOf="@+id/flashlight_btn_2"
                 app:layout_constraintTop_toBottomOf="@+id/flashlight_btn_2" />
 
             <com.simplemobiletools.commons.views.MySeekBar
                 android:id="@+id/stroboscope_bar_2"
-                android:layout_width="@dimen/seekbar_width"
-                android:layout_height="wrap_content"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
                 android:layout_margin="@dimen/activity_margin"
                 android:paddingTop="@dimen/medium_margin"
                 android:paddingBottom="@dimen/medium_margin"
@@ -77,23 +77,22 @@
 
             <com.simplemobiletools.commons.views.MySeekBar
                 android:id="@+id/brightness_bar_2"
-                android:layout_width="@dimen/seekbar_width"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_margin"
-                android:paddingTop="@dimen/medium_margin"
-                android:paddingBottom="@dimen/medium_margin"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn_2"
-                app:layout_constraintVertical_bias="0.875" />
+                app:layout_constraintTop_toBottomOf="@+id/stroboscope_btn_2" />
 
             <ImageView
                 android:id="@+id/bright_display_btn_2"
-                android:layout_width="92dp"
-                android:layout_height="79dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="50dp"
                 android:background="@drawable/ic_bright_display_vector"
                 app:layout_constraintBottom_toTopOf="@+id/sos_btn_2"
