@@ -119,7 +119,9 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <include layout="@layout/timer" />
+            <include
+                android:id="@+id/timer_iterf"
+                layout="@layout/timer" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
