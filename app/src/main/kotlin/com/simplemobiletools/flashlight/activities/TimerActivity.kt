@@ -24,9 +24,13 @@ import kotlin.system.exitProcess
 import android.widget.Toast
 import android.widget.TextView
 import com.simplemobiletools.flashlight.BuildConfig
+import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
+import com.simplemobiletools.flashlight.models.Timer
+import com.simplemobiletools.flashlight.models.TimerState
+//import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 
 class TimerActivity : SimpleActivity() {
 
@@ -39,6 +43,8 @@ class TimerActivity : SimpleActivity() {
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
     private var reTurnFlashlightOn = true
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
@@ -69,8 +75,33 @@ class TimerActivity : SimpleActivity() {
 
         setupStroboscope()
         checkAppOnSDCard()
-    }
 
+        val timer = Timer(
+            id = null,
+            seconds = 60*5,
+            state = TimerState.Idle,
+            channelId = null
+        )
+
+        val textView = findViewById<TextView>(R.id.timer_time)
+        textView.text = timer.seconds.getFormattedDuration()
+
+        val timerTimeView = timer_iterf.findViewById<TextView>(R.id.timer_time)
+        timerTimeView.setOnClickListener {
+            changeDuration(this, timer)
+        }
+
+    }
+    private fun changeDuration(activity: SimpleActivity, timer: Timer) {
+        MyTimePickerDialogDialog(activity, timer.seconds) { seconds ->
+            val timerSeconds = if (seconds <= 0) 10 else seconds
+            timer.seconds = timerSeconds
+            //activity.view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
+            val textView = findViewById<TextView>(R.id.timer_time)
+            textView.text = timerSeconds.getFormattedDuration()
+
+        }
+    }
     override fun onResume() {
         super.onResume()
         setupToolbar(timer_toolbar, NavigationIcon.Arrow)
