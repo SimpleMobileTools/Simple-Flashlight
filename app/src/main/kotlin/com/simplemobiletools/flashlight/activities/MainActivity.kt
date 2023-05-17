@@ -46,7 +46,7 @@ class MainActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder, true)
+        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = true, useTopSearchMenu = false)
         setupMaterialScrollListener(main_nested_scrollview, main_toolbar)
 
         mBus = EventBus.getDefault()
@@ -205,6 +205,10 @@ class MainActivity : SimpleActivity() {
                     brightness_bar.beVisibleIf(isEnabled)
                 }
             }
+
+            override fun onTorchUnavailable() {
+                mCameraImpl!!.onCameraNotAvailable()
+            }
         })
         if (config.turnFlashlightOn) {
             mCameraImpl!!.enableFlashlight()
@@ -307,7 +311,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun changeIconColor(color: Int, imageView: ImageView?) {
-        imageView!!.background.mutate().applyColorFilter(color)
+        imageView!!.background.applyColorFilter(color)
     }
 
     @SuppressLint("NewApi")

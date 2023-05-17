@@ -1,1 +1,1 @@
-Jednoduchá svítilna bez reklam.
+Ovládání svítilny s ovládání jasu a přizpůsobitelnou barvou, stroboskop

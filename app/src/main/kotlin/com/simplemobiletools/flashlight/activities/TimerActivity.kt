@@ -50,7 +50,7 @@ class TimerActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-        updateMaterialActivityViews(timer_coordinator, timer_holder, true)
+        updateMaterialActivityViews(timer_coordinator, timer_holder,  useTransparentNavigation = true, useTopSearchMenu = false)
         setupMaterialScrollListener(timer_nested_scrollview, timer_toolbar)
 
         mBus = EventBus.getDefault()
@@ -183,6 +183,10 @@ class TimerActivity : SimpleActivity() {
                 if (mCameraImpl!!.supportsBrightnessControl()) {
                     brightness_bar_2.beVisibleIf(isEnabled)
                 }
+            }
+
+            override fun onTorchUnavailable() {
+                mCameraImpl!!.onCameraNotAvailable()
             }
         })
         if (config.turnFlashlightOn) {
