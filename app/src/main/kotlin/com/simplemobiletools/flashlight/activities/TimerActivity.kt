@@ -61,6 +61,10 @@ class TimerActivity : SimpleActivity() {
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
+        flashlight_btn_2.setOnClickListener {
+            mCameraImpl!!.toggleFlashlight()
+        }
+
         sos_btn_2.setOnClickListener {
             toggleStroboscope(true)
         }
