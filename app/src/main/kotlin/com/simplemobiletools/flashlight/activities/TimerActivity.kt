@@ -23,7 +23,7 @@ import org.greenrobot.eventbus.EventBus
 import kotlin.system.exitProcess
 import android.widget.Toast
 import android.widget.TextView
-import com.simplemobiletools.flashlight.BuildConfig
+//import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.models.Events
@@ -31,6 +31,11 @@ import org.greenrobot.eventbus.Subscribe
 import com.simplemobiletools.flashlight.models.Timer
 import com.simplemobiletools.flashlight.models.TimerState
 import com.simplemobiletools.flashlight.helpers.TimerHelper
+import com.simplemobiletools.flashlight.models.TimerEvent
+import com.simplemobiletools.flashlight.extensions.getFormattedDuration
+import com.simplemobiletools.flashlight.extensions.secondsToMillis
+
+
 //import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 
 class TimerActivity : SimpleActivity() {
@@ -80,12 +85,42 @@ class TimerActivity : SimpleActivity() {
         val timerHelper = TimerHelper(this)
         timerHelper.getTimer { timer ->
             val textView = findViewById<TextView>(R.id.timer_time)
-            textView.text = timer.seconds.getFormattedDuration()
+            textView.text = when (timer.state) {
+                is TimerState.Finished -> 0.getFormattedDuration()
+                is TimerState.Idle -> timer.seconds.getFormattedDuration()
+                is TimerState.Paused -> timer.state.tick.getFormattedDuration()
+                is TimerState.Running -> timer.state.tick.getFormattedDuration()
+            }
+            val timerReset = timer_iterf.findViewById<ImageView>(R.id.timer_reset)
+            timerReset.setOnClickListener {
+                resetTimer(timer)
+            }
+            val timerPlayPause = timer_iterf.findViewById<ImageView>(R.id.timer_play_pause)
+            timerPlayPause.setOnClickListener {
+                /*(activity as SimpleActivity).handleNotificationPermission { granted ->
+                    if (granted) {*/
+                when (val state = timer.state) {
+                    is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                    is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
+                    is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
+                    is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
+                }
+                /*} else {
+                    PermissionRequiredDialog(activity, R.string.allow_notifications_reminders)
+                }
+            */}
+            val state = timer.state
+            val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
+            timerReset.beInvisibleIf(!resetPossible)
+            val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
+            //timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
+
 
             val timerTimeView = timer_iterf.findViewById<TextView>(R.id.timer_time)
             timerTimeView.setOnClickListener {
                 changeDuration(this, timer)
             }
+
         }
     }
     private fun changeDuration(activity: SimpleActivity, timer: Timer) {
@@ -325,4 +360,11 @@ class TimerActivity : SimpleActivity() {
         toast(R.string.camera_error)
         disableFlashlight()
     }
+
+    private fun resetTimer(timer: Timer) {
+        EventBus.getDefault().post(TimerEvent.Reset(timer.id!!))
+        //simpleActivity.hideTimerNotification(timer.id!!)
+    }
+
 }
+
