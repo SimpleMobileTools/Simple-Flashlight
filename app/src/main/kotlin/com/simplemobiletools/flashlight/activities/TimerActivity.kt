@@ -7,6 +7,8 @@ import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import com.simplemobiletools.commons.extensions.*
@@ -28,14 +30,15 @@ import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
-import com.simplemobiletools.flashlight.models.Timer
+//import com.simplemobiletools.flashlight.models.Timer
 import com.simplemobiletools.flashlight.models.TimerState
 import com.simplemobiletools.flashlight.helpers.TimerHelper
-import com.simplemobiletools.flashlight.models.TimerEvent
+//import com.simplemobiletools.flashlight.models.TimerEvent
 import com.simplemobiletools.flashlight.extensions.getFormattedDuration
 import com.simplemobiletools.flashlight.extensions.secondsToMillis
-
-
+import 	android.content.Context
+import android.widget.EditText
+import android.view.inputmethod.InputMethodManager as InputMethodManager1
 //import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 
 class TimerActivity : SimpleActivity() {
@@ -50,13 +53,16 @@ class TimerActivity : SimpleActivity() {
     private var mIsFlashlightOn = false
     private var reTurnFlashlightOn = true
 
+    lateinit var countdown_timer: CountDownTimer
+    var isRunning: Boolean = false;
+    var time_in_milli_seconds = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-        updateMaterialActivityViews(timer_coordinator, timer_holder,  useTransparentNavigation = true, useTopSearchMenu = false)
+        updateMaterialActivityViews(timer_coordinator, timer_holder, useTransparentNavigation = true, useTopSearchMenu = false)
         setupMaterialScrollListener(timer_nested_scrollview, timer_toolbar)
 
         mBus = EventBus.getDefault()
@@ -64,6 +70,9 @@ class TimerActivity : SimpleActivity() {
 
         bright_display_btn_2.setOnClickListener {
             reTurnFlashlightOn = true
+            var time  = time_edit_text.text.toString()
+            time_in_milli_seconds = time.toLong() * 60000L
+            startTimer(time_in_milli_seconds)
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
@@ -82,7 +91,29 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
-        val timerHelper = TimerHelper(this)
+        timer_play_pause.setOnClickListener {
+            if (isRunning) {
+                pauseTimer()
+                flashlight_btn_2.isEnabled = true
+                bright_display_btn_2.isEnabled = true
+                sos_btn_2.isEnabled = true
+                stroboscope_btn_2.isEnabled = true
+            } else {
+                var time  = time_edit_text.text.toString()
+                time_in_milli_seconds = time.toLong() * 60000L
+                startTimer(time_in_milli_seconds)
+                flashlight_btn_2.isEnabled = false
+                bright_display_btn_2.isEnabled = false
+                sos_btn_2.isEnabled = false
+                stroboscope_btn_2.isEnabled = false
+            }
+        }
+
+        timer_reset.setOnClickListener {
+            resetTimer()
+        }
+
+        /*val timerHelper = TimerHelper(this)
         timerHelper.getTimer { timer ->
             val textView = findViewById<TextView>(R.id.timer_time)
             textView.text = when (timer.state) {
@@ -113,7 +144,7 @@ class TimerActivity : SimpleActivity() {
             val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
             timerReset.beInvisibleIf(!resetPossible)
             val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-            //timer_play_pause.setImageDrawable(simpleActivity.resources.getColoredDrawableWithColor(drawableId, textColor))
+            timerPlayPause.setImageDrawable(getDrawable(drawableId))
 
 
             val timerTimeView = timer_iterf.findViewById<TextView>(R.id.timer_time)
@@ -133,11 +164,63 @@ class TimerActivity : SimpleActivity() {
             val timerHelper = TimerHelper(this)
             timerHelper.insertOrUpdateTimer(timer)
 
+        }*/
+    }
+
+
+    private fun pauseTimer() {
+        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
+        countdown_timer.cancel()
+        isRunning = false
+        timer_reset.visibility = View.VISIBLE
+        time_edit_text.visibility = View.VISIBLE
+    }
+
+
+    private fun startTimer(time_in_seconds: Long) {
+        countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
+            override fun onFinish() {
+                return
+            }
+
+            override fun onTick(p0: Long) {
+                time_in_milli_seconds = p0
+                updateTextUI()
+            }
+        }
+        countdown_timer.start()
+
+
+        isRunning = true
+        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
+        timer_reset.visibility = View.INVISIBLE
+        time_edit_text.visibility = View.INVISIBLE
+
+    }
+
+    private fun resetTimer() {
+        val time  = time_edit_text.text.toString()
+        time_in_milli_seconds = time.toLong() * 60000L
+        updateTextUI()
+        timer_reset.visibility = View.INVISIBLE
+    }
+
+    private fun updateTextUI() {
+        val hours = (time_in_milli_seconds / 1000) / 3600
+        val minute = ((time_in_milli_seconds / 1000) %3600) / 60
+        val seconds = (time_in_milli_seconds / 1000) % 60
+        if(hours > 0) {
+            timer.text = "$hours:$minute:$seconds"
+        }
+        else {
+            timer.text = "$minute:$seconds"
         }
     }
+
     override fun onResume() {
         super.onResume()
         setupToolbar(timer_toolbar, NavigationIcon.Arrow)
+
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
@@ -155,6 +238,7 @@ class TimerActivity : SimpleActivity() {
         if (!config.stroboscope) {
             mCameraImpl!!.stopStroboscope()
             stroboscope_bar_2.beInvisible()
+
         }
 
         updateTextColors(timer_holder)
@@ -267,10 +351,22 @@ class TimerActivity : SimpleActivity() {
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
-            sos_btn_2.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
+            if (isSOSRunning) {
+                sos_btn_2.setTextColor(getProperPrimaryColor())
+                timer_play_pause.visibility = View.VISIBLE
+            }
+            else {
+                sos_btn_2.setTextColor(getContrastColor())
+                timer_play_pause.visibility = View.INVISIBLE
+            }
         } else if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar_2.beInvisibleIf(stroboscope_bar_2.isVisible())
-            changeIconColor(if (stroboscope_bar_2.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn_2)
+            if (stroboscope_bar_2.isVisible()) {
+                changeIconColor(getProperPrimaryColor(),stroboscope_btn_2)
+                timer_play_pause.visibility = View.VISIBLE
+            } else {
+                changeIconColor(getContrastColor(),stroboscope_btn_2)
+            }
         }
     }
 
@@ -289,6 +385,7 @@ class TimerActivity : SimpleActivity() {
     fun stopStroboscope(event: Events.StopStroboscope) {
         stroboscope_bar_2.beInvisible()
         changeIconColor(getContrastColor(), stroboscope_btn_2)
+        timer_play_pause.visibility = View.INVISIBLE
     }
 
     @Subscribe
@@ -298,8 +395,10 @@ class TimerActivity : SimpleActivity() {
     private fun checkState(isEnabled: Boolean) {
         if (isEnabled) {
             enableFlashlight()
+            timer_play_pause.visibility = View.VISIBLE
         } else {
             disableFlashlight()
+            timer_play_pause.visibility = View.INVISIBLE
         }
     }
 
@@ -307,9 +406,7 @@ class TimerActivity : SimpleActivity() {
         changeIconColor(getProperPrimaryColor(), flashlight_btn_2)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
-
         sos_btn_2.setTextColor(getContrastColor())
-
         changeIconColor(getContrastColor(), stroboscope_btn_2)
         stroboscope_bar_2.beInvisible()
     }
@@ -355,7 +452,7 @@ class TimerActivity : SimpleActivity() {
             .build()
     }
 
-    @Subscribe
+    /*@Subscribe
     fun cameraUnavailable(event: Events.CameraUnavailable) {
         toast(R.string.camera_error)
         disableFlashlight()
@@ -364,7 +461,8 @@ class TimerActivity : SimpleActivity() {
     private fun resetTimer(timer: Timer) {
         EventBus.getDefault().post(TimerEvent.Reset(timer.id!!))
         //simpleActivity.hideTimerNotification(timer.id!!)
-    }
+    }*/
 
 }
+
 
