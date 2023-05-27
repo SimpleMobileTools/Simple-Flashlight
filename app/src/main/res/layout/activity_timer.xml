@@ -37,16 +37,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp">
 
+
                 <EditText
                     android:id="@+id/time_edit_text"
-                    android:layout_width="182dp"
-                    android:layout_height="71dp"
+                    android:layout_width="320dp"
+                    android:layout_height="61dp"
                     android:layout_marginStart="8dp"
                     android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="Minutes"
                     android:inputType="number"
-                    android:padding="24dp"
+                    android:padding="18dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
@@ -57,59 +58,30 @@
 
                 <TextView
                     android:id="@+id/timer_set"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="44dp"
+                    android:layout_height="29dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:text="SOS"
-                    android:textSize="@dimen/sos_text_size"
+                    android:text="SET"
+                    android:textSize="18dp"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="190dp"
-                    tools:layout_editor_absoluteY="56dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.962"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.089" />
 
                 <TextView
                     android:id="@+id/timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:text="00:00"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.054" />
-
-                <ImageView
-                    android:id="@+id/flashlight_btn_2"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="52dp"
-                    android:background="@drawable/ic_flashlight_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.27" />
-
-                <ImageView
-                    android:id="@+id/bright_display_btn_2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginEnd="56dp"
-                    android:background="@drawable/ic_bright_display_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.31" />
-
-                <ImageView
-                    android:id="@+id/stroboscope_btn_2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="96dp"
-                    android:background="@drawable/ic_stroboscope_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.57" />
+                    app:layout_constraintVertical_bias="0.215" />
 
                 <com.simplemobiletools.commons.views.MySeekBar
                     android:id="@+id/stroboscope_bar_2"
@@ -121,10 +93,10 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.133"
+                    app:layout_constraintHorizontal_bias="0.138"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.673" />
+                    app:layout_constraintVertical_bias="0.712" />
 
                 <com.simplemobiletools.commons.views.MySeekBar
                     android:id="@+id/brightness_bar_2"
@@ -139,22 +111,7 @@
                     app:layout_constraintHorizontal_bias="0.138"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.672" />
-
-                <TextView
-                    android:id="@+id/sos_btn_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:text="SOS"
-                    android:textSize="@dimen/sos_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.798"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.562" />
+                    app:layout_constraintVertical_bias="0.712" />
 
                 <ImageView
                     android:id="@+id/timer_play_pause"
@@ -167,10 +124,58 @@
                     android:src="@drawable/ic_play_vector"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.529"
+                    app:layout_constraintHorizontal_bias="0.532"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.821" />
+                    app:layout_constraintVertical_bias="0.883" />
+
+                <ImageView
+                    android:id="@+id/bright_display_btn_2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginEnd="56dp"
+                    android:background="@drawable/ic_bright_display_vector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.435" />
+
+                <ImageView
+                    android:id="@+id/flashlight_btn_2"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="56dp"
+                    android:background="@drawable/ic_flashlight_vector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.418" />
+
+                <ImageView
+                    android:id="@+id/stroboscope_btn_2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="96dp"
+                    android:background="@drawable/ic_stroboscope_vector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.629" />
+
+                <TextView
+                    android:id="@+id/sos_btn_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:text="SOS"
+                    android:textSize="@dimen/sos_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.804"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.619" />
 
                 <ImageView
                     android:id="@+id/timer_reset"
@@ -182,10 +187,10 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.309"
+                    app:layout_constraintHorizontal_bias="0.312"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.805" />
+                    app:layout_constraintVertical_bias="0.864" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--<include

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import com.simplemobiletools.commons.extensions.*
@@ -82,6 +83,7 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
+
         timer_set.setOnClickListener {
             val input = time_edit_text!!.getText().toString()
             val millisInput = input.toLong() * 60000
@@ -91,8 +93,18 @@ class TimerActivity : SimpleActivity() {
         timer_play_pause.setOnClickListener {
             if (isRunning) {
                 pauseTimer()
+                flashlight_btn_2.isEnabled = true
+                bright_display_btn_2.isEnabled = true
+                sos_btn_2.isEnabled = true
+                stroboscope_btn_2.isEnabled = true
+                stroboscope_bar_2.isEnabled = true
             } else {
                 startTimer()
+                flashlight_btn_2.isEnabled = false
+                bright_display_btn_2.isEnabled = false
+                sos_btn_2.isEnabled = false
+                stroboscope_btn_2.isEnabled = false
+                stroboscope_bar_2.isEnabled = false
             }
         }
 
@@ -157,6 +169,7 @@ class TimerActivity : SimpleActivity() {
     private fun setTime(milliseconds: Long) {
         mStartTimeInMillis = milliseconds
         resetTimer()
+        closeKeyboard()
     }
 
     private fun pauseTimer() {
@@ -165,6 +178,7 @@ class TimerActivity : SimpleActivity() {
         isRunning = false
         timer_reset.visibility = View.VISIBLE
         time_edit_text.visibility = View.VISIBLE
+        timer_set.visibility = View.VISIBLE
     }
 
 
@@ -178,6 +192,9 @@ class TimerActivity : SimpleActivity() {
 
             override fun onFinish() {
                 isRunning = false
+                mCameraImpl?.releaseCamera()
+                mCameraImpl = null
+                startActivity(intent)
             }
         }.start()
 
@@ -185,6 +202,7 @@ class TimerActivity : SimpleActivity() {
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
         timer_reset.visibility = View.INVISIBLE
         time_edit_text.visibility = View.INVISIBLE
+        timer_set.visibility = View.INVISIBLE
     }
 
     private fun resetTimer() {
@@ -213,7 +231,7 @@ class TimerActivity : SimpleActivity() {
         timeLeftFormatted = if (hours > 0) {
             String.format(
                 Locale.getDefault(),
-                "%d:%02d:%02d", hours, minutes, seconds
+                "%02d:%02d:%02d", hours, minutes, seconds
             )
         } else {
             String.format(
@@ -222,6 +240,14 @@ class TimerActivity : SimpleActivity() {
             )
         }
         timer!!.text = timeLeftFormatted
+    }
+
+    private fun closeKeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     override fun onResume() {
