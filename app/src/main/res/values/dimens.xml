@@ -8,4 +8,5 @@
     <dimen name="alarm_text_size">60sp</dimen>
 
     <dimen name="sos_text_size">26sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

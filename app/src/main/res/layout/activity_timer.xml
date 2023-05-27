@@ -32,7 +32,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/timer_holder"
                 android:layout_width="match_parent"
-                android:layout_height="591dp"
+                android:layout_height="656dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp">
@@ -154,7 +154,6 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/activity_margin"
                     android:src="@drawable/ic_play_vector"
-                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.529"

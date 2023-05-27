@@ -2,7 +2,6 @@ package com.simplemobiletools.flashlight.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
@@ -22,23 +21,13 @@ import kotlinx.android.synthetic.main.activity_timer.*
 import java.util.*
 import com.simplemobiletools.flashlight.helpers.CameraTorchListener
 import org.greenrobot.eventbus.EventBus
-import kotlin.system.exitProcess
-import android.widget.Toast
-import android.widget.TextView
 //import com.simplemobiletools.flashlight.BuildConfig
-import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
 //import com.simplemobiletools.flashlight.models.Timer
-import com.simplemobiletools.flashlight.models.TimerState
-import com.simplemobiletools.flashlight.helpers.TimerHelper
 //import com.simplemobiletools.flashlight.models.TimerEvent
-import com.simplemobiletools.flashlight.extensions.getFormattedDuration
-import com.simplemobiletools.flashlight.extensions.secondsToMillis
-import 	android.content.Context
-import android.widget.EditText
-import android.view.inputmethod.InputMethodManager as InputMethodManager1
+
 //import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 
 class TimerActivity : SimpleActivity() {
@@ -70,9 +59,6 @@ class TimerActivity : SimpleActivity() {
 
         bright_display_btn_2.setOnClickListener {
             reTurnFlashlightOn = true
-            var time  = time_edit_text.text.toString()
-            time_in_milli_seconds = time.toLong() * 60000L
-            startTimer(time_in_milli_seconds)
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
         }
 
@@ -98,6 +84,7 @@ class TimerActivity : SimpleActivity() {
                 bright_display_btn_2.isEnabled = true
                 sos_btn_2.isEnabled = true
                 stroboscope_btn_2.isEnabled = true
+                stroboscope_bar_2.isEnabled = true
             } else {
                 var time  = time_edit_text.text.toString()
                 time_in_milli_seconds = time.toLong() * 60000L
@@ -106,6 +93,7 @@ class TimerActivity : SimpleActivity() {
                 bright_display_btn_2.isEnabled = false
                 sos_btn_2.isEnabled = false
                 stroboscope_btn_2.isEnabled = false
+                stroboscope_bar_2.isEnabled = false
             }
         }
 
@@ -180,7 +168,15 @@ class TimerActivity : SimpleActivity() {
     private fun startTimer(time_in_seconds: Long) {
         countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
             override fun onFinish() {
-                return
+                time_edit_text.visibility = View.VISIBLE
+                timer_reset.visibility = View.VISIBLE
+                timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
+                flashlight_btn_2.isEnabled = true
+                bright_display_btn_2.isEnabled = true
+                sos_btn_2.isEnabled = true
+                stroboscope_btn_2.isEnabled = true
+                stroboscope_bar_2.isEnabled = true
+
             }
 
             override fun onTick(p0: Long) {
@@ -190,12 +186,10 @@ class TimerActivity : SimpleActivity() {
         }
         countdown_timer.start()
 
-
         isRunning = true
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
         timer_reset.visibility = View.INVISIBLE
         time_edit_text.visibility = View.INVISIBLE
-
     }
 
     private fun resetTimer() {

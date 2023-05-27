@@ -10,6 +10,15 @@
     <string name="show_stroboscope">Show a stroboscope button</string>
     <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Turn flashlight on at startup</string>
+    <string name="title_activity_soft_input_assist">SoftInputAssist</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
