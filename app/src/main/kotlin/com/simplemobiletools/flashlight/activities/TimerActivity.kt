@@ -10,6 +10,7 @@ import android.os.CountDownTimer
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Toast
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.flashlight.R
@@ -42,9 +43,13 @@ class TimerActivity : SimpleActivity() {
     private var mIsFlashlightOn = false
     private var reTurnFlashlightOn = true
 
-    lateinit var countdown_timer: CountDownTimer
+    private var countdown_timer: CountDownTimer? = null
     var isRunning: Boolean = false;
     var time_in_milli_seconds = 0L
+
+    private var mStartTimeInMillis: Long = 0
+    private var mTimeLeftInMillis: Long = 0
+    private var mEndTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -77,23 +82,17 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
+        timer_set.setOnClickListener {
+            val input = time_edit_text!!.getText().toString()
+            val millisInput = input.toLong() * 60000
+            setTime(millisInput)
+            time_edit_text!!.setText("")
+        }
         timer_play_pause.setOnClickListener {
             if (isRunning) {
                 pauseTimer()
-                flashlight_btn_2.isEnabled = true
-                bright_display_btn_2.isEnabled = true
-                sos_btn_2.isEnabled = true
-                stroboscope_btn_2.isEnabled = true
-                stroboscope_bar_2.isEnabled = true
             } else {
-                var time  = time_edit_text.text.toString()
-                time_in_milli_seconds = time.toLong() * 60000L
-                startTimer(time_in_milli_seconds)
-                flashlight_btn_2.isEnabled = false
-                bright_display_btn_2.isEnabled = false
-                sos_btn_2.isEnabled = false
-                stroboscope_btn_2.isEnabled = false
-                stroboscope_bar_2.isEnabled = false
+                startTimer()
             }
         }
 
@@ -155,36 +154,32 @@ class TimerActivity : SimpleActivity() {
         }*/
     }
 
+    private fun setTime(milliseconds: Long) {
+        mStartTimeInMillis = milliseconds
+        resetTimer()
+    }
 
     private fun pauseTimer() {
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
-        countdown_timer.cancel()
+        countdown_timer!!.cancel()
         isRunning = false
         timer_reset.visibility = View.VISIBLE
         time_edit_text.visibility = View.VISIBLE
     }
 
 
-    private fun startTimer(time_in_seconds: Long) {
-        countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
+    private fun startTimer() {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
+        countdown_timer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                mTimeLeftInMillis = millisUntilFinished
+                updateCountDownText()
+            }
+
             override fun onFinish() {
-                time_edit_text.visibility = View.VISIBLE
-                timer_reset.visibility = View.VISIBLE
-                timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
-                flashlight_btn_2.isEnabled = true
-                bright_display_btn_2.isEnabled = true
-                sos_btn_2.isEnabled = true
-                stroboscope_btn_2.isEnabled = true
-                stroboscope_bar_2.isEnabled = true
-
+                isRunning = false
             }
-
-            override fun onTick(p0: Long) {
-                time_in_milli_seconds = p0
-                updateTextUI()
-            }
-        }
-        countdown_timer.start()
+        }.start()
 
         isRunning = true
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
@@ -193,13 +188,12 @@ class TimerActivity : SimpleActivity() {
     }
 
     private fun resetTimer() {
-        val time  = time_edit_text.text.toString()
-        time_in_milli_seconds = time.toLong() * 60000L
-        updateTextUI()
+        mTimeLeftInMillis = mStartTimeInMillis
+        updateCountDownText()
         timer_reset.visibility = View.INVISIBLE
     }
 
-    private fun updateTextUI() {
+    /*private fun updateTextUI() {
         val hours = (time_in_milli_seconds / 1000) / 3600
         val minute = ((time_in_milli_seconds / 1000) %3600) / 60
         val seconds = (time_in_milli_seconds / 1000) % 60
@@ -209,6 +203,25 @@ class TimerActivity : SimpleActivity() {
         else {
             timer.text = "$minute:$seconds"
         }
+    }*/
+
+    private fun updateCountDownText() {
+        val hours = (mTimeLeftInMillis / 1000).toInt() / 3600
+        val minutes = (mTimeLeftInMillis / 1000 % 3600).toInt() / 60
+        val seconds = (mTimeLeftInMillis / 1000).toInt() % 60
+        val timeLeftFormatted: String
+        timeLeftFormatted = if (hours > 0) {
+            String.format(
+                Locale.getDefault(),
+                "%d:%02d:%02d", hours, minutes, seconds
+            )
+        } else {
+            String.format(
+                Locale.getDefault(),
+                "%02d:%02d", minutes, seconds
+            )
+        }
+        timer!!.text = timeLeftFormatted
     }
 
     override fun onResume() {

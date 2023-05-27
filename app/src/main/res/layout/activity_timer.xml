@@ -56,6 +56,17 @@
                     app:layout_constraintVertical_bias="0.061" />
 
                 <TextView
+                    android:id="@+id/timer_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:text="SOS"
+                    android:textSize="@dimen/sos_text_size"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="190dp"
+                    tools:layout_editor_absoluteY="56dp" />
+
+                <TextView
                     android:id="@+id/timer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
