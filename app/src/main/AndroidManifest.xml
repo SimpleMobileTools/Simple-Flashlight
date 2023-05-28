@@ -26,19 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SoftInputAssist"
-            android:exported="false"
-            android:label="@string/title_activity_soft_input_assist"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activities.SoftInputAssit"
-            android:exported="false" />
-        <activity
             android:name=".activities.TimerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".activities.SplashActivity"
             android:exported="true"

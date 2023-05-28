@@ -124,10 +124,10 @@
                     android:src="@drawable/ic_play_vector"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.532"
+                    app:layout_constraintHorizontal_bias="0.561"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.883" />
+                    app:layout_constraintVertical_bias="0.864" />
 
                 <ImageView
                     android:id="@+id/bright_display_btn_2"
@@ -187,10 +187,10 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.312"
+                    app:layout_constraintHorizontal_bias="0.336"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.864" />
+                    app:layout_constraintVertical_bias="0.838" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--<include

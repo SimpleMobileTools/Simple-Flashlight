@@ -31,6 +31,8 @@ import org.greenrobot.eventbus.Subscribe
 //import com.simplemobiletools.flashlight.models.TimerEvent
 
 //import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
+import android.content.Context
+import android.view.Window
 
 class TimerActivity : SimpleActivity() {
 
@@ -86,14 +88,12 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
-
         timer_set.setOnClickListener {
             val input = time_edit_text!!.getText().toString()
             val millisInput = input.toLong() * 60000
             setTime(millisInput)
             time_edit_text!!.setText("")
         }
-
 
         timer_play_pause.setOnClickListener {
             if (isRunning) {
@@ -117,6 +117,7 @@ class TimerActivity : SimpleActivity() {
         timer_reset.setOnClickListener {
             resetTimer()
         }
+
 
         /*val timerHelper = TimerHelper(this)
         timerHelper.getTimer { timer ->
@@ -251,7 +252,7 @@ class TimerActivity : SimpleActivity() {
     private fun closeKeyboard() {
         val view = this.currentFocus
         if (view != null) {
-            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
