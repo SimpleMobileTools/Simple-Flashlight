@@ -44,10 +44,8 @@ class TimerActivity : SimpleActivity() {
     private var mIsFlashlightOn = false
     private var reTurnFlashlightOn = true
 
-    private var countdown_timer: CountDownTimer? = null
-    var isRunning: Boolean = false;
-    var time_in_milli_seconds = 0L
-
+    private var countDownTimer: CountDownTimer? = null
+    private var isRunning: Boolean = false
     private var mStartTimeInMillis: Long = 0
     private var mTimeLeftInMillis: Long = 0
     private var mEndTime: Long = 0
@@ -66,6 +64,11 @@ class TimerActivity : SimpleActivity() {
         bright_display_btn_2.setOnClickListener {
             reTurnFlashlightOn = true
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+            startTimer()
+            flashlight_btn_2.isEnabled = false
+            sos_btn_2.isEnabled = false
+            stroboscope_btn_2.isEnabled = false
+            stroboscope_bar_2.isEnabled = false
         }
 
         flashlight_btn_2.setOnClickListener {
@@ -90,6 +93,8 @@ class TimerActivity : SimpleActivity() {
             setTime(millisInput)
             time_edit_text!!.setText("")
         }
+
+
         timer_play_pause.setOnClickListener {
             if (isRunning) {
                 pauseTimer()
@@ -107,6 +112,7 @@ class TimerActivity : SimpleActivity() {
                 stroboscope_bar_2.isEnabled = false
             }
         }
+
 
         timer_reset.setOnClickListener {
             resetTimer()
@@ -174,7 +180,7 @@ class TimerActivity : SimpleActivity() {
 
     private fun pauseTimer() {
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
-        countdown_timer!!.cancel()
+        countDownTimer!!.cancel()
         isRunning = false
         timer_reset.visibility = View.VISIBLE
         time_edit_text.visibility = View.VISIBLE
@@ -184,7 +190,7 @@ class TimerActivity : SimpleActivity() {
 
     private fun startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
-        countdown_timer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
+        countDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 mTimeLeftInMillis = millisUntilFinished
                 updateCountDownText()
@@ -399,6 +405,7 @@ class TimerActivity : SimpleActivity() {
                 timer_play_pause.visibility = View.VISIBLE
             } else {
                 changeIconColor(getContrastColor(),stroboscope_btn_2)
+                timer_play_pause.visibility = View.INVISIBLE
             }
         }
     }
