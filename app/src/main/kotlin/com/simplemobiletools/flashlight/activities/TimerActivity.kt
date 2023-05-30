@@ -29,7 +29,7 @@ import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
 //import com.simplemobiletools.flashlight.models.Timer
 //import com.simplemobiletools.flashlight.models.TimerEvent
-
+import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 //import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 import android.content.Context
 import android.view.Window
@@ -88,12 +88,12 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
-        timer_set.setOnClickListener {
+        /*timer_set.setOnClickListener {
             val input = time_edit_text!!.getText().toString()
             val millisInput = input.toLong() * 60000
             setTime(millisInput)
             time_edit_text!!.setText("")
-        }
+        }*/
 
         timer_play_pause.setOnClickListener {
             if (isRunning) {
@@ -118,6 +118,9 @@ class TimerActivity : SimpleActivity() {
             resetTimer()
         }
 
+        timer.setOnClickListener {
+            changeDuration(this, mStartTimeInMillis.toInt())
+        }
 
         /*val timerHelper = TimerHelper(this)
         timerHelper.getTimer { timer ->
@@ -158,26 +161,26 @@ class TimerActivity : SimpleActivity() {
                 changeDuration(this, timer)
             }
 
-        }
-    }
-    private fun changeDuration(activity: SimpleActivity, timer: Timer) {
-        MyTimePickerDialogDialog(activity, timer.seconds) { seconds ->
-            val timerSeconds = if (seconds <= 0) 10 else seconds
-            timer.seconds = timerSeconds
-            //activity.view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
-            val textView = findViewById<TextView>(R.id.timer_time)
-            textView.text = timerSeconds.getFormattedDuration()
-            val timerHelper = TimerHelper(this)
-            timerHelper.insertOrUpdateTimer(timer)
-
         }*/
     }
+    private fun changeDuration(activity: SimpleActivity, time : Int) {
+        MyTimePickerDialogDialog(activity, time) { seconds ->
+            val timerSeconds = if (seconds <= 0) 10 else seconds
+            //time = timerSeconds
+            //timer.seconds = timerSeconds
+            //activity.view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
+            //val textView = findViewById<TextView>(R.id.timer_time)
+            timer.text = timerSeconds.getFormattedDuration()
+            /*val timerHelper = TimerHelper(this)
+            timerHelper.insertOrUpdateTimer(timer)*/
+        }
+    }
 
-    private fun setTime(milliseconds: Long) {
+    /*private fun setTime(milliseconds: Long) {
         mStartTimeInMillis = milliseconds
         resetTimer()
         closeKeyboard()
-    }
+    }*/
 
     private fun pauseTimer() {
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
@@ -234,8 +237,7 @@ class TimerActivity : SimpleActivity() {
         val hours = (mTimeLeftInMillis / 1000).toInt() / 3600
         val minutes = (mTimeLeftInMillis / 1000 % 3600).toInt() / 60
         val seconds = (mTimeLeftInMillis / 1000).toInt() % 60
-        val timeLeftFormatted: String
-        timeLeftFormatted = if (hours > 0) {
+        val timeLeftFormatted: String = if (hours > 0) {
             String.format(
                 Locale.getDefault(),
                 "%02d:%02d:%02d", hours, minutes, seconds
