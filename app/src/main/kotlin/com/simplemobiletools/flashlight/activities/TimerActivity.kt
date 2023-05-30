@@ -1,6 +1,11 @@
 package com.simplemobiletools.flashlight.activities
 
+//import com.simplemobiletools.flashlight.BuildConfig
+//import com.simplemobiletools.flashlight.models.Timer
+//import com.simplemobiletools.flashlight.models.TimerEvent
+//import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
@@ -11,28 +16,22 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.Toast
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.CameraTorchListener
+import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
+import com.simplemobiletools.flashlight.models.Events
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_timer.*
-import java.util.*
-import com.simplemobiletools.flashlight.helpers.CameraTorchListener
 import org.greenrobot.eventbus.EventBus
-//import com.simplemobiletools.flashlight.BuildConfig
-import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
-import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.Subscribe
-//import com.simplemobiletools.flashlight.models.Timer
-//import com.simplemobiletools.flashlight.models.TimerEvent
-import com.simplemobiletools.flashlight.dialogs.MyTimePickerDialogDialog
-//import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
-import android.content.Context
-import android.view.Window
+import java.util.*
+//import java.util.concurrent.TimeUnit
 
 class TimerActivity : SimpleActivity() {
 
@@ -119,7 +118,8 @@ class TimerActivity : SimpleActivity() {
         }
 
         timer.setOnClickListener {
-            changeDuration(this, mStartTimeInMillis.toInt())
+            changeDuration(this, 0)
+            //resetTimer()
         }
 
         /*val timerHelper = TimerHelper(this)
@@ -166,11 +166,13 @@ class TimerActivity : SimpleActivity() {
     private fun changeDuration(activity: SimpleActivity, time : Int) {
         MyTimePickerDialogDialog(activity, time) { seconds ->
             val timerSeconds = if (seconds <= 0) 10 else seconds
-            //time = timerSeconds
+            mStartTimeInMillis = time.toLong()
+            mStartTimeInMillis = timerSeconds.toLong()
+            resetTimer()
             //timer.seconds = timerSeconds
             //activity.view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
             //val textView = findViewById<TextView>(R.id.timer_time)
-            timer.text = timerSeconds.getFormattedDuration()
+            //timer.text = timerSeconds.getFormattedDuration()
             /*val timerHelper = TimerHelper(this)
             timerHelper.insertOrUpdateTimer(timer)*/
         }
@@ -193,10 +195,12 @@ class TimerActivity : SimpleActivity() {
 
 
     private fun startTimer() {
+        //val timeMillis = System.currentTimeMillis()
+        //val timeSeconds: Long = TimeUnit.MILLISECONDS.toSeconds(timeMillis)
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
-        countDownTimer = object : CountDownTimer(mTimeLeftInMillis, 1000) {
+        countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                mTimeLeftInMillis = millisUntilFinished
+                mTimeLeftInMillis = millisUntilFinished/1000
                 updateCountDownText()
             }
 
@@ -234,9 +238,9 @@ class TimerActivity : SimpleActivity() {
     }*/
 
     private fun updateCountDownText() {
-        val hours = (mTimeLeftInMillis / 1000).toInt() / 3600
-        val minutes = (mTimeLeftInMillis / 1000 % 3600).toInt() / 60
-        val seconds = (mTimeLeftInMillis / 1000).toInt() % 60
+        val hours = (mTimeLeftInMillis / 3600)
+        val minutes = mTimeLeftInMillis  % 3600 / 60
+        val seconds = mTimeLeftInMillis % 60
         val timeLeftFormatted: String = if (hours > 0) {
             String.format(
                 Locale.getDefault(),
