@@ -45,6 +45,7 @@ class TimerActivity : SimpleActivity() {
     private var mStartTimeInMillis: Long = 0
     private var mTimeLeftInMillis: Long = 0
     private var mEndTime: Long = 0
+    private var brightDisp = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
@@ -60,6 +61,7 @@ class TimerActivity : SimpleActivity() {
         bright_display_btn_2.setOnClickListener {
             reTurnFlashlightOn = true
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+            brightDisp = true
             startTimer()
         }
 
@@ -84,7 +86,7 @@ class TimerActivity : SimpleActivity() {
         }
 
         timer_play_pause.setOnClickListener {
-            if (isRunning) {
+            if (isRunning or brightDisp == true ) {
                 pauseTimer()
             } else {
                 startTimer()
@@ -94,6 +96,7 @@ class TimerActivity : SimpleActivity() {
         timer_reset.setOnClickListener {
             resetTimer()
         }
+
     }
 
     override fun onResume() {
@@ -129,7 +132,9 @@ class TimerActivity : SimpleActivity() {
         }
 
         reTurnFlashlightOn = true
-
+        if (brightDisp == true){
+            timer_play_pause.isEnabled = true
+        }
         checkShortcuts()
     }
 
@@ -341,6 +346,7 @@ class TimerActivity : SimpleActivity() {
     }
 
     private fun pauseTimer() {
+
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
         countDownTimer!!.cancel()
         isRunning = false
@@ -350,11 +356,13 @@ class TimerActivity : SimpleActivity() {
     }
 
     private fun startTimer() {
+
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
         countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 mTimeLeftInMillis = millisUntilFinished/1000
                 updateCountDownText()
+
             }
             override fun onFinish() {
                 finish()
