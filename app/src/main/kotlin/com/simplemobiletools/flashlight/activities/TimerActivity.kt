@@ -86,7 +86,7 @@ class TimerActivity : SimpleActivity() {
         }
 
         timer_play_pause.setOnClickListener {
-            if (isRunning or brightDisp == true ) {
+            if (isRunning or brightDisp == true) {
                 pauseTimer()
             } else {
                 startTimer()
@@ -132,6 +132,7 @@ class TimerActivity : SimpleActivity() {
         }
 
         reTurnFlashlightOn = true
+
         if (brightDisp == true){
             timer_play_pause.isEnabled = true
         }
@@ -346,17 +347,16 @@ class TimerActivity : SimpleActivity() {
     }
 
     private fun pauseTimer() {
-
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
         countDownTimer!!.cancel()
         isRunning = false
+        brightDisp = false
         timer_reset.visibility = View.VISIBLE
         timer.isEnabled = true
         isLightEnable(true)
     }
 
     private fun startTimer() {
-
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
         countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
