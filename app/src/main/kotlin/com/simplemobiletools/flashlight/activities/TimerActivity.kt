@@ -1,11 +1,6 @@
 package com.simplemobiletools.flashlight.activities
 
-//import com.simplemobiletools.flashlight.BuildConfig
-//import com.simplemobiletools.flashlight.models.Timer
-//import com.simplemobiletools.flashlight.models.TimerEvent
-//import kotlinx.android.synthetic.main.dialog_edit_timer.view.*
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
@@ -14,7 +9,6 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
@@ -31,7 +25,6 @@ import kotlinx.android.synthetic.main.activity_timer.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
-//import java.util.concurrent.TimeUnit
 
 class TimerActivity : SimpleActivity() {
 
@@ -66,6 +59,7 @@ class TimerActivity : SimpleActivity() {
             reTurnFlashlightOn = true
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
             startTimer()
+            timer.isEnabled = false
             flashlight_btn_2.isEnabled = false
             sos_btn_2.isEnabled = false
             stroboscope_btn_2.isEnabled = false
@@ -87,12 +81,9 @@ class TimerActivity : SimpleActivity() {
         setupStroboscope()
         checkAppOnSDCard()
 
-        /*timer_set.setOnClickListener {
-            val input = time_edit_text!!.getText().toString()
-            val millisInput = input.toLong() * 60000
-            setTime(millisInput)
-            time_edit_text!!.setText("")
-        }*/
+        timer.setOnClickListener {
+            changeDuration(this, 0)
+        }
 
         timer_play_pause.setOnClickListener {
             if (isRunning) {
@@ -112,154 +103,8 @@ class TimerActivity : SimpleActivity() {
             }
         }
 
-
         timer_reset.setOnClickListener {
             resetTimer()
-        }
-
-        timer.setOnClickListener {
-            changeDuration(this, 0)
-            //resetTimer()
-        }
-
-        /*val timerHelper = TimerHelper(this)
-        timerHelper.getTimer { timer ->
-            val textView = findViewById<TextView>(R.id.timer_time)
-            textView.text = when (timer.state) {
-                is TimerState.Finished -> 0.getFormattedDuration()
-                is TimerState.Idle -> timer.seconds.getFormattedDuration()
-                is TimerState.Paused -> timer.state.tick.getFormattedDuration()
-                is TimerState.Running -> timer.state.tick.getFormattedDuration()
-            }
-            val timerReset = timer_iterf.findViewById<ImageView>(R.id.timer_reset)
-            timerReset.setOnClickListener {
-                resetTimer(timer)
-            }
-            val timerPlayPause = timer_iterf.findViewById<ImageView>(R.id.timer_play_pause)
-            timerPlayPause.setOnClickListener {
-                /*(activity as SimpleActivity).handleNotificationPermission { granted ->
-                    if (granted) {*/
-                when (val state = timer.state) {
-                    is TimerState.Idle -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
-                    is TimerState.Paused -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, state.tick))
-                    is TimerState.Running -> EventBus.getDefault().post(TimerEvent.Pause(timer.id!!, state.tick))
-                    is TimerState.Finished -> EventBus.getDefault().post(TimerEvent.Start(timer.id!!, timer.seconds.secondsToMillis))
-                }
-                /*} else {
-                    PermissionRequiredDialog(activity, R.string.allow_notifications_reminders)
-                }
-            */}
-            val state = timer.state
-            val resetPossible = state is TimerState.Running || state is TimerState.Paused || state is TimerState.Finished
-            timerReset.beInvisibleIf(!resetPossible)
-            val drawableId = if (state is TimerState.Running) R.drawable.ic_pause_vector else R.drawable.ic_play_vector
-            timerPlayPause.setImageDrawable(getDrawable(drawableId))
-
-
-            val timerTimeView = timer_iterf.findViewById<TextView>(R.id.timer_time)
-            timerTimeView.setOnClickListener {
-                changeDuration(this, timer)
-            }
-
-        }*/
-    }
-    private fun changeDuration(activity: SimpleActivity, time : Int) {
-        MyTimePickerDialogDialog(activity, time) { seconds ->
-            val timerSeconds = if (seconds <= 0) 10 else seconds
-            mStartTimeInMillis = time.toLong()
-            mStartTimeInMillis = timerSeconds.toLong()
-            resetTimer()
-            //timer.seconds = timerSeconds
-            //activity.view.edit_timer_initial_time.text = timerSeconds.getFormattedDuration()
-            //val textView = findViewById<TextView>(R.id.timer_time)
-            //timer.text = timerSeconds.getFormattedDuration()
-            /*val timerHelper = TimerHelper(this)
-            timerHelper.insertOrUpdateTimer(timer)*/
-        }
-    }
-
-    /*private fun setTime(milliseconds: Long) {
-        mStartTimeInMillis = milliseconds
-        resetTimer()
-        closeKeyboard()
-    }*/
-
-    private fun pauseTimer() {
-        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
-        countDownTimer!!.cancel()
-        isRunning = false
-        timer_reset.visibility = View.VISIBLE
-        time_edit_text.visibility = View.VISIBLE
-        timer_set.visibility = View.VISIBLE
-    }
-
-
-    private fun startTimer() {
-        //val timeMillis = System.currentTimeMillis()
-        //val timeSeconds: Long = TimeUnit.MILLISECONDS.toSeconds(timeMillis)
-        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
-        countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                mTimeLeftInMillis = millisUntilFinished/1000
-                updateCountDownText()
-            }
-
-            override fun onFinish() {
-                isRunning = false
-                mCameraImpl?.releaseCamera()
-                mCameraImpl = null
-                startActivity(intent)
-            }
-        }.start()
-
-        isRunning = true
-        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
-        timer_reset.visibility = View.INVISIBLE
-        time_edit_text.visibility = View.INVISIBLE
-        timer_set.visibility = View.INVISIBLE
-    }
-
-    private fun resetTimer() {
-        mTimeLeftInMillis = mStartTimeInMillis
-        updateCountDownText()
-        timer_reset.visibility = View.INVISIBLE
-    }
-
-    /*private fun updateTextUI() {
-        val hours = (time_in_milli_seconds / 1000) / 3600
-        val minute = ((time_in_milli_seconds / 1000) %3600) / 60
-        val seconds = (time_in_milli_seconds / 1000) % 60
-        if(hours > 0) {
-            timer.text = "$hours:$minute:$seconds"
-        }
-        else {
-            timer.text = "$minute:$seconds"
-        }
-    }*/
-
-    private fun updateCountDownText() {
-        val hours = (mTimeLeftInMillis / 3600)
-        val minutes = mTimeLeftInMillis  % 3600 / 60
-        val seconds = mTimeLeftInMillis % 60
-        val timeLeftFormatted: String = if (hours > 0) {
-            String.format(
-                Locale.getDefault(),
-                "%02d:%02d:%02d", hours, minutes, seconds
-            )
-        } else {
-            String.format(
-                Locale.getDefault(),
-                "%02d:%02d", minutes, seconds
-            )
-        }
-        timer!!.text = timeLeftFormatted
-    }
-
-    private fun closeKeyboard() {
-        val view = this.currentFocus
-        if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
@@ -299,7 +144,6 @@ class TimerActivity : SimpleActivity() {
         reTurnFlashlightOn = true
 
         checkShortcuts()
-
     }
 
     override fun onStart() {
@@ -499,17 +343,68 @@ class TimerActivity : SimpleActivity() {
             .build()
     }
 
-    /*@Subscribe
-    fun cameraUnavailable(event: Events.CameraUnavailable) {
-        toast(R.string.camera_error)
-        disableFlashlight()
+    private fun changeDuration(activity: SimpleActivity, time : Int) {
+        MyTimePickerDialogDialog(activity, time) { seconds ->
+            val timerSeconds = if (seconds <= 0) 10 else seconds
+            mStartTimeInMillis = time.toLong()
+            mStartTimeInMillis = timerSeconds.toLong()
+            resetTimer()
+        }
     }
 
-    private fun resetTimer(timer: Timer) {
-        EventBus.getDefault().post(TimerEvent.Reset(timer.id!!))
-        //simpleActivity.hideTimerNotification(timer.id!!)
-    }*/
 
+    private fun pauseTimer() {
+        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
+        countDownTimer!!.cancel()
+        isRunning = false
+        timer_reset.visibility = View.VISIBLE
+    }
+
+
+    private fun startTimer() {
+        mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
+        countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                mTimeLeftInMillis = millisUntilFinished/1000
+                updateCountDownText()
+            }
+            override fun onFinish() {
+                isRunning = false
+                mCameraImpl?.releaseCamera()
+                mCameraImpl = null
+                startActivity(intent)
+            }
+        }.start()
+
+        isRunning = true
+        timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
+        timer_reset.visibility = View.INVISIBLE
+    }
+
+    private fun resetTimer() {
+        mTimeLeftInMillis = mStartTimeInMillis
+        updateCountDownText()
+        timer_reset.visibility = View.INVISIBLE
+    }
+
+    private fun updateCountDownText() {
+        val hours = (mTimeLeftInMillis / 3600)
+        val minutes = mTimeLeftInMillis  % 3600 / 60
+        val seconds = mTimeLeftInMillis % 60
+        val timeLeftFormatted: String = if (hours > 0) {
+            String.format(
+                Locale.getDefault(),
+                "%02d:%02d:%02d", hours, minutes, seconds
+            )
+        } else {
+            String.format(
+                Locale.getDefault(),
+                "%02d:%02d", minutes, seconds
+            )
+        }
+
+        timer!!.text = timeLeftFormatted
+    }
 }
 
 

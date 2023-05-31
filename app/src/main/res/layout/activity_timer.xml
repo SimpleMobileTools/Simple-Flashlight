@@ -37,40 +37,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp">
 
-
-                <EditText
-                    android:id="@+id/time_edit_text"
-                    android:layout_width="320dp"
-                    android:layout_height="61dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/input_bg"
-                    android:ems="10"
-                    android:hint="Minutes"
-                    android:inputType="number"
-                    android:padding="18dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.061" />
-
-                <TextView
-                    android:id="@+id/timer_set"
-                    android:layout_width="44dp"
-                    android:layout_height="29dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:text="SET"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.962"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.089" />
-
                 <TextView
                     android:id="@+id/timer"
                     android:layout_width="wrap_content"
@@ -81,7 +47,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.215" />
+                    app:layout_constraintVertical_bias="0.068" />
 
                 <com.simplemobiletools.commons.views.MySeekBar
                     android:id="@+id/stroboscope_bar_2"
@@ -138,7 +104,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.435" />
+                    app:layout_constraintVertical_bias="0.332" />
 
                 <ImageView
                     android:id="@+id/flashlight_btn_2"
@@ -149,7 +115,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.418" />
+                    app:layout_constraintVertical_bias="0.317" />
 
                 <ImageView
                     android:id="@+id/stroboscope_btn_2"
@@ -160,7 +126,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.629" />
+                    app:layout_constraintVertical_bias="0.604" />
 
                 <TextView
                     android:id="@+id/sos_btn_2"
@@ -172,10 +138,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.804"
+                    app:layout_constraintHorizontal_bias="0.809"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.619" />
+                    app:layout_constraintVertical_bias="0.597" />
 
                 <ImageView
                     android:id="@+id/timer_reset"

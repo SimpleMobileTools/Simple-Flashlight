@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable
 import com.simplemobiletools.flashlight.helpers.*
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
-val Context.timerHelper: TimerHelper get() = TimerHelper(this)
 
 fun Context.updateWidgets(isEnabled: Boolean) {
     val widgetIDs = AppWidgetManager.getInstance(applicationContext)?.getAppWidgetIds(ComponentName(applicationContext, MyWidgetTorchProvider::class.java)) ?: return

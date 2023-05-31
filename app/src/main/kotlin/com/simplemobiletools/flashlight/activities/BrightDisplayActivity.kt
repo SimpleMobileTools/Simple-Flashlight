@@ -3,7 +3,6 @@ package com.simplemobiletools.flashlight.activities
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.applyColorFilter
@@ -11,8 +10,6 @@ import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import kotlinx.android.synthetic.main.activity_bright_display.*
-import com.simplemobiletools.flashlight.activities.TimerActivity
-import kotlinx.android.synthetic.main.activity_timer.*
 
 class BrightDisplayActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
