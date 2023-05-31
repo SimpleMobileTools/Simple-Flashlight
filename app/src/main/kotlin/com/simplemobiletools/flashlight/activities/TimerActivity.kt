@@ -340,7 +340,7 @@ class TimerActivity : SimpleActivity() {
 
     private fun changeDuration(activity: SimpleActivity, time : Int) {
         MyTimePickerDialogDialog(activity, time) { seconds ->
-            val timerSeconds = if (seconds <= 0) 300 else seconds
+            val timerSeconds = if (seconds <= 0) 60 else seconds
             mStartTimeInMillis = time.toLong()
             mStartTimeInMillis = timerSeconds.toLong()
             resetTimer()
