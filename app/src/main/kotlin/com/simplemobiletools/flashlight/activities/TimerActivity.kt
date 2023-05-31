@@ -59,11 +59,6 @@ class TimerActivity : SimpleActivity() {
             reTurnFlashlightOn = true
             startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
             startTimer()
-            timer.isEnabled = false
-            flashlight_btn_2.isEnabled = false
-            sos_btn_2.isEnabled = false
-            stroboscope_btn_2.isEnabled = false
-            stroboscope_bar_2.isEnabled = false
         }
 
         flashlight_btn_2.setOnClickListener {
@@ -88,18 +83,8 @@ class TimerActivity : SimpleActivity() {
         timer_play_pause.setOnClickListener {
             if (isRunning) {
                 pauseTimer()
-                flashlight_btn_2.isEnabled = true
-                bright_display_btn_2.isEnabled = true
-                sos_btn_2.isEnabled = true
-                stroboscope_btn_2.isEnabled = true
-                stroboscope_bar_2.isEnabled = true
             } else {
                 startTimer()
-                flashlight_btn_2.isEnabled = false
-                bright_display_btn_2.isEnabled = false
-                sos_btn_2.isEnabled = false
-                stroboscope_btn_2.isEnabled = false
-                stroboscope_bar_2.isEnabled = false
             }
         }
 
@@ -129,7 +114,6 @@ class TimerActivity : SimpleActivity() {
         if (!config.stroboscope) {
             mCameraImpl!!.stopStroboscope()
             stroboscope_bar_2.beInvisible()
-
         }
 
         updateTextColors(timer_holder)
@@ -243,20 +227,20 @@ class TimerActivity : SimpleActivity() {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
             if (isSOSRunning) {
                 sos_btn_2.setTextColor(getProperPrimaryColor())
-                timer_play_pause.visibility = View.VISIBLE
+                timer_play_pause.isEnabled = true
             }
             else {
                 sos_btn_2.setTextColor(getContrastColor())
-                timer_play_pause.visibility = View.INVISIBLE
+                timer_play_pause.isEnabled = false
             }
         } else if (mCameraImpl!!.toggleStroboscope()) {
             stroboscope_bar_2.beInvisibleIf(stroboscope_bar_2.isVisible())
             if (stroboscope_bar_2.isVisible()) {
                 changeIconColor(getProperPrimaryColor(),stroboscope_btn_2)
-                timer_play_pause.visibility = View.VISIBLE
+                timer_play_pause.isEnabled = true
             } else {
                 changeIconColor(getContrastColor(),stroboscope_btn_2)
-                timer_play_pause.visibility = View.INVISIBLE
+                timer_play_pause.isEnabled = false
             }
         }
     }
@@ -266,6 +250,7 @@ class TimerActivity : SimpleActivity() {
     private fun releaseCamera() {
         mCameraImpl?.releaseCamera()
         mCameraImpl = null
+        isRunning = false
     }
     @Subscribe
     fun stateChangedEvent(event: Events.StateChanged) {
@@ -276,7 +261,7 @@ class TimerActivity : SimpleActivity() {
     fun stopStroboscope(event: Events.StopStroboscope) {
         stroboscope_bar_2.beInvisible()
         changeIconColor(getContrastColor(), stroboscope_btn_2)
-        timer_play_pause.visibility = View.INVISIBLE
+        timer_play_pause.isEnabled = false
     }
 
     @Subscribe
@@ -286,10 +271,10 @@ class TimerActivity : SimpleActivity() {
     private fun checkState(isEnabled: Boolean) {
         if (isEnabled) {
             enableFlashlight()
-            timer_play_pause.visibility = View.VISIBLE
+            timer_play_pause.isEnabled = true
         } else {
             disableFlashlight()
-            timer_play_pause.visibility = View.INVISIBLE
+            timer_play_pause.isEnabled = false
         }
     }
 
@@ -352,14 +337,14 @@ class TimerActivity : SimpleActivity() {
         }
     }
 
-
     private fun pauseTimer() {
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
         countDownTimer!!.cancel()
         isRunning = false
         timer_reset.visibility = View.VISIBLE
+        timer.isEnabled = true
+        isLightEnable(true)
     }
-
 
     private fun startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
@@ -369,16 +354,19 @@ class TimerActivity : SimpleActivity() {
                 updateCountDownText()
             }
             override fun onFinish() {
-                isRunning = false
-                mCameraImpl?.releaseCamera()
-                mCameraImpl = null
-                startActivity(intent)
+                onDestroy()
+                timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
+                isLightEnable(true)
+                resetTimer()
+                timer.isEnabled = true
             }
         }.start()
 
         isRunning = true
         timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_pause_vector))
         timer_reset.visibility = View.INVISIBLE
+        timer.isEnabled = false
+        isLightEnable(false)
     }
 
     private fun resetTimer() {
@@ -404,6 +392,14 @@ class TimerActivity : SimpleActivity() {
         }
 
         timer!!.text = timeLeftFormatted
+    }
+
+    private fun isLightEnable(isEnable : Boolean) {
+        flashlight_btn_2.isEnabled = isEnable
+        bright_display_btn_2.isEnabled = isEnable
+        sos_btn_2.isEnabled = isEnable
+        stroboscope_btn_2.isEnabled = isEnable
+        stroboscope_bar_2.isEnabled = isEnable
     }
 }
 
