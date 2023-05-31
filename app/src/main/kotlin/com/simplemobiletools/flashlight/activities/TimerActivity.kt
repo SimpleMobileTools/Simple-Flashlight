@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.activity_timer.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
+import kotlin.system.exitProcess
+
 
 class TimerActivity : SimpleActivity() {
 
@@ -78,6 +80,7 @@ class TimerActivity : SimpleActivity() {
 
         timer.setOnClickListener {
             changeDuration(this, 0)
+            isLightEnable(true)
         }
 
         timer_play_pause.setOnClickListener {
@@ -354,11 +357,8 @@ class TimerActivity : SimpleActivity() {
                 updateCountDownText()
             }
             override fun onFinish() {
-                onDestroy()
-                timer_play_pause.setImageDrawable(getDrawable(R.drawable.ic_play_vector))
-                isLightEnable(true)
-                resetTimer()
-                timer.isEnabled = true
+                finish()
+                startActivity(intent)
             }
         }.start()
 

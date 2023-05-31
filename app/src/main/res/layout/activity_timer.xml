@@ -31,7 +31,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/timer_holder"
                 android:layout_width="match_parent"
-                android:layout_height="656dp"
+                android:layout_height="581dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp">
@@ -46,7 +46,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.068" />
+                    app:layout_constraintVertical_bias="0.063" />
 
                 <com.simplemobiletools.commons.views.MySeekBar
                     android:id="@+id/stroboscope_bar_2"
@@ -89,21 +89,22 @@
                     android:src="@drawable/ic_play_vector"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.561"
+                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.864" />
+                    app:layout_constraintVertical_bias="0.921" />
 
                 <ImageView
                     android:id="@+id/bright_display_btn_2"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_marginEnd="56dp"
                     android:background="@drawable/ic_bright_display_vector"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.791"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.332" />
+                    app:layout_constraintVertical_bias="0.343" />
 
                 <ImageView
                     android:id="@+id/flashlight_btn_2"
@@ -137,25 +138,25 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.809"
+                    app:layout_constraintHorizontal_bias="0.777"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.597" />
+                    app:layout_constraintVertical_bias="0.591" />
 
                 <ImageView
                     android:id="@+id/timer_reset"
-                    android:layout_width="@dimen/timer_button_small_size"
-                    android:layout_height="@dimen/timer_button_small_size"
+                    android:layout_width="60dp"
+                    android:layout_height="63dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/normal_margin"
                     android:src="@drawable/ic_reset_vector"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.336"
+                    app:layout_constraintHorizontal_bias="0.262"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.838" />
+                    app:layout_constraintVertical_bias="0.909" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
