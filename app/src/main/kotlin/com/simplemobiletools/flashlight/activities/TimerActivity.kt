@@ -52,6 +52,10 @@ class TimerActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
+        mStartTimeInMillis = 300
+        mTimeLeftInMillis = mStartTimeInMillis
+        updateCountDownText()
+
         updateMaterialActivityViews(timer_coordinator, timer_holder, useTransparentNavigation = true, useTopSearchMenu = false)
         setupMaterialScrollListener(timer_nested_scrollview, timer_toolbar)
 
