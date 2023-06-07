@@ -137,6 +137,7 @@ class MainActivity : SimpleActivity() {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
+                R.id.timer -> launchTimer()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -189,6 +190,11 @@ class MainActivity : SimpleActivity() {
         }
 
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+    }
+
+    private fun launchTimer() {
+        reTurnFlashlightOn = false
+        startActivity(Intent(applicationContext, TimerActivity::class.java))
     }
 
     private fun setupCameraImpl() {

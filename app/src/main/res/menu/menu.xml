@@ -4,17 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AlwaysShowAction">
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_settings_cog_vector"
-        android:title="@string/settings"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/about"
-        android:icon="@drawable/ic_info_vector"
-        android:title="@string/about"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/more_apps_from_us"
-        android:title="@string/more_apps_from_us"
-        app:showAsAction="never" />
+        android:id="@+id/menu"
+        android:icon="@drawable/baseline_menu_24"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/timer"
+                android:icon="@drawable/outline_timer_24"
+                android:title="Timer"
+                app:showAsAction="always"/>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_cog_vector"
+                android:title="@string/settings"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_info_vector"
+                android:title="@string/about"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/more_apps_from_us"
+                android:title="@string/more_apps_from_us"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 </menu>
