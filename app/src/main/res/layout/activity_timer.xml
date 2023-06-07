@@ -18,104 +18,140 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/timer_nested_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="667dp"
         android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
         android:scrollbars="none">
 
-        <LinearLayout
-            android:id="@+id/myLinearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timer_holder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/timer_holder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.063" />
 
-                <com.simplemobiletools.commons.views.MySeekBar
-                    android:id="@+id/stroboscope_bar_2"
-                    android:layout_width="175dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="@dimen/activity_margin"
-                    android:paddingTop="@dimen/medium_margin"
-                    android:paddingBottom="@dimen/medium_margin"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.138"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.712" />
+            <ImageView
+                android:id="@+id/timer_play_pause"
+                android:layout_width="73dp"
+                android:layout_height="82dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/activity_margin"
+                android:src="@drawable/ic_play_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.921" />
 
-                <com.simplemobiletools.commons.views.MySeekBar
-                    android:id="@+id/brightness_bar_2"
-                    android:layout_width="175dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="16dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.138"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.712" />
+            <ImageView
+                android:id="@+id/timer_reset"
+                android:layout_width="60dp"
+                android:layout_height="63dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="@dimen/normal_margin"
+                android:src="@drawable/ic_reset_vector"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.262"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.909" />
 
-                <ImageView
-                    android:id="@+id/bright_display_btn_2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:background="@drawable/ic_bright_display_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.791"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.343" />
+            <com.simplemobiletools.commons.views.MySeekBar
+                android:id="@+id/stroboscope_bar_2"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_margin="@dimen/activity_margin"
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingBottom="@dimen/medium_margin"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.712" />
 
-                <ImageView
-                    android:id="@+id/flashlight_btn_2"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_marginStart="56dp"
-                    android:background="@drawable/ic_flashlight_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.317" />
+            <com.simplemobiletools.commons.views.MySeekBar
+                android:id="@+id/brightness_bar_2"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.138"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.712" />
 
-                <ImageView
-                    android:id="@+id/stroboscope_btn_2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="96dp"
-                    android:background="@drawable/ic_stroboscope_vector"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.604" />
+            <ImageView
+                android:id="@+id/bright_display_btn_2"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/ic_bright_display_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.791"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.343" />
 
-                <TextView
-                    android:id="@+id/sos_btn_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:text="SOS"
-                    android:textSize="@dimen/sos_text_size"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.777"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.591" />
+            <ImageView
+                android:id="@+id/flashlight_btn_2"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginStart="56dp"
+                android:background="@drawable/ic_flashlight_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.317" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/stroboscope_btn_2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="96dp"
+                android:background="@drawable/ic_stroboscope_vector"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.604" />
+
+            <TextView
+                android:id="@+id/sos_btn_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:text="SOS"
+                android:textSize="@dimen/sos_text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.777"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.591" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
