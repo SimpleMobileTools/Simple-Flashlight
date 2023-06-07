@@ -134,7 +134,7 @@ class TimerActivity : SimpleActivity() {
 
         reTurnFlashlightOn = true
 
-        if (brightDisp == true){
+        if (brightDisp == true) {
             timer_play_pause.isEnabled = true
         }
 
@@ -347,7 +347,7 @@ class TimerActivity : SimpleActivity() {
         disableFlashlight()
     }
 
-    private fun changeDuration(activity: SimpleActivity, time : Int) {
+    private fun changeDuration(activity: SimpleActivity, time: Int) {
         MyTimePickerDialogDialog(activity, time) { seconds ->
             val timerSeconds = if (seconds <= 0) 60 else seconds
             mStartTimeInMillis = time.toLong()
@@ -368,12 +368,13 @@ class TimerActivity : SimpleActivity() {
 
     private fun startTimer() {
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis
-        countDownTimer = object : CountDownTimer(mTimeLeftInMillis*1000, 1000) {
+        countDownTimer = object : CountDownTimer(mTimeLeftInMillis * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                mTimeLeftInMillis = millisUntilFinished/1000
+                mTimeLeftInMillis = millisUntilFinished / 1000
                 updateCountDownText()
 
             }
+
             override fun onFinish() {
                 finish()
                 startActivity(intent)
@@ -395,7 +396,7 @@ class TimerActivity : SimpleActivity() {
 
     private fun updateCountDownText() {
         val hours = (mTimeLeftInMillis / 3600)
-        val minutes = mTimeLeftInMillis  % 3600 / 60
+        val minutes = mTimeLeftInMillis % 3600 / 60
         val seconds = mTimeLeftInMillis % 60
         val timeLeftFormatted: String = if (hours > 0) {
             String.format(
@@ -412,7 +413,7 @@ class TimerActivity : SimpleActivity() {
         timer!!.text = timeLeftFormatted
     }
 
-    private fun isLightEnable(isEnable : Boolean) {
+    private fun isLightEnable(isEnable: Boolean) {
         flashlight_btn_2.isEnabled = isEnable
         bright_display_btn_2.isEnabled = isEnable
         sos_btn_2.isEnabled = isEnable

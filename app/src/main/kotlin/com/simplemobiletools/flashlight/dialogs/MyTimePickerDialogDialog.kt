@@ -1,10 +1,10 @@
 package com.simplemobiletools.flashlight.dialogs
 
-import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.activities.SimpleActivity
 import com.simplemobiletools.commons.extensions.getAlertDialogBuilder
 import com.simplemobiletools.commons.extensions.getProperTextColor
 import com.simplemobiletools.commons.extensions.setupDialogStuff
+import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.activities.SimpleActivity
 import kotlinx.android.synthetic.main.dialog_my_time_picker.view.*
 
 class MyTimePickerDialogDialog(val activity: SimpleActivity, val initialSeconds: Int, val callback: (result: Int) -> Unit) {
