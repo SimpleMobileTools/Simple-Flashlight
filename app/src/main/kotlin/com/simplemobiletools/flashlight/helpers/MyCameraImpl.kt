@@ -182,6 +182,15 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         stateChanged(false)
     }
 
+    fun onTorchEnabled(isEnabled: Boolean) {
+        if (isStroboscopeRunning || isSOSRunning) {
+            return
+        }
+        if (isFlashlightOn != isEnabled) {
+            stateChanged(isEnabled)
+        }
+    }
+
     private fun stateChanged(isEnabled: Boolean) {
         isFlashlightOn = isEnabled
         EventBus.getDefault().post(Events.StateChanged(isEnabled))

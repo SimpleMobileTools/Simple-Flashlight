@@ -194,6 +194,7 @@ class MainActivity : SimpleActivity() {
     private fun setupCameraImpl() {
         mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
             override fun onTorchEnabled(isEnabled: Boolean) {
+                mCameraImpl!!.onTorchEnabled(isEnabled)
                 if (mCameraImpl!!.supportsBrightnessControl()) {
                     brightness_bar.beVisibleIf(isEnabled)
                 }
