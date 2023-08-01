@@ -17,12 +17,12 @@ import com.simplemobiletools.commons.helpers.isNougatPlus
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.databinding.ActivityMainBinding
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.CameraTorchListener
 import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
 import com.simplemobiletools.flashlight.helpers.MyCameraImpl
 import com.simplemobiletools.flashlight.models.Events
-import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import java.util.*
@@ -33,6 +33,7 @@ class MainActivity : SimpleActivity() {
     private val FLASHLIGHT_STATE = "flashlight_state"
     private val STROBOSCOPE_STATE = "stroboscope_state"
 
+    private lateinit var binding: ActivityMainBinding
     private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
@@ -41,32 +42,36 @@ class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
 
-        updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(main_nested_scrollview, main_toolbar)
-
         mBus = EventBus.getDefault()
-        changeIconColor(getContrastColor(), stroboscope_btn)
 
-        bright_display_btn.setOnClickListener {
-            reTurnFlashlightOn = false
-            startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
-        }
+        binding.apply {
+            updateMaterialActivityViews(mainCoordinator, mainHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+            setupMaterialScrollListener(mainNestedScrollview, mainToolbar)
 
-        flashlight_btn.setOnClickListener {
-            mCameraImpl!!.toggleFlashlight()
-        }
+            changeIconColor(getContrastColor(), stroboscopeBtn)
 
-        sos_btn.setOnClickListener {
-            toggleStroboscope(true)
-        }
+            brightDisplayBtn.setOnClickListener {
+                reTurnFlashlightOn = false
+                startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+            }
 
-        stroboscope_btn.setOnClickListener {
-            toggleStroboscope(false)
+            flashlightBtn.setOnClickListener {
+                mCameraImpl!!.toggleFlashlight()
+            }
+
+            sosBtn.setOnClickListener {
+                toggleStroboscope(true)
+            }
+
+            stroboscopeBtn.setOnClickListener {
+                toggleStroboscope(false)
+            }
         }
 
         setupStroboscope()
@@ -75,29 +80,32 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(main_toolbar)
+        setupToolbar(binding.mainToolbar)
         mCameraImpl!!.handleCameraSetup()
         checkState(MyCameraImpl.isFlashlightOn)
 
         val contrastColor = getContrastColor()
-        changeIconColor(contrastColor, bright_display_btn)
-        bright_display_btn.beVisibleIf(config.brightDisplay)
-        sos_btn.beVisibleIf(config.sos)
 
-        if (sos_btn.currentTextColor != getProperPrimaryColor()) {
-            sos_btn.setTextColor(contrastColor)
-        }
+        binding.apply {
+            changeIconColor(contrastColor, brightDisplayBtn)
+            brightDisplayBtn.beVisibleIf(config.brightDisplay)
+            sosBtn.beVisibleIf(config.sos)
 
-        stroboscope_btn.beVisibleIf(config.stroboscope)
+            if (sosBtn.currentTextColor != getProperPrimaryColor()) {
+                sosBtn.setTextColor(contrastColor)
+            }
 
-        if (!config.stroboscope) {
-            mCameraImpl!!.stopStroboscope()
-            stroboscope_bar.beInvisible()
-        }
+            stroboscopeBtn.beVisibleIf(config.stroboscope)
 
-        updateTextColors(main_holder)
-        if (stroboscope_bar.isInvisible()) {
-            changeIconColor(contrastColor, stroboscope_btn)
+            if (!config.stroboscope) {
+                mCameraImpl!!.stopStroboscope()
+                stroboscopeBar.beInvisible()
+            }
+
+            updateTextColors(mainHolder)
+            if (stroboscopeBar.isInvisible()) {
+                changeIconColor(contrastColor, stroboscopeBtn)
+            }
         }
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
@@ -132,7 +140,7 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        main_toolbar.setOnMenuItemClickListener { menuItem ->
+        binding.mainToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
@@ -144,14 +152,14 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun refreshMenuItems() {
-        main_toolbar.menu.apply {
+        binding.mainToolbar.menu.apply {
             findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(FLASHLIGHT_STATE, mIsFlashlightOn)
-        outState.putBoolean(STROBOSCOPE_STATE, stroboscope_bar.isVisible())
+        outState.putBoolean(STROBOSCOPE_STATE, binding.stroboscopeBar.isVisible())
         super.onSaveInstanceState(outState)
     }
 
@@ -196,7 +204,7 @@ class MainActivity : SimpleActivity() {
             override fun onTorchEnabled(isEnabled: Boolean) {
                 mCameraImpl!!.onTorchEnabled(isEnabled)
                 if (mCameraImpl!!.supportsBrightnessControl()) {
-                    brightness_bar.beVisibleIf(isEnabled)
+                    binding.brightnessBar.beVisibleIf(isEnabled)
                 }
             }
 
@@ -211,13 +219,15 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupStroboscope() {
-        stroboscope_bar.max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
-        stroboscope_bar.progress = config.stroboscopeProgress
-        stroboscope_bar.onSeekBarChangeListener { progress ->
-            val frequency = stroboscope_bar.max - progress + MIN_STROBO_DELAY
-            mCameraImpl?.stroboFrequency = frequency
-            config.stroboscopeFrequency = frequency
-            config.stroboscopeProgress = progress
+        binding.stroboscopeBar.apply {
+            max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
+            progress = config.stroboscopeProgress
+            onSeekBarChangeListener { progress ->
+                val frequency = max - progress + MIN_STROBO_DELAY
+                mCameraImpl?.stroboFrequency = frequency
+                config.stroboscopeFrequency = frequency
+                config.stroboscopeProgress = progress
+            }
         }
     }
 
@@ -237,22 +247,26 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupBrightness() {
-        brightness_bar.max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-        brightness_bar.progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-        brightness_bar.onSeekBarChangeListener { level ->
-            val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
-            mCameraImpl?.updateBrightnessLevel(newLevel)
-            config.brightnessLevel = newLevel
+        binding.brightnessBar.apply {
+            max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+            progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
+            onSeekBarChangeListener { level ->
+                val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
+                mCameraImpl?.updateBrightnessLevel(newLevel)
+                config.brightnessLevel = newLevel
+            }
         }
     }
 
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
             val isSOSRunning = mCameraImpl!!.toggleSOS()
-            sos_btn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
+            binding.sosBtn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
         } else if (mCameraImpl!!.toggleStroboscope()) {
-            stroboscope_bar.beInvisibleIf(stroboscope_bar.isVisible())
-            changeIconColor(if (stroboscope_bar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscope_btn)
+            binding.apply {
+                stroboscopeBar.beInvisibleIf(stroboscopeBar.isVisible())
+                changeIconColor(if (stroboscopeBar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscopeBtn)
+            }
         }
     }
 
@@ -270,13 +284,13 @@ class MainActivity : SimpleActivity() {
 
     @Subscribe
     fun stopStroboscope(event: Events.StopStroboscope) {
-        stroboscope_bar.beInvisible()
-        changeIconColor(getContrastColor(), stroboscope_btn)
+        binding.stroboscopeBar.beInvisible()
+        changeIconColor(getContrastColor(), binding.stroboscopeBtn)
     }
 
     @Subscribe
     fun stopSOS(event: Events.StopSOS) {
-        sos_btn.setTextColor(getContrastColor())
+        binding.sosBtn.setTextColor(getContrastColor())
     }
 
     private fun checkState(isEnabled: Boolean) {
@@ -288,18 +302,20 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun enableFlashlight() {
-        changeIconColor(getProperPrimaryColor(), flashlight_btn)
+        changeIconColor(getProperPrimaryColor(), binding.flashlightBtn)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = true
 
-        sos_btn.setTextColor(getContrastColor())
+        binding.apply {
+            sosBtn.setTextColor(getContrastColor())
 
-        changeIconColor(getContrastColor(), stroboscope_btn)
-        stroboscope_bar.beInvisible()
+            changeIconColor(getContrastColor(), stroboscopeBtn)
+            stroboscopeBar.beInvisible()
+        }
     }
 
     private fun disableFlashlight() {
-        changeIconColor(getContrastColor(), flashlight_btn)
+        changeIconColor(getContrastColor(), binding.flashlightBtn)
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         mIsFlashlightOn = false
     }

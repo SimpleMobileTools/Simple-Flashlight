@@ -7,11 +7,12 @@ import android.view.WindowManager
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.getContrastColor
-import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.databinding.ActivityBrightDisplayBinding
 import com.simplemobiletools.flashlight.extensions.config
-import kotlinx.android.synthetic.main.activity_bright_display.*
 
 class BrightDisplayActivity : SimpleActivity() {
+    private lateinit var binding: ActivityBrightDisplayBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         window.addFlags(
             WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
@@ -22,11 +23,12 @@ class BrightDisplayActivity : SimpleActivity() {
 
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bright_display)
+        binding = ActivityBrightDisplayBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
         setBackgroundColor(config.brightDisplayColor)
 
-        bright_display_change_color.setOnClickListener {
+        binding.brightDisplayChangeColor.setOnClickListener {
             ColorPickerDialog(this, config.brightDisplayColor, true, currentColorCallback = {
                 setBackgroundColor(it)
             }) { wasPositivePressed, color ->
@@ -34,8 +36,10 @@ class BrightDisplayActivity : SimpleActivity() {
                     config.brightDisplayColor = color
 
                     val contrastColor = color.getContrastColor()
-                    bright_display_change_color.setTextColor(contrastColor)
-                    bright_display_change_color.background.applyColorFilter(contrastColor)
+                    binding.brightDisplayChangeColor.apply {
+                        setTextColor(contrastColor)
+                        background.applyColorFilter(contrastColor)
+                    }
                 } else {
                     setBackgroundColor(config.brightDisplayColor)
                 }
@@ -57,11 +61,15 @@ class BrightDisplayActivity : SimpleActivity() {
     }
 
     private fun setBackgroundColor(color: Int) {
-        bright_display.background = ColorDrawable(color)
+        binding.apply {
+            brightDisplay.background = ColorDrawable(color)
 
-        val contrastColor = config.brightDisplayColor.getContrastColor()
-        bright_display_change_color.setTextColor(contrastColor)
-        bright_display_change_color.background.applyColorFilter(contrastColor)
+            val contrastColor = config.brightDisplayColor.getContrastColor()
+            brightDisplayChangeColor.apply {
+                setTextColor(contrastColor)
+                background.applyColorFilter(contrastColor)
+            }
+        }
     }
 
     private fun toggleBrightness(increase: Boolean) {

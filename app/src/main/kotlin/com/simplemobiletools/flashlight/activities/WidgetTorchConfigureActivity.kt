@@ -12,12 +12,13 @@ import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.databinding.WidgetTorchConfigBinding
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
-import kotlinx.android.synthetic.main.widget_torch_config.*
 
 class WidgetTorchConfigureActivity : SimpleActivity() {
+    private lateinit var binding: WidgetTorchConfigBinding
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
@@ -27,8 +28,9 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
+        binding = WidgetTorchConfigBinding.inflate(layoutInflater)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(R.layout.widget_torch_config)
+        setContentView(binding.root)
         initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
@@ -38,22 +40,24 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
             finish()
         }
 
-        config_save.setOnClickListener { saveConfig() }
-        config_widget_color.setOnClickListener { pickBackgroundColor() }
+        binding.apply {
+            configSave.setOnClickListener { saveConfig() }
+            configWidgetColor.setOnClickListener { pickBackgroundColor() }
 
-        val primaryColor = getProperPrimaryColor()
-        config_widget_seekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
+            val primaryColor = getProperPrimaryColor()
+            configWidgetSeekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
+            if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+                mFeatureLockedDialog = FeatureLockedDialog(this@WidgetTorchConfigureActivity) {
+                    if (!isOrWasThankYouInstalled()) {
+                        finish()
+                    }
                 }
             }
-        }
 
-        config_save.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
-        config_save.setTextColor(getProperPrimaryColor().getContrastColor())
+            configSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
+            configSave.setTextColor(getProperPrimaryColor().getContrastColor())
+        }
     }
 
     override fun onResume() {
@@ -74,8 +78,10 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
         mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
 
         mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
-        config_widget_seekbar.setOnSeekBarChangeListener(seekbarChangeListener)
-        config_widget_seekbar.progress = (mWidgetAlpha * 100).toInt()
+        binding.configWidgetSeekbar.apply {
+            setOnSeekBarChangeListener(seekbarChangeListener)
+            progress = (mWidgetAlpha * 100).toInt()
+        }
         updateColors()
     }
 
@@ -110,8 +116,10 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
 
     private fun updateColors() {
         mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        config_widget_color.setFillWithStroke(mWidgetColor, mWidgetColor)
-        config_image.background.mutate().applyColorFilter(mWidgetColor)
+        binding.apply {
+            configWidgetColor.setFillWithStroke(mWidgetColor, mWidgetColor)
+            configImage.background.mutate().applyColorFilter(mWidgetColor)
+        }
     }
 
     private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
