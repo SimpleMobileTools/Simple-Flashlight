@@ -18,7 +18,8 @@ import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
 
 class WidgetTorchConfigureActivity : SimpleActivity() {
-    private lateinit var binding: WidgetTorchConfigBinding
+    private val binding by lazy(LazyThreadSafetyMode.NONE) { WidgetTorchConfigBinding.inflate(layoutInflater) }
+
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
@@ -28,7 +29,6 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
-        binding = WidgetTorchConfigBinding.inflate(layoutInflater)
         setResult(Activity.RESULT_CANCELED)
         setContentView(binding.root)
         initVariables()

@@ -17,7 +17,8 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetBrightDisplayProvider
 
 class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
-    private lateinit var binding: WidgetBrightDisplayConfigBinding
+    private val binding by lazy(LazyThreadSafetyMode.NONE) { WidgetBrightDisplayConfigBinding.inflate(layoutInflater) }
+
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
     private var mWidgetColor = 0
@@ -27,7 +28,6 @@ class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
-        binding = WidgetBrightDisplayConfigBinding.inflate(layoutInflater)
         setResult(Activity.RESULT_CANCELED)
         setContentView(binding.root)
         initVariables()
