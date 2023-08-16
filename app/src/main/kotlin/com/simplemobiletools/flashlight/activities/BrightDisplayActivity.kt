@@ -11,7 +11,7 @@ import com.simplemobiletools.flashlight.databinding.ActivityBrightDisplayBinding
 import com.simplemobiletools.flashlight.extensions.config
 
 class BrightDisplayActivity : SimpleActivity() {
-    private lateinit var binding: ActivityBrightDisplayBinding
+    private val binding by lazy(LazyThreadSafetyMode.NONE) { ActivityBrightDisplayBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.addFlags(
@@ -23,7 +23,6 @@ class BrightDisplayActivity : SimpleActivity() {
 
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
-        binding = ActivityBrightDisplayBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
         setBackgroundColor(config.brightDisplayColor)

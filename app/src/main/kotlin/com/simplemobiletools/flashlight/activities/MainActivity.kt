@@ -28,12 +28,15 @@ import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
 class MainActivity : SimpleActivity() {
-    private val MAX_STROBO_DELAY = 2000L
-    private val MIN_STROBO_DELAY = 10L
-    private val FLASHLIGHT_STATE = "flashlight_state"
-    private val STROBOSCOPE_STATE = "stroboscope_state"
+    companion object {
+        private const val MAX_STROBO_DELAY = 2000L
+        private const val MIN_STROBO_DELAY = 10L
+        private const val FLASHLIGHT_STATE = "flashlight_state"
+        private const val STROBOSCOPE_STATE = "stroboscope_state"
+    }
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by lazy(LazyThreadSafetyMode.NONE) { ActivityMainBinding.inflate(layoutInflater) }
+
     private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null
     private var mIsFlashlightOn = false
@@ -42,7 +45,6 @@ class MainActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
