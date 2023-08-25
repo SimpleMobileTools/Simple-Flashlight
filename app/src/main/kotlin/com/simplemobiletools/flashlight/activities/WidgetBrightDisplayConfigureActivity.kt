@@ -17,7 +17,7 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetBrightDisplayProvider
 
 class WidgetBrightDisplayConfigureActivity : SimpleActivity() {
-    private val binding by lazy(LazyThreadSafetyMode.NONE) { WidgetBrightDisplayConfigBinding.inflate(layoutInflater) }
+    private val binding by viewBinding(WidgetBrightDisplayConfigBinding::inflate)
 
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0

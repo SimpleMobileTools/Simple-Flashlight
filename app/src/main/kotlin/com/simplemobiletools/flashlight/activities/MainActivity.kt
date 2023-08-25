@@ -35,7 +35,7 @@ class MainActivity : SimpleActivity() {
         private const val STROBOSCOPE_STATE = "stroboscope_state"
     }
 
-    private val binding by lazy(LazyThreadSafetyMode.NONE) { ActivityMainBinding.inflate(layoutInflater) }
+    private val binding by viewBinding(ActivityMainBinding::inflate)
 
     private var mBus: EventBus? = null
     private var mCameraImpl: MyCameraImpl? = null

@@ -7,11 +7,12 @@ import android.view.WindowManager
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.applyColorFilter
 import com.simplemobiletools.commons.extensions.getContrastColor
+import com.simplemobiletools.commons.extensions.viewBinding
 import com.simplemobiletools.flashlight.databinding.ActivityBrightDisplayBinding
 import com.simplemobiletools.flashlight.extensions.config
 
 class BrightDisplayActivity : SimpleActivity() {
-    private val binding by lazy(LazyThreadSafetyMode.NONE) { ActivityBrightDisplayBinding.inflate(layoutInflater) }
+    private val binding by viewBinding(ActivityBrightDisplayBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.addFlags(
