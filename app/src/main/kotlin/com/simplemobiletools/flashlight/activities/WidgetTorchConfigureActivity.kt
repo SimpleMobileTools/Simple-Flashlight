@@ -18,7 +18,7 @@ import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
 
 class WidgetTorchConfigureActivity : SimpleActivity() {
-    private val binding by lazy(LazyThreadSafetyMode.NONE) { WidgetTorchConfigBinding.inflate(layoutInflater) }
+    private val binding by viewBinding(WidgetTorchConfigBinding::inflate)
 
     private var mWidgetAlpha = 0f
     private var mWidgetId = 0
