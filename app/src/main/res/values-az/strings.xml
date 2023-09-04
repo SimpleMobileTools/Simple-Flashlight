@@ -5,6 +5,7 @@
     <string name="camera_error">Kamera əlçatan deyil</string>
     <string name="camera_permission">Düzgün strob effekti üçün kamera icazəsi gərəkdir</string>
     <string name="bright_display">Bright display</string>
+    <string name="sleep_timer">Sleep timer</string>
     <!-- Settings -->
     <string name="show_bright_display">İşıqlı ekran düyməsi göstər</string>
     <string name="show_stroboscope">Stroboskop düyməsi göstər</string>

@@ -14,6 +14,10 @@
         android:title="@string/about"
         app:showAsAction="always" />
     <item
+        android:id="@+id/sleep_timer"
+        android:title="@string/sleep_timer"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/more_apps_from_us"
         android:title="@string/more_apps_from_us"
         app:showAsAction="never" />

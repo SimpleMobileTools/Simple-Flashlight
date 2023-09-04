@@ -5,11 +5,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.extensions.applyColorFilter
-import com.simplemobiletools.commons.extensions.getContrastColor
-import com.simplemobiletools.commons.extensions.viewBinding
+import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.flashlight.databinding.ActivityBrightDisplayBinding
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.stopSleepTimerCountDown
+import com.simplemobiletools.flashlight.models.Events
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class BrightDisplayActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityBrightDisplayBinding::inflate)
@@ -45,6 +48,8 @@ class BrightDisplayActivity : SimpleActivity() {
                 }
             }
         }
+
+        binding.sleepTimerStop.setOnClickListener { stopSleepTimer() }
     }
 
     override fun onResume() {
@@ -58,6 +63,16 @@ class BrightDisplayActivity : SimpleActivity() {
         super.onPause()
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toggleBrightness(false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun setBackgroundColor(color: Int) {
@@ -76,5 +91,20 @@ class BrightDisplayActivity : SimpleActivity() {
         val layout = window.attributes
         layout.screenBrightness = (if (increase) 1 else 0).toFloat()
         window.attributes = layout
+    }
+
+    private fun stopSleepTimer() {
+        binding.sleepTimerHolder.fadeOut()
+        stopSleepTimerCountDown()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun sleepTimerChanged(event: Events.SleepTimerChanged) {
+        binding.sleepTimerValue.text = event.seconds.getFormattedDuration()
+        binding.sleepTimerHolder.beVisible()
+
+        if (event.seconds == 0) {
+            finish()
+        }
     }
 }

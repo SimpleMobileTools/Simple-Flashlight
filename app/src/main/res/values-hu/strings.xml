@@ -5,6 +5,7 @@
     <string name="camera_error">A kamera megszerzése sikertelen</string>
     <string name="camera_permission">A Kamera engedély szükséges a megfelelő stroboszkóp hatáshoz</string>
     <string name="bright_display">Fényes kijelző</string>
+    <string name="sleep_timer">Alvásidőzítő</string>
     <!-- Settings -->
     <string name="show_bright_display">Fényes kijelző gomb megjelenítése</string>
     <string name="show_stroboscope">Stroboszkóp gomb megjelenítése</string>

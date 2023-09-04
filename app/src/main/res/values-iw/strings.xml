@@ -5,6 +5,7 @@
     <string name="camera_error">השגת המצלמה נכשלה</string>
     <string name="camera_permission">הרשאת מצלמה נחוצה לאפקט סטרובוסקופ תקין</string>
     <string name="bright_display">תצוגה בהירה</string>
+    <string name="sleep_timer">טיימר שינה</string>
     <!-- Settings -->
     <string name="show_bright_display">הצג כפתור תצוגה בהיר</string>
     <string name="show_stroboscope">הצג כפתור סטרובוסקופ</string>

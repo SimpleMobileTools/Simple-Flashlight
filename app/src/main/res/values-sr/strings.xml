@@ -5,6 +5,7 @@
     <string name="camera_error">Добијање камере није успело</string>
     <string name="camera_permission">Дозвола камере је неопходна за правилан ефекат стробоскопа</string>
     <string name="bright_display">Светао екран</string>
+    <string name="sleep_timer">Мерач спавања</string>
     <!-- Settings -->
     <string name="show_bright_display">Прикажи светло дугме за екран</string>
     <string name="show_stroboscope">Прикажи дугме за стробоскоп</string>

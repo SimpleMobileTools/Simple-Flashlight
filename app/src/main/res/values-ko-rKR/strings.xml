@@ -5,6 +5,7 @@
     <string name="camera_error">카메라 취득 실패</string>
     <string name="camera_permission">적절한 스트로보 스코프 효과를 얻으려면 카메라 사용 권한이 필요합니다.</string>
     <string name="bright_display">Bright display</string>
+    <string name="sleep_timer">취침 타이머</string>
     <!-- Settings -->
     <string name="show_bright_display">브라이트 디스플레이 버튼 활성화</string>
     <string name="show_stroboscope">스트로보 스코프 버튼 활성화</string>

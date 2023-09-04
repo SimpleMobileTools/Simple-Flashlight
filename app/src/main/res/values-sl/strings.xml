@@ -5,6 +5,7 @@
     <string name="camera_error">Pridobivanje kamere ni uspelo</string>
     <string name="camera_permission">Za ustrezen učinek stroboskopa je pogoj dovoljenje kamere</string>
     <string name="bright_display">Svetli zaslon</string>
+    <string name="sleep_timer">Časovnik za spanje</string>
     <!-- Settings -->
     <string name="show_bright_display">Pokažite gumb za svetel zaslon</string>
     <string name="show_stroboscope">Prikaži gumb stroboskopa</string>

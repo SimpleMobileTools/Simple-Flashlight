@@ -5,6 +5,7 @@
     <string name="camera_error">Falha ao aceder à câmera</string>
     <string name="camera_permission">O efeito estroboscópio requer a permissão da câmara</string>
     <string name="bright_display">Ecrã luminoso</string>
+    <string name="sleep_timer">Temporizador</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostrar botão de ecrã luminoso</string>
     <string name="show_stroboscope">Mostrar botão do estroboscópio</string>

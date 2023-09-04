@@ -5,6 +5,7 @@
     <string name="camera_error">Det gick inte att komma åt kameran</string>
     <string name="camera_permission">Kamerabehörigheten behövs för en riktig stroboskopeffekt</string>
     <string name="bright_display">Ljus skärm</string>
+    <string name="sleep_timer">Insomningstimer</string>
     <!-- Settings -->
     <string name="show_bright_display">Visa en knapp för ljus skärm</string>
     <string name="show_stroboscope">Visa en stroboskopknapp</string>

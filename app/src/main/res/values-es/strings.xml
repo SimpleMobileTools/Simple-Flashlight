@@ -5,6 +5,7 @@
     <string name="camera_error">Ha fallado el acceso a la cámara</string>
     <string name="camera_permission">El permiso de acceso a la cámara es necesario para un apropiado efecto estroboscópico</string>
     <string name="bright_display">Pantalla brillante</string>
+    <string name="sleep_timer">Temporizador</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostrar botón de pantalla brillante</string>
     <string name="show_stroboscope">Mostrar botón de estroboscopio</string>

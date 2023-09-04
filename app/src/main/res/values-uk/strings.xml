@@ -5,6 +5,7 @@
     <string name="camera_error">Не вдалося отримати доступ до камери</string>
     <string name="camera_permission">Дозвіл на доступ до камери необхідний для створення ефекту стробоскопа</string>
     <string name="bright_display">Яскравий дисплей</string>
+    <string name="sleep_timer">Таймер сну</string>
     <!-- Settings -->
     <string name="show_bright_display">Показувати кнопку перемикання на білий дисплей</string>
     <string name="show_stroboscope">Показувати кнопку стробоскопа</string>

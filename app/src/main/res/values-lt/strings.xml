@@ -5,6 +5,7 @@
     <string name="camera_error">Nepavyko gauti prieigos prie kameros</string>
     <string name="camera_permission">Fotoaparato leidimas yra būtinas tinkamam stroboskopo efektui</string>
     <string name="bright_display">Ryškus ekranas</string>
+    <string name="sleep_timer">Miego laikmatis</string>
     <!-- Settings -->
     <string name="show_bright_display">Rodyti ryškaus ekrano mygtuką</string>
     <string name="show_stroboscope">Rodyti stroboskopo mygtuką</string>

@@ -5,6 +5,7 @@
     <string name="camera_error">Obtaining the camera failed</string>
     <string name="camera_permission">Camera permission is necessary for proper stroboscope effect</string>
     <string name="bright_display">Hela ekrano</string>
+    <string name="sleep_timer">Sleep timer</string>
     <!-- Settings -->
     <string name="show_bright_display">Montri butonon por hela ekrano</string>
     <string name="show_stroboscope">Show a stroboscope button</string>

@@ -5,6 +5,7 @@
     <string name="camera_error">فشل الحصول على الكاميرا</string>
     <string name="camera_permission">الحصول على إذن تصوير ضروري للتأثيرات</string>
     <string name="bright_display">شاشة ساطعة</string>
+<string name="sleep_timer">مؤقت النوم</string>
     <!-- Settings -->
     <string name="show_bright_display">إظهار زر عرض ساطع</string>
     <string name="show_stroboscope">إظهار زر ستروبوسكوب</string>

@@ -5,6 +5,7 @@
     <string name="camera_error">Erro ao obter a câmera</string>
     <string name="camera_permission">A permissão para a câmera é necessária para usar o estroboscópio</string>
     <string name="bright_display">Tela brilhante</string>
+    <string name="sleep_timer">Temporizador de sono</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostrar o botão de tela brilhante</string>
     <string name="show_stroboscope">Mostrar o botão do Estroboscópio</string>

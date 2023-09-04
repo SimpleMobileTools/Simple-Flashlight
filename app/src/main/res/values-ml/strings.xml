@@ -5,6 +5,7 @@
     <string name="camera_error">ക്യാമറ നേടുന്നത് പരാജയപ്പെട്ടു</string>
     <string name="camera_permission">ശരിയായ സ്ട്രോബോസ്കോപ്പിക് ഇഫക്റ്റിന് ക്യാമറ അനുമതി ആവശ്യമാണ്</string>
     <string name="bright_display">ബ്രൈറ്റ് ഡിസ്പ്ലേ</string>
+    <string name="sleep_timer">Sleep timer</string>
     <!-- Settings -->
     <string name="show_bright_display">ബ്രൈറ്റ് ഡിസ്പ്ലേ ബട്ടൺ കാണിക്കുക</string>
     <string name="show_stroboscope">ഒരു സ്ട്രോബോസ്കോപ്പ് ബട്ടൺ കാണിക്കുക</string>

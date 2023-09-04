@@ -5,6 +5,7 @@
     <string name="camera_error">کیمرہ پہنچ نہیں سکدا</string>
     <string name="camera_permission">سٹروبوسکوپ لئی کیمرہ دی اِجازت ضروری اے</string>
     <string name="bright_display">چمکدار ڈیسپلے</string>
+    <string name="sleep_timer">سوتے دی گھڑی</string>
     <!-- Settings -->
     <string name="show_bright_display">چمکدار ڈیسپلے بٹن دکھاؤ</string>
     <string name="show_stroboscope">سٹروبوسکوپ بٹن دکھاؤ</string>

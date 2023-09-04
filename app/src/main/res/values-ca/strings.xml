@@ -5,6 +5,7 @@
     <string name="camera_error">Ha fallat l\'accés a la càmera</string>
     <string name="camera_permission">És necessari el permís de la càmera per a un efecte estroboscòpic adequat</string>
     <string name="bright_display">Pantalla lluminosa</string>
+    <string name="sleep_timer">Temporitzador per adormir-se</string>
     <!-- Settings -->
     <string name="show_bright_display">Mostra un botó de pantalla lluminosa</string>
     <string name="show_stroboscope">Mostra un botó d\'estroboscopi</string>

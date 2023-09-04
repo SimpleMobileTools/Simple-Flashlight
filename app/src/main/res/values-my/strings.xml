@@ -5,6 +5,7 @@
     <string name="camera_error">ကင်မရာနှင့်ပတ်သတ်​သောအချို့အယွင်း</string>
     <string name="camera_permission">အချက်ပြမီးလုပ်​ဆောင်မှုအတွက် ကင်မရာခွင့်ပြုချက်လိုအပ်ပါသည်</string>
     <string name="bright_display">မှန်သားပြင်အလင်း</string>
+    <string name="sleep_timer">Sleep timer</string>
     <!-- Settings -->
     <string name="show_bright_display">မှန်သားပြင်အလင်း ခလုတ်ပြပါ</string>
     <string name="show_stroboscope">အချက်ပြမီး ခလုတ် ပြပါ</string>

@@ -8,4 +8,6 @@ class Events {
     class StopStroboscope
 
     class StopSOS
+
+    class SleepTimerChanged(val seconds: Int)
 }

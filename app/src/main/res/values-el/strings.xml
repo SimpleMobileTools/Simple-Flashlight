@@ -5,6 +5,7 @@
     <string name="camera_error">Η εύρεση της κάμερας απέτυχε</string>
     <string name="camera_permission">Χρειάζεται άδεια χρήσης της κάμερας για τη σωστή λειτουργία στροβοσκοπίου</string>
     <string name="bright_display">Φωτεινή οθόνη</string>
+    <string name="sleep_timer">Χρονοδιακόπτης</string>
     <!-- Settings -->
     <string name="show_bright_display">Προβολή κουμπιού φωτεινότητας</string>
     <string name="show_stroboscope">Προβολή κουμπιού στροβοσκοπίου</string>
