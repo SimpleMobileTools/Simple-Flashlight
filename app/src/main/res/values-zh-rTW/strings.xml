@@ -5,7 +5,6 @@
     <string name="camera_error">未能取得相機</string>
     <string name="camera_permission">相機權限對於閃爍效果是必要的</string>
     <string name="bright_display">Bright display</string>
-    <string name="sleep_timer">睡眠定時器</string>
     <!-- Settings -->
     <string name="show_bright_display">顯示螢幕發亮按鈕</string>
     <string name="show_stroboscope">顯示閃爍效果按鈕</string>

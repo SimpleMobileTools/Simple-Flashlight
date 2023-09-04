@@ -5,7 +5,6 @@
     <string name="camera_error">Kaamera liidestamine ei õnnestunud</string>
     <string name="camera_permission">Toimiva stroboskoopilise efekti jaoks on vajalik kaamera kasutamise luba</string>
     <string name="bright_display">Kirgas ekraan</string>
-    <string name="sleep_timer">Unetaimer</string>
     <!-- Settings -->
     <string name="show_bright_display">Näita nuppu ekraanil kirkana</string>
     <string name="show_stroboscope">Näita stroboskoobi nuppu</string>

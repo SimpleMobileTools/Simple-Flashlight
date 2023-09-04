@@ -5,7 +5,6 @@
     <string name="camera_error">Forbindelse til kameraet mislykkedes</string>
     <string name="camera_permission">Kameratilladelse er nødvendig for korrekt stroboskopeffekt</string>
     <string name="bright_display">Lyst display</string>
-    <string name="sleep_timer">Timer til slumretilstand</string>
     <!-- Settings -->
     <string name="show_bright_display">Vis en lys skærmknap</string>
     <string name="show_stroboscope">Vis en stroboskop-knap</string>

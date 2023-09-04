@@ -5,7 +5,6 @@
     <string name="camera_error">Nie udało się uzyskać dostępu do aparatu</string>
     <string name="camera_permission">Dostęp do aparatu jest niezbędny dla prawidłowego efektu stroboskopowego</string>
     <string name="bright_display">Jasny wyświetlacz</string>
-    <string name="sleep_timer">Wyłącznik czasowy</string>
     <!-- Settings -->
     <string name="show_bright_display">Pokazuj przycisk jasnego wyświetlacza</string>
     <string name="show_stroboscope">Pokazuj przycisk stroboskopu</string>
