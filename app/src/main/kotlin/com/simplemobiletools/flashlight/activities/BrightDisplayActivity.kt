@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.RelativeLayout
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.flashlight.databinding.ActivityBrightDisplayBinding
@@ -58,6 +59,8 @@ class BrightDisplayActivity : SimpleActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         toggleBrightness(true)
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
+
+        (binding.sleepTimerHolder.layoutParams as RelativeLayout.LayoutParams).bottomMargin = navigationBarHeight
     }
 
     override fun onPause() {
