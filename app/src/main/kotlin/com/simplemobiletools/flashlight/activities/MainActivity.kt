@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
@@ -113,6 +114,9 @@ class MainActivity : SimpleActivity() {
                 changeIconColor(contrastColor, stroboscopeBtn)
             }
         }
+
+        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
+        binding.sleepTimerStop.applyColorFilter(getProperTextColor())
 
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
