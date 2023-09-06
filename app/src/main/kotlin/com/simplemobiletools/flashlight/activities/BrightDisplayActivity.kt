@@ -13,6 +13,7 @@ import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import kotlin.system.exitProcess
 
 class BrightDisplayActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityBrightDisplayBinding::inflate)
@@ -104,7 +105,7 @@ class BrightDisplayActivity : SimpleActivity() {
         binding.sleepTimerHolder.beVisible()
 
         if (event.seconds == 0) {
-            finish()
+            exitProcess(0)
         }
     }
 }
