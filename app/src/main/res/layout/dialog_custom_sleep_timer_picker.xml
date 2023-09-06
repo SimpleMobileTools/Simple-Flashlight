@@ -3,19 +3,19 @@
     android:id="@+id/dialog_custom_sleep_timer_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingLeft="@dimen/activity_margin"
     android:paddingTop="@dimen/activity_margin"
     android:paddingRight="@dimen/activity_margin">
 
     <com.simplemobiletools.commons.views.MyTextInputLayout
-        android:id="@+id/minutes_hint"
+        android:id="@+id/value_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/minutes_raw">
+        android:hint="@string/value">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/minutes"
+            android:id="@+id/timer_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/activity_margin"
@@ -24,7 +24,32 @@
             android:maxLength="5"
             android:singleLine="true"
             android:textCursorDrawable="@null"
+            android:imeOptions="actionDone"
             android:textSize="@dimen/normal_text_size" />
 
     </com.simplemobiletools.commons.views.MyTextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/dialog_radio_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/normal_margin">
+
+        <com.simplemobiletools.commons.views.MyCompatRadioButton
+            android:id="@+id/dialog_radio_minutes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/normal_margin"
+            android:paddingBottom="@dimen/normal_margin"
+            android:text="@string/minutes_raw" />
+
+        <com.simplemobiletools.commons.views.MyCompatRadioButton
+            android:id="@+id/dialog_radio_seconds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/normal_margin"
+            android:paddingBottom="@dimen/normal_margin"
+            android:text="@string/seconds_raw" />
+
+    </RadioGroup>
 </LinearLayout>

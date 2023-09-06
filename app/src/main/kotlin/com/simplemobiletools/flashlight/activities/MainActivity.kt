@@ -319,7 +319,15 @@ class MainActivity : SimpleActivity() {
 
         if (items.none { it.id == config.lastSleepTimerSeconds }) {
             val lastSleepTimerMinutes = config.lastSleepTimerSeconds / 60
-            val text = resources.getQuantityString(R.plurals.minutes, lastSleepTimerMinutes, lastSleepTimerMinutes)
+            val lastSleepTimerSeconds = config.lastSleepTimerSeconds % 60
+            val parts = mutableListOf<String>()
+            if (lastSleepTimerMinutes != 0) {
+                parts.add(resources.getQuantityString(R.plurals.minutes, lastSleepTimerMinutes, lastSleepTimerMinutes))
+            }
+            if (lastSleepTimerSeconds != 0) {
+                parts.add(resources.getQuantityString(R.plurals.seconds, lastSleepTimerSeconds, lastSleepTimerSeconds))
+            }
+            val text = parts.joinToString(separator = " ")
             items.add(RadioItem(config.lastSleepTimerSeconds, text))
         }
 
