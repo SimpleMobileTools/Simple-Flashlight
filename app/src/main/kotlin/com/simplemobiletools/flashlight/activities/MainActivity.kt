@@ -308,6 +308,8 @@ class MainActivity : SimpleActivity() {
         val hour = resources.getQuantityString(R.plurals.hours, 1, 1)
 
         val items = arrayListOf(
+            RadioItem(1 * 60, "1 $minutes"),
+            RadioItem(2 * 60, "2 $minutes"),
             RadioItem(5 * 60, "5 $minutes"),
             RadioItem(10 * 60, "10 $minutes"),
             RadioItem(20 * 60, "20 $minutes"),
