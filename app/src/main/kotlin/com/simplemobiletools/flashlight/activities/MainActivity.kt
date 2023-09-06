@@ -304,32 +304,13 @@ class MainActivity : SimpleActivity() {
             )
             return
         }
-        val minutes = getString(R.string.minutes_raw)
-        val hour = resources.getQuantityString(R.plurals.hours, 1, 1)
-        val minute = resources.getQuantityString(R.plurals.minutes, 1, 1)
 
-        val items = arrayListOf(
-            RadioItem(1 * 60, "1 $minute"),
-            RadioItem(2 * 60, "2 $minutes"),
-            RadioItem(5 * 60, "5 $minutes"),
-            RadioItem(10 * 60, "10 $minutes"),
-            RadioItem(20 * 60, "20 $minutes"),
-            RadioItem(30 * 60, "30 $minutes"),
-            RadioItem(60 * 60, hour)
-        )
+        val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+            RadioItem(it, secondsToString(it))
+        })
 
         if (items.none { it.id == config.lastSleepTimerSeconds }) {
-            val lastSleepTimerMinutes = config.lastSleepTimerSeconds / 60
-            val lastSleepTimerSeconds = config.lastSleepTimerSeconds % 60
-            val parts = mutableListOf<String>()
-            if (lastSleepTimerMinutes != 0) {
-                parts.add(resources.getQuantityString(R.plurals.minutes, lastSleepTimerMinutes, lastSleepTimerMinutes))
-            }
-            if (lastSleepTimerSeconds != 0) {
-                parts.add(resources.getQuantityString(R.plurals.seconds, lastSleepTimerSeconds, lastSleepTimerSeconds))
-            }
-            val text = parts.joinToString(separator = " ")
-            items.add(RadioItem(config.lastSleepTimerSeconds, text))
+            items.add(RadioItem(config.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
         }
 
         items.sortBy { it.id }
@@ -346,6 +327,23 @@ class MainActivity : SimpleActivity() {
                 pickedSleepTimer(it)
             }
         }
+    }
+
+    private fun secondsToString(seconds: Int): String {
+        val finalHours = seconds / 3600
+        val finalMinutes = (seconds / 60) % 60
+        val finalSeconds = seconds % 60
+        val parts = mutableListOf<String>()
+        if (finalHours != 0) {
+            parts.add(resources.getQuantityString(R.plurals.hours, finalHours, finalHours))
+        }
+        if (finalMinutes != 0) {
+            parts.add(resources.getQuantityString(R.plurals.minutes, finalMinutes, finalMinutes))
+        }
+        if (finalSeconds != 0) {
+            parts.add(resources.getQuantityString(R.plurals.seconds, finalSeconds, finalSeconds))
+        }
+        return parts.joinToString(separator = " ")
     }
 
     private fun pickedSleepTimer(seconds: Int) {
