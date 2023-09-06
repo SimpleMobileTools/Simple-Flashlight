@@ -1,30 +1,33 @@
 package com.simplemobiletools.flashlight.activities
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ShortcutInfo
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageView
+import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
-import com.simplemobiletools.commons.helpers.LICENSE_EVENT_BUS
-import com.simplemobiletools.commons.helpers.PERMISSION_CAMERA
-import com.simplemobiletools.commons.helpers.isNougatMR1Plus
-import com.simplemobiletools.commons.helpers.isNougatPlus
+import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
+import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.databinding.ActivityMainBinding
+import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.helpers.CameraTorchListener
-import com.simplemobiletools.flashlight.helpers.MIN_BRIGHTNESS_LEVEL
-import com.simplemobiletools.flashlight.helpers.MyCameraImpl
+import com.simplemobiletools.flashlight.helpers.*
 import com.simplemobiletools.flashlight.models.Events
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 
 class MainActivity : SimpleActivity() {
@@ -74,6 +77,8 @@ class MainActivity : SimpleActivity() {
             stroboscopeBtn.setOnClickListener {
                 toggleStroboscope(false)
             }
+
+            sleepTimerStop.setOnClickListener { stopSleepTimer() }
         }
 
         setupStroboscope()
@@ -110,6 +115,9 @@ class MainActivity : SimpleActivity() {
             }
         }
 
+        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
+        binding.sleepTimerStop.applyColorFilter(getProperTextColor())
+
         requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
 
@@ -125,6 +133,11 @@ class MainActivity : SimpleActivity() {
     override fun onStart() {
         super.onStart()
         mBus!!.register(this)
+
+        if (config.sleepInTS == 0L) {
+            binding.sleepTimerHolder.beGone()
+            (getSystemService(Context.ALARM_SERVICE) as AlarmManager).cancel(getShutDownPendingIntent())
+        }
 
         if (mCameraImpl == null) {
             setupCameraImpl()
@@ -146,6 +159,7 @@ class MainActivity : SimpleActivity() {
             when (menuItem.itemId) {
                 R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
+                R.id.sleep_timer -> showSleepTimer()
                 R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
             }
@@ -277,6 +291,85 @@ class MainActivity : SimpleActivity() {
     private fun releaseCamera() {
         mCameraImpl?.releaseCamera()
         mCameraImpl = null
+    }
+
+    private fun showSleepTimer(force: Boolean = false) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if (isSPlus() && !alarmManager.canScheduleExactAlarms() && !force) {
+            PermissionRequiredDialog(
+                this,
+                com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer,
+                positiveActionCallback = { openRequestExactAlarmSettings(baseConfig.appId) },
+                negativeActionCallback = { showSleepTimer(true) }
+            )
+            return
+        }
+
+        val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+            RadioItem(it, secondsToString(it))
+        })
+
+        if (items.none { it.id == config.lastSleepTimerSeconds }) {
+            items.add(RadioItem(config.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
+        }
+
+        items.sortBy { it.id }
+        items.add(RadioItem(-1, getString(R.string.custom)))
+
+        RadioGroupDialog(this, items, config.lastSleepTimerSeconds) {
+            if (it as Int == -1) {
+                SleepTimerCustomDialog(this) {
+                    if (it > 0) {
+                        pickedSleepTimer(it)
+                    }
+                }
+            } else if (it > 0) {
+                pickedSleepTimer(it)
+            }
+        }
+    }
+
+    private fun secondsToString(seconds: Int): String {
+        val finalHours = seconds / 3600
+        val finalMinutes = (seconds / 60) % 60
+        val finalSeconds = seconds % 60
+        val parts = mutableListOf<String>()
+        if (finalHours != 0) {
+            parts.add(resources.getQuantityString(R.plurals.hours, finalHours, finalHours))
+        }
+        if (finalMinutes != 0) {
+            parts.add(resources.getQuantityString(R.plurals.minutes, finalMinutes, finalMinutes))
+        }
+        if (finalSeconds != 0) {
+            parts.add(resources.getQuantityString(R.plurals.seconds, finalSeconds, finalSeconds))
+        }
+        return parts.joinToString(separator = " ")
+    }
+
+    private fun pickedSleepTimer(seconds: Int) {
+        config.lastSleepTimerSeconds = seconds
+        config.sleepInTS = System.currentTimeMillis() + seconds * 1000
+        startSleepTimer()
+    }
+
+    private fun startSleepTimer() {
+        binding.sleepTimerHolder.fadeIn()
+        startSleepTimerCountDown()
+    }
+
+    private fun stopSleepTimer() {
+        binding.sleepTimerHolder.fadeOut()
+        stopSleepTimerCountDown()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun sleepTimerChanged(event: Events.SleepTimerChanged) {
+        binding.sleepTimerValue.text = event.seconds.getFormattedDuration()
+        binding.sleepTimerHolder.beVisible()
+
+        if (event.seconds == 0) {
+            finish()
+        }
     }
 
     @Subscribe

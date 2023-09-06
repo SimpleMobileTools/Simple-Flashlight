@@ -44,4 +44,12 @@ class Config(context: Context) : BaseConfig(context) {
     var brightnessLevel: Int
         get() = prefs.getInt(BRIGHTNESS_LEVEL, DEFAULT_BRIGHTNESS_LEVEL)
         set(brightnessLevel) = prefs.edit().putInt(BRIGHTNESS_LEVEL, brightnessLevel).apply()
+
+    var lastSleepTimerSeconds: Int
+        get() = prefs.getInt(LAST_SLEEP_TIMER_SECONDS, 30 * 60)
+        set(lastSleepTimerSeconds) = prefs.edit().putInt(LAST_SLEEP_TIMER_SECONDS, lastSleepTimerSeconds).apply()
+
+    var sleepInTS: Long
+        get() = prefs.getLong(SLEEP_IN_TS, 0)
+        set(sleepInTS) = prefs.edit().putLong(SLEEP_IN_TS, sleepInTS).apply()
 }

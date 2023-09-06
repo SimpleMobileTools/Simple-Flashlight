@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission
         android:name="android.permission.USE_FINGERPRINT"
         tools:node="remove" />
@@ -131,6 +132,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_bright_display" />
         </receiver>
+
+        <receiver android:name=".helpers.ShutDownReceiver"
+            android:exported="false" />
 
         <service
             android:name=".helpers.FlashlightTileService"
