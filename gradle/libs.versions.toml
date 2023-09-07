@@ -1,0 +1,29 @@
+[versions]
+#jetbrains
+kotlin = "1.9.0"
+#AndroidX
+androidx-constraintlayout = "2.1.4"
+#EventBus
+eventbusVersion = "3.3.1"
+#Simple tools
+simple-commons = "de113ad025"
+#Gradle
+gradlePlugins-agp = "8.1.0"
+#build
+app-build-compileSDKVersion = "34"
+app-build-targetSDK = "34"
+app-build-minimumSDK = "23"
+app-build-javaVersion = "VERSION_17"
+app-build-kotlinJVMTarget = "17"
+#versioning
+app-version-appId = "com.simplemobiletools.flashlight"
+app-version-versionCode = "65"
+app-version-versionName = "5.10.0"
+[libraries]
+#Simple Mobile Tools
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbusVersion" }
+simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+[plugins]
+android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
