@@ -1,6 +1,12 @@
 Changelog
 ==========
 
+Version 5.10.0 *(2023-09-07)*
+----------------------------
+
+ * Added a Sleep timer
+ * Added some UI and translation improvements
+
 Version 5.9.2 *(2023-05-15)*
 ----------------------------
 
