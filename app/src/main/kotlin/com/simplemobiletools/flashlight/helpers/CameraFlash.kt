@@ -15,7 +15,7 @@ internal class CameraFlash(
     private var cameraTorchListener: CameraTorchListener? = null,
 ) {
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
-    private var cameraId: String? = null
+    private val cameraId: String
 
     private val torchCallback = object : CameraManager.TorchCallback() {
         override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
@@ -28,10 +28,11 @@ internal class CameraFlash(
     }
 
     init {
-        try {
-            cameraId = manager.cameraIdList[0] ?: "0"
+        cameraId = try {
+            manager.cameraIdList[0] ?: "0"
         } catch (e: Exception) {
             context.showErrorToast(e)
+            "0"
         }
     }
 
@@ -41,7 +42,7 @@ internal class CameraFlash(
                 val brightnessLevel = getCurrentBrightnessLevel()
                 changeTorchBrightness(brightnessLevel)
             } else {
-                manager.setTorchMode(cameraId!!, enable)
+                manager.setTorchMode(cameraId, enable)
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
@@ -54,13 +55,13 @@ internal class CameraFlash(
 
     fun changeTorchBrightness(level: Int) {
         if (isTiramisuPlus()) {
-            manager.turnOnTorchWithStrengthLevel(cameraId!!, level)
+            manager.turnOnTorchWithStrengthLevel(cameraId, level)
         }
     }
 
     fun getMaximumBrightnessLevel(): Int {
         return if (isTiramisuPlus()) {
-            val characteristics = manager.getCameraCharacteristics(cameraId!!)
+            val characteristics = manager.getCameraCharacteristics(cameraId)
             characteristics.get(CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL) ?: MIN_BRIGHTNESS_LEVEL
         } else {
             MIN_BRIGHTNESS_LEVEL
