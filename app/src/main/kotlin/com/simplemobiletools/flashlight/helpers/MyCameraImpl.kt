@@ -38,6 +38,14 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         fun newInstance(context: Context, cameraTorchListener: CameraTorchListener? = null) = MyCameraImpl(context, cameraTorchListener)
     }
 
+    private val cameraFlash: CameraFlash?
+        get() {
+            if (MyCameraImpl.cameraFlash == null) {
+                handleCameraSetup()
+            }
+            return MyCameraImpl.cameraFlash
+        }
+
     init {
         handleCameraSetup()
         stroboFrequency = context.config.stroboscopeFrequency
@@ -62,7 +70,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
             disableFlashlight()
         }
 
-        cameraFlash!!.unregisterListeners()
+        cameraFlash.runOrToast {
+            unregisterListeners()
+        }
 
         if (!tryInitCamera()) {
             return false
@@ -104,7 +114,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
             disableFlashlight()
         }
 
-        cameraFlash!!.unregisterListeners()
+        cameraFlash.runOrToast {
+            unregisterListeners()
+        }
 
         return if (isSOSRunning) {
             stopSOS()
@@ -131,8 +143,8 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun handleCameraSetup() {
         try {
-            if (cameraFlash == null) {
-                cameraFlash = CameraFlash(context, cameraTorchListener)
+            if (MyCameraImpl.cameraFlash == null) {
+                MyCameraImpl.cameraFlash = CameraFlash(context, cameraTorchListener)
             }
         } catch (e: Exception) {
             EventBus.getDefault().post(Events.CameraUnavailable())
@@ -157,8 +169,10 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         }
 
         try {
-            cameraFlash!!.initialize()
-            cameraFlash!!.toggleFlashlight(true)
+            cameraFlash.runOrToast {
+                initialize()
+                toggleFlashlight(true)
+            }
         } catch (e: Exception) {
             context.showErrorToast(e)
             disableFlashlight()
@@ -174,7 +188,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         }
 
         try {
-            cameraFlash!!.toggleFlashlight(false)
+            cameraFlash.runOrToast {
+                toggleFlashlight(false)
+            }
         } catch (e: Exception) {
             context.showErrorToast(e)
             disableFlashlight()
@@ -198,14 +214,18 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     }
 
     fun releaseCamera() {
-        cameraFlash?.unregisterListeners()
+        cameraFlash.runOrToast {
+            unregisterListeners()
+        }
 
         if (isFlashlightOn) {
             disableFlashlight()
         }
 
-        cameraFlash?.release()
-        cameraFlash = null
+        cameraFlash.runOrToast {
+            release()
+        }
+        MyCameraImpl.cameraFlash = null
         cameraTorchListener = null
 
         isFlashlightOn = false
@@ -228,10 +248,14 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         handleCameraSetup()
         while (!shouldStroboscopeStop) {
             try {
-                cameraFlash!!.toggleFlashlight(true)
+                cameraFlash.runOrToast {
+                    toggleFlashlight(true)
+                }
                 val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                 Thread.sleep(onDuration)
-                cameraFlash!!.toggleFlashlight(false)
+                cameraFlash.runOrToast {
+                    toggleFlashlight(false)
+                }
                 val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                 Thread.sleep(offDuration)
             } catch (e: Exception) {
@@ -242,9 +266,11 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         // disable flash immediately if stroboscope is stopped and normal flash mode is disabled
         if (shouldStroboscopeStop && !shouldEnableFlashlight) {
             handleCameraSetup()
-            cameraFlash!!.toggleFlashlight(false)
-            cameraFlash!!.release()
-            cameraFlash = null
+            cameraFlash.runOrToast {
+                toggleFlashlight(false)
+                release()
+            }
+            MyCameraImpl.cameraFlash = null
         }
 
         shouldStroboscopeStop = false
@@ -271,22 +297,41 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
     }
 
     fun getMaximumBrightnessLevel(): Int {
-        return cameraFlash!!.getMaximumBrightnessLevel()
+        return cameraFlash.runOrToastWithDefault(MIN_BRIGHTNESS_LEVEL) {
+            getMaximumBrightnessLevel()
+        }
     }
 
     fun getCurrentBrightnessLevel(): Int {
-        return cameraFlash!!.getCurrentBrightnessLevel()
+        return cameraFlash.runOrToastWithDefault(DEFAULT_BRIGHTNESS_LEVEL) {
+            getCurrentBrightnessLevel()
+        }
     }
 
     fun supportsBrightnessControl(): Boolean {
-        return cameraFlash!!.supportsBrightnessControl()
+        return cameraFlash.runOrToastWithDefault(false) {
+            supportsBrightnessControl()
+        }
     }
 
     fun updateBrightnessLevel(level: Int) {
-        cameraFlash!!.changeTorchBrightness(level)
+        cameraFlash.runOrToast {
+            changeTorchBrightness(level)
+        }
     }
 
     fun onCameraNotAvailable() {
         disableFlashlight()
     }
+
+    private fun <T> CameraFlash?.runOrToastWithDefault(defaultValue: T, block: CameraFlash.() -> T): T {
+        return try {
+            this!!.block()
+        } catch (e: Exception) {
+            context.showErrorToast(e)
+            defaultValue
+        }
+    }
+
+    private fun CameraFlash?.runOrToast(block: CameraFlash.() -> Unit) = runOrToastWithDefault(Unit, block)
 }
