@@ -24,7 +24,8 @@ import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.flashlight.R
 
 @Composable
-internal fun WidgetBrightDisplayConfigureScreen(
+internal fun WidgetConfigureScreen(
+    widgetDrawable: Int,
     widgetColor: Int,
     widgetAlpha: Float,
     onSliderChanged: (Float) -> Unit,
@@ -51,7 +52,7 @@ internal fun WidgetBrightDisplayConfigureScreen(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(dimensionResource(id = R.dimen.main_button_size)),
-                painter = painterResource(id = R.drawable.ic_bright_display_vector),
+                painter = painterResource(id = widgetDrawable),
                 contentDescription = stringResource(id = R.string.bright_display),
                 tint = Color(widgetColor.adjustAlpha(widgetAlpha))
             )
@@ -104,7 +105,8 @@ internal fun WidgetBrightDisplayConfigureScreen(
 @MyDevices
 private fun WidgetBrightDisplayConfigureScreenPreview() {
     AppThemeSurface {
-        WidgetBrightDisplayConfigureScreen(
+        WidgetConfigureScreen(
+            widgetDrawable = R.drawable.ic_bright_display_vector,
             widgetColor = MaterialTheme.colorScheme.primary.toArgb(),
             widgetAlpha = 1f,
             onSliderChanged = {},

@@ -3,60 +3,70 @@ package com.simplemobiletools.flashlight.activities
 import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.widget.SeekBar
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.commons.extensions.*
+import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.databinding.WidgetTorchConfigBinding
+import com.simplemobiletools.flashlight.activities.viewmodel.WidgetConfigureViewModel
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
+import com.simplemobiletools.flashlight.screens.WidgetConfigureScreen
 
 class WidgetTorchConfigureActivity : SimpleActivity() {
-    private val binding by viewBinding(WidgetTorchConfigBinding::inflate)
+    private val viewModel by viewModels<WidgetConfigureViewModel>()
 
-    private var mWidgetAlpha = 0f
-    private var mWidgetId = 0
-    private var mWidgetColor = 0
-    private var mWidgetColorWithoutTransparency = 0
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
-        setContentView(binding.root)
-        initVariables()
 
         val isCustomizingColors = intent.extras?.getBoolean(IS_CUSTOMIZING_COLORS) ?: false
-        mWidgetId = intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID
+        viewModel.setWidgetId(intent.extras?.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID) ?: AppWidgetManager.INVALID_APPWIDGET_ID)
 
-        if (mWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
+        if (viewModel.widgetId.value == AppWidgetManager.INVALID_APPWIDGET_ID && !isCustomizingColors) {
             finish()
         }
 
-        binding.apply {
-            configSave.setOnClickListener { saveConfig() }
-            configWidgetColor.setOnClickListener { pickBackgroundColor() }
+        enableEdgeToEdgeSimple()
+        setContent {
+            AppThemeSurface {
+                val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
+                val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
-            val primaryColor = getProperPrimaryColor()
-            configWidgetSeekbar.setColors(getProperTextColor(), primaryColor, primaryColor)
-
-            if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-                mFeatureLockedDialog = FeatureLockedDialog(this@WidgetTorchConfigureActivity) {
-                    if (!isOrWasThankYouInstalled()) {
-                        finish()
+                WidgetConfigureScreen(
+                    widgetDrawable = R.drawable.ic_flashlight_vector,
+                    widgetColor = widgetColor,
+                    widgetAlpha = widgetAlpha,
+                    onSliderChanged = {
+                        viewModel.changeAlpha(it)
+                    },
+                    onColorPressed = {
+                        pickBackgroundColor()
+                    },
+                    onSavePressed = {
+                        saveConfig()
                     }
+                )
+            }
+        }
+
+        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+            mFeatureLockedDialog = FeatureLockedDialog(this) {
+                if (!isOrWasThankYouInstalled()) {
+                    finish()
                 }
             }
-
-            configSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
-            configSave.setTextColor(getProperPrimaryColor().getContrastColor())
         }
     }
 
@@ -69,67 +79,31 @@ class WidgetTorchConfigureActivity : SimpleActivity() {
         }
     }
 
-    private fun initVariables() {
-        mWidgetColor = config.widgetBgColor
-        if (mWidgetColor == resources.getColor(R.color.default_widget_bg_color) && config.isUsingSystemTheme) {
-            mWidgetColor = resources.getColor(R.color.you_primary_color, theme)
-        }
-
-        mWidgetAlpha = Color.alpha(mWidgetColor) / 255.toFloat()
-
-        mWidgetColorWithoutTransparency = Color.rgb(Color.red(mWidgetColor), Color.green(mWidgetColor), Color.blue(mWidgetColor))
-        binding.configWidgetSeekbar.apply {
-            setOnSeekBarChangeListener(seekbarChangeListener)
-            progress = (mWidgetAlpha * 100).toInt()
-        }
-        updateColors()
-    }
-
     private fun saveConfig() {
-        config.widgetBgColor = mWidgetColor
+        config.widgetBgColor = viewModel.widgetColor.value
         requestWidgetUpdate()
 
         Intent().apply {
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mWidgetId)
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, viewModel.widgetId.value)
             setResult(Activity.RESULT_OK, this)
         }
         finish()
     }
 
     private fun pickBackgroundColor() {
-        ColorPickerDialog(this, mWidgetColorWithoutTransparency) { wasPositivePressed, color ->
+        ColorPickerDialog(this, viewModel.widgetColor.value) { wasPositivePressed, color ->
             if (wasPositivePressed) {
-                mWidgetColorWithoutTransparency = color
-                updateColors()
+                viewModel.updateColor(color)
             }
         }
     }
 
     private fun requestWidgetUpdate() {
         Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE, null, this, MyWidgetTorchProvider::class.java).apply {
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(mWidgetId))
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, intArrayOf(viewModel.widgetId.value))
             sendBroadcast(this)
         }
 
         updateBrightDisplayWidget()
-    }
-
-    private fun updateColors() {
-        mWidgetColor = mWidgetColorWithoutTransparency.adjustAlpha(mWidgetAlpha)
-        binding.apply {
-            configWidgetColor.setFillWithStroke(mWidgetColor, mWidgetColor)
-            configImage.background.mutate().applyColorFilter(mWidgetColor)
-        }
-    }
-
-    private val seekbarChangeListener = object : SeekBar.OnSeekBarChangeListener {
-        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-            mWidgetAlpha = progress.toFloat() / 100.toFloat()
-            updateColors()
-        }
-
-        override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-        override fun onStopTrackingTouch(seekBar: SeekBar) {}
     }
 }
