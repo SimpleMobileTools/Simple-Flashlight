@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -40,8 +41,8 @@ internal fun SleepTimer(
         Text(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(12.dp, 0.dp),
-            text = stringResource(id = R.string.sleep_timer)
+                .padding(horizontal = dimensionResource(id = R.dimen.normal_margin)),
+            text = stringResource(id = R.string.sleep_timer),
         )
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
@@ -50,7 +51,7 @@ internal fun SleepTimer(
         IconButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(8.dp),
+                .padding(dimensionResource(id = R.dimen.medium_margin)),
             onClick = onCloseClick,
         ) {
             Icon(
