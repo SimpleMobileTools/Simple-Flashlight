@@ -9,7 +9,7 @@ androidx-lifecycle = "2.7.0-alpha02"
 #EventBus
 eventbusVersion = "3.3.1"
 #Simple tools
-simple-commons = "f87e960171"
+simple-commons = "13f995cb51"
 #Compose
 composeActivity = "1.8.0-rc01"
 compose = "1.6.0-alpha06"

@@ -2,11 +2,7 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.content.Context
 import android.graphics.Color
-import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
 import com.simplemobiletools.commons.helpers.BaseConfig
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlin.reflect.KProperty0
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -66,6 +62,4 @@ class Config(context: Context) : BaseConfig(context) {
     var sleepInTS: Long
         get() = prefs.getLong(SLEEP_IN_TS, 0)
         set(sleepInTS) = prefs.edit().putLong(SLEEP_IN_TS, sleepInTS).apply()
-
-    private fun <T> KProperty0<T>.asFlow(): Flow<T> = prefs.run { sharedPreferencesCallback { this@asFlow.get() } }.filterNotNull()
 }
