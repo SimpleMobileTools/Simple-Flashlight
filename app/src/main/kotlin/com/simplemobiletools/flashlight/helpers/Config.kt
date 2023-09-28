@@ -2,7 +2,11 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.content.Context
 import android.graphics.Color
+import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
 import com.simplemobiletools.commons.helpers.BaseConfig
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlin.reflect.KProperty0
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -13,17 +17,25 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BRIGHT_DISPLAY, true)
         set(brightDisplay) = prefs.edit().putBoolean(BRIGHT_DISPLAY, brightDisplay).apply()
 
+    val brightDisplayFlow = ::brightDisplay.asFlow()
+
     var stroboscope: Boolean
         get() = prefs.getBoolean(STROBOSCOPE, true)
         set(stroboscope) = prefs.edit().putBoolean(STROBOSCOPE, stroboscope).apply()
+
+    val stroboscopeFlow = ::stroboscope.asFlow()
 
     var sos: Boolean
         get() = prefs.getBoolean(SOS, true)
         set(sos) = prefs.edit().putBoolean(SOS, sos).apply()
 
+    val sosFlow = ::sos.asFlow()
+
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
         set(turnFlashlightOn) = prefs.edit().putBoolean(TURN_FLASHLIGHT_ON, turnFlashlightOn).apply()
+
+    val turnFlashlightOnFlow = ::turnFlashlightOn.asFlow()
 
     var stroboscopeProgress: Int
         get() = prefs.getInt(STROBOSCOPE_PROGRESS, 1000)
@@ -41,6 +53,8 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(FORCE_PORTRAIT_MODE, true)
         set(forcePortraitMode) = prefs.edit().putBoolean(FORCE_PORTRAIT_MODE, forcePortraitMode).apply()
 
+    val forcePortraitModeFlow = ::forcePortraitMode.asFlow()
+
     var brightnessLevel: Int
         get() = prefs.getInt(BRIGHTNESS_LEVEL, DEFAULT_BRIGHTNESS_LEVEL)
         set(brightnessLevel) = prefs.edit().putInt(BRIGHTNESS_LEVEL, brightnessLevel).apply()
@@ -52,4 +66,6 @@ class Config(context: Context) : BaseConfig(context) {
     var sleepInTS: Long
         get() = prefs.getLong(SLEEP_IN_TS, 0)
         set(sleepInTS) = prefs.edit().putLong(SLEEP_IN_TS, sleepInTS).apply()
+
+    private fun <T> KProperty0<T>.asFlow(): Flow<T> = prefs.run { sharedPreferencesCallback { this@asFlow.get() } }.filterNotNull()
 }
