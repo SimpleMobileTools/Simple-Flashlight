@@ -7,12 +7,15 @@ import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
+import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.stopSleepTimerCountDown
@@ -41,11 +44,13 @@ class BrightDisplayActivity : ComponentActivity() {
         setContent {
             AppThemeSurface {
                 val backgroundColor by viewModel.backgroundColor.collectAsStateWithLifecycle()
+                val contrastColor by remember { derivedStateOf { backgroundColor.getContrastColor() } }
                 val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
                 val timerText by viewModel.timerText.collectAsStateWithLifecycle()
 
                 BrightDisplayScreen(
                     backgroundColor = backgroundColor,
+                    contrastColor = contrastColor,
                     onChangeColorPress = {
                         ColorPickerDialog(this, config.brightDisplayColor, true, currentColorCallback = {
                             viewModel.updateBackgroundColor(it)

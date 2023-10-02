@@ -28,6 +28,7 @@ import com.simplemobiletools.flashlight.views.SleepTimer
 @Composable
 internal fun BrightDisplayScreen(
     backgroundColor: Int,
+    contrastColor: Int,
     timerText: String,
     timerVisible: Boolean,
     onChangeColorPress: () -> Unit,
@@ -44,14 +45,14 @@ internal fun BrightDisplayScreen(
                 .align(Alignment.Center)
                 .border(
                     width = 1.dp,
-                    color = Color(backgroundColor.getContrastColor()),
+                    color = Color(contrastColor),
                     shape = MaterialTheme.shapes.extraLarge
                 ),
             onClick = onChangeColorPress
         ) {
             Text(
                 text = stringResource(id = R.string.change_color),
-                color = Color(backgroundColor.getContrastColor())
+                color = Color(contrastColor)
             )
         }
 
@@ -77,6 +78,7 @@ private fun BrightDisplayScreenPreview() {
     AppThemeSurface {
         BrightDisplayScreen(
             backgroundColor = MaterialTheme.colorScheme.background.toArgb(),
+            contrastColor = MaterialTheme.colorScheme.background.toArgb().getContrastColor(),
             timerText = "00:00",
             timerVisible = true,
             onChangeColorPress = {},
