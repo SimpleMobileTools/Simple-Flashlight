@@ -3,6 +3,7 @@ package com.simplemobiletools.flashlight.screens
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -102,7 +103,13 @@ internal fun MainScreen(
                 modifier = Modifier
                     .size(dimensionResource(id = R.dimen.main_button_size))
                     .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                    .clickable(onClick = onFlashlightPress),
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember {
+                            MutableInteractionSource()
+                        },
+                        onClick = onFlashlightPress
+                    ),
                 painter = painterResource(id = R.drawable.ic_flashlight_vector),
                 contentDescription = stringResource(id = R.string.flashlight_short),
                 tint = if (flashlightActive) MaterialTheme.colorScheme.primary else Color.Unspecified
@@ -113,7 +120,13 @@ internal fun MainScreen(
                     modifier = Modifier
                         .size(dimensionResource(id = R.dimen.smaller_button_size))
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(onClick = onBrightDisplayPress),
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember {
+                                MutableInteractionSource()
+                            },
+                            onClick = onBrightDisplayPress
+                        ),
                     painter = painterResource(id = R.drawable.ic_bright_display_vector),
                     contentDescription = stringResource(id = R.string.bright_display)
                 )
@@ -123,7 +136,13 @@ internal fun MainScreen(
                 Text(
                     modifier = Modifier
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(onClick = onSosButtonPress),
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember {
+                                MutableInteractionSource()
+                            },
+                            onClick = onSosButtonPress
+                        ),
                     text = "SOS",
                     fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
                     fontWeight = FontWeight.Bold,
@@ -136,7 +155,13 @@ internal fun MainScreen(
                     modifier = Modifier
                         .size(dimensionResource(id = R.dimen.smaller_button_size))
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(onClick = onStroboscopeButtonPress),
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember {
+                                MutableInteractionSource()
+                            },
+                            onClick = onStroboscopeButtonPress
+                        ),
                     painter = painterResource(id = R.drawable.ic_stroboscope_vector),
                     contentDescription = "",
                     tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else Color.Unspecified
