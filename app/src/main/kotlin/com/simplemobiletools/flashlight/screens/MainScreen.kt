@@ -112,7 +112,7 @@ internal fun MainScreen(
                     ),
                 painter = painterResource(id = R.drawable.ic_flashlight_vector),
                 contentDescription = stringResource(id = R.string.flashlight_short),
-                tint = if (flashlightActive) MaterialTheme.colorScheme.primary else Color.Unspecified
+                tint = if (flashlightActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
             )
 
             if (showBrightDisplayButton) {
@@ -128,7 +128,8 @@ internal fun MainScreen(
                             onClick = onBrightDisplayPress
                         ),
                     painter = painterResource(id = R.drawable.ic_bright_display_vector),
-                    contentDescription = stringResource(id = R.string.bright_display)
+                    contentDescription = stringResource(id = R.string.bright_display),
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -146,7 +147,7 @@ internal fun MainScreen(
                     text = "SOS",
                     fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
                     fontWeight = FontWeight.Bold,
-                    color = if (sosActive) MaterialTheme.colorScheme.primary else Color.Unspecified
+                    color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -164,7 +165,7 @@ internal fun MainScreen(
                         ),
                     painter = painterResource(id = R.drawable.ic_stroboscope_vector),
                     contentDescription = "",
-                    tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else Color.Unspecified
+                    tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
                 )
             }
 

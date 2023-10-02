@@ -122,32 +122,6 @@ class MainActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.onResume()
-//        val contrastColor = getContrastColor()
-
-//        binding.apply {
-//            changeIconColor(contrastColor, brightDisplayBtn)
-//            brightDisplayBtn.beVisibleIf(preferences.brightDisplay)
-//            sosBtn.beVisibleIf(preferences.sos)
-//
-//            if (sosBtn.currentTextColor != getProperPrimaryColor()) {
-//                sosBtn.setTextColor(contrastColor)
-//            }
-//
-//            stroboscopeBtn.beVisibleIf(preferences.stroboscope)
-//
-//            if (!preferences.stroboscope) {
-//                mCameraImpl!!.stopStroboscope()
-//                stroboscopeBar.beInvisible()
-//            }
-//
-//            updateTextColors(mainHolder)
-//            if (stroboscopeBar.isInvisible()) {
-//                changeIconColor(contrastColor, stroboscopeBtn)
-//            }
-//        }
-//
-//        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
-//        binding.sleepTimerStop.applyColorFilter(getProperTextColor())
 
         requestedOrientation = if (preferences.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()

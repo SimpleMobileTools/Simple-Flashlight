@@ -104,7 +104,7 @@ class BrightDisplayActivity : SimpleActivity() {
         private val _timerVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val timerVisible = _timerVisible.asStateFlow()
 
-        private val _backgroundColor: MutableStateFlow<Int> = MutableStateFlow(application.config.backgroundColor)
+        private val _backgroundColor: MutableStateFlow<Int> = MutableStateFlow(application.config.brightDisplayColor)
         val backgroundColor = _backgroundColor.asStateFlow()
 
         init {

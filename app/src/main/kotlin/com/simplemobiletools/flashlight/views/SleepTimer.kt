@@ -31,7 +31,7 @@ internal fun SleepTimer(
     Row(
         modifier = modifier
             .wrapContentSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.surface)
             .border(
                 width = 1.dp,
                 color = Color.Gray,
@@ -43,20 +43,23 @@ internal fun SleepTimer(
                 .align(Alignment.CenterVertically)
                 .padding(horizontal = dimensionResource(id = R.dimen.normal_margin)),
             text = stringResource(id = R.string.sleep_timer),
+            color = MaterialTheme.colorScheme.onSurface
         )
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
-            text = timerText
+            text = timerText,
+            color = MaterialTheme.colorScheme.onSurface
         )
         IconButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(dimensionResource(id = R.dimen.medium_margin)),
-            onClick = onCloseClick,
+            onClick = onCloseClick
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_cross_vector),
-                contentDescription = stringResource(id = R.string.close)
+                contentDescription = stringResource(id = R.string.close),
+                tint = MaterialTheme.colorScheme.onSurface
             )
         }
     }
