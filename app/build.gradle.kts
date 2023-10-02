@@ -105,8 +105,6 @@ android {
 dependencies {
     implementation(libs.simple.tools.commons)
 
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.eventbus)
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.compose)
     debugImplementation(libs.bundles.compose.preview)

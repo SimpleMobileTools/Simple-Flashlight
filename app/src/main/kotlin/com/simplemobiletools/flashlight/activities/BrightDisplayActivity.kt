@@ -12,20 +12,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
 import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.commons.extensions.getFormattedDuration
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.helpers.SleepTimer
 import com.simplemobiletools.flashlight.helpers.stopSleepTimerCountDown
-import com.simplemobiletools.flashlight.models.Events
 import com.simplemobiletools.flashlight.screens.BrightDisplayScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlin.system.exitProcess
 
 class BrightDisplayActivity : ComponentActivity() {
@@ -113,17 +113,16 @@ class BrightDisplayActivity : ComponentActivity() {
         val backgroundColor = _backgroundColor.asStateFlow()
 
         init {
-            EventBus.getDefault().register(this)
-        }
+            SleepTimer.timeLeft
+                .onEach { seconds ->
+                    _timerText.value = seconds.getFormattedDuration()
+                    _timerVisible.value = true
 
-        @Subscribe(threadMode = ThreadMode.MAIN)
-        fun sleepTimerChanged(event: Events.SleepTimerChanged) {
-            _timerText.value = event.seconds.getFormattedDuration()
-            _timerVisible.value = true
-
-            if (event.seconds == 0) {
-                exitProcess(0)
-            }
+                    if (seconds == 0) {
+                        exitProcess(0)
+                    }
+                }
+                .launchIn(viewModelScope)
         }
 
         fun updateBackgroundColor(color: Int) {
@@ -132,11 +131,6 @@ class BrightDisplayActivity : ComponentActivity() {
 
         fun hideTimer() {
             _timerVisible.value = false
-        }
-
-        override fun onCleared() {
-            super.onCleared()
-            EventBus.getDefault().unregister(this)
         }
     }
 }

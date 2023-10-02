@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
@@ -39,14 +40,8 @@ import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
-import com.simplemobiletools.flashlight.models.Events
 import com.simplemobiletools.flashlight.screens.MainScreen
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import kotlinx.coroutines.flow.*
 import java.util.*
 import kotlin.system.exitProcess
 
@@ -173,8 +168,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_EVENT_BUS
-
         val faqItems = arrayListOf(
             FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
             FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons)
@@ -185,7 +178,7 @@ class MainActivity : ComponentActivity() {
             faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
         }
 
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+        startAboutActivity(R.string.app_name, 0, BuildConfig.VERSION_NAME, faqItems, true)
     }
 
     private fun checkAppOnSDCard() {
@@ -323,14 +316,33 @@ class MainActivity : ComponentActivity() {
 
         private val preferences = application.config
 
+        private lateinit var camera: MyCameraImpl
+
+        init {
+            camera = MyCameraImpl.newInstance(application, object : CameraTorchListener {
+                override fun onTorchEnabled(isEnabled: Boolean) {
+                    camera.onTorchEnabled(isEnabled)
+                    if (isEnabled && camera.supportsBrightnessControl()) {
+                        _brightnessBarValue.value = camera.getCurrentBrightnessLevel().toFloat() / camera.getMaximumBrightnessLevel()
+                    }
+                }
+
+                override fun onTorchUnavailable() {
+                    camera.onCameraNotAvailable()
+                }
+            })
+            if (preferences.turnFlashlightOn) {
+                camera.enableFlashlight()
+            }
+        }
+
         private val _timerText: MutableStateFlow<String> = MutableStateFlow("00:00")
         val timerText = _timerText.asStateFlow()
 
         private val _timerVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val timerVisible = _timerVisible.asStateFlow()
 
-        private val _flashlightOn: MutableStateFlow<Boolean> = MutableStateFlow(false)
-        val flashlightOn = _flashlightOn.asStateFlow()
+        val flashlightOn = camera.flashlightOnFlow
 
         val brightnessBarVisible = flashlightOn.map {
             it && camera.supportsBrightnessControl()
@@ -350,38 +362,31 @@ class MainActivity : ComponentActivity() {
         private val _stroboscopeBarValue: MutableStateFlow<Float> = MutableStateFlow(0f)
         val stroboscopeBarValue = _stroboscopeBarValue.asStateFlow()
 
-        private lateinit var camera: MyCameraImpl
-
         init {
-            EventBus.getDefault().register(this)
+            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / MAX_STROBO_DELAY
 
-            camera = MyCameraImpl.newInstance(application, object : CameraTorchListener {
-                override fun onTorchEnabled(isEnabled: Boolean) {
-                    camera.onTorchEnabled(isEnabled)
-                    if (isEnabled && camera.supportsBrightnessControl()) {
-                        _brightnessBarValue.value = camera.getCurrentBrightnessLevel().toFloat() / camera.getMaximumBrightnessLevel()
+            SleepTimer.timeLeft
+                .onEach { seconds ->
+                    _timerText.value = seconds.getFormattedDuration()
+                    _timerVisible.value = true
+
+                    if (seconds == 0) {
+                        exitProcess(0)
                     }
                 }
+                .launchIn(viewModelScope)
 
-                override fun onTorchUnavailable() {
-                    camera.onCameraNotAvailable()
-                }
-            })
-            if (preferences.turnFlashlightOn) {
-                camera.enableFlashlight()
-            }
+            MyCameraImpl.cameraError
+                .onEach { getApplication<Application>().toast(R.string.camera_error) }
+                .launchIn(viewModelScope)
 
-            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / MAX_STROBO_DELAY
-        }
+            camera.stroboscopeDisabled
+                .onEach { _stroboscopeActive.value = false }
+                .launchIn(viewModelScope)
 
-        @Subscribe(threadMode = ThreadMode.MAIN)
-        fun sleepTimerChanged(event: Events.SleepTimerChanged) {
-            _timerText.value = event.seconds.getFormattedDuration()
-            _timerVisible.value = true
-
-            if (event.seconds == 0) {
-                exitProcess(0)
-            }
+            camera.sosDisabled
+                .onEach { _sosActive.value = false }
+                .launchIn(viewModelScope)
         }
 
         fun hideTimer() {
@@ -412,7 +417,6 @@ class MainActivity : ComponentActivity() {
         }
 
         fun onResume() {
-            checkState(MyCameraImpl.isFlashlightOn)
             camera.handleCameraSetup()
 
             if (preferences.turnFlashlightOn) {
@@ -428,34 +432,8 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        private fun checkState(isEnabled: Boolean) {
-            _flashlightOn.value = isEnabled
-        }
-
-        @Subscribe
-        fun stateChangedEvent(event: Events.StateChanged) {
-            checkState(event.isEnabled)
-        }
-
-        @Subscribe
-        fun stopStroboscope(event: Events.StopStroboscope) {
-            _stroboscopeActive.value = false
-        }
-
-        @Subscribe
-        fun stopSOS(event: Events.StopSOS) {
-            _sosActive.value = false
-        }
-
-        @Subscribe
-        fun cameraUnavailable(event: Events.CameraUnavailable) {
-            getApplication<Application>().toast(R.string.camera_error)
-            _flashlightOn.value = false
-        }
-
         override fun onCleared() {
             super.onCleared()
-            EventBus.getDefault().unregister(this)
             releaseCamera()
         }
 

@@ -7,8 +7,9 @@ import android.os.Handler
 import com.simplemobiletools.commons.extensions.showErrorToast
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.flashlight.extensions.config
-import com.simplemobiletools.flashlight.models.Events
-import org.greenrobot.eventbus.EventBus
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 internal class CameraFlash(
     private val context: Context,
@@ -16,6 +17,8 @@ internal class CameraFlash(
 ) {
     private val manager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     private val cameraId: String
+
+    private val scope = CoroutineScope(Dispatchers.Default)
 
     private val torchCallback = object : CameraManager.TorchCallback() {
         override fun onTorchModeChanged(cameraId: String, enabled: Boolean) {
@@ -46,10 +49,9 @@ internal class CameraFlash(
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
-            val mainRunnable = Runnable {
-                EventBus.getDefault().post(Events.CameraUnavailable())
+            scope.launch {
+                MyCameraImpl.cameraError.emit(Unit)
             }
-            Handler(context.mainLooper).post(mainRunnable)
         }
     }
 

@@ -7,8 +7,13 @@ import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
-import com.simplemobiletools.flashlight.models.Events
-import org.greenrobot.eventbus.EventBus
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class MyCameraImpl private constructor(val context: Context, private var cameraTorchListener: CameraTorchListener? = null) {
     var stroboFrequency = 1000L
@@ -35,8 +40,12 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         @Volatile
         private var isSOSRunning = false
 
+        val cameraError = MutableSharedFlow<Unit>()
+
         fun newInstance(context: Context, cameraTorchListener: CameraTorchListener? = null) = MyCameraImpl(context, cameraTorchListener)
     }
+
+    private val scope = CoroutineScope(Dispatchers.Default)
 
     private val cameraFlash: CameraFlash?
         get() {
@@ -50,6 +59,15 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         handleCameraSetup()
         stroboFrequency = context.config.stroboscopeFrequency
     }
+
+    private val _flashlightOn = MutableStateFlow(false)
+    val flashlightOnFlow = _flashlightOn.asStateFlow()
+
+    private val _sosDisabled = MutableSharedFlow<Unit>()
+    val sosDisabled = _sosDisabled.asSharedFlow()
+
+    private val _stroboscopeDisabled = MutableSharedFlow<Unit>()
+    val stroboscopeDisabled = _stroboscopeDisabled.asSharedFlow()
 
     fun toggleFlashlight() {
         isFlashlightOn = !isFlashlightOn
@@ -89,7 +107,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun stopStroboscope() {
         shouldStroboscopeStop = true
-        EventBus.getDefault().post(Events.StopStroboscope())
+        scope.launch {
+            _stroboscopeDisabled.emit(Unit)
+        }
     }
 
     fun toggleSOS(): Boolean {
@@ -129,7 +149,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun stopSOS() {
         shouldStroboscopeStop = true
-        EventBus.getDefault().post(Events.StopSOS())
+        scope.launch {
+            _sosDisabled.emit(Unit)
+        }
     }
 
     private fun tryInitCamera(): Boolean {
@@ -146,8 +168,13 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
             if (MyCameraImpl.cameraFlash == null) {
                 MyCameraImpl.cameraFlash = CameraFlash(context, cameraTorchListener)
             }
+            scope.launch {
+                _flashlightOn.emit(isFlashlightOn)
+            }
         } catch (e: Exception) {
-            EventBus.getDefault().post(Events.CameraUnavailable())
+            scope.launch {
+                cameraError.emit(Unit)
+            }
         }
     }
 
@@ -209,7 +236,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     private fun stateChanged(isEnabled: Boolean) {
         isFlashlightOn = isEnabled
-        EventBus.getDefault().post(Events.StateChanged(isEnabled))
+        scope.launch {
+            _flashlightOn.emit(isEnabled)
+        }
         context.updateWidgets(isEnabled)
     }
 
@@ -276,10 +305,14 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         shouldStroboscopeStop = false
         if (isStroboSOS) {
             isSOSRunning = false
-            EventBus.getDefault().post(Events.StopSOS())
+            scope.launch {
+                _sosDisabled.emit(Unit)
+            }
         } else {
             isStroboscopeRunning = false
-            EventBus.getDefault().post(Events.StopStroboscope())
+            scope.launch {
+                _stroboscopeDisabled.emit(Unit)
+            }
         }
 
         when {
