@@ -276,8 +276,10 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         shouldStroboscopeStop = false
         if (isStroboSOS) {
             isSOSRunning = false
+            EventBus.getDefault().post(Events.StopSOS())
         } else {
             isStroboscopeRunning = false
+            EventBus.getDefault().post(Events.StopStroboscope())
         }
 
         when {

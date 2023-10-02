@@ -394,20 +394,7 @@ class MainActivity : SimpleActivity() {
         }
 
         private fun checkState(isEnabled: Boolean) {
-            if (isEnabled) {
-                enableFlashlight()
-            } else {
-                disableFlashlight()
-            }
-        }
-
-
-        fun enableFlashlight() {
-            _flashlightOn.value = true
-        }
-
-        private fun disableFlashlight() {
-            _flashlightOn.value = false
+            _flashlightOn.value = isEnabled
         }
 
         @Subscribe
@@ -428,7 +415,7 @@ class MainActivity : SimpleActivity() {
         @Subscribe
         fun cameraUnavailable(event: Events.CameraUnavailable) {
             getApplication<Application>().toast(R.string.camera_error)
-            disableFlashlight()
+            _flashlightOn.value = false
         }
 
         override fun onCleared() {
