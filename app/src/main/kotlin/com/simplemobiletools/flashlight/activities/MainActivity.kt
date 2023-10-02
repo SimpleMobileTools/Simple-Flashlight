@@ -336,7 +336,7 @@ class MainActivity : SimpleActivity() {
                 camera.enableFlashlight()
             }
 
-            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / 100
+            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / MAX_STROBO_DELAY
         }
 
         @Subscribe(threadMode = ThreadMode.MAIN)
@@ -373,7 +373,7 @@ class MainActivity : SimpleActivity() {
             val newLevel = MathUtils.lerp(min.toFloat(), max.toFloat(), 1 - newValue)
             camera.stroboFrequency = newLevel.toLong()
             preferences.stroboscopeFrequency = newLevel.toLong()
-            preferences.stroboscopeProgress = ((1 - newLevel) * 100).toInt()
+            preferences.stroboscopeProgress = ((1 - newLevel) * MAX_STROBO_DELAY).toInt()
         }
 
         fun onResume() {
