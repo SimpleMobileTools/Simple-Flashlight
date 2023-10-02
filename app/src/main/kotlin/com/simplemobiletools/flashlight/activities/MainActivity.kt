@@ -58,7 +58,7 @@ class MainActivity : SimpleActivity() {
         setContent {
             AppThemeSurface {
                 val showMoreApps = onEventValue { !resources.getBoolean(R.bool.hide_google_relations) }
-                val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle(false)
+                val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
                 val timerText by viewModel.timerText.collectAsStateWithLifecycle()
                 val flashlightActive by viewModel.flashlightOn.collectAsStateWithLifecycle()
                 val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(

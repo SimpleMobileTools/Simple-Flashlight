@@ -28,7 +28,7 @@ import com.simplemobiletools.flashlight.views.SleepTimer
 @Composable
 internal fun BrightDisplayScreen(
     backgroundColor: Int,
-    timerText: String?,
+    timerText: String,
     timerVisible: Boolean,
     onChangeColorPress: () -> Unit,
     onTimerClosePress: () -> Unit
@@ -59,7 +59,7 @@ internal fun BrightDisplayScreen(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .navigationBarsPadding(),
-            visible = timerVisible,
+            visible = timerVisible && timerText.isNotEmpty(),
             enter = fadeIn(),
             exit = fadeOut()
         ) {

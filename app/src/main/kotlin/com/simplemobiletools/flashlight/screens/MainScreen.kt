@@ -3,7 +3,6 @@ package com.simplemobiletools.flashlight.screens
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -37,7 +36,7 @@ import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 internal fun MainScreen(
-    timerText: String?,
+    timerText: String,
     timerVisible: Boolean,
     onTimerClosePress: () -> Unit,
     flashlightActive: Boolean,
@@ -200,12 +199,12 @@ internal fun MainScreen(
 
         AnimatedVisibility(
             modifier = Modifier.align(Alignment.BottomEnd),
-            visible = timerVisible,
+            visible = timerVisible && timerText.isNotEmpty(),
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             SleepTimer(
-                timerText = timerText ?: "",
+                timerText = timerText,
                 onCloseClick = onTimerClosePress
             )
         }
