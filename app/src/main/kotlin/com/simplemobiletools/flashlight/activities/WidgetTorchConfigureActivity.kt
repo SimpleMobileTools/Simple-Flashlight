@@ -4,6 +4,7 @@ import android.app.Activity
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
@@ -21,13 +22,12 @@ import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
 import com.simplemobiletools.flashlight.screens.WidgetConfigureScreen
 
-class WidgetTorchConfigureActivity : SimpleActivity() {
+class WidgetTorchConfigureActivity : ComponentActivity() {
     private val viewModel by viewModels<WidgetConfigureViewModel>()
 
     private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        useDynamicTheme = false
         super.onCreate(savedInstanceState)
         setResult(Activity.RESULT_CANCELED)
 

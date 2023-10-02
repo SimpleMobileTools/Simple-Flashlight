@@ -2,6 +2,7 @@ package com.simplemobiletools.flashlight.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -10,10 +11,12 @@ import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.extensions.launchChangeAppLanguageIntent
+import com.simplemobiletools.flashlight.extensions.startCustomizationActivity
 import com.simplemobiletools.flashlight.screens.SettingsScreen
 import java.util.Locale
 
-class SettingsActivity : SimpleActivity() {
+class SettingsActivity : ComponentActivity() {
     private val preferences by lazy { config }
 
     override fun onCreate(savedInstanceState: Bundle?) {

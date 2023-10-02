@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
@@ -24,7 +25,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
-class BrightDisplayActivity : SimpleActivity() {
+class BrightDisplayActivity : ComponentActivity() {
     private val viewModel by viewModels<BrightDisplayViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,6 @@ class BrightDisplayActivity : SimpleActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        useDynamicTheme = false
         super.onCreate(savedInstanceState)
         enableEdgeToEdgeSimple()
         setContent {

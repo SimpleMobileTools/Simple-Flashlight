@@ -1,24 +1,32 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupDialog
 import com.simplemobiletools.commons.extensions.*
@@ -29,6 +37,7 @@ import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
 import com.simplemobiletools.flashlight.models.Events
 import com.simplemobiletools.flashlight.screens.MainScreen
@@ -41,7 +50,7 @@ import org.greenrobot.eventbus.ThreadMode
 import java.util.*
 import kotlin.system.exitProcess
 
-class MainActivity : SimpleActivity() {
+class MainActivity : ComponentActivity() {
     companion object {
         private const val MAX_STROBO_DELAY = 2000L
         private const val MIN_STROBO_DELAY = 10L
@@ -51,7 +60,6 @@ class MainActivity : SimpleActivity() {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         appLaunched(BuildConfig.APPLICATION_ID)
 
@@ -77,6 +85,27 @@ class MainActivity : SimpleActivity() {
                 val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle(false)
                 val stroboscopeBarValue by viewModel.stroboscopeBarValue.collectAsStateWithLifecycle()
 
+                val sosPermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = {
+                        if (it) {
+                            cameraPermissionGranted(true)
+                        } else {
+                            toast(R.string.camera_permission)
+                        }
+                    }
+                )
+                val stroboscopePermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = {
+                        if (it) {
+                            cameraPermissionGranted(false)
+                        } else {
+                            toast(R.string.camera_permission)
+                        }
+                    }
+                )
+
                 MainScreen(
                     timerText = timerText,
                     timerVisible = timerVisible,
@@ -90,12 +119,12 @@ class MainActivity : SimpleActivity() {
                     showSosButton = showSosButton,
                     sosActive = sosActive,
                     onSosButtonPress = {
-                        toggleStroboscope(true)
+                        toggleStroboscope(true, sosPermissionLauncher)
                     },
                     showStroboscopeButton = showStroboscopeButton,
                     stroboscopeActive = stroboscopeActive,
                     onStroboscopeButtonPress = {
-                        toggleStroboscope(false)
+                        toggleStroboscope(false, stroboscopePermissionLauncher)
                     },
                     showBrightnessBar = brightnessBarVisible,
                     brightnessBarValue = brightnessBarValue,
@@ -159,17 +188,23 @@ class MainActivity : SimpleActivity() {
         startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
     }
 
-    private fun toggleStroboscope(isSOS: Boolean) {
+    private fun checkAppOnSDCard() {
+        if (!baseConfig.wasAppOnSDShown && isAppInstalledOnSDCard()) {
+            baseConfig.wasAppOnSDShown = true
+            ConfirmationDialog(this, "", R.string.app_on_sd_card, R.string.ok, 0) {}
+        }
+    }
+
+    private fun toggleStroboscope(isSOS: Boolean, launcher: ManagedActivityResultLauncher<String, Boolean>) {
         // use the old Camera API for stroboscope, the new Camera Manager is way too slow
         if (isNougatPlus()) {
             cameraPermissionGranted(isSOS)
         } else {
-            handlePermission(PERMISSION_CAMERA) {
-                if (it) {
-                    cameraPermissionGranted(isSOS)
-                } else {
-                    toast(R.string.camera_permission)
-                }
+            val permission = Manifest.permission.CAMERA
+            if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                cameraPermissionGranted(isSOS)
+            } else {
+                launcher.launch(permission)
             }
         }
     }
