@@ -1,10 +1,8 @@
 package com.simplemobiletools.flashlight.views
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,8 +28,6 @@ internal fun SleepTimer(
 ) {
     Row(
         modifier = modifier
-            .wrapContentSize()
-            .background(MaterialTheme.colorScheme.surface)
             .border(
                 width = 1.dp,
                 color = Color.Gray,
