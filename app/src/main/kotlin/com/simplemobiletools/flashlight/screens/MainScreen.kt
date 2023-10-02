@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import com.simplemobiletools.commons.compose.extensions.AdjustNavigationBarColors
 import com.simplemobiletools.commons.compose.extensions.MyDevices
+import com.simplemobiletools.commons.compose.extensions.rememberMutableInteractionSource
 import com.simplemobiletools.commons.compose.menus.ActionItem
 import com.simplemobiletools.commons.compose.menus.ActionMenu
 import com.simplemobiletools.commons.compose.menus.OverflowMode
@@ -104,9 +105,7 @@ internal fun MainScreen(
                     .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
                     .clickable(
                         indication = null,
-                        interactionSource = remember {
-                            MutableInteractionSource()
-                        },
+                        interactionSource = rememberMutableInteractionSource(),
                         onClick = onFlashlightPress
                     ),
                 painter = painterResource(id = R.drawable.ic_flashlight_vector),
@@ -121,9 +120,7 @@ internal fun MainScreen(
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
                         .clickable(
                             indication = null,
-                            interactionSource = remember {
-                                MutableInteractionSource()
-                            },
+                            interactionSource = rememberMutableInteractionSource(),
                             onClick = onBrightDisplayPress
                         ),
                     painter = painterResource(id = R.drawable.ic_bright_display_vector),
@@ -138,9 +135,7 @@ internal fun MainScreen(
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
                         .clickable(
                             indication = null,
-                            interactionSource = remember {
-                                MutableInteractionSource()
-                            },
+                            interactionSource = rememberMutableInteractionSource(),
                             onClick = onSosButtonPress
                         ),
                     text = "SOS",
@@ -157,9 +152,7 @@ internal fun MainScreen(
                         .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
                         .clickable(
                             indication = null,
-                            interactionSource = remember {
-                                MutableInteractionSource()
-                            },
+                            interactionSource = rememberMutableInteractionSource(),
                             onClick = onStroboscopeButtonPress
                         ),
                     painter = painterResource(id = R.drawable.ic_stroboscope_vector),
