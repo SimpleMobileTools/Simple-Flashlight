@@ -2,9 +2,7 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.content.Context
 import android.graphics.Color
-import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
 import com.simplemobiletools.commons.helpers.BaseConfig
-import kotlinx.coroutines.flow.filterNotNull
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -15,25 +13,25 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BRIGHT_DISPLAY, true)
         set(brightDisplay) = prefs.edit().putBoolean(BRIGHT_DISPLAY, brightDisplay).apply()
 
-    val brightDisplayFlow = prefs.run { sharedPreferencesCallback { brightDisplay } }.filterNotNull()
+    val brightDisplayFlow = ::brightDisplay.asFlowNonNull()
 
     var stroboscope: Boolean
         get() = prefs.getBoolean(STROBOSCOPE, true)
         set(stroboscope) = prefs.edit().putBoolean(STROBOSCOPE, stroboscope).apply()
 
-    val stroboscopeFlow = ::stroboscope.asFlow()
+    val stroboscopeFlow = ::stroboscope.asFlowNonNull()
 
     var sos: Boolean
         get() = prefs.getBoolean(SOS, true)
         set(sos) = prefs.edit().putBoolean(SOS, sos).apply()
 
-    val sosFlow = ::sos.asFlow()
+    val sosFlow = ::sos.asFlowNonNull()
 
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
         set(turnFlashlightOn) = prefs.edit().putBoolean(TURN_FLASHLIGHT_ON, turnFlashlightOn).apply()
 
-    val turnFlashlightOnFlow = ::turnFlashlightOn.asFlow()
+    val turnFlashlightOnFlow = ::turnFlashlightOn.asFlowNonNull()
 
     var stroboscopeProgress: Int
         get() = prefs.getInt(STROBOSCOPE_PROGRESS, 1000)
@@ -51,7 +49,7 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(FORCE_PORTRAIT_MODE, true)
         set(forcePortraitMode) = prefs.edit().putBoolean(FORCE_PORTRAIT_MODE, forcePortraitMode).apply()
 
-    val forcePortraitModeFlow = ::forcePortraitMode.asFlow()
+    val forcePortraitModeFlow = ::forcePortraitMode.asFlowNonNull()
 
     var brightnessLevel: Int
         get() = prefs.getInt(BRIGHTNESS_LEVEL, DEFAULT_BRIGHTNESS_LEVEL)
