@@ -65,7 +65,7 @@ internal fun BrightDisplayScreen(
             exit = fadeOut()
         ) {
             SleepTimer(
-                timerText = timerText ?: "",
+                timerText = timerText,
                 onCloseClick = onTimerClosePress
             )
         }
