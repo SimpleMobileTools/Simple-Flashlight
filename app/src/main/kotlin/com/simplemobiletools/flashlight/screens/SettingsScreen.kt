@@ -38,11 +38,11 @@ internal fun SettingsScreen(
             SettingsTitleTextComponent(text = stringResource(id = R.string.color_customization))
         }) {
             SettingsPreferenceComponent(
-                preferenceTitle = stringResource(id = R.string.customize_colors),
+                label = stringResource(id = R.string.customize_colors),
                 doOnPreferenceClick = customizeColors,
             )
             SettingsPreferenceComponent(
-                preferenceTitle = stringResource(id = R.string.customize_widget_colors),
+                label = stringResource(id = R.string.customize_widget_colors),
                 doOnPreferenceClick = customizeWidgetColors
             )
         }
@@ -53,34 +53,34 @@ internal fun SettingsScreen(
 
             if (isTiramisuPlus()) {
                 SettingsPreferenceComponent(
-                    preferenceTitle = stringResource(id = R.string.language),
-                    preferenceSummary = displayLanguage,
+                    label = stringResource(id = R.string.language),
+                    value = displayLanguage,
                     doOnPreferenceClick = onSetupLanguagePress,
-                    preferenceSummaryColor = MaterialTheme.colorScheme.onSurface,
+                    preferenceValueColor = MaterialTheme.colorScheme.onSurface,
                 )
             }
             SettingsCheckBoxComponent(
-                title = stringResource(id = R.string.turn_flashlight_on),
+                label = stringResource(id = R.string.turn_flashlight_on),
                 initialValue = turnFlashlightOnStartupChecked,
                 onChange = onTurnFlashlightOnStartupPress
             )
             SettingsCheckBoxComponent(
-                title = stringResource(id = R.string.force_portrait_mode),
+                label = stringResource(id = R.string.force_portrait_mode),
                 initialValue = forcePortraitModeChecked,
                 onChange = onForcePortraitModePress
             )
             SettingsCheckBoxComponent(
-                title = stringResource(id = R.string.show_bright_display),
+                label = stringResource(id = R.string.show_bright_display),
                 initialValue = showBrightDisplayButtonChecked,
                 onChange = onShowBrightDisplayButtonPress
             )
             SettingsCheckBoxComponent(
-                title = stringResource(id = R.string.show_sos),
+                label = stringResource(id = R.string.show_sos),
                 initialValue = showSosButtonChecked,
                 onChange = onShowSosButtonPress
             )
             SettingsCheckBoxComponent(
-                title = stringResource(id = R.string.show_stroboscope),
+                label = stringResource(id = R.string.show_stroboscope),
                 initialValue = showStroboscopeButtonChecked,
                 onChange = onShowStroboscopeButtonPress
             )
