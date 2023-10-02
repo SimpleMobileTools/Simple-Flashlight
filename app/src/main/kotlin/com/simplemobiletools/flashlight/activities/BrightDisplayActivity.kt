@@ -60,7 +60,7 @@ class BrightDisplayActivity : SimpleActivity() {
                     },
                     timerVisible = timerVisible,
                     timerText = timerText,
-                    onTimerCloseClick = {
+                    onTimerClosePress = {
                         stopSleepTimer()
                     }
                 )

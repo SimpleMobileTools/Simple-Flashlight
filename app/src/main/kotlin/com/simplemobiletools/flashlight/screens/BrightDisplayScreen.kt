@@ -1,9 +1,14 @@
 package com.simplemobiletools.flashlight.screens
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -26,7 +31,7 @@ internal fun BrightDisplayScreen(
     timerText: String?,
     timerVisible: Boolean,
     onChangeColorPress: () -> Unit,
-    onTimerCloseClick: () -> Unit
+    onTimerClosePress: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -51,7 +56,8 @@ internal fun BrightDisplayScreen(
         }
 
         AnimatedVisibility(
-            modifier = Modifier.align(Alignment.BottomEnd)
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
                 .navigationBarsPadding(),
             visible = timerVisible,
             enter = fadeIn(),
@@ -59,7 +65,7 @@ internal fun BrightDisplayScreen(
         ) {
             SleepTimer(
                 timerText = timerText ?: "",
-                onCloseClick = onTimerCloseClick
+                onCloseClick = onTimerClosePress
             )
         }
     }
@@ -74,7 +80,7 @@ private fun BrightDisplayScreenPreview() {
             timerText = "00:00",
             timerVisible = true,
             onChangeColorPress = {},
-            onTimerCloseClick = {}
+            onTimerClosePress = {}
         )
     }
 }
