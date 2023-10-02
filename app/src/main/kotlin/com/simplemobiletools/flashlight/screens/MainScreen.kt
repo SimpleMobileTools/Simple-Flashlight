@@ -138,7 +138,7 @@ internal fun MainScreen(
                             interactionSource = rememberMutableInteractionSource(),
                             onClick = onSosButtonPress
                         ),
-                    text = "SOS",
+                    text = stringResource(id = R.string.sos),
                     fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
                     fontWeight = FontWeight.Bold,
                     color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
