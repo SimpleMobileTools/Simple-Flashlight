@@ -17,7 +17,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.extensions.adjustAlpha
@@ -32,21 +31,16 @@ internal fun WidgetConfigureScreen(
     onColorPressed: () -> Unit,
     onSavePressed: () -> Unit
 ) {
-    ConstraintLayout(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Bottom,
     ) {
-        val (brightDisplay, bottomControls, saveButton) = createRefs()
-
         Box(
             modifier = Modifier
                 .padding(dimensionResource(id = R.dimen.activity_margin))
                 .padding(bottom = dimensionResource(id = R.dimen.activity_margin))
-                .constrainAs(brightDisplay) {
-                    top.linkTo(parent.top)
-                    end.linkTo(parent.end)
-                    start.linkTo(parent.start)
-                    bottom.linkTo(bottomControls.top)
-                }
+                .fillMaxWidth()
+                .weight(1f)
         ) {
             Icon(
                 modifier = Modifier
@@ -58,13 +52,7 @@ internal fun WidgetConfigureScreen(
             )
         }
 
-        Row(
-            modifier = Modifier.constrainAs(bottomControls) {
-                bottom.linkTo(saveButton.top)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }
-        ) {
+        Row {
             Icon(
                 modifier = Modifier
                     .size(dimensionResource(id = R.dimen.widget_colorpicker_size))
@@ -90,10 +78,7 @@ internal fun WidgetConfigureScreen(
         }
 
         Button(
-            modifier = Modifier.constrainAs(saveButton) {
-                end.linkTo(parent.end)
-                bottom.linkTo(parent.bottom)
-            },
+            modifier = Modifier.align(Alignment.End),
             onClick = onSavePressed
         ) {
             Text(text = stringResource(id = R.string.ok))
