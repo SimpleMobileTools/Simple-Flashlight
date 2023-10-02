@@ -14,6 +14,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.extensions.onEventValue
@@ -46,6 +47,7 @@ class MainActivity : SimpleActivity() {
         private const val MIN_STROBO_DELAY = 10L
     }
 
+    private val preferences by lazy { config }
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,10 +61,16 @@ class MainActivity : SimpleActivity() {
                 val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle(false)
                 val timerText by viewModel.timerText.collectAsStateWithLifecycle()
                 val flashlightActive by viewModel.flashlightOn.collectAsStateWithLifecycle()
-                val showBrightDisplayButton by config.brightDisplayFlow.collectAsStateWithLifecycle(config.brightDisplay)
-                val showSosButton by config.sosFlow.collectAsStateWithLifecycle(config.sos)
+                val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(
+                    config.brightDisplay,
+                    minActiveState = Lifecycle.State.CREATED
+                )
+                val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos, minActiveState = Lifecycle.State.CREATED)
                 val sosActive by viewModel.sosActive.collectAsStateWithLifecycle()
-                val showStroboscopeButton by config.stroboscopeFlow.collectAsStateWithLifecycle(config.stroboscope)
+                val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(
+                    config.stroboscope,
+                    minActiveState = Lifecycle.State.CREATED
+                )
                 val stroboscopeActive by viewModel.stroboscopeActive.collectAsStateWithLifecycle()
                 val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle(false)
                 val brightnessBarValue by viewModel.brightnessBarValue.collectAsStateWithLifecycle()
@@ -118,16 +126,16 @@ class MainActivity : SimpleActivity() {
 
 //        binding.apply {
 //            changeIconColor(contrastColor, brightDisplayBtn)
-//            brightDisplayBtn.beVisibleIf(config.brightDisplay)
-//            sosBtn.beVisibleIf(config.sos)
+//            brightDisplayBtn.beVisibleIf(preferences.brightDisplay)
+//            sosBtn.beVisibleIf(preferences.sos)
 //
 //            if (sosBtn.currentTextColor != getProperPrimaryColor()) {
 //                sosBtn.setTextColor(contrastColor)
 //            }
 //
-//            stroboscopeBtn.beVisibleIf(config.stroboscope)
+//            stroboscopeBtn.beVisibleIf(preferences.stroboscope)
 //
-//            if (!config.stroboscope) {
+//            if (!preferences.stroboscope) {
 //                mCameraImpl!!.stopStroboscope()
 //                stroboscopeBar.beInvisible()
 //            }
@@ -141,7 +149,7 @@ class MainActivity : SimpleActivity() {
 //        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
 //        binding.sleepTimerStop.applyColorFilter(getProperTextColor())
 
-        requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        requestedOrientation = if (preferences.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
 
         checkShortcuts()
@@ -150,7 +158,7 @@ class MainActivity : SimpleActivity() {
     override fun onStart() {
         super.onStart()
 
-        if (config.sleepInTS == 0L) {
+        if (preferences.sleepInTS == 0L) {
             viewModel.hideTimer()
             (getSystemService(Context.ALARM_SERVICE) as AlarmManager).cancel(getShutDownPendingIntent())
         }
@@ -216,14 +224,14 @@ class MainActivity : SimpleActivity() {
             RadioItem(it, secondsToString(it))
         })
 
-        if (items.none { it.id == config.lastSleepTimerSeconds }) {
-            items.add(RadioItem(config.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
+        if (items.none { it.id == preferences.lastSleepTimerSeconds }) {
+            items.add(RadioItem(preferences.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
         }
 
         items.sortBy { it.id }
         items.add(RadioItem(-1, getString(R.string.custom)))
 
-        RadioGroupDialog(this, items, config.lastSleepTimerSeconds) {
+        RadioGroupDialog(this, items, preferences.lastSleepTimerSeconds) {
             if (it as Int == -1) {
                 SleepTimerCustomDialog(this) {
                     if (it > 0) {
@@ -254,8 +262,8 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun pickedSleepTimer(seconds: Int) {
-        config.lastSleepTimerSeconds = seconds
-        config.sleepInTS = System.currentTimeMillis() + seconds * 1000
+        preferences.lastSleepTimerSeconds = seconds
+        preferences.sleepInTS = System.currentTimeMillis() + seconds * 1000
         startSleepTimer()
     }
 
@@ -271,13 +279,13 @@ class MainActivity : SimpleActivity() {
 
     @SuppressLint("NewApi")
     private fun checkShortcuts() {
-        val appIconColor = config.appIconColor
-        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
+        val appIconColor = preferences.appIconColor
+        if (isNougatMR1Plus() && preferences.lastHandledShortcutColor != appIconColor) {
             val createNewContact = getBrightDisplayShortcut(appIconColor)
 
             try {
                 shortcutManager.dynamicShortcuts = Arrays.asList(createNewContact)
-                config.lastHandledShortcutColor = appIconColor
+                preferences.lastHandledShortcutColor = appIconColor
             } catch (ignored: Exception) {
             }
         }
@@ -304,6 +312,7 @@ class MainActivity : SimpleActivity() {
         application: Application
     ) : AndroidViewModel(application) {
 
+        private val preferences = application.config
 
         private val _timerText: MutableStateFlow<String> = MutableStateFlow("00:00")
         val timerText = _timerText.asStateFlow()
@@ -349,11 +358,11 @@ class MainActivity : SimpleActivity() {
                     camera.onCameraNotAvailable()
                 }
             })
-            if (application.config.turnFlashlightOn) {
+            if (preferences.turnFlashlightOn) {
                 camera.enableFlashlight()
             }
 
-            _stroboscopeBarValue.value = application.config.stroboscopeProgress.toFloat() / 100
+            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / 100
         }
 
         @Subscribe(threadMode = ThreadMode.MAIN)
@@ -380,7 +389,7 @@ class MainActivity : SimpleActivity() {
             val min = MIN_BRIGHTNESS_LEVEL
             val newLevel = MathUtils.lerp(min.toFloat(), max.toFloat(), newValue)
             camera.updateBrightnessLevel(newLevel.toInt())
-            getApplication<Application>().config.brightnessLevel = newLevel.toInt()
+            preferences.brightnessLevel = newLevel.toInt()
         }
 
         fun updateStroboscopeBarValue(newValue: Float) {
@@ -389,16 +398,24 @@ class MainActivity : SimpleActivity() {
             val min = MIN_STROBO_DELAY
             val newLevel = MathUtils.lerp(min.toFloat(), max.toFloat(), 1 - newValue)
             camera.stroboFrequency = newLevel.toLong()
-            getApplication<Application>().config.stroboscopeFrequency = newLevel.toLong()
-            getApplication<Application>().config.stroboscopeProgress = ((1 - newLevel) * 100).toInt()
+            preferences.stroboscopeFrequency = newLevel.toLong()
+            preferences.stroboscopeProgress = ((1 - newLevel) * 100).toInt()
         }
 
         fun onResume() {
             checkState(MyCameraImpl.isFlashlightOn)
             camera.handleCameraSetup()
 
-            if (getApplication<Application>().config.turnFlashlightOn) {
+            if (preferences.turnFlashlightOn) {
                 camera.enableFlashlight()
+            }
+
+            if (!preferences.stroboscope && _stroboscopeActive.value) {
+                camera.stopStroboscope()
+            }
+
+            if (!preferences.sos && _sosActive.value) {
+                camera.stopSOS()
             }
         }
 

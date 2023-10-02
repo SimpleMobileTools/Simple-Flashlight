@@ -2,7 +2,9 @@ package com.simplemobiletools.flashlight.helpers
 
 import android.content.Context
 import android.graphics.Color
+import com.simplemobiletools.commons.extensions.sharedPreferencesCallback
 import com.simplemobiletools.commons.helpers.BaseConfig
+import kotlinx.coroutines.flow.filterNotNull
 
 class Config(context: Context) : BaseConfig(context) {
     companion object {
@@ -13,7 +15,7 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BRIGHT_DISPLAY, true)
         set(brightDisplay) = prefs.edit().putBoolean(BRIGHT_DISPLAY, brightDisplay).apply()
 
-    val brightDisplayFlow = ::brightDisplay.asFlow()
+    val brightDisplayFlow = prefs.run { sharedPreferencesCallback { brightDisplay } }.filterNotNull()
 
     var stroboscope: Boolean
         get() = prefs.getBoolean(STROBOSCOPE, true)
