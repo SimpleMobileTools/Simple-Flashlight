@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">הצג כפתור תצוגה בהיר</string>
     <string name="show_stroboscope">הצג כפתור סטרובוסקופ</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">הצג כפתור SOS</string>
     <string name="turn_flashlight_on">הדלק את הפנס בעת ההפעלה</string>
     <!--

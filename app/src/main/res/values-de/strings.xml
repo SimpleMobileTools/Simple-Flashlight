@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Schaltfläche für hellen Bildschirm zeigen</string>
     <string name="show_stroboscope">Schaltfläche für Stroboskop zeigen</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Eine SOS-Schaltfläche zeigen</string>
     <string name="turn_flashlight_on">Taschenlampe beim Start einschalten</string>
     <!--

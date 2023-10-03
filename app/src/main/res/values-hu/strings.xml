@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Fényes kijelző gomb megjelenítése</string>
     <string name="show_stroboscope">Stroboszkóp gomb megjelenítése</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">SOS gomb megjelenítése</string>
     <string name="turn_flashlight_on">Zseblámpa bekapcsolása indításkor</string>
     <!--

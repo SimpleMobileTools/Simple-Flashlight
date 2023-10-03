@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Tampilkan tombol tampilan cerah</string>
     <string name="show_stroboscope">Tampilkan tombol stroboscope</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Tampilkan tombol SOS</string>
     <string name="turn_flashlight_on">Nyalakan senter saat memulai</string>
     <!--

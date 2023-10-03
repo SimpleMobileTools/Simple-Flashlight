@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">إظهار زر عرض ساطع</string>
     <string name="show_stroboscope">إظهار زر ستروبوسكوب</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">إظهار زر SOS</string>
     <string name="turn_flashlight_on">قم بتشغيل المصباح عند بدء التشغيل</string>
     <!--

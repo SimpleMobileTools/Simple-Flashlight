@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Покажи ярък дисплей бутон</string>
     <string name="show_stroboscope">Покажи стробинг бутон</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Показване на SOS бутон</string>
     <string name="turn_flashlight_on">Включване на фенер при стартиране</string>
     <!--

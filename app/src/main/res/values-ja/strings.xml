@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">明るく表示ボタンを表示</string>
     <string name="show_stroboscope">ストロボボタンを表示</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">SOSボタンを表示</string>
     <string name="turn_flashlight_on">起動時にフラッシュライトを点灯</string>
     <!--

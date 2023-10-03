@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Mostrar botão de ecrã luminoso</string>
     <string name="show_stroboscope">Mostrar botão do estroboscópio</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Mostrar botão de SOS</string>
     <string name="turn_flashlight_on">Acender a lanterna ao iniciar</string>
     <!--

@@ -162,7 +162,7 @@ internal fun StroboscopeButton(
                 onClick = onStroboscopeButtonPress
             ),
         painter = painterResource(id = R.drawable.ic_stroboscope_vector),
-        contentDescription = "",
+        contentDescription = stringResource(id = R.string.stroboscope),
         tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
     )
 }

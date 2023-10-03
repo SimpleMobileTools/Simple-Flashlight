@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">ബ്രൈറ്റ് ഡിസ്പ്ലേ ബട്ടൺ കാണിക്കുക</string>
     <string name="show_stroboscope">ഒരു സ്ട്രോബോസ്കോപ്പ് ബട്ടൺ കാണിക്കുക</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">SOS ബട്ടൺ കാണിക്കുക</string>
     <string name="turn_flashlight_on">ആരംഭത്തിൽ ടോർച്ച്‌ഓണാക്കുക</string>
     <!--

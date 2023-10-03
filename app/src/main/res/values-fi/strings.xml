@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Näytä kirkas näyttö -painike</string>
     <string name="show_stroboscope">Näytä stroboskooppipainike</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Näytä SOS-painike</string>
     <string name="turn_flashlight_on">Kytke taskulamppu päälle käynnistyksen yhteydessä</string>
     <!--
