@@ -40,7 +40,8 @@ import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
-import com.simplemobiletools.flashlight.screens.MainScreen
+import com.simplemobiletools.flashlight.screens.*
+import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
 import kotlinx.coroutines.flow.*
 import java.util.*
 import kotlin.system.exitProcess
@@ -61,25 +62,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppThemeSurface {
                 val showMoreApps = onEventValue { !resources.getBoolean(R.bool.hide_google_relations) }
-                val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
-                val timerText by viewModel.timerText.collectAsStateWithLifecycle()
-                val flashlightActive by viewModel.flashlightOn.collectAsStateWithLifecycle()
-                val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(
-                    config.brightDisplay,
-                    minActiveState = Lifecycle.State.CREATED
-                )
-                val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos, minActiveState = Lifecycle.State.CREATED)
-                val sosActive by viewModel.sosActive.collectAsStateWithLifecycle()
-                val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(
-                    config.stroboscope,
-                    minActiveState = Lifecycle.State.CREATED
-                )
-                val stroboscopeActive by viewModel.stroboscopeActive.collectAsStateWithLifecycle()
-                val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle(false)
-                val brightnessBarValue by viewModel.brightnessBarValue.collectAsStateWithLifecycle()
-                val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle(false)
-                val stroboscopeBarValue by viewModel.stroboscopeBarValue.collectAsStateWithLifecycle()
-
                 val sosPermissionLauncher = rememberLauncherForActivityResult(
                     contract = ActivityResultContracts.RequestPermission(),
                     onResult = {
@@ -102,34 +84,84 @@ class MainActivity : ComponentActivity() {
                 )
 
                 MainScreen(
-                    timerText = timerText,
-                    timerVisible = timerVisible,
-                    onTimerClosePress = { stopSleepTimer() },
-                    onFlashlightPress = { viewModel.toggleFlashlight() },
-                    flashlightActive = flashlightActive,
-                    showBrightDisplayButton = showBrightDisplayButton,
-                    onBrightDisplayPress = {
-                        startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+                    flashlightButton = {
+                        val flashlightActive by viewModel.flashlightOn.collectAsStateWithLifecycle()
+
+                        FlashlightButton(
+                            onFlashlightPress = { viewModel.toggleFlashlight() },
+                            flashlightActive = flashlightActive,
+                        )
                     },
-                    showSosButton = showSosButton,
-                    sosActive = sosActive,
-                    onSosButtonPress = {
-                        toggleStroboscope(true, sosPermissionLauncher)
+                    brightDisplayButton = {
+                        val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(
+                            config.brightDisplay,
+                            minActiveState = Lifecycle.State.CREATED
+                        )
+                        if (showBrightDisplayButton) {
+                            BrightDisplayButton(
+                                onBrightDisplayPress = {
+                                    startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+                                }
+                            )
+                        }
                     },
-                    showStroboscopeButton = showStroboscopeButton,
-                    stroboscopeActive = stroboscopeActive,
-                    onStroboscopeButtonPress = {
-                        toggleStroboscope(false, stroboscopePermissionLauncher)
+                    sosButton = {
+                        val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos, minActiveState = Lifecycle.State.CREATED)
+                        val sosActive by viewModel.sosActive.collectAsStateWithLifecycle()
+
+                        if (showSosButton) {
+                            SosButton(
+                                sosActive = sosActive,
+                                onSosButtonPress = {
+                                    toggleStroboscope(true, sosPermissionLauncher)
+                                },
+                            )
+                        }
                     },
-                    showBrightnessBar = brightnessBarVisible,
-                    brightnessBarValue = brightnessBarValue,
-                    onBrightnessBarValueChange = {
-                        viewModel.updateBrightnessBarValue(it)
+                    stroboscopeButton = {
+                        val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(
+                            config.stroboscope,
+                            minActiveState = Lifecycle.State.CREATED
+                        )
+                        val stroboscopeActive by viewModel.stroboscopeActive.collectAsStateWithLifecycle()
+
+                        if (showStroboscopeButton) {
+                            StroboscopeButton(
+                                stroboscopeActive = stroboscopeActive,
+                                onStroboscopeButtonPress = {
+                                    toggleStroboscope(false, stroboscopePermissionLauncher)
+                                },
+                            )
+                        }
                     },
-                    showStroboscopeBar = stroboscopeBarVisible,
-                    stroboscopeBarValue = stroboscopeBarValue,
-                    onStroboscopeBarValueChange = {
-                        viewModel.updateStroboscopeBarValue(it)
+                    slidersSection = {
+                        val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle(false)
+                        val brightnessBarValue by viewModel.brightnessBarValue.collectAsStateWithLifecycle()
+                        val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle(false)
+                        val stroboscopeBarValue by viewModel.stroboscopeBarValue.collectAsStateWithLifecycle()
+
+                        MainScreenSlidersSection(
+                            showBrightnessBar = brightnessBarVisible,
+                            brightnessBarValue = brightnessBarValue,
+                            onBrightnessBarValueChange = {
+                                viewModel.updateBrightnessBarValue(it)
+                            },
+                            showStroboscopeBar = stroboscopeBarVisible,
+                            stroboscopeBarValue = stroboscopeBarValue,
+                            onStroboscopeBarValueChange = {
+                                viewModel.updateStroboscopeBarValue(it)
+                            },
+                        )
+                    },
+                    sleepTimer = {
+                        val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
+                        val timerText by viewModel.timerText.collectAsStateWithLifecycle()
+
+                        AnimatedSleepTimer(
+                            timerText = timerText,
+                            timerVisible = timerVisible,
+                            onTimerClosePress = { stopSleepTimer() },
+                        )
                     },
                     showMoreApps = showMoreApps,
                     openSettings = ::launchSettings,

@@ -1,5 +1,8 @@
 package com.simplemobiletools.flashlight.views
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -58,6 +61,26 @@ internal fun SleepTimer(
                 tint = MaterialTheme.colorScheme.onSurface
             )
         }
+    }
+}
+
+@Composable
+internal fun AnimatedSleepTimer(
+    modifier: Modifier = Modifier,
+    timerText: String,
+    timerVisible: Boolean,
+    onTimerClosePress: () -> Unit
+) {
+    AnimatedVisibility(
+        modifier = modifier,
+        visible = timerVisible && timerText.isNotEmpty(),
+        enter = fadeIn(),
+        exit = fadeOut()
+    ) {
+        SleepTimer(
+            timerText = timerText,
+            onCloseClick = onTimerClosePress
+        )
     }
 }
 

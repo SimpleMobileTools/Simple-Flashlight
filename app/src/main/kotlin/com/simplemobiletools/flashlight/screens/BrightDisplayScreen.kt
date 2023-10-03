@@ -1,8 +1,5 @@
 package com.simplemobiletools.flashlight.screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -23,16 +20,14 @@ import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.views.SleepTimer
+import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
 
 @Composable
 internal fun BrightDisplayScreen(
     backgroundColor: Int,
     contrastColor: Int,
-    timerText: String,
-    timerVisible: Boolean,
     onChangeColorPress: () -> Unit,
-    onTimerClosePress: () -> Unit
+    sleepTimer: @Composable () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -56,18 +51,12 @@ internal fun BrightDisplayScreen(
             )
         }
 
-        AnimatedVisibility(
+        Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .navigationBarsPadding(),
-            visible = timerVisible && timerText.isNotEmpty(),
-            enter = fadeIn(),
-            exit = fadeOut()
+                .navigationBarsPadding()
         ) {
-            SleepTimer(
-                timerText = timerText,
-                onCloseClick = onTimerClosePress
-            )
+            sleepTimer()
         }
     }
 }
@@ -79,10 +68,10 @@ private fun BrightDisplayScreenPreview() {
         BrightDisplayScreen(
             backgroundColor = MaterialTheme.colorScheme.background.toArgb(),
             contrastColor = MaterialTheme.colorScheme.background.toArgb().getContrastColor(),
-            timerText = "00:00",
-            timerVisible = true,
+            sleepTimer = {
+                AnimatedSleepTimer(timerText = "00:00", timerVisible = true, onTimerClosePress = {})
+            },
             onChangeColorPress = {},
-            onTimerClosePress = {}
         )
     }
 }

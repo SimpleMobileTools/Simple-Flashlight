@@ -1,8 +1,5 @@
 package com.simplemobiletools.flashlight.screens
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -32,31 +29,18 @@ import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarInsets
 import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarPaddings
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.views.SleepTimer
+import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 internal fun MainScreen(
-    timerText: String,
-    timerVisible: Boolean,
-    onTimerClosePress: () -> Unit,
-    flashlightActive: Boolean,
-    onFlashlightPress: () -> Unit,
-    showBrightDisplayButton: Boolean,
-    onBrightDisplayPress: () -> Unit,
-    showSosButton: Boolean,
-    sosActive: Boolean,
-    onSosButtonPress: () -> Unit,
-    showStroboscopeButton: Boolean,
-    stroboscopeActive: Boolean,
-    onStroboscopeButtonPress: () -> Unit,
-    showBrightnessBar: Boolean,
-    brightnessBarValue: Float,
-    onBrightnessBarValueChange: (Float) -> Unit,
-    showStroboscopeBar: Boolean,
-    stroboscopeBarValue: Float,
-    onStroboscopeBarValueChange: (Float) -> Unit,
+    flashlightButton: @Composable () -> Unit,
+    brightDisplayButton: @Composable () -> Unit,
+    sosButton: @Composable () -> Unit,
+    stroboscopeButton: @Composable () -> Unit,
+    slidersSection: @Composable () -> Unit,
+    sleepTimer: @Composable () -> Unit,
     showMoreApps: Boolean,
     openSettings: () -> Unit,
     openAbout: () -> Unit,
@@ -90,108 +74,135 @@ internal fun MainScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            Icon(
-                modifier = Modifier
-                    .size(dimensionResource(id = R.dimen.main_button_size))
-                    .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                    .clickable(
-                        indication = null,
-                        interactionSource = rememberMutableInteractionSource(),
-                        onClick = onFlashlightPress
-                    ),
-                painter = painterResource(id = R.drawable.ic_flashlight_vector),
-                contentDescription = stringResource(id = R.string.flashlight_short),
-                tint = if (flashlightActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-            )
-
-            if (showBrightDisplayButton) {
-                Icon(
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.smaller_button_size))
-                        .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(
-                            indication = null,
-                            interactionSource = rememberMutableInteractionSource(),
-                            onClick = onBrightDisplayPress
-                        ),
-                    painter = painterResource(id = R.drawable.ic_bright_display_vector),
-                    contentDescription = stringResource(id = R.string.bright_display),
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
-            }
-
-            if (showSosButton) {
-                Text(
-                    modifier = Modifier
-                        .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(
-                            indication = null,
-                            interactionSource = rememberMutableInteractionSource(),
-                            onClick = onSosButtonPress
-                        ),
-                    text = stringResource(id = R.string.sos),
-                    fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
-                    fontWeight = FontWeight.Bold,
-                    color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-                )
-            }
-
-            if (showStroboscopeButton) {
-                Icon(
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.smaller_button_size))
-                        .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
-                        .clickable(
-                            indication = null,
-                            interactionSource = rememberMutableInteractionSource(),
-                            onClick = onStroboscopeButtonPress
-                        ),
-                    painter = painterResource(id = R.drawable.ic_stroboscope_vector),
-                    contentDescription = "",
-                    tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-                )
-            }
-
-            val sliderModifier = Modifier
-                .padding(dimensionResource(id = R.dimen.activity_margin))
-                .padding(vertical = dimensionResource(R.dimen.medium_margin))
-                .padding(bottom = dimensionResource(id = R.dimen.activity_margin))
-                .size(width = dimensionResource(id = R.dimen.seekbar_width), height = dimensionResource(id = R.dimen.seekbar_height))
-
-            if (showBrightnessBar) {
-                Slider(
-                    modifier = sliderModifier,
-                    value = brightnessBarValue,
-                    onValueChange = onBrightnessBarValueChange
-                )
-            }
-
-            if (showStroboscopeBar) {
-                Slider(
-                    modifier = sliderModifier,
-                    value = stroboscopeBarValue,
-                    onValueChange = onStroboscopeBarValueChange
-                )
-            }
-
-            if (!showBrightnessBar && !showStroboscopeBar) {
-                Spacer(
-                    modifier = sliderModifier,
-                )
-            }
+            flashlightButton()
+            brightDisplayButton()
+            sosButton()
+            stroboscopeButton()
+            slidersSection()
         }
 
-        AnimatedVisibility(
+        Box(
             modifier = Modifier.align(Alignment.BottomEnd),
-            visible = timerVisible && timerText.isNotEmpty(),
-            enter = fadeIn(),
-            exit = fadeOut(),
         ) {
-            SleepTimer(
-                timerText = timerText,
-                onCloseClick = onTimerClosePress
-            )
+            sleepTimer()
         }
+    }
+}
+
+@Composable
+internal fun FlashlightButton(
+    flashlightActive: Boolean,
+    onFlashlightPress: () -> Unit,
+) {
+    Icon(
+        modifier = Modifier
+            .size(dimensionResource(id = R.dimen.main_button_size))
+            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .clickable(
+                indication = null,
+                interactionSource = rememberMutableInteractionSource(),
+                onClick = onFlashlightPress
+            ),
+        painter = painterResource(id = R.drawable.ic_flashlight_vector),
+        contentDescription = stringResource(id = R.string.flashlight_short),
+        tint = if (flashlightActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+    )
+}
+
+@Composable
+internal fun BrightDisplayButton(
+    onBrightDisplayPress: () -> Unit,
+) {
+    Icon(
+        modifier = Modifier
+            .size(dimensionResource(id = R.dimen.smaller_button_size))
+            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .clickable(
+                indication = null,
+                interactionSource = rememberMutableInteractionSource(),
+                onClick = onBrightDisplayPress
+            ),
+        painter = painterResource(id = R.drawable.ic_bright_display_vector),
+        contentDescription = stringResource(id = R.string.bright_display),
+        tint = MaterialTheme.colorScheme.onSurface
+    )
+}
+
+@Composable
+internal fun SosButton(
+    sosActive: Boolean,
+    onSosButtonPress: () -> Unit,
+) {
+    Text(
+        modifier = Modifier
+            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .clickable(
+                indication = null,
+                interactionSource = rememberMutableInteractionSource(),
+                onClick = onSosButtonPress
+            ),
+        text = stringResource(id = R.string.sos),
+        fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
+        fontWeight = FontWeight.Bold,
+        color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+    )
+}
+
+@Composable
+internal fun StroboscopeButton(
+    stroboscopeActive: Boolean,
+    onStroboscopeButtonPress: () -> Unit,
+) {
+    Icon(
+        modifier = Modifier
+            .size(dimensionResource(id = R.dimen.smaller_button_size))
+            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .clickable(
+                indication = null,
+                interactionSource = rememberMutableInteractionSource(),
+                onClick = onStroboscopeButtonPress
+            ),
+        painter = painterResource(id = R.drawable.ic_stroboscope_vector),
+        contentDescription = "",
+        tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+    )
+}
+
+@Composable
+internal fun MainScreenSlidersSection(
+    showBrightnessBar: Boolean,
+    brightnessBarValue: Float,
+    onBrightnessBarValueChange: (Float) -> Unit,
+    showStroboscopeBar: Boolean,
+    stroboscopeBarValue: Float,
+    onStroboscopeBarValueChange: (Float) -> Unit,
+) {
+    val sliderModifier = Modifier
+        .padding(dimensionResource(id = R.dimen.activity_margin))
+        .padding(vertical = dimensionResource(R.dimen.medium_margin))
+        .padding(bottom = dimensionResource(id = R.dimen.activity_margin))
+        .size(width = dimensionResource(id = R.dimen.seekbar_width), height = dimensionResource(id = R.dimen.seekbar_height))
+
+    if (showBrightnessBar) {
+        Slider(
+            modifier = sliderModifier,
+            value = brightnessBarValue,
+            onValueChange = onBrightnessBarValueChange
+        )
+    }
+
+    if (showStroboscopeBar) {
+        Slider(
+            modifier = sliderModifier,
+            value = stroboscopeBarValue,
+            onValueChange = onStroboscopeBarValueChange
+        )
+    }
+
+    if (!showBrightnessBar && !showStroboscopeBar) {
+        Spacer(
+            modifier = sliderModifier,
+        )
     }
 }
 
@@ -218,25 +229,46 @@ private fun buildActionMenu(
 internal fun MainScreenPreview() {
     AppThemeSurface {
         MainScreen(
-            timerText = "00:00",
-            timerVisible = true,
-            onTimerClosePress = {},
-            onFlashlightPress = {},
-            flashlightActive = true,
-            showBrightDisplayButton = true,
-            onBrightDisplayPress = {},
-            showSosButton = true,
-            sosActive = false,
-            onSosButtonPress = {},
-            showStroboscopeButton = true,
-            stroboscopeActive = false,
-            onStroboscopeButtonPress = {},
-            showBrightnessBar = false,
-            brightnessBarValue = 0f,
-            onBrightnessBarValueChange = {},
-            showStroboscopeBar = false,
-            stroboscopeBarValue = 0f,
-            onStroboscopeBarValueChange = {},
+            flashlightButton = {
+                FlashlightButton(
+                    onFlashlightPress = {},
+                    flashlightActive = true,
+                )
+            },
+            brightDisplayButton = {
+                BrightDisplayButton(
+                    onBrightDisplayPress = {}
+                )
+            },
+            sosButton = {
+                SosButton(
+                    sosActive = false,
+                    onSosButtonPress = {},
+                )
+            },
+            stroboscopeButton = {
+                StroboscopeButton(
+                    stroboscopeActive = false,
+                    onStroboscopeButtonPress = {},
+                )
+            },
+            slidersSection = {
+                MainScreenSlidersSection(
+                    showBrightnessBar = false,
+                    brightnessBarValue = 0f,
+                    onBrightnessBarValueChange = {},
+                    showStroboscopeBar = false,
+                    stroboscopeBarValue = 0f,
+                    onStroboscopeBarValueChange = {},
+                )
+            },
+            sleepTimer = {
+                AnimatedSleepTimer(
+                    timerText = "00:00",
+                    timerVisible = true,
+                    onTimerClosePress = {},
+                )
+            },
             showMoreApps = true,
             openSettings = {},
             openAbout = {},

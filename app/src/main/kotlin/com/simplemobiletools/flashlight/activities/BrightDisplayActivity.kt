@@ -22,6 +22,7 @@ import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.SleepTimer
 import com.simplemobiletools.flashlight.helpers.stopSleepTimerCountDown
 import com.simplemobiletools.flashlight.screens.BrightDisplayScreen
+import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -63,10 +64,8 @@ class BrightDisplayActivity : ComponentActivity() {
                             }
                         }
                     },
-                    timerVisible = timerVisible,
-                    timerText = timerText,
-                    onTimerClosePress = {
-                        stopSleepTimer()
+                    sleepTimer = {
+                        AnimatedSleepTimer(timerText = timerText, timerVisible = timerVisible, onTimerClosePress = ::stopSleepTimer)
                     }
                 )
             }
