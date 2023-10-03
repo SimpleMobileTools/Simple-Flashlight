@@ -33,6 +33,7 @@ import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarPaddings
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.views.SleepTimer
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
@@ -68,17 +69,7 @@ internal fun MainScreen(
             TopAppBar(
                 title = {},
                 actions = {
-                    val actionMenus = remember {
-                        val settings =
-                            ActionItem(R.string.settings, icon = Icons.Filled.Settings, doAction = openSettings, overflowMode = OverflowMode.NEVER_OVERFLOW)
-                        val about = ActionItem(R.string.about, icon = Icons.Outlined.Info, doAction = openAbout, overflowMode = OverflowMode.NEVER_OVERFLOW)
-                        val sleepTimer = ActionItem(R.string.sleep_timer, doAction = openSleepTimer, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
-                        val list = mutableListOf(settings, about, sleepTimer)
-                        if (showMoreApps) {
-                            list += ActionItem(R.string.more_apps_from_us, doAction = moreAppsFromUs, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
-                        }
-                        list.toImmutableList()
-                    }
+                    val actionMenus = remember { buildActionMenu(showMoreApps, openSettings, openAbout, openSleepTimer, moreAppsFromUs) }
                     var isMenuVisible by remember { mutableStateOf(false) }
                     ActionMenu(
                         items = actionMenus,
@@ -202,6 +193,24 @@ internal fun MainScreen(
             )
         }
     }
+}
+
+private fun buildActionMenu(
+    showMoreApps: Boolean,
+    openSettings: () -> Unit,
+    openAbout: () -> Unit,
+    openSleepTimer: () -> Unit,
+    moreAppsFromUs: () -> Unit,
+): ImmutableList<ActionItem> {
+    val settings =
+        ActionItem(R.string.settings, icon = Icons.Filled.Settings, doAction = openSettings, overflowMode = OverflowMode.NEVER_OVERFLOW)
+    val about = ActionItem(R.string.about, icon = Icons.Outlined.Info, doAction = openAbout, overflowMode = OverflowMode.NEVER_OVERFLOW)
+    val sleepTimer = ActionItem(R.string.sleep_timer, doAction = openSleepTimer, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
+    val list = mutableListOf(settings, about, sleepTimer)
+    if (showMoreApps) {
+        list += ActionItem(R.string.more_apps_from_us, doAction = moreAppsFromUs, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
+    }
+    return list.toImmutableList()
 }
 
 @Composable
