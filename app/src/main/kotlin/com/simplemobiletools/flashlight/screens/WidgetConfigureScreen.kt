@@ -1,5 +1,7 @@
 package com.simplemobiletools.flashlight.screens
 
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -25,7 +27,9 @@ import com.simplemobiletools.flashlight.helpers.AppDimensions
 
 @Composable
 internal fun WidgetConfigureScreen(
+    @DrawableRes
     widgetDrawable: Int,
+    @ColorInt
     widgetColor: Int,
     widgetAlpha: Float,
     onSliderChanged: (Float) -> Unit,
