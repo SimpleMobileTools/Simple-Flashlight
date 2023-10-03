@@ -17,6 +17,42 @@ import com.simplemobiletools.flashlight.R
 
 @Composable
 internal fun SettingsScreen(
+    colorCustomizationSection: @Composable () -> Unit,
+    generalSection: @Composable () -> Unit,
+    goBack: () -> Unit,
+) {
+    SettingsScaffold(title = stringResource(id = R.string.settings), goBack = goBack) {
+        SettingsGroup(title = {
+            SettingsTitleTextComponent(text = stringResource(id = R.string.color_customization))
+        }) {
+            colorCustomizationSection()
+        }
+        HorizontalDivider(color = divider_grey)
+        SettingsGroup(title = {
+            SettingsTitleTextComponent(text = stringResource(id = R.string.general_settings))
+        }) {
+            generalSection()
+        }
+    }
+}
+
+@Composable
+internal fun ColorCustomizationSettingsSection(
+    customizeColors: () -> Unit,
+    customizeWidgetColors: () -> Unit,
+) {
+    SettingsPreferenceComponent(
+        label = stringResource(id = R.string.customize_colors),
+        doOnPreferenceClick = customizeColors,
+    )
+    SettingsPreferenceComponent(
+        label = stringResource(id = R.string.customize_widget_colors),
+        doOnPreferenceClick = customizeWidgetColors
+    )
+}
+
+@Composable
+internal fun GeneralSettingsSection(
     displayLanguage: String,
     turnFlashlightOnStartupChecked: Boolean,
     forcePortraitModeChecked: Boolean,
@@ -24,68 +60,45 @@ internal fun SettingsScreen(
     showSosButtonChecked: Boolean,
     showStroboscopeButtonChecked: Boolean,
     onSetupLanguagePress: () -> Unit,
-    customizeColors: () -> Unit,
-    customizeWidgetColors: () -> Unit,
     onTurnFlashlightOnStartupPress: (Boolean) -> Unit,
     onForcePortraitModePress: (Boolean) -> Unit,
     onShowBrightDisplayButtonPress: (Boolean) -> Unit,
     onShowSosButtonPress: (Boolean) -> Unit,
     onShowStroboscopeButtonPress: (Boolean) -> Unit,
-    goBack: () -> Unit,
 ) {
-    SettingsScaffold(title = stringResource(id = R.string.settings), goBack = goBack) {
-        SettingsGroup(title = {
-            SettingsTitleTextComponent(text = stringResource(id = R.string.color_customization))
-        }) {
-            SettingsPreferenceComponent(
-                label = stringResource(id = R.string.customize_colors),
-                doOnPreferenceClick = customizeColors,
-            )
-            SettingsPreferenceComponent(
-                label = stringResource(id = R.string.customize_widget_colors),
-                doOnPreferenceClick = customizeWidgetColors
-            )
-        }
-        HorizontalDivider(color = divider_grey)
-        SettingsGroup(title = {
-            SettingsTitleTextComponent(text = stringResource(id = R.string.general_settings))
-        }) {
-
-            if (isTiramisuPlus()) {
-                SettingsPreferenceComponent(
-                    label = stringResource(id = R.string.language),
-                    value = displayLanguage,
-                    doOnPreferenceClick = onSetupLanguagePress,
-                    preferenceValueColor = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-            SettingsCheckBoxComponent(
-                label = stringResource(id = R.string.turn_flashlight_on),
-                initialValue = turnFlashlightOnStartupChecked,
-                onChange = onTurnFlashlightOnStartupPress
-            )
-            SettingsCheckBoxComponent(
-                label = stringResource(id = R.string.force_portrait_mode),
-                initialValue = forcePortraitModeChecked,
-                onChange = onForcePortraitModePress
-            )
-            SettingsCheckBoxComponent(
-                label = stringResource(id = R.string.show_bright_display),
-                initialValue = showBrightDisplayButtonChecked,
-                onChange = onShowBrightDisplayButtonPress
-            )
-            SettingsCheckBoxComponent(
-                label = stringResource(id = R.string.show_sos),
-                initialValue = showSosButtonChecked,
-                onChange = onShowSosButtonPress
-            )
-            SettingsCheckBoxComponent(
-                label = stringResource(id = R.string.show_stroboscope),
-                initialValue = showStroboscopeButtonChecked,
-                onChange = onShowStroboscopeButtonPress
-            )
-        }
+    if (isTiramisuPlus()) {
+        SettingsPreferenceComponent(
+            label = stringResource(id = R.string.language),
+            value = displayLanguage,
+            doOnPreferenceClick = onSetupLanguagePress,
+            preferenceValueColor = MaterialTheme.colorScheme.onSurface,
+        )
     }
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.turn_flashlight_on),
+        initialValue = turnFlashlightOnStartupChecked,
+        onChange = onTurnFlashlightOnStartupPress
+    )
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.force_portrait_mode),
+        initialValue = forcePortraitModeChecked,
+        onChange = onForcePortraitModePress
+    )
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.show_bright_display),
+        initialValue = showBrightDisplayButtonChecked,
+        onChange = onShowBrightDisplayButtonPress
+    )
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.show_sos),
+        initialValue = showSosButtonChecked,
+        onChange = onShowSosButtonPress
+    )
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.show_stroboscope),
+        initialValue = showStroboscopeButtonChecked,
+        onChange = onShowStroboscopeButtonPress
+    )
 }
 
 @Composable
@@ -93,20 +106,28 @@ internal fun SettingsScreen(
 private fun SettingsScreenPreview() {
     AppThemeSurface {
         SettingsScreen(
-            displayLanguage = "English",
-            turnFlashlightOnStartupChecked = false,
-            forcePortraitModeChecked = true,
-            showBrightDisplayButtonChecked = true,
-            showSosButtonChecked = true,
-            showStroboscopeButtonChecked = true,
-            onSetupLanguagePress = {},
-            customizeColors = {},
-            customizeWidgetColors = {},
-            onTurnFlashlightOnStartupPress = {},
-            onForcePortraitModePress = {},
-            onShowBrightDisplayButtonPress = {},
-            onShowSosButtonPress = {},
-            onShowStroboscopeButtonPress = {},
+            colorCustomizationSection = {
+                ColorCustomizationSettingsSection(
+                    customizeColors = {},
+                    customizeWidgetColors = {},
+                )
+            },
+            generalSection = {
+                GeneralSettingsSection(
+                    displayLanguage = "English",
+                    turnFlashlightOnStartupChecked = false,
+                    forcePortraitModeChecked = true,
+                    showBrightDisplayButtonChecked = true,
+                    showSosButtonChecked = true,
+                    showStroboscopeButtonChecked = true,
+                    onSetupLanguagePress = {},
+                    onTurnFlashlightOnStartupPress = {},
+                    onForcePortraitModePress = {},
+                    onShowBrightDisplayButtonPress = {},
+                    onShowSosButtonPress = {},
+                    onShowStroboscopeButtonPress = {},
+                )
+            },
             goBack = {},
         )
     }

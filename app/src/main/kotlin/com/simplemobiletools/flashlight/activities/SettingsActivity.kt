@@ -13,6 +13,8 @@ import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.launchChangeAppLanguageIntent
 import com.simplemobiletools.flashlight.extensions.startCustomizationActivity
+import com.simplemobiletools.flashlight.screens.ColorCustomizationSettingsSection
+import com.simplemobiletools.flashlight.screens.GeneralSettingsSection
 import com.simplemobiletools.flashlight.screens.SettingsScreen
 import java.util.Locale
 
@@ -24,42 +26,50 @@ class SettingsActivity : ComponentActivity() {
         enableEdgeToEdgeSimple()
         setContent {
             AppThemeSurface {
-                val displayLanguage = remember { Locale.getDefault().displayLanguage }
-                val turnFlashlightOnStartupFlow by preferences.turnFlashlightOnFlow.collectAsStateWithLifecycle(preferences.turnFlashlightOn)
-                val forcePortraitModeFlow by preferences.forcePortraitModeFlow.collectAsStateWithLifecycle(preferences.forcePortraitMode)
-                val showBrightDisplayButtonFlow by preferences.brightDisplayFlow.collectAsStateWithLifecycle(preferences.brightDisplay)
-                val showSosButtonFlow by preferences.sosFlow.collectAsStateWithLifecycle(preferences.sos)
-                val showStroboscopeButtonFlow by preferences.stroboscopeFlow.collectAsStateWithLifecycle(preferences.stroboscope)
-
                 SettingsScreen(
-                    displayLanguage = displayLanguage,
-                    onSetupLanguagePress = ::launchChangeAppLanguageIntent,
-                    customizeColors = ::startCustomizationActivity,
-                    turnFlashlightOnStartupChecked = turnFlashlightOnStartupFlow,
-                    forcePortraitModeChecked = forcePortraitModeFlow,
-                    showBrightDisplayButtonChecked = showBrightDisplayButtonFlow,
-                    showSosButtonChecked = showSosButtonFlow,
-                    showStroboscopeButtonChecked = showStroboscopeButtonFlow,
-                    customizeWidgetColors = {
-                        Intent(this, WidgetTorchConfigureActivity::class.java).apply {
-                            putExtra(IS_CUSTOMIZING_COLORS, true)
-                            startActivity(this)
-                        }
+                    colorCustomizationSection = {
+                        ColorCustomizationSettingsSection(
+                            customizeColors = ::startCustomizationActivity,
+                            customizeWidgetColors = {
+                                Intent(this, WidgetTorchConfigureActivity::class.java).apply {
+                                    putExtra(IS_CUSTOMIZING_COLORS, true)
+                                    startActivity(this)
+                                }
+                            }
+                        )
                     },
-                    onTurnFlashlightOnStartupPress = {
-                        preferences.turnFlashlightOn = it
-                    },
-                    onForcePortraitModePress = {
-                        preferences.forcePortraitMode = it
-                    },
-                    onShowBrightDisplayButtonPress = {
-                        preferences.brightDisplay = it
-                    },
-                    onShowSosButtonPress = {
-                        preferences.sos = it
-                    },
-                    onShowStroboscopeButtonPress = {
-                        preferences.stroboscope = it
+                    generalSection = {
+                        val displayLanguage = remember { Locale.getDefault().displayLanguage }
+                        val turnFlashlightOnStartupFlow by preferences.turnFlashlightOnFlow.collectAsStateWithLifecycle(preferences.turnFlashlightOn)
+                        val forcePortraitModeFlow by preferences.forcePortraitModeFlow.collectAsStateWithLifecycle(preferences.forcePortraitMode)
+                        val showBrightDisplayButtonFlow by preferences.brightDisplayFlow.collectAsStateWithLifecycle(preferences.brightDisplay)
+                        val showSosButtonFlow by preferences.sosFlow.collectAsStateWithLifecycle(preferences.sos)
+                        val showStroboscopeButtonFlow by preferences.stroboscopeFlow.collectAsStateWithLifecycle(preferences.stroboscope)
+
+                        GeneralSettingsSection(
+                            displayLanguage = displayLanguage,
+                            onSetupLanguagePress = ::launchChangeAppLanguageIntent,
+                            turnFlashlightOnStartupChecked = turnFlashlightOnStartupFlow,
+                            forcePortraitModeChecked = forcePortraitModeFlow,
+                            showBrightDisplayButtonChecked = showBrightDisplayButtonFlow,
+                            showSosButtonChecked = showSosButtonFlow,
+                            showStroboscopeButtonChecked = showStroboscopeButtonFlow,
+                            onTurnFlashlightOnStartupPress = {
+                                preferences.turnFlashlightOn = it
+                            },
+                            onForcePortraitModePress = {
+                                preferences.forcePortraitMode = it
+                            },
+                            onShowBrightDisplayButtonPress = {
+                                preferences.brightDisplay = it
+                            },
+                            onShowSosButtonPress = {
+                                preferences.sos = it
+                            },
+                            onShowStroboscopeButtonPress = {
+                                preferences.stroboscope = it
+                            },
+                        )
                     },
                     goBack = ::finish
                 )
