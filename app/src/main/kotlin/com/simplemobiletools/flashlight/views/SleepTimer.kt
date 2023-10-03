@@ -15,12 +15,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.Dimens
 import com.simplemobiletools.flashlight.R
 
 @Composable
@@ -40,7 +40,7 @@ internal fun SleepTimer(
         Text(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(horizontal = dimensionResource(id = R.dimen.normal_margin)),
+                .padding(horizontal = Dimens.margin.normal),
             text = stringResource(id = R.string.sleep_timer),
             color = MaterialTheme.colorScheme.onSurface
         )
@@ -52,7 +52,7 @@ internal fun SleepTimer(
         IconButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(dimensionResource(id = R.dimen.medium_margin)),
+                .padding(Dimens.margin.medium),
             onClick = onCloseClick
         ) {
             Icon(

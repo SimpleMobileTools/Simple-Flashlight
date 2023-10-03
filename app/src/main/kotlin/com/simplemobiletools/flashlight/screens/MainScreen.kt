@@ -11,12 +11,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import com.simplemobiletools.commons.compose.extensions.AdjustNavigationBarColors
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.extensions.rememberMutableInteractionSource
@@ -28,7 +25,9 @@ import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarColors
 import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarInsets
 import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarPaddings
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.Dimens
 import com.simplemobiletools.flashlight.R
+import com.simplemobiletools.flashlight.helpers.AppDimensions
 import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -96,8 +95,8 @@ internal fun FlashlightButton(
 ) {
     Icon(
         modifier = Modifier
-            .size(dimensionResource(id = R.dimen.main_button_size))
-            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .size(AppDimensions.mainButtonSize)
+            .padding(vertical = Dimens.margin.normal)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -115,8 +114,8 @@ internal fun BrightDisplayButton(
 ) {
     Icon(
         modifier = Modifier
-            .size(dimensionResource(id = R.dimen.smaller_button_size))
-            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .size(AppDimensions.smallerButtonSize)
+            .padding(vertical = Dimens.margin.normal)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -135,14 +134,14 @@ internal fun SosButton(
 ) {
     Text(
         modifier = Modifier
-            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .padding(vertical = Dimens.margin.normal)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
                 onClick = onSosButtonPress
             ),
         text = stringResource(id = R.string.sos),
-        fontSize = TextUnit(dimensionResource(id = R.dimen.sos_text_size).value, TextUnitType.Sp),
+        fontSize = AppDimensions.sosTextSize,
         fontWeight = FontWeight.Bold,
         color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
     )
@@ -155,8 +154,8 @@ internal fun StroboscopeButton(
 ) {
     Icon(
         modifier = Modifier
-            .size(dimensionResource(id = R.dimen.smaller_button_size))
-            .padding(vertical = dimensionResource(id = R.dimen.normal_margin))
+            .size(AppDimensions.smallerButtonSize)
+            .padding(vertical = Dimens.margin.normal)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -177,11 +176,14 @@ internal fun MainScreenSlidersSection(
     stroboscopeBarValue: Float,
     onStroboscopeBarValueChange: (Float) -> Unit,
 ) {
-    val sliderModifier = Modifier
-        .padding(dimensionResource(id = R.dimen.activity_margin))
-        .padding(vertical = dimensionResource(R.dimen.medium_margin))
-        .padding(bottom = dimensionResource(id = R.dimen.activity_margin))
-        .size(width = dimensionResource(id = R.dimen.seekbar_width), height = dimensionResource(id = R.dimen.seekbar_height))
+    val dimens = Dimens
+    val sliderModifier = remember {
+        Modifier
+            .padding(dimens.margin.activity)
+            .padding(vertical = dimens.margin.medium)
+            .padding(bottom = dimens.margin.activity)
+            .size(width = AppDimensions.seekbarWidth, height = AppDimensions.seekbarHeight)
+    }
 
     if (showBrightnessBar) {
         Slider(
