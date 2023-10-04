@@ -18,6 +18,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
@@ -25,11 +26,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.math.MathUtils
+import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
+import com.simplemobiletools.commons.dialogs.RadioGroupDialogAlertDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -42,6 +45,7 @@ import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
 import com.simplemobiletools.flashlight.screens.*
 import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.flow.*
 import java.util.*
 import kotlin.system.exitProcess
@@ -82,6 +86,11 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 )
+
+                val sleepTimerDialogState = rememberAlertDialogState()
+                sleepTimerDialogState.DialogMember {
+                    SleepTimerRadioDialog(alertDialogState = sleepTimerDialogState)
+                }
 
                 MainScreen(
                     flashlightButton = {
@@ -166,7 +175,11 @@ class MainActivity : ComponentActivity() {
                     showMoreApps = showMoreApps,
                     openSettings = ::launchSettings,
                     openAbout = ::launchAbout,
-                    openSleepTimer = ::showSleepTimer,
+                    openSleepTimer = {
+                        showSleepTimerPermission {
+                            sleepTimerDialogState.show()
+                        }
+                    },
                     moreAppsFromUs = ::launchMoreAppsFromUsIntent
                 )
             }
@@ -242,18 +255,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun showSleepTimer(force: Boolean = false) {
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        if (isSPlus() && !alarmManager.canScheduleExactAlarms() && !force) {
-            PermissionRequiredDialog(
-                this,
-                com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer,
-                positiveActionCallback = { openRequestExactAlarmSettings(baseConfig.appId) },
-                negativeActionCallback = { showSleepTimer(true) }
-            )
-            return
-        }
-
+    @Composable
+    private fun SleepTimerRadioDialog(
+        alertDialogState: AlertDialogState
+    ) {
         val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
             RadioItem(it, secondsToString(it))
         })
@@ -265,17 +270,36 @@ class MainActivity : ComponentActivity() {
         items.sortBy { it.id }
         items.add(RadioItem(-1, getString(R.string.custom)))
 
-        RadioGroupDialog(this, items, preferences.lastSleepTimerSeconds) {
-            if (it as Int == -1) {
-                SleepTimerCustomDialog(this) {
-                    if (it > 0) {
-                        pickedSleepTimer(it)
+        RadioGroupDialogAlertDialog(
+            alertDialogState = alertDialogState,
+            items = items.toImmutableList(),
+            selectedItemId = preferences.lastSleepTimerSeconds,
+            callback = {
+                if (it as Int == -1) {
+                    SleepTimerCustomDialog(this) {
+                        if (it > 0) {
+                            pickedSleepTimer(it)
+                        }
                     }
+                } else if (it > 0) {
+                    pickedSleepTimer(it)
                 }
-            } else if (it > 0) {
-                pickedSleepTimer(it)
             }
+        )
+    }
+
+    private fun showSleepTimerPermission(callback: () -> Unit) {
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if (isSPlus() && !alarmManager.canScheduleExactAlarms()) {
+            PermissionRequiredDialog(
+                this,
+                com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer,
+                positiveActionCallback = { openRequestExactAlarmSettings(baseConfig.appId) },
+                negativeActionCallback = { callback() }
+            )
+            return
         }
+        callback()
     }
 
     private fun secondsToString(seconds: Int): String {

@@ -25,7 +25,7 @@ import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarColors
 import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarInsets
 import com.simplemobiletools.commons.compose.settings.scaffold.topAppBarPaddings
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.compose.theme.Dimens
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.helpers.AppDimensions
 import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
@@ -96,7 +96,7 @@ internal fun FlashlightButton(
     Icon(
         modifier = Modifier
             .size(AppDimensions.mainButtonSize)
-            .padding(vertical = Dimens.margin.normal)
+            .padding(vertical = SimpleTheme.dimens.margin.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -115,7 +115,7 @@ internal fun BrightDisplayButton(
     Icon(
         modifier = Modifier
             .size(AppDimensions.smallerButtonSize)
-            .padding(vertical = Dimens.margin.normal)
+            .padding(vertical = SimpleTheme.dimens.margin.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -134,7 +134,7 @@ internal fun SosButton(
 ) {
     Text(
         modifier = Modifier
-            .padding(vertical = Dimens.margin.normal)
+            .padding(vertical = SimpleTheme.dimens.margin.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -155,7 +155,7 @@ internal fun StroboscopeButton(
     Icon(
         modifier = Modifier
             .size(AppDimensions.smallerButtonSize)
-            .padding(vertical = Dimens.margin.normal)
+            .padding(vertical = SimpleTheme.dimens.margin.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -176,12 +176,12 @@ internal fun MainScreenSlidersSection(
     stroboscopeBarValue: Float,
     onStroboscopeBarValueChange: (Float) -> Unit,
 ) {
-    val dimens = Dimens
+    val dimens = SimpleTheme.dimens
     val sliderModifier = remember {
         Modifier
-            .padding(dimens.margin.activity)
+            .padding(dimens.margin.extraLarge)
             .padding(vertical = dimens.margin.medium)
-            .padding(bottom = dimens.margin.activity)
+            .padding(bottom = dimens.margin.extraLarge)
             .size(width = AppDimensions.seekbarWidth, height = AppDimensions.seekbarHeight)
     }
 

@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.compose.theme.Dimens
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.extensions.adjustAlpha
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.helpers.AppDimensions
@@ -42,8 +42,8 @@ internal fun WidgetConfigureScreen(
     ) {
         Box(
             modifier = Modifier
-                .padding(Dimens.margin.activity)
-                .padding(bottom = Dimens.margin.activity)
+                .padding(SimpleTheme.dimens.margin.extraLarge)
+                .padding(bottom = SimpleTheme.dimens.margin.extraLarge)
                 .fillMaxWidth()
                 .weight(1f)
         ) {
@@ -61,7 +61,7 @@ internal fun WidgetConfigureScreen(
             Icon(
                 modifier = Modifier
                     .size(AppDimensions.widgetColorPickerSize)
-                    .padding(Dimens.margin.tiny)
+                    .padding(SimpleTheme.dimens.margin.extraSmall)
                     .clip(CircleShape)
                     .clickable { onColorPressed() },
                 painter = BrushPainter(SolidColor(Color(widgetColor))),
@@ -73,12 +73,12 @@ internal fun WidgetConfigureScreen(
                 value = widgetAlpha,
                 onValueChange = onSliderChanged,
                 modifier = Modifier
-                    .padding(start = Dimens.margin.medium)
+                    .padding(start = SimpleTheme.dimens.margin.medium)
                     .background(
                         color = colorResource(id = R.color.md_grey_white),
                         shape = MaterialTheme.shapes.extraLarge
                     )
-                    .padding(horizontal = Dimens.margin.activity)
+                    .padding(horizontal = SimpleTheme.dimens.margin.extraLarge)
             )
         }
 
