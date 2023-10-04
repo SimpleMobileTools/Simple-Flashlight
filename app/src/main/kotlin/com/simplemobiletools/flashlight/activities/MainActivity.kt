@@ -32,7 +32,7 @@ import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
 import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupDialogAlertDialog
+import com.simplemobiletools.commons.dialogs.RadioGroupAlertDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -271,7 +271,7 @@ class MainActivity : ComponentActivity() {
         items.sortBy { it.id }
         items.add(RadioItem(-1, getString(R.string.custom)))
 
-        RadioGroupDialogAlertDialog(
+        RadioGroupAlertDialog(
             alertDialogState = alertDialogState,
             items = items.toImmutableList(),
             selectedItemId = preferences.lastSleepTimerSeconds,
