@@ -87,9 +87,10 @@ class MainActivity : ComponentActivity() {
                     }
                 )
 
-                val sleepTimerDialogState = rememberAlertDialogState()
-                sleepTimerDialogState.DialogMember {
-                    SleepTimerRadioDialog(alertDialogState = sleepTimerDialogState)
+                val sleepTimerDialogState = rememberAlertDialogState().apply {
+                    DialogMember {
+                        SleepTimerRadioDialog(alertDialogState = this)
+                    }
                 }
 
                 MainScreen(
