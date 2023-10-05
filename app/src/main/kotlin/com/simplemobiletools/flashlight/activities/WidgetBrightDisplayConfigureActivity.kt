@@ -47,15 +47,9 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
                     widgetDrawable = R.drawable.ic_bright_display_vector,
                     widgetColor = widgetColor,
                     widgetAlpha = widgetAlpha,
-                    onSliderChanged = {
-                        viewModel.changeAlpha(it)
-                    },
-                    onColorPressed = {
-                        pickBackgroundColor()
-                    },
-                    onSavePressed = {
-                        saveConfig()
-                    }
+                    onSliderChanged = viewModel::changeAlpha,
+                    onColorPressed = ::pickBackgroundColor,
+                    onSavePressed = ::saveConfig
                 )
             }
         }
