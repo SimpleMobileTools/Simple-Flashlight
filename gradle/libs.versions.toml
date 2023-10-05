@@ -6,7 +6,7 @@ androidx-customView = "1.2.0-alpha02"
 androidx-customViewPooling = "1.0.0"
 androidx-lifecycle = "2.7.0-alpha02"
 #Simple tools
-simple-commons = "ffe7d33846"
+simple-commons = "b72ded2a75"
 #Compose
 composeActivity = "1.8.0-rc01"
 compose = "1.6.0-alpha06"

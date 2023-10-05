@@ -6,7 +6,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -15,10 +14,7 @@ import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.dialogs.dialogBorder
-import com.simplemobiletools.commons.dialogs.dialogContainerColor
-import com.simplemobiletools.commons.dialogs.dialogElevation
-import com.simplemobiletools.commons.dialogs.dialogShape
+import com.simplemobiletools.commons.dialogs.DialogSurface
 
 private val items = listOf(
     R.string.minutes_raw,
@@ -32,20 +28,14 @@ fun SleepTimerCustomAlertDialog(
     onConfirmClick: (seconds: Int) -> Unit,
     onCancelClick: () -> Unit = {}
 ) {
-    val context = LocalContext.current
     var selectedItem by remember { mutableIntStateOf(0) }
     var value by remember { mutableStateOf("") }
 
     AlertDialog(
-        modifier = modifier
-            .dialogBorder,
         onDismissRequest = alertDialogState::hide
     ) {
-        Surface(
-            modifier = modifier,
-            shape = dialogShape,
-            color = dialogContainerColor,
-            tonalElevation = dialogElevation,
+        DialogSurface(
+            modifier = modifier
         ) {
             Column(
                 modifier = Modifier.padding(all = dimensionResource(id = R.dimen.big_margin))
