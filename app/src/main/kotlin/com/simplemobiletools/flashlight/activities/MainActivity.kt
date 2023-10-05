@@ -105,7 +105,7 @@ class MainActivity : ComponentActivity() {
                     DialogMember {
                         SleepTimerRadioDialog(
                             alertDialogState = this,
-                            customAlertDialogState = sleepTimerCustomDialogState
+                            onCustomValueSelected = sleepTimerCustomDialogState::show
                         )
                     }
                 }
@@ -287,7 +287,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun SleepTimerRadioDialog(
         alertDialogState: AlertDialogState,
-        customAlertDialogState: AlertDialogState
+        onCustomValueSelected: () -> Unit
     ) {
         val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
             RadioItem(it, secondsToString(it))
@@ -306,7 +306,7 @@ class MainActivity : ComponentActivity() {
             selectedItemId = preferences.lastSleepTimerSeconds,
             callback = {
                 if (it as Int == -1) {
-                    customAlertDialogState.show()
+                    onCustomValueSelected()
                 } else if (it > 0) {
                     pickedSleepTimer(it)
                 }
