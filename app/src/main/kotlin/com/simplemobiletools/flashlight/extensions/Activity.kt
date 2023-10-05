@@ -14,6 +14,7 @@ import com.simplemobiletools.commons.activities.AboutActivity
 import com.simplemobiletools.commons.activities.CustomizationActivity
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.getActivity
+import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.dialogs.FeatureLockedAlertDialog
 import com.simplemobiletools.commons.extensions.hideKeyboard
 import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
@@ -92,21 +93,24 @@ fun CheckFeatureLocked(
     skipCheck: Boolean
 ) {
     val context = LocalContext.current.getActivity()
+    val isOrWasThankYouInstalled = onEventValue {
+        context.isOrWasThankYouInstalled()
+    }
     val featureLockedAlertDialogState = rememberAlertDialogState().apply {
         DialogMember {
             FeatureLockedAlertDialog(
                 alertDialogState = this,
             ) {
-                if (!context.isOrWasThankYouInstalled()) {
+                if (!isOrWasThankYouInstalled) {
                     context.finish()
                 }
             }
         }
     }
-    LaunchedEffect(context.isOrWasThankYouInstalled()) {
-        if (!skipCheck && !context.isOrWasThankYouInstalled()) {
+    LaunchedEffect(isOrWasThankYouInstalled) {
+        if (!skipCheck && !isOrWasThankYouInstalled) {
             featureLockedAlertDialogState.show()
-        } else if (context.isOrWasThankYouInstalled()) {
+        } else if (isOrWasThankYouInstalled) {
             featureLockedAlertDialogState.hide()
         }
     }
