@@ -19,6 +19,7 @@ import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.activities.viewmodel.WidgetConfigureViewModel
+import com.simplemobiletools.flashlight.extensions.CheckFeatureLocked
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.MyWidgetBrightDisplayProvider
 import com.simplemobiletools.flashlight.screens.WidgetConfigureScreen
@@ -53,24 +54,7 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
                 )
 
 
-                val featureLockedAlertDialogState = rememberAlertDialogState().apply {
-                    DialogMember {
-                        FeatureLockedAlertDialog(
-                            alertDialogState = this,
-                        ) {
-                            if (!isOrWasThankYouInstalled()) {
-                                finish()
-                            }
-                        }
-                    }
-                }
-                LaunchedEffect(isOrWasThankYouInstalled()) {
-                    if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-                        featureLockedAlertDialogState.show()
-                    } else if (isOrWasThankYouInstalled()) {
-                        featureLockedAlertDialogState.hide()
-                    }
-                }
+                CheckFeatureLocked(skipCheck = isCustomizingColors)
             }
         }
     }

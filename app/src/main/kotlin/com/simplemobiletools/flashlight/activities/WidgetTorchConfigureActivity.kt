@@ -12,11 +12,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
-import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.activities.viewmodel.WidgetConfigureViewModel
+import com.simplemobiletools.flashlight.extensions.CheckFeatureLocked
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateBrightDisplayWidget
 import com.simplemobiletools.flashlight.helpers.MyWidgetTorchProvider
@@ -24,8 +23,6 @@ import com.simplemobiletools.flashlight.screens.WidgetConfigureScreen
 
 class WidgetTorchConfigureActivity : ComponentActivity() {
     private val viewModel by viewModels<WidgetConfigureViewModel>()
-
-    private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,14 +49,8 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
                     onColorPressed = ::pickBackgroundColor,
                     onSavePressed = ::saveConfig
                 )
-            }
-        }
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
-                }
+                CheckFeatureLocked(skipCheck = isCustomizingColors)
             }
         }
     }
@@ -67,10 +58,6 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
-
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
     }
 
     private fun saveConfig() {

@@ -7,9 +7,16 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import com.simplemobiletools.commons.activities.AboutActivity
 import com.simplemobiletools.commons.activities.CustomizationActivity
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
+import com.simplemobiletools.commons.compose.extensions.getActivity
+import com.simplemobiletools.commons.dialogs.FeatureLockedAlertDialog
 import com.simplemobiletools.commons.extensions.hideKeyboard
+import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.commons.extensions.openDeviceSettings
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -79,3 +86,28 @@ private fun getAppIconIDs() = arrayListOf(
 )
 
 private fun Context.launcherName() = getString(R.string.app_launcher_name)
+
+@Composable
+fun CheckFeatureLocked(
+    skipCheck: Boolean
+) {
+    val context = LocalContext.current.getActivity()
+    val featureLockedAlertDialogState = rememberAlertDialogState().apply {
+        DialogMember {
+            FeatureLockedAlertDialog(
+                alertDialogState = this,
+            ) {
+                if (!context.isOrWasThankYouInstalled()) {
+                    context.finish()
+                }
+            }
+        }
+    }
+    LaunchedEffect(context.isOrWasThankYouInstalled()) {
+        if (!skipCheck && !context.isOrWasThankYouInstalled()) {
+            featureLockedAlertDialogState.show()
+        } else if (context.isOrWasThankYouInstalled()) {
+            featureLockedAlertDialogState.hide()
+        }
+    }
+}
