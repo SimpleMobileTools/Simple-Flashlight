@@ -10,10 +10,9 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
-import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.AppTheme
 import com.simplemobiletools.commons.dialogs.ColorPickerAlertDialog
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
@@ -39,7 +38,7 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
 
         enableEdgeToEdgeSimple()
         setContent {
-            AppThemeSurface {
+            AppTheme {
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
@@ -76,11 +75,6 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
                 }
             )
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        window.decorView.setBackgroundColor(0)
     }
 
     private fun saveConfig() {
