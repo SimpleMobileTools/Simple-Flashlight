@@ -104,7 +104,7 @@ internal fun FlashlightButton(
             ),
         painter = painterResource(id = R.drawable.ic_flashlight_vector),
         contentDescription = stringResource(id = R.string.flashlight_short),
-        tint = if (flashlightActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+        tint = if (flashlightActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
     )
 }
 
@@ -123,7 +123,7 @@ internal fun BrightDisplayButton(
             ),
         painter = painterResource(id = R.drawable.ic_bright_display_vector),
         contentDescription = stringResource(id = R.string.bright_display),
-        tint = MaterialTheme.colorScheme.onSurface
+        tint = SimpleTheme.colorScheme.onSurface
     )
 }
 
@@ -143,7 +143,7 @@ internal fun SosButton(
         text = stringResource(id = R.string.sos),
         fontSize = AppDimensions.sosTextSize,
         fontWeight = FontWeight.Bold,
-        color = if (sosActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+        color = if (sosActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
     )
 }
 
@@ -163,7 +163,7 @@ internal fun StroboscopeButton(
             ),
         painter = painterResource(id = R.drawable.ic_stroboscope_vector),
         contentDescription = stringResource(id = R.string.stroboscope),
-        tint = if (stroboscopeActive) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
+        tint = if (stroboscopeActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
     )
 }
 

@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -18,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
@@ -41,7 +41,7 @@ internal fun BrightDisplayScreen(
                 .border(
                     width = 1.dp,
                     color = Color(contrastColor),
-                    shape = MaterialTheme.shapes.extraLarge
+                    shape = SimpleTheme.shapes.extraLarge
                 ),
             onClick = onChangeColorPress
         ) {
@@ -66,8 +66,8 @@ internal fun BrightDisplayScreen(
 private fun BrightDisplayScreenPreview() {
     AppThemeSurface {
         BrightDisplayScreen(
-            backgroundColor = MaterialTheme.colorScheme.background.toArgb(),
-            contrastColor = MaterialTheme.colorScheme.background.toArgb().getContrastColor(),
+            backgroundColor = SimpleTheme.colorScheme.background.toArgb(),
+            contrastColor = SimpleTheme.colorScheme.background.toArgb().getContrastColor(),
             sleepTimer = {
                 AnimatedSleepTimer(timerText = "00:00", timerVisible = true, onTimerClosePress = {})
             },

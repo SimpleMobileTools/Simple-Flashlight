@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,12 +41,12 @@ internal fun SleepTimer(
                 .align(Alignment.CenterVertically)
                 .padding(horizontal = SimpleTheme.dimens.margin.large),
             text = stringResource(id = R.string.sleep_timer),
-            color = MaterialTheme.colorScheme.onSurface
+            color = SimpleTheme.colorScheme.onSurface
         )
         Text(
             modifier = Modifier.align(Alignment.CenterVertically),
             text = timerText,
-            color = MaterialTheme.colorScheme.onSurface
+            color = SimpleTheme.colorScheme.onSurface
         )
         IconButton(
             modifier = Modifier
@@ -58,7 +57,7 @@ internal fun SleepTimer(
             Icon(
                 painter = painterResource(id = R.drawable.ic_cross_vector),
                 contentDescription = stringResource(id = R.string.close),
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = SimpleTheme.colorScheme.onSurface
             )
         }
     }

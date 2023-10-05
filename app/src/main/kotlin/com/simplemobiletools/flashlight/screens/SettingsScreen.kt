@@ -1,7 +1,6 @@
 package com.simplemobiletools.flashlight.screens
 
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.simplemobiletools.commons.compose.extensions.MyDevices
@@ -11,6 +10,7 @@ import com.simplemobiletools.commons.compose.settings.SettingsPreferenceComponen
 import com.simplemobiletools.commons.compose.settings.SettingsTitleTextComponent
 import com.simplemobiletools.commons.compose.settings.scaffold.SettingsScaffold
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.compose.theme.divider_grey
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.flashlight.R
@@ -71,7 +71,7 @@ internal fun GeneralSettingsSection(
             label = stringResource(id = R.string.language),
             value = displayLanguage,
             doOnPreferenceClick = onSetupLanguagePress,
-            preferenceValueColor = MaterialTheme.colorScheme.onSurface,
+            preferenceValueColor = SimpleTheme.colorScheme.onSurface,
         )
     }
     SettingsCheckBoxComponent(

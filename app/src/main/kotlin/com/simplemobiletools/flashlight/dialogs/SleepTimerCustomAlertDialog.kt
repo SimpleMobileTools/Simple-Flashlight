@@ -44,8 +44,8 @@ fun SleepTimerCustomAlertDialog(
                 Text(
                     modifier = Modifier.padding(bottom = SimpleTheme.dimens.margin.extraLarge),
                     text = stringResource(id = R.string.sleep_timer),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurface
+                    style = SimpleTheme.typography.headlineSmall,
+                    color = SimpleTheme.colorScheme.onSurface
                 )
 
                 Column(

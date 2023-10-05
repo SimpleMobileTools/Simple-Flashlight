@@ -76,7 +76,7 @@ internal fun WidgetConfigureScreen(
                     .padding(start = SimpleTheme.dimens.margin.medium)
                     .background(
                         color = colorResource(id = R.color.md_grey_white),
-                        shape = MaterialTheme.shapes.extraLarge
+                        shape = SimpleTheme.shapes.extraLarge
                     )
                     .padding(horizontal = SimpleTheme.dimens.margin.extraLarge)
             )
@@ -97,7 +97,7 @@ private fun WidgetBrightDisplayConfigureScreenPreview() {
     AppThemeSurface {
         WidgetConfigureScreen(
             widgetDrawable = R.drawable.ic_bright_display_vector,
-            widgetColor = MaterialTheme.colorScheme.primary.toArgb(),
+            widgetColor = SimpleTheme.colorScheme.primary.toArgb(),
             widgetAlpha = 1f,
             onSliderChanged = {},
             onColorPressed = {},
