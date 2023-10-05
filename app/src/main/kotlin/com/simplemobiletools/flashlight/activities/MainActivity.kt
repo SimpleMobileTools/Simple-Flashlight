@@ -31,6 +31,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
+import com.simplemobiletools.commons.compose.extensions.CheckAppOnSdCard
 import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
@@ -213,10 +214,10 @@ class MainActivity : ComponentActivity() {
                     },
                     moreAppsFromUs = ::launchMoreAppsFromUsIntent
                 )
+
+                CheckAppOnSdCard()
             }
         }
-
-        checkAppOnSDCard()
     }
 
     override fun onResume() {
@@ -255,13 +256,6 @@ class MainActivity : ComponentActivity() {
         }
 
         startAboutActivity(R.string.app_name, 0, BuildConfig.VERSION_NAME, faqItems, true)
-    }
-
-    private fun checkAppOnSDCard() {
-        if (!baseConfig.wasAppOnSDShown && isAppInstalledOnSDCard()) {
-            baseConfig.wasAppOnSDShown = true
-            ConfirmationDialog(this, "", R.string.app_on_sd_card, R.string.ok, 0) {}
-        }
     }
 
     private fun toggleStroboscope(isSOS: Boolean, launcher: ManagedActivityResultLauncher<String, Boolean>) {
