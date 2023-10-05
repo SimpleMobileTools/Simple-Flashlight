@@ -7,12 +7,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerDialog
-import com.simplemobiletools.commons.dialogs.FeatureLockedDialog
+import com.simplemobiletools.commons.dialogs.FeatureLockedAlertDialog
 import com.simplemobiletools.commons.extensions.isOrWasThankYouInstalled
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
@@ -23,8 +25,6 @@ import com.simplemobiletools.flashlight.screens.WidgetConfigureScreen
 
 class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
     private val viewModel by viewModels<WidgetConfigureViewModel>()
-
-    private var mFeatureLockedDialog: FeatureLockedDialog? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +51,25 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
                     onColorPressed = ::pickBackgroundColor,
                     onSavePressed = ::saveConfig
                 )
-            }
-        }
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
+
+                val featureLockedAlertDialogState = rememberAlertDialogState().apply {
+                    DialogMember {
+                        FeatureLockedAlertDialog(
+                            alertDialogState = this,
+                        ) {
+                            if (!isOrWasThankYouInstalled()) {
+                                finish()
+                            }
+                        }
+                    }
+                }
+                LaunchedEffect(isOrWasThankYouInstalled()) {
+                    if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+                        featureLockedAlertDialogState.show()
+                    } else if (isOrWasThankYouInstalled()) {
+                        featureLockedAlertDialogState.hide()
+                    }
                 }
             }
         }
@@ -66,10 +78,6 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         window.decorView.setBackgroundColor(0)
-
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
     }
 
     private fun saveConfig() {
