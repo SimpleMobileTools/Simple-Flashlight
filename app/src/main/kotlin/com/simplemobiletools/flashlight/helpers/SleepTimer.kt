@@ -26,7 +26,7 @@ object SleepTimer {
     }
 
     context(Context)
-    fun startTimer() {
+    fun startTimer() = synchronized(this@SleepTimer) {
         val millisInFuture = config.sleepInTS - System.currentTimeMillis() + 1000L
         sleepTimer?.cancel()
         sleepTimer = object : CountDownTimer(millisInFuture, 1000) {
