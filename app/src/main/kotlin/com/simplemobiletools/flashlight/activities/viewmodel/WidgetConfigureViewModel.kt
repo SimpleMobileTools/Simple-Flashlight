@@ -36,7 +36,7 @@ internal class WidgetConfigureViewModel(
 
     init {
         _widgetColor.value = application.config.widgetBgColor
-        if (_widgetColor.value == application.resources.getColor(R.color.default_widget_bg_color) && application.config.isUsingSystemTheme) {
+        if (_widgetColor.value == application.resources.getColor(R.color.default_widget_bg_color, null) && application.config.isUsingSystemTheme) {
             _widgetColor.value = application.resources.getColor(R.color.you_primary_color, application.theme)
         }
 
