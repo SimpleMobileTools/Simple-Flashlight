@@ -6,14 +6,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.dialogs.DialogSurface
 import kotlinx.collections.immutable.toImmutableList
 
@@ -38,25 +39,27 @@ fun SleepTimerCustomAlertDialog(
             modifier = modifier
         ) {
             Column(
-                modifier = Modifier.padding(all = dimensionResource(id = R.dimen.big_margin))
+                modifier = Modifier.padding(all = 24.dp)
             ) {
                 Text(
-                    modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.activity_margin)),
+                    modifier = Modifier.padding(bottom = SimpleTheme.dimens.margin.extraLarge),
                     text = stringResource(id = R.string.sleep_timer),
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Column(
-                    modifier = Modifier.padding(
-                        start = dimensionResource(id = R.dimen.activity_margin),
-                        end = dimensionResource(id = R.dimen.activity_margin),
-                        top = dimensionResource(id = R.dimen.activity_margin),
-                    )
+                    modifier = Modifier
+                        .padding(
+                            horizontal = SimpleTheme.dimens.margin.extraLarge
+                        )
+                        .padding(
+                            top = SimpleTheme.dimens.margin.extraLarge
+                        )
                 ) {
                     TextField(
                         modifier = Modifier.padding(
-                            bottom = dimensionResource(id = R.dimen.normal_margin),
+                            bottom = SimpleTheme.dimens.margin.large
                         ),
                         value = value,
                         onValueChange = {
