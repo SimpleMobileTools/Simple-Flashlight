@@ -47,6 +47,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     private val scope = CoroutineScope(Dispatchers.Default)
 
+    private val _flashlightOn = MutableStateFlow(false)
+    val flashlightOnFlow = _flashlightOn.asStateFlow()
+
     private val cameraFlash: CameraFlash?
         get() {
             if (MyCameraImpl.cameraFlash == null) {
@@ -59,9 +62,6 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         handleCameraSetup()
         stroboFrequency = context.config.stroboscopeFrequency
     }
-
-    private val _flashlightOn = MutableStateFlow(false)
-    val flashlightOnFlow = _flashlightOn.asStateFlow()
 
     private val _sosDisabled = MutableSharedFlow<Unit>()
     val sosDisabled = _sosDisabled.asSharedFlow()
