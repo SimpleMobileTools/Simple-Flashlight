@@ -39,7 +39,7 @@ import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
+import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomAlertDialog
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
@@ -87,9 +87,25 @@ class MainActivity : ComponentActivity() {
                     }
                 )
 
+                val sleepTimerCustomDialogState = rememberAlertDialogState().apply {
+                    DialogMember {
+                        SleepTimerCustomAlertDialog(
+                            alertDialogState = this,
+                            onConfirmClick = {
+                                if (it > 0) {
+                                    pickedSleepTimer(it)
+                                }
+                            },
+                        )
+                    }
+                }
+
                 val sleepTimerDialogState = rememberAlertDialogState().apply {
                     DialogMember {
-                        SleepTimerRadioDialog(alertDialogState = this)
+                        SleepTimerRadioDialog(
+                            alertDialogState = this,
+                            customAlertDialogState = sleepTimerCustomDialogState
+                        )
                     }
                 }
 
@@ -258,7 +274,8 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun SleepTimerRadioDialog(
-        alertDialogState: AlertDialogState
+        alertDialogState: AlertDialogState,
+        customAlertDialogState: AlertDialogState
     ) {
         val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
             RadioItem(it, secondsToString(it))
@@ -277,11 +294,7 @@ class MainActivity : ComponentActivity() {
             selectedItemId = preferences.lastSleepTimerSeconds,
             callback = {
                 if (it as Int == -1) {
-                    SleepTimerCustomDialog(this) {
-                        if (it > 0) {
-                            pickedSleepTimer(it)
-                        }
-                    }
+                    customAlertDialogState.show()
                 } else if (it > 0) {
                     pickedSleepTimer(it)
                 }
