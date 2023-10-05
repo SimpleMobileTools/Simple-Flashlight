@@ -2,7 +2,6 @@ package com.simplemobiletools.flashlight.activities
 
 import android.app.Application
 import android.content.pm.ActivityInfo
-import android.graphics.Color
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -16,7 +15,6 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
-import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
@@ -56,9 +54,7 @@ class BrightDisplayActivity : ComponentActivity() {
         enableEdgeToEdgeSimple()
         setContent {
             AppThemeSurface {
-                val colorPickerDialogState = rememberAlertDialogState().apply {
-                    ColorPicker(this)
-                }
+                val colorPickerDialogState = getColorPickerDialogState()
 
                 ScreenContent(colorPickerDialogState::show)
             }
@@ -70,13 +66,11 @@ class BrightDisplayActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ColorPicker(
-        alertDialogState: AlertDialogState
-    ) {
+    private fun getColorPickerDialogState() = rememberAlertDialogState().apply {
         val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(preferences.brightDisplayColor)
-        alertDialogState.DialogMember {
+        DialogMember {
             ColorPickerAlertDialog(
-                alertDialogState = alertDialogState,
+                alertDialogState = this,
                 color = brightDisplayColor,
                 removeDimmedBackground = true,
                 onActiveColorChange = viewModel::updateBackgroundColor,

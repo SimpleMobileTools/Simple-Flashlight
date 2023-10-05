@@ -43,9 +43,7 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
-                val colorPickerDialogState = rememberAlertDialogState().apply {
-                    ColorPicker(this)
-                }
+                val colorPickerDialogState = getColorPickerDialogState()
 
                 WidgetConfigureScreen(
                     widgetDrawable = R.drawable.ic_bright_display_vector,
@@ -63,13 +61,11 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ColorPicker(
-        alertDialogState: AlertDialogState
-    ) {
+    private fun getColorPickerDialogState() = rememberAlertDialogState().apply {
         val brightDisplayColor by viewModel.widgetColor.collectAsStateWithLifecycle()
-        alertDialogState.DialogMember {
+        DialogMember {
             ColorPickerAlertDialog(
-                alertDialogState = alertDialogState,
+                alertDialogState = this,
                 color = brightDisplayColor,
                 removeDimmedBackground = true,
                 onActiveColorChange = {},

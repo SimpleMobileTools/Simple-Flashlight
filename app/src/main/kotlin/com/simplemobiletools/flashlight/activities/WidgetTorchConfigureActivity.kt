@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
@@ -44,9 +43,7 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
-                val colorPickerDialogState = rememberAlertDialogState().apply {
-                    ColorPicker(this)
-                }
+                val colorPickerDialogState = getColorPickerDialogState()
 
                 WidgetConfigureScreen(
                     widgetDrawable = R.drawable.ic_flashlight_vector,
@@ -63,13 +60,11 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ColorPicker(
-        alertDialogState: AlertDialogState
-    ) {
+    private fun getColorPickerDialogState() = rememberAlertDialogState().apply {
         val brightDisplayColor by viewModel.widgetColor.collectAsStateWithLifecycle()
-        alertDialogState.DialogMember {
+        DialogMember {
             ColorPickerAlertDialog(
-                alertDialogState = alertDialogState,
+                alertDialogState = this,
                 color = brightDisplayColor,
                 removeDimmedBackground = true,
                 onActiveColorChange = {},
