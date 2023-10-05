@@ -177,22 +177,18 @@ class MainActivity : ComponentActivity() {
                         }
                     },
                     slidersSection = {
-                        val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle(false)
+                        val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle()
                         val brightnessBarValue by viewModel.brightnessBarValue.collectAsStateWithLifecycle()
-                        val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle(false)
+                        val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle()
                         val stroboscopeBarValue by viewModel.stroboscopeBarValue.collectAsStateWithLifecycle()
 
                         MainScreenSlidersSection(
                             showBrightnessBar = brightnessBarVisible,
                             brightnessBarValue = brightnessBarValue,
-                            onBrightnessBarValueChange = {
-                                viewModel.updateBrightnessBarValue(it)
-                            },
+                            onBrightnessBarValueChange = viewModel::updateBrightnessBarValue,
                             showStroboscopeBar = stroboscopeBarVisible,
                             stroboscopeBarValue = stroboscopeBarValue,
-                            onStroboscopeBarValueChange = {
-                                viewModel.updateStroboscopeBarValue(it)
-                            },
+                            onStroboscopeBarValueChange = viewModel::updateStroboscopeBarValue,
                         )
                     },
                     sleepTimer = {
@@ -430,7 +426,7 @@ class MainActivity : ComponentActivity() {
 
         val brightnessBarVisible = flashlightOn.map {
             it && camera.supportsBrightnessControl()
-        }
+        }.stateIn(viewModelScope, SharingStarted.Lazily, false)
 
         private val _sosActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val sosActive = _sosActive.asStateFlow()
@@ -441,7 +437,7 @@ class MainActivity : ComponentActivity() {
         private val _stroboscopeActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val stroboscopeActive = _stroboscopeActive.asStateFlow()
 
-        val stroboscopeBarVisible = stroboscopeActive.map { it }
+        val stroboscopeBarVisible = stroboscopeActive
 
         private val _stroboscopeBarValue: MutableStateFlow<Float> = MutableStateFlow(0f)
         val stroboscopeBarValue = _stroboscopeBarValue.asStateFlow()
