@@ -48,15 +48,9 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
                     widgetDrawable = R.drawable.ic_flashlight_vector,
                     widgetColor = widgetColor,
                     widgetAlpha = widgetAlpha,
-                    onSliderChanged = {
-                        viewModel.changeAlpha(it)
-                    },
-                    onColorPressed = {
-                        pickBackgroundColor()
-                    },
-                    onSavePressed = {
-                        saveConfig()
-                    }
+                    onSliderChanged = viewModel::changeAlpha,
+                    onColorPressed = ::pickBackgroundColor,
+                    onSavePressed = ::saveConfig
                 )
             }
         }
