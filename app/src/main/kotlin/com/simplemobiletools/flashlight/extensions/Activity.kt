@@ -9,10 +9,7 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import com.simplemobiletools.commons.activities.AboutActivity
 import com.simplemobiletools.commons.activities.CustomizationActivity
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.extensions.baseConfig
 import com.simplemobiletools.commons.extensions.hideKeyboard
-import com.simplemobiletools.commons.extensions.launchViewIntent
 import com.simplemobiletools.commons.extensions.openDeviceSettings
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -40,16 +37,6 @@ internal fun Activity.startCustomizationActivity(
     getAppIconIDs: ArrayList<Int> = getAppIconIDs(),
     getAppLauncherName: String = launcherName()
 ) {
-    if (!packageName.contains("slootelibomelpmis".reversed(), true)) {
-        if (baseConfig.appRunCount > 100) {
-            val label = "You are using a fake version of the app. For your own safety download the original one from www.simplemobiletools.com. Thanks"
-            ConfirmationDialog(this, label, positive = R.string.ok, negative = 0) {
-                launchViewIntent("https://play.google.com/store/apps/dev?id=9070296388022589266")
-            }
-            return
-        }
-    }
-
     Intent(applicationContext, CustomizationActivity::class.java).apply {
         putExtra(APP_ICON_IDS, getAppIconIDs)
         putExtra(APP_LAUNCHER_NAME, getAppLauncherName)
