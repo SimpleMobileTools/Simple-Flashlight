@@ -7,11 +7,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.dialogs.ColorPickerDialog
+import com.simplemobiletools.commons.dialogs.ColorPickerAlertDialog
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.activities.viewmodel.WidgetConfigureViewModel
@@ -41,17 +44,41 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
+                val colorPickerDialogState = rememberAlertDialogState().apply {
+                    ColorPicker(this)
+                }
+
                 WidgetConfigureScreen(
                     widgetDrawable = R.drawable.ic_flashlight_vector,
                     widgetColor = widgetColor,
                     widgetAlpha = widgetAlpha,
                     onSliderChanged = viewModel::changeAlpha,
-                    onColorPressed = ::pickBackgroundColor,
+                    onColorPressed = colorPickerDialogState::show,
                     onSavePressed = ::saveConfig
                 )
 
                 CheckFeatureLocked(skipCheck = isCustomizingColors)
             }
+        }
+    }
+
+    @Composable
+    private fun ColorPicker(
+        alertDialogState: AlertDialogState
+    ) {
+        val brightDisplayColor by viewModel.widgetColor.collectAsStateWithLifecycle()
+        alertDialogState.DialogMember {
+            ColorPickerAlertDialog(
+                alertDialogState = alertDialogState,
+                color = brightDisplayColor,
+                removeDimmedBackground = true,
+                onActiveColorChange = {},
+                onButtonPressed = { wasPositivePressed, color ->
+                    if (wasPositivePressed) {
+                        viewModel.updateColor(color)
+                    }
+                }
+            )
         }
     }
 
@@ -69,14 +96,6 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
             setResult(Activity.RESULT_OK, this)
         }
         finish()
-    }
-
-    private fun pickBackgroundColor() {
-        ColorPickerDialog(this, viewModel.widgetColor.value) { wasPositivePressed, color ->
-            if (wasPositivePressed) {
-                viewModel.updateColor(color)
-            }
-        }
     }
 
     private fun requestWidgetUpdate() {
