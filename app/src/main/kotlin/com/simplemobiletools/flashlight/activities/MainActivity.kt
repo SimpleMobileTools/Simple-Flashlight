@@ -20,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
@@ -31,7 +32,7 @@ import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogSta
 import com.simplemobiletools.commons.compose.extensions.onEventValue
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
+import com.simplemobiletools.commons.dialogs.PermissionRequiredAlertDialog
 import com.simplemobiletools.commons.dialogs.RadioGroupAlertDialog
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
@@ -105,6 +106,21 @@ class MainActivity : ComponentActivity() {
                         SleepTimerRadioDialog(
                             alertDialogState = this,
                             customAlertDialogState = sleepTimerCustomDialogState
+                        )
+                    }
+                }
+
+                val sleepTimerPermissionDialogState = rememberAlertDialogState().apply {
+                    DialogMember {
+                        PermissionRequiredAlertDialog(
+                            alertDialogState = this,
+                            text = stringResource(id = R.string.allow_alarm_sleep_timer),
+                            positiveActionCallback = {
+                                openRequestExactAlarmSettings(baseConfig.appId)
+                            },
+                            negativeActionCallback = {
+                                sleepTimerDialogState.show()
+                            }
                         )
                     }
                 }
@@ -193,7 +209,7 @@ class MainActivity : ComponentActivity() {
                     openSettings = ::launchSettings,
                     openAbout = ::launchAbout,
                     openSleepTimer = {
-                        showSleepTimerPermission {
+                        showSleepTimerPermission(sleepTimerPermissionDialogState) {
                             sleepTimerDialogState.show()
                         }
                     },
@@ -302,15 +318,13 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    private fun showSleepTimerPermission(callback: () -> Unit) {
+    private fun showSleepTimerPermission(
+        showSleepTimerDialogState: AlertDialogState,
+        callback: () -> Unit
+    ) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (isSPlus() && !alarmManager.canScheduleExactAlarms()) {
-            PermissionRequiredDialog(
-                this,
-                com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer,
-                positiveActionCallback = { openRequestExactAlarmSettings(baseConfig.appId) },
-                negativeActionCallback = { callback() }
-            )
+            showSleepTimerDialogState.show()
             return
         }
         callback()
