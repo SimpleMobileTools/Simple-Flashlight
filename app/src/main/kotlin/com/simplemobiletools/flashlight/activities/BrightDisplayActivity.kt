@@ -53,7 +53,7 @@ class BrightDisplayActivity : ComponentActivity() {
                     ColorPicker()
                 }
 
-                ScreenContent(colorPickerDialogState)
+                ScreenContent(colorPickerDialogState::show)
             }
         }
     }
@@ -66,9 +66,7 @@ class BrightDisplayActivity : ComponentActivity() {
                 alertDialogState = this,
                 color = brightDisplayColor,
                 removeDimmedBackground = true,
-                onActiveColorChange = {
-                    viewModel.updateBackgroundColor(it)
-                },
+                onActiveColorChange = viewModel::updateBackgroundColor,
                 onButtonPressed = { wasPositivePressed, color ->
                     if (wasPositivePressed) {
                         config.brightDisplayColor = color
@@ -82,7 +80,7 @@ class BrightDisplayActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun ScreenContent(colorPickerDialogState: AlertDialogState) {
+    private fun ScreenContent(onChangeColorButtonPress: () -> Unit) {
         val backgroundColor by viewModel.backgroundColor.collectAsStateWithLifecycle()
         val contrastColor by remember { derivedStateOf { backgroundColor.getContrastColor() } }
         val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
@@ -90,9 +88,7 @@ class BrightDisplayActivity : ComponentActivity() {
         BrightDisplayScreen(
             backgroundColor = backgroundColor,
             contrastColor = contrastColor,
-            onChangeColorPress = {
-                colorPickerDialogState.show()
-            },
+            onChangeColorPress = onChangeColorButtonPress,
             sleepTimer = {
                 AnimatedSleepTimer(timerText = timerText, timerVisible = timerVisible, onTimerClosePress = ::stopSleepTimer)
             }
