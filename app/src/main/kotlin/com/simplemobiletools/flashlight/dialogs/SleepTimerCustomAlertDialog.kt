@@ -22,7 +22,7 @@ fun SleepTimerCustomAlertDialog(
     alertDialogState: AlertDialogState,
     modifier: Modifier = Modifier,
     onConfirmClick: (seconds: Int) -> Unit,
-    onCancelClick: () -> Unit = {}
+    onCancelClick: (() -> Unit)? = null
 ) {
     var selectedItem by remember { mutableIntStateOf(0) }
     var value by remember { mutableStateOf("") }
@@ -92,7 +92,7 @@ fun SleepTimerCustomAlertDialog(
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = {
-                        onCancelClick()
+                        onCancelClick?.invoke()
                         alertDialogState.hide()
                     }) {
                         Text(text = stringResource(id = R.string.cancel))
