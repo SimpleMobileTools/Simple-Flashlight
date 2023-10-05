@@ -19,7 +19,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
@@ -289,20 +291,26 @@ class MainActivity : ComponentActivity() {
         alertDialogState: AlertDialogState,
         onCustomValueSelected: () -> Unit
     ) {
-        val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
-            RadioItem(it, secondsToString(it))
-        })
+        val lastSleepTimerSeconds by preferences.lastSleepTimerSecondsFlow.collectAsStateWithLifecycle(preferences.lastSleepTimerSeconds)
+        val items by remember {
+            derivedStateOf {
+                val finalItems = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+                    RadioItem(it, secondsToString(it))
+                })
 
-        if (items.none { it.id == preferences.lastSleepTimerSeconds }) {
-            items.add(RadioItem(preferences.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
+                if (finalItems.none { it.id == lastSleepTimerSeconds }) {
+                    finalItems.add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
+                }
+
+                finalItems.sortBy { it.id }
+                finalItems.add(RadioItem(-1, getString(R.string.custom)))
+                finalItems.toImmutableList()
+            }
         }
-
-        items.sortBy { it.id }
-        items.add(RadioItem(-1, getString(R.string.custom)))
 
         RadioGroupAlertDialog(
             alertDialogState = alertDialogState,
-            items = items.toImmutableList(),
+            items = items,
             selectedItemId = preferences.lastSleepTimerSeconds,
             callback = {
                 if (it as Int == -1) {

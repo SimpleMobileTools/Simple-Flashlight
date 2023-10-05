@@ -61,6 +61,8 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(LAST_SLEEP_TIMER_SECONDS, 30 * 60)
         set(lastSleepTimerSeconds) = prefs.edit().putInt(LAST_SLEEP_TIMER_SECONDS, lastSleepTimerSeconds).apply()
 
+    val lastSleepTimerSecondsFlow = ::lastSleepTimerSeconds.asFlowNonNull()
+
     var sleepInTS: Long
         get() = prefs.getLong(SLEEP_IN_TS, 0)
         set(sleepInTS) = prefs.edit().putLong(SLEEP_IN_TS, sleepInTS).apply()
