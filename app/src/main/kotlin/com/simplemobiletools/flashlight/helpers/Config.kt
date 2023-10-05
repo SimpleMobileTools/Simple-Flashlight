@@ -45,6 +45,8 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(BRIGHT_DISPLAY_COLOR, Color.WHITE)
         set(brightDisplayColor) = prefs.edit().putInt(BRIGHT_DISPLAY_COLOR, brightDisplayColor).apply()
 
+    val brightDisplayColorFlow = ::brightDisplayColor.asFlowNonNull()
+
     var forcePortraitMode: Boolean
         get() = prefs.getBoolean(FORCE_PORTRAIT_MODE, true)
         set(forcePortraitMode) = prefs.edit().putBoolean(FORCE_PORTRAIT_MODE, forcePortraitMode).apply()
