@@ -57,7 +57,7 @@ class BrightDisplayActivity : ComponentActivity() {
         setContent {
             AppThemeSurface {
                 val colorPickerDialogState = rememberAlertDialogState().apply {
-                    ColorPicker()
+                    ColorPicker(this)
                 }
 
                 ScreenContent(colorPickerDialogState::show)
@@ -70,11 +70,13 @@ class BrightDisplayActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun AlertDialogState.ColorPicker() {
+    private fun ColorPicker(
+        alertDialogState: AlertDialogState
+    ) {
         val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(preferences.brightDisplayColor)
-        DialogMember {
+        alertDialogState.DialogMember {
             ColorPickerAlertDialog(
-                alertDialogState = this,
+                alertDialogState = alertDialogState,
                 color = brightDisplayColor,
                 removeDimmedBackground = true,
                 onActiveColorChange = viewModel::updateBackgroundColor,
