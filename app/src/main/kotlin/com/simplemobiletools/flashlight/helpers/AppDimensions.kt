@@ -1,8 +1,10 @@
 package com.simplemobiletools.flashlight.helpers
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+@Immutable
 object AppDimensions {
     val seekbarWidth = 250.dp
     val seekbarHeight = 20.dp
