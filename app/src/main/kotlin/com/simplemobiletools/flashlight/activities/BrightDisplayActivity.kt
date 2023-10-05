@@ -71,7 +71,7 @@ class BrightDisplayActivity : ComponentActivity() {
 
     @Composable
     private fun AlertDialogState.ColorPicker() {
-        val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(Color.WHITE)
+        val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(preferences.brightDisplayColor)
         DialogMember {
             ColorPickerAlertDialog(
                 alertDialogState = this,
