@@ -15,11 +15,7 @@ import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogSta
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.DialogSurface
-
-private val items = listOf(
-    R.string.minutes_raw,
-    R.string.seconds_raw,
-)
+import kotlinx.collections.immutable.toImmutableList
 
 @Composable
 fun SleepTimerCustomAlertDialog(
@@ -30,6 +26,10 @@ fun SleepTimerCustomAlertDialog(
 ) {
     var selectedItem by remember { mutableIntStateOf(0) }
     var value by remember { mutableStateOf("") }
+    val items = remember {
+        listOf(R.string.minutes_raw, R.string.seconds_raw).toImmutableList()
+    }
+
 
     AlertDialog(
         onDismissRequest = alertDialogState::hide
