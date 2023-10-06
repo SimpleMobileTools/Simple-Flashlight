@@ -18,10 +18,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
@@ -32,11 +29,11 @@ import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.CheckAppOnSdCard
+import com.simplemobiletools.commons.compose.extensions.appLaunchedCompose
 import com.simplemobiletools.commons.compose.extensions.onEventValue
+import com.simplemobiletools.commons.compose.extensions.rateStarsRedirectAndThankYou
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
-import com.simplemobiletools.commons.dialogs.ConfirmationDialog
-import com.simplemobiletools.commons.dialogs.PermissionRequiredAlertDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupAlertDialog
+import com.simplemobiletools.commons.dialogs.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
@@ -65,7 +62,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        appLaunched(BuildConfig.APPLICATION_ID)
 
         setContent {
             AppThemeSurface {
@@ -215,8 +211,75 @@ class MainActivity : ComponentActivity() {
                     moreAppsFromUs = ::launchMoreAppsFromUsIntent
                 )
 
+                AppLaunched()
                 CheckAppOnSdCard()
             }
+        }
+    }
+
+    @Composable
+    private fun SleepTimerRadioDialog(
+        alertDialogState: AlertDialogState,
+        onCustomValueSelected: () -> Unit
+    ) {
+        val lastSleepTimerSeconds by preferences.lastSleepTimerSecondsFlow.collectAsStateWithLifecycle(preferences.lastSleepTimerSeconds)
+        val items by remember {
+            derivedStateOf {
+                val finalItems = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+                    RadioItem(it, secondsToString(it))
+                })
+
+                if (finalItems.none { it.id == lastSleepTimerSeconds }) {
+                    finalItems.add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
+                }
+
+                finalItems.sortBy { it.id }
+                finalItems.add(RadioItem(-1, getString(R.string.custom)))
+                finalItems.toImmutableList()
+            }
+        }
+
+        RadioGroupAlertDialog(
+            alertDialogState = alertDialogState,
+            items = items,
+            selectedItemId = preferences.lastSleepTimerSeconds,
+            callback = {
+                if (it as Int == -1) {
+                    onCustomValueSelected()
+                } else if (it > 0) {
+                    pickedSleepTimer(it)
+                }
+            }
+        )
+    }
+
+    @Composable
+    private fun AppLaunched(
+        donateAlertDialogState: AlertDialogState = getDonateAlertDialogState(),
+        rateStarsAlertDialogState: AlertDialogState = getRateStarsAlertDialogState(),
+    ) {
+        LaunchedEffect(Unit) {
+            appLaunchedCompose(
+                appId = BuildConfig.APPLICATION_ID,
+                showDonateDialog = donateAlertDialogState::show,
+                showRateUsDialog = rateStarsAlertDialogState::show,
+                showUpgradeDialog = {}
+            )
+        }
+    }
+
+    @Composable
+    private fun getDonateAlertDialogState() =
+        rememberAlertDialogState().apply {
+            DialogMember {
+                DonateAlertDialog(alertDialogState = this)
+            }
+        }
+
+    @Composable
+    private fun getRateStarsAlertDialogState() = rememberAlertDialogState().apply {
+        DialogMember {
+            RateStarsAlertDialog(alertDialogState = this, onRating = ::rateStarsRedirectAndThankYou)
         }
     }
 
@@ -278,42 +341,6 @@ class MainActivity : ComponentActivity() {
         } else {
             viewModel.enableStroboscope()
         }
-    }
-
-    @Composable
-    private fun SleepTimerRadioDialog(
-        alertDialogState: AlertDialogState,
-        onCustomValueSelected: () -> Unit
-    ) {
-        val lastSleepTimerSeconds by preferences.lastSleepTimerSecondsFlow.collectAsStateWithLifecycle(preferences.lastSleepTimerSeconds)
-        val items by remember {
-            derivedStateOf {
-                val finalItems = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
-                    RadioItem(it, secondsToString(it))
-                })
-
-                if (finalItems.none { it.id == lastSleepTimerSeconds }) {
-                    finalItems.add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
-                }
-
-                finalItems.sortBy { it.id }
-                finalItems.add(RadioItem(-1, getString(R.string.custom)))
-                finalItems.toImmutableList()
-            }
-        }
-
-        RadioGroupAlertDialog(
-            alertDialogState = alertDialogState,
-            items = items,
-            selectedItemId = preferences.lastSleepTimerSeconds,
-            callback = {
-                if (it as Int == -1) {
-                    onCustomValueSelected()
-                } else if (it > 0) {
-                    pickedSleepTimer(it)
-                }
-            }
-        )
     }
 
     private fun showSleepTimerPermission(
