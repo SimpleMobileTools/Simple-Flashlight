@@ -28,10 +28,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.material.math.MathUtils
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
-import com.simplemobiletools.commons.compose.extensions.CheckAppOnSdCard
-import com.simplemobiletools.commons.compose.extensions.appLaunchedCompose
-import com.simplemobiletools.commons.compose.extensions.onEventValue
-import com.simplemobiletools.commons.compose.extensions.rateStarsRedirectAndThankYou
+import com.simplemobiletools.commons.compose.extensions.*
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.*
 import com.simplemobiletools.commons.extensions.*
@@ -63,6 +60,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        enableEdgeToEdgeSimple()
         setContent {
             AppThemeSurface {
                 val showMoreApps = onEventValue { !resources.getBoolean(R.bool.hide_google_relations) }
