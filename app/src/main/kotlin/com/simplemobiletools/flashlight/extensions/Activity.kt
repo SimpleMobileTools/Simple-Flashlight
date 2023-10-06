@@ -108,10 +108,9 @@ fun CheckFeatureLocked(
         }
     }
     LaunchedEffect(isOrWasThankYouInstalled) {
-        if (!skipCheck && !isOrWasThankYouInstalled) {
-            featureLockedAlertDialogState.show()
-        } else if (isOrWasThankYouInstalled) {
-            featureLockedAlertDialogState.hide()
+        when {
+            !skipCheck && !isOrWasThankYouInstalled -> featureLockedAlertDialogState.show()
+            isOrWasThankYouInstalled -> featureLockedAlertDialogState.hide()
         }
     }
 }
