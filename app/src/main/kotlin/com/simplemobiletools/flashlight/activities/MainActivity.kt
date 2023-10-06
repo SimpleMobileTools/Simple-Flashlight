@@ -469,7 +469,7 @@ class MainActivity : ComponentActivity() {
         private val _sosActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val sosActive = _sosActive.asStateFlow()
 
-        private val _brightnessBarValue: MutableStateFlow<Float> = MutableStateFlow(0f)
+        private val _brightnessBarValue: MutableStateFlow<Float> = MutableStateFlow(1f)
         val brightnessBarValue = _brightnessBarValue.asStateFlow()
 
         private val _stroboscopeActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -477,7 +477,7 @@ class MainActivity : ComponentActivity() {
 
         val stroboscopeBarVisible = stroboscopeActive
 
-        private val _stroboscopeBarValue: MutableStateFlow<Float> = MutableStateFlow(0f)
+        private val _stroboscopeBarValue: MutableStateFlow<Float> = MutableStateFlow(0.5f)
         val stroboscopeBarValue = _stroboscopeBarValue.asStateFlow()
 
         init {
