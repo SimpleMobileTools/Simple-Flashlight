@@ -66,63 +66,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppThemeSurface {
                 val showMoreApps = onEventValue { !resources.getBoolean(R.bool.hide_google_relations) }
-                val sosPermissionLauncher = rememberLauncherForActivityResult(
-                    contract = ActivityResultContracts.RequestPermission(),
-                    onResult = {
-                        if (it) {
-                            cameraPermissionGranted(true)
-                        } else {
-                            toast(R.string.camera_permission)
-                        }
-                    }
-                )
-                val stroboscopePermissionLauncher = rememberLauncherForActivityResult(
-                    contract = ActivityResultContracts.RequestPermission(),
-                    onResult = {
-                        if (it) {
-                            cameraPermissionGranted(false)
-                        } else {
-                            toast(R.string.camera_permission)
-                        }
-                    }
-                )
+                val sosPermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(true))
+                val stroboscopePermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(false))
 
-                val sleepTimerCustomDialogState = rememberAlertDialogState().apply {
-                    DialogMember {
-                        SleepTimerCustomAlertDialog(
-                            alertDialogState = this,
-                            onConfirmClick = {
-                                if (it > 0) {
-                                    pickedSleepTimer(it)
-                                }
-                            },
-                        )
-                    }
-                }
-
-                val sleepTimerDialogState = rememberAlertDialogState().apply {
-                    DialogMember {
-                        SleepTimerRadioDialog(
-                            alertDialogState = this,
-                            onCustomValueSelected = sleepTimerCustomDialogState::show
-                        )
-                    }
-                }
-
-                val sleepTimerPermissionDialogState = rememberAlertDialogState().apply {
-                    DialogMember {
-                        PermissionRequiredAlertDialog(
-                            alertDialogState = this,
-                            text = stringResource(id = R.string.allow_alarm_sleep_timer),
-                            positiveActionCallback = {
-                                openRequestExactAlarmSettings(baseConfig.appId)
-                            },
-                            negativeActionCallback = {
-                                sleepTimerDialogState.show()
-                            }
-                        )
-                    }
-                }
+                val sleepTimerCustomDialogState = getSleepTimerCustomDialogState()
+                val sleepTimerDialogState = getSleepTimerDialogState(showCustomSleepTimerDialog = sleepTimerCustomDialogState::show)
+                val sleepTimerPermissionDialogState = getSleepTimerPermissionDialogState(showSleepTimerDialog = sleepTimerDialogState::show)
 
                 MainScreen(
                     flashlightButton = {
@@ -283,6 +232,56 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    private fun getCameraPermissionLauncher(
+        onResult: (Boolean) -> Unit
+    ) = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = onResult
+    )
+
+    @Composable
+    private fun getSleepTimerCustomDialogState() = rememberAlertDialogState().apply {
+        DialogMember {
+            SleepTimerCustomAlertDialog(
+                alertDialogState = this,
+                onConfirmClick = {
+                    if (it > 0) {
+                        pickedSleepTimer(it)
+                    }
+                },
+            )
+        }
+    }
+
+    @Composable
+    private fun getSleepTimerDialogState(
+        showCustomSleepTimerDialog: () -> Unit
+    ) = rememberAlertDialogState().apply {
+        DialogMember {
+            SleepTimerRadioDialog(
+                alertDialogState = this,
+                onCustomValueSelected = showCustomSleepTimerDialog
+            )
+        }
+    }
+
+    @Composable
+    private fun getSleepTimerPermissionDialogState(
+        showSleepTimerDialog: () -> Unit
+    ) = rememberAlertDialogState().apply {
+        DialogMember {
+            PermissionRequiredAlertDialog(
+                alertDialogState = this,
+                text = stringResource(id = R.string.allow_alarm_sleep_timer),
+                positiveActionCallback = {
+                    openRequestExactAlarmSettings(baseConfig.appId)
+                },
+                negativeActionCallback = showSleepTimerDialog
+            )
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         viewModel.onResume()
@@ -332,6 +331,18 @@ class MainActivity : ComponentActivity() {
             } else {
                 launcher.launch(permission)
             }
+        }
+    }
+
+    private fun getPermissionResultHandler(isSos: Boolean): (Boolean) -> Unit = {
+        handlePermissionResult(isSos, it)
+    }
+
+    private fun handlePermissionResult(isSos: Boolean, granted: Boolean) {
+        if (granted) {
+            cameraPermissionGranted(isSos)
+        } else {
+            toast(R.string.camera_permission)
         }
     }
 
