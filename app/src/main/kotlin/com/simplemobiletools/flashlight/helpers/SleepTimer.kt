@@ -20,7 +20,7 @@ object SleepTimer {
     val timeLeft = _timeLeft.asSharedFlow()
     private val scope = CoroutineScope(Dispatchers.Default)
 
-    fun cancel() {
+    fun cancel() = synchronized(this@SleepTimer) {
         sleepTimer?.cancel()
         sleepTimer = null
     }
