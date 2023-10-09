@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.commons.compose.theme.divider_grey
 import com.simplemobiletools.flashlight.R
 
 @Composable
@@ -32,7 +33,7 @@ internal fun SleepTimer(
         modifier = modifier
             .border(
                 width = 1.dp,
-                color = Color.Gray,
+                color = divider_grey,
                 shape = RectangleShape
             )
     ) {
