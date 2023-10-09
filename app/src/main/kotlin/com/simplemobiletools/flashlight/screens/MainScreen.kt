@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -116,18 +117,11 @@ internal fun FlashlightButton(
 internal fun BrightDisplayButton(
     onBrightDisplayPress: () -> Unit,
 ) {
-    Icon(
-        modifier = Modifier
-            .size(AppDimensions.smallerButtonSize)
-            .padding(vertical = SimpleTheme.dimens.margin.large)
-            .clickable(
-                indication = null,
-                interactionSource = rememberMutableInteractionSource(),
-                onClick = onBrightDisplayPress
-            ),
+    SmallButton(
         painter = painterResource(id = R.drawable.ic_bright_display_vector),
         contentDescription = stringResource(id = R.string.bright_display),
-        tint = SimpleTheme.colorScheme.onSurface
+        isActive = false,
+        onPress = onBrightDisplayPress
     )
 }
 
@@ -156,18 +150,11 @@ internal fun StroboscopeButton(
     stroboscopeActive: Boolean,
     onStroboscopeButtonPress: () -> Unit,
 ) {
-    Icon(
-        modifier = Modifier
-            .size(AppDimensions.smallerButtonSize)
-            .padding(vertical = SimpleTheme.dimens.margin.large)
-            .clickable(
-                indication = null,
-                interactionSource = rememberMutableInteractionSource(),
-                onClick = onStroboscopeButtonPress
-            ),
+    SmallButton(
         painter = painterResource(id = R.drawable.ic_stroboscope_vector),
         contentDescription = stringResource(id = R.string.stroboscope),
-        tint = if (stroboscopeActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
+        isActive = stroboscopeActive,
+        onPress = onStroboscopeButtonPress
     )
 }
 
@@ -210,6 +197,28 @@ internal fun MainScreenSlidersSection(
             modifier = sliderModifier,
         )
     }
+}
+
+@Composable
+private fun SmallButton(
+    painter: Painter,
+    contentDescription: String,
+    isActive: Boolean,
+    onPress: () -> Unit
+) {
+    Icon(
+        modifier = Modifier
+            .size(AppDimensions.smallerButtonSize)
+            .padding(vertical = SimpleTheme.dimens.margin.large)
+            .clickable(
+                indication = null,
+                interactionSource = rememberMutableInteractionSource(),
+                onClick = onPress
+            ),
+        painter = painter,
+        contentDescription = contentDescription,
+        tint = if (isActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
+    )
 }
 
 private fun buildActionMenu(
