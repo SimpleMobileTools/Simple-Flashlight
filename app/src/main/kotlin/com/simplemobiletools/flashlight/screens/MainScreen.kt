@@ -21,10 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.compose.extensions.AdjustNavigationBarColors
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.extensions.rememberMutableInteractionSource
-import com.simplemobiletools.commons.compose.lists.SimpleLazyListScaffold
-import com.simplemobiletools.commons.compose.lists.simpleTopAppBarColors
-import com.simplemobiletools.commons.compose.lists.topAppBarInsets
-import com.simplemobiletools.commons.compose.lists.topAppBarPaddings
+import com.simplemobiletools.commons.compose.lists.*
 import com.simplemobiletools.commons.compose.menus.ActionItem
 import com.simplemobiletools.commons.compose.menus.ActionMenu
 import com.simplemobiletools.commons.compose.menus.OverflowMode
@@ -51,7 +48,7 @@ internal fun MainScreen(
     moreAppsFromUs: () -> Unit,
 ) {
     AdjustNavigationBarColors()
-    SimpleLazyListScaffold(
+    SimpleScaffold(
         customTopBar = { scrolledColor: Color, _: MutableInteractionSource, scrollBehavior: TopAppBarScrollBehavior, statusBarColor: Int, colorTransitionFraction: Float, contrastColor: Color ->
             TopAppBar(
                 title = {},
