@@ -100,11 +100,12 @@ fun CheckFeatureLocked(
         DialogMember {
             FeatureLockedAlertDialog(
                 alertDialogState = this,
-            ) {
-                if (!isOrWasThankYouInstalled) {
-                    context.finish()
+                cancelCallback = {
+                    if (!isOrWasThankYouInstalled) {
+                        context.finish()
+                    }
                 }
-            }
+            )
         }
     }
     LaunchedEffect(isOrWasThankYouInstalled) {
