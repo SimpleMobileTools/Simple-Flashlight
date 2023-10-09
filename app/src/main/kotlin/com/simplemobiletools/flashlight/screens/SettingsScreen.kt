@@ -3,11 +3,10 @@ package com.simplemobiletools.flashlight.screens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.simplemobiletools.commons.compose.extensions.MyDevices
+import com.simplemobiletools.commons.compose.lists.SimpleColumnScaffold
 import com.simplemobiletools.commons.compose.settings.*
-import com.simplemobiletools.commons.compose.settings.scaffold.SettingsScaffold
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
-import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.flashlight.R
 
 @Composable
@@ -16,7 +15,7 @@ internal fun SettingsScreen(
     generalSection: @Composable () -> Unit,
     goBack: () -> Unit,
 ) {
-    SettingsScaffold(title = stringResource(id = com.simplemobiletools.commons.R.string.settings), goBack = goBack) {
+    SimpleColumnScaffold(title = stringResource(id = com.simplemobiletools.commons.R.string.settings), goBack = goBack) {
         SettingsGroup(title = {
             SettingsTitleTextComponent(text = stringResource(id = com.simplemobiletools.commons.R.string.color_customization))
         }) {
@@ -48,12 +47,16 @@ internal fun ColorCustomizationSettingsSection(
 
 @Composable
 internal fun GeneralSettingsSection(
+    showUseEnglish: Boolean,
+    useEnglishChecked: Boolean,
+    showDisplayLanguage: Boolean,
     displayLanguage: String,
     turnFlashlightOnStartupChecked: Boolean,
     forcePortraitModeChecked: Boolean,
     showBrightDisplayButtonChecked: Boolean,
     showSosButtonChecked: Boolean,
     showStroboscopeButtonChecked: Boolean,
+    onUseEnglishPress: (Boolean) -> Unit,
     onSetupLanguagePress: () -> Unit,
     onTurnFlashlightOnStartupPress: (Boolean) -> Unit,
     onForcePortraitModePress: (Boolean) -> Unit,
@@ -61,7 +64,14 @@ internal fun GeneralSettingsSection(
     onShowSosButtonPress: (Boolean) -> Unit,
     onShowStroboscopeButtonPress: (Boolean) -> Unit,
 ) {
-    if (isTiramisuPlus()) {
+    if (showUseEnglish) {
+        SettingsCheckBoxComponent(
+            label = stringResource(id = com.simplemobiletools.commons.R.string.use_english_language),
+            initialValue = useEnglishChecked,
+            onChange = onUseEnglishPress
+        )
+    }
+    if (showDisplayLanguage) {
         SettingsPreferenceComponent(
             label = stringResource(id = com.simplemobiletools.commons.R.string.language),
             value = displayLanguage,
@@ -109,12 +119,16 @@ private fun SettingsScreenPreview() {
             },
             generalSection = {
                 GeneralSettingsSection(
+                    useEnglishChecked = true,
+                    showUseEnglish = true,
+                    showDisplayLanguage = true,
                     displayLanguage = "English",
                     turnFlashlightOnStartupChecked = false,
                     forcePortraitModeChecked = true,
                     showBrightDisplayButtonChecked = true,
                     showSosButtonChecked = true,
                     showStroboscopeButtonChecked = true,
+                    onUseEnglishPress = {},
                     onSetupLanguagePress = {},
                     onTurnFlashlightOnStartupPress = {},
                     onForcePortraitModePress = {},
