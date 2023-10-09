@@ -87,7 +87,8 @@ internal fun MainScreen(
         }
 
         Box(
-            modifier = Modifier.align(Alignment.BottomEnd),
+            modifier = Modifier.align(Alignment.BottomEnd)
+                .navigationBarsPadding(),
         ) {
             sleepTimer()
         }
