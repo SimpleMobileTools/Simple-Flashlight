@@ -1,17 +1,12 @@
 package com.simplemobiletools.flashlight.screens
 
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.simplemobiletools.commons.compose.extensions.MyDevices
-import com.simplemobiletools.commons.compose.settings.SettingsCheckBoxComponent
-import com.simplemobiletools.commons.compose.settings.SettingsGroup
-import com.simplemobiletools.commons.compose.settings.SettingsPreferenceComponent
-import com.simplemobiletools.commons.compose.settings.SettingsTitleTextComponent
+import com.simplemobiletools.commons.compose.settings.*
 import com.simplemobiletools.commons.compose.settings.scaffold.SettingsScaffold
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
-import com.simplemobiletools.commons.compose.theme.divider_grey
 import com.simplemobiletools.commons.helpers.isTiramisuPlus
 import com.simplemobiletools.flashlight.R
 
@@ -27,7 +22,7 @@ internal fun SettingsScreen(
         }) {
             colorCustomizationSection()
         }
-        HorizontalDivider(color = divider_grey)
+        SettingsHorizontalDivider()
         SettingsGroup(title = {
             SettingsTitleTextComponent(text = stringResource(id = R.string.general_settings))
         }) {
