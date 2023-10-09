@@ -1,5 +1,6 @@
 package com.simplemobiletools.flashlight.dialogs
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -28,7 +29,7 @@ fun SleepTimerCustomAlertDialog(
     var selectedItem by remember { mutableIntStateOf(0) }
     var value by remember { mutableStateOf("") }
     val items = remember {
-        listOf(R.string.minutes_raw, R.string.seconds_raw).toImmutableList()
+        listOf(UnitItem(R.string.minutes_raw, 60), UnitItem(R.string.seconds_raw, 1)).toImmutableList()
     }
 
 
@@ -84,7 +85,7 @@ fun SleepTimerCustomAlertDialog(
                                 }
                             )
                             Text(
-                                text = stringResource(id = item)
+                                text = stringResource(id = item.stringResId)
                             )
                         }
                     }
@@ -102,8 +103,7 @@ fun SleepTimerCustomAlertDialog(
                     }
                     TextButton(onClick = {
                         val enteredValue = Integer.valueOf(value.ifEmpty { "0" })
-                        val multiplier = getMultiplier(items[selectedItem])
-                        onConfirmClick(enteredValue * multiplier)
+                        onConfirmClick(enteredValue * items[selectedItem].multiplier)
                         alertDialogState.hide()
                     }) {
                         Text(text = stringResource(id = R.string.ok))
@@ -114,11 +114,7 @@ fun SleepTimerCustomAlertDialog(
     }
 }
 
-private fun getMultiplier(id: Int) = when (id) {
-    R.string.seconds_raw -> 1
-    R.string.minutes_raw -> 60
-    else -> 60
-}
+private data class UnitItem(@StringRes val stringResId: Int, val multiplier: Int)
 
 @Composable
 @MyDevices
