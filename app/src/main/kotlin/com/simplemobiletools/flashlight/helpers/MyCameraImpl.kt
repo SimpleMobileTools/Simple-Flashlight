@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class MyCameraImpl private constructor(val context: Context, private var cameraTorchListener: CameraTorchListener? = null) {
+class MyCameraImpl private constructor(private val context: Context, private var cameraTorchListener: CameraTorchListener? = null) {
     var stroboFrequency = 1000L
 
     companion object {
