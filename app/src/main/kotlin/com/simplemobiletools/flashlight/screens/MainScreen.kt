@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.compose.extensions.AdjustNavigationBarColors
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.extensions.rememberMutableInteractionSource
@@ -170,9 +171,8 @@ internal fun MainScreenSlidersSection(
     val dimens = SimpleTheme.dimens
     val sliderModifier = remember {
         Modifier
-            .padding(dimens.margin.extraLarge)
-            .padding(vertical = dimens.margin.medium)
-            .padding(bottom = dimens.margin.extraLarge)
+            .padding(horizontal = dimens.margin.extraLarge)
+            .padding(top = 24.dp, bottom = 40.dp)
             .size(width = AppDimensions.seekbarWidth, height = AppDimensions.seekbarHeight)
     }
 
