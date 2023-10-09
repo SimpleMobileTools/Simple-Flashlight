@@ -46,7 +46,7 @@ internal fun BrightDisplayScreen(
             onClick = onChangeColorPress
         ) {
             Text(
-                text = stringResource(id = R.string.change_color),
+                text = stringResource(id = com.simplemobiletools.commons.R.string.change_color),
                 color = Color(contrastColor)
             )
         }

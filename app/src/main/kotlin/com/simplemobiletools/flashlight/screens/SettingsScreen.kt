@@ -16,15 +16,15 @@ internal fun SettingsScreen(
     generalSection: @Composable () -> Unit,
     goBack: () -> Unit,
 ) {
-    SettingsScaffold(title = stringResource(id = R.string.settings), goBack = goBack) {
+    SettingsScaffold(title = stringResource(id = com.simplemobiletools.commons.R.string.settings), goBack = goBack) {
         SettingsGroup(title = {
-            SettingsTitleTextComponent(text = stringResource(id = R.string.color_customization))
+            SettingsTitleTextComponent(text = stringResource(id = com.simplemobiletools.commons.R.string.color_customization))
         }) {
             colorCustomizationSection()
         }
         SettingsHorizontalDivider()
         SettingsGroup(title = {
-            SettingsTitleTextComponent(text = stringResource(id = R.string.general_settings))
+            SettingsTitleTextComponent(text = stringResource(id = com.simplemobiletools.commons.R.string.general_settings))
         }) {
             generalSection()
         }
@@ -37,11 +37,11 @@ internal fun ColorCustomizationSettingsSection(
     customizeWidgetColors: () -> Unit,
 ) {
     SettingsPreferenceComponent(
-        label = stringResource(id = R.string.customize_colors),
+        label = stringResource(id = com.simplemobiletools.commons.R.string.customize_colors),
         doOnPreferenceClick = customizeColors,
     )
     SettingsPreferenceComponent(
-        label = stringResource(id = R.string.customize_widget_colors),
+        label = stringResource(id = com.simplemobiletools.commons.R.string.customize_widget_colors),
         doOnPreferenceClick = customizeWidgetColors
     )
 }
@@ -63,7 +63,7 @@ internal fun GeneralSettingsSection(
 ) {
     if (isTiramisuPlus()) {
         SettingsPreferenceComponent(
-            label = stringResource(id = R.string.language),
+            label = stringResource(id = com.simplemobiletools.commons.R.string.language),
             value = displayLanguage,
             doOnPreferenceClick = onSetupLanguagePress,
             preferenceValueColor = SimpleTheme.colorScheme.onSurface,
@@ -75,7 +75,7 @@ internal fun GeneralSettingsSection(
         onChange = onTurnFlashlightOnStartupPress
     )
     SettingsCheckBoxComponent(
-        label = stringResource(id = R.string.force_portrait_mode),
+        label = stringResource(id = com.simplemobiletools.commons.R.string.force_portrait_mode),
         initialValue = forcePortraitModeChecked,
         onChange = onForcePortraitModePress
     )

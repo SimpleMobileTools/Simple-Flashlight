@@ -75,7 +75,7 @@ internal fun WidgetConfigureScreen(
                 modifier = Modifier
                     .padding(start = SimpleTheme.dimens.margin.medium)
                     .background(
-                        color = colorResource(id = R.color.md_grey_white),
+                        color = colorResource(id = com.simplemobiletools.commons.R.color.md_grey_white),
                         shape = SimpleTheme.shapes.extraLarge
                     )
                     .padding(horizontal = SimpleTheme.dimens.margin.extraLarge)
@@ -86,7 +86,7 @@ internal fun WidgetConfigureScreen(
             modifier = Modifier.align(Alignment.End),
             onClick = onSavePressed
         ) {
-            Text(text = stringResource(id = R.string.ok))
+            Text(text = stringResource(id = com.simplemobiletools.commons.R.string.ok))
         }
     }
 }

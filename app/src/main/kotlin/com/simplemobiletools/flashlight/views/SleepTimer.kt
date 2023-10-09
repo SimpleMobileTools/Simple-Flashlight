@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -21,7 +20,6 @@ import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.compose.theme.SimpleTheme
 import com.simplemobiletools.commons.compose.theme.divider_grey
-import com.simplemobiletools.flashlight.R
 
 @Composable
 internal fun SleepTimer(
@@ -41,7 +39,7 @@ internal fun SleepTimer(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(horizontal = SimpleTheme.dimens.margin.large),
-            text = stringResource(id = R.string.sleep_timer),
+            text = stringResource(id = com.simplemobiletools.commons.R.string.sleep_timer),
             color = SimpleTheme.colorScheme.onSurface
         )
         Text(
@@ -56,8 +54,8 @@ internal fun SleepTimer(
             onClick = onCloseClick
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_cross_vector),
-                contentDescription = stringResource(id = R.string.close),
+                painter = painterResource(id = com.simplemobiletools.commons.R.drawable.ic_cross_vector),
+                contentDescription = stringResource(id = com.simplemobiletools.commons.R.string.close),
                 tint = SimpleTheme.colorScheme.onSurface
             )
         }

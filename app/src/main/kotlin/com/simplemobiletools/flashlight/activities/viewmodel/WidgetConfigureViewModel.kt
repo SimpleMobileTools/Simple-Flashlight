@@ -37,7 +37,7 @@ internal class WidgetConfigureViewModel(
     init {
         _widgetColor.value = application.config.widgetBgColor
         if (_widgetColor.value == application.resources.getColor(R.color.default_widget_bg_color, null) && application.config.isUsingSystemTheme) {
-            _widgetColor.value = application.resources.getColor(R.color.you_primary_color, application.theme)
+            _widgetColor.value = application.resources.getColor(com.simplemobiletools.commons.R.color.you_primary_color, application.theme)
         }
 
         _widgetAlpha.value = Color.alpha(_widgetColor.value) / 255f

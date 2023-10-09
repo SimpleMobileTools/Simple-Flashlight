@@ -110,7 +110,7 @@ internal fun FlashlightButton(
                 onClick = onFlashlightPress
             ),
         painter = painterResource(id = R.drawable.ic_flashlight_vector),
-        contentDescription = stringResource(id = R.string.flashlight_short),
+        contentDescription = stringResource(id = com.simplemobiletools.commons.R.string.flashlight_short),
         tint = if (flashlightActive) SimpleTheme.colorScheme.primary else SimpleTheme.colorScheme.onSurface
     )
 }
@@ -230,12 +230,12 @@ private fun buildActionMenu(
     moreAppsFromUs: () -> Unit,
 ): ImmutableList<ActionItem> {
     val settings =
-        ActionItem(R.string.settings, icon = Icons.Filled.Settings, doAction = openSettings, overflowMode = OverflowMode.NEVER_OVERFLOW)
-    val about = ActionItem(R.string.about, icon = Icons.Outlined.Info, doAction = openAbout, overflowMode = OverflowMode.NEVER_OVERFLOW)
-    val sleepTimer = ActionItem(R.string.sleep_timer, doAction = openSleepTimer, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
+        ActionItem(com.simplemobiletools.commons.R.string.settings, icon = Icons.Filled.Settings, doAction = openSettings, overflowMode = OverflowMode.NEVER_OVERFLOW)
+    val about = ActionItem(com.simplemobiletools.commons.R.string.about, icon = Icons.Outlined.Info, doAction = openAbout, overflowMode = OverflowMode.NEVER_OVERFLOW)
+    val sleepTimer = ActionItem(com.simplemobiletools.commons.R.string.sleep_timer, doAction = openSleepTimer, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
     val list = mutableListOf(settings, about, sleepTimer)
     if (showMoreApps) {
-        list += ActionItem(R.string.more_apps_from_us, doAction = moreAppsFromUs, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
+        list += ActionItem(com.simplemobiletools.commons.R.string.more_apps_from_us, doAction = moreAppsFromUs, overflowMode = OverflowMode.ALWAYS_OVERFLOW)
     }
     return list.toImmutableList()
 }

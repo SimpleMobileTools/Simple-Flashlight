@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdgeSimple()
         setContent {
             AppThemeSurface {
-                val showMoreApps = onEventValue { !resources.getBoolean(R.bool.hide_google_relations) }
+                val showMoreApps = onEventValue { !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations) }
                 val sosPermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(true))
                 val stroboscopePermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(false))
 
@@ -181,7 +181,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 finalItems.sortBy { it.id }
-                finalItems.add(RadioItem(-1, getString(R.string.custom)))
+                finalItems.add(RadioItem(-1, getString(com.simplemobiletools.commons.R.string.custom)))
                 finalItems.toImmutableList()
             }
         }
@@ -271,7 +271,7 @@ class MainActivity : ComponentActivity() {
         DialogMember {
             PermissionRequiredAlertDialog(
                 alertDialogState = this,
-                text = stringResource(id = R.string.allow_alarm_sleep_timer),
+                text = stringResource(id = com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer),
                 positiveActionCallback = {
                     openRequestExactAlarmSettings(baseConfig.appId)
                 },
@@ -306,13 +306,13 @@ class MainActivity : ComponentActivity() {
 
     private fun launchAbout() {
         val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
-            FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons)
+            FAQItem(com.simplemobiletools.commons.R.string.faq_1_title_commons, com.simplemobiletools.commons.R.string.faq_1_text_commons),
+            FAQItem(com.simplemobiletools.commons.R.string.faq_4_title_commons, com.simplemobiletools.commons.R.string.faq_4_text_commons)
         )
 
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
+        if (!resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)) {
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_2_title_commons, com.simplemobiletools.commons.R.string.faq_2_text_commons))
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_6_title_commons, com.simplemobiletools.commons.R.string.faq_6_text_commons))
         }
 
         startAboutActivity(R.string.app_name, 0, BuildConfig.VERSION_NAME, faqItems, true)
@@ -370,13 +370,13 @@ class MainActivity : ComponentActivity() {
         val finalSeconds = seconds % 60
         val parts = mutableListOf<String>()
         if (finalHours != 0) {
-            parts.add(resources.getQuantityString(R.plurals.hours, finalHours, finalHours))
+            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.hours, finalHours, finalHours))
         }
         if (finalMinutes != 0) {
-            parts.add(resources.getQuantityString(R.plurals.minutes, finalMinutes, finalMinutes))
+            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.minutes, finalMinutes, finalMinutes))
         }
         if (finalSeconds != 0) {
-            parts.add(resources.getQuantityString(R.plurals.seconds, finalSeconds, finalSeconds))
+            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.seconds, finalSeconds, finalSeconds))
         }
         return parts.joinToString(separator = " ")
     }
