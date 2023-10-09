@@ -75,8 +75,7 @@ internal fun GeneralSettingsSection(
         SettingsPreferenceComponent(
             label = stringResource(id = com.simplemobiletools.commons.R.string.language),
             value = displayLanguage,
-            doOnPreferenceClick = onSetupLanguagePress,
-            preferenceValueColor = SimpleTheme.colorScheme.onSurface,
+            doOnPreferenceClick = onSetupLanguagePress
         )
     }
     SettingsCheckBoxComponent(
