@@ -43,7 +43,7 @@ fun SleepTimerCustomAlertDialog(
                 modifier = Modifier.padding(all = 24.dp)
             ) {
                 Text(
-                    modifier = Modifier.padding(bottom = SimpleTheme.dimens.margin.extraLarge),
+                    modifier = Modifier.padding(bottom = SimpleTheme.dimens.padding.extraLarge),
                     text = stringResource(id = R.string.sleep_timer),
                     style = SimpleTheme.typography.headlineSmall,
                     color = SimpleTheme.colorScheme.onSurface
@@ -52,15 +52,15 @@ fun SleepTimerCustomAlertDialog(
                 Column(
                     modifier = Modifier
                         .padding(
-                            horizontal = SimpleTheme.dimens.margin.extraLarge
+                            horizontal = SimpleTheme.dimens.padding.extraLarge
                         )
                         .padding(
-                            top = SimpleTheme.dimens.margin.extraLarge
+                            top = SimpleTheme.dimens.padding.extraLarge
                         )
                 ) {
                     TextField(
                         modifier = Modifier.padding(
-                            bottom = SimpleTheme.dimens.margin.large
+                            bottom = SimpleTheme.dimens.padding.large
                         ),
                         value = value,
                         onValueChange = {

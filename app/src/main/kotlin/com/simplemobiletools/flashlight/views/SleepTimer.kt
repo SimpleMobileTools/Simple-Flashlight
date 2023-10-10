@@ -38,7 +38,7 @@ internal fun SleepTimer(
         Text(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(horizontal = SimpleTheme.dimens.margin.large),
+                .padding(horizontal = SimpleTheme.dimens.padding.large),
             text = stringResource(id = com.simplemobiletools.commons.R.string.sleep_timer),
             color = SimpleTheme.colorScheme.onSurface
         )
@@ -50,7 +50,7 @@ internal fun SleepTimer(
         IconButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(SimpleTheme.dimens.margin.medium),
+                .padding(SimpleTheme.dimens.padding.medium),
             onClick = onCloseClick
         ) {
             Icon(

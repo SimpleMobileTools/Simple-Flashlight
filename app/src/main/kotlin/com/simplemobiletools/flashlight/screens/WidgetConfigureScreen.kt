@@ -42,8 +42,8 @@ internal fun WidgetConfigureScreen(
     ) {
         Box(
             modifier = Modifier
-                .padding(SimpleTheme.dimens.margin.extraLarge)
-                .padding(bottom = SimpleTheme.dimens.margin.extraLarge)
+                .padding(SimpleTheme.dimens.padding.extraLarge)
+                .padding(bottom = SimpleTheme.dimens.padding.extraLarge)
                 .fillMaxWidth()
                 .weight(1f)
         ) {
@@ -61,7 +61,7 @@ internal fun WidgetConfigureScreen(
             Icon(
                 modifier = Modifier
                     .size(AppDimensions.widgetColorPickerSize)
-                    .padding(SimpleTheme.dimens.margin.extraSmall)
+                    .padding(SimpleTheme.dimens.padding.extraSmall)
                     .clip(CircleShape)
                     .clickable { onColorPressed() },
                 painter = BrushPainter(SolidColor(Color(widgetColor))),
@@ -73,12 +73,12 @@ internal fun WidgetConfigureScreen(
                 value = widgetAlpha,
                 onValueChange = onSliderChanged,
                 modifier = Modifier
-                    .padding(start = SimpleTheme.dimens.margin.medium)
+                    .padding(start = SimpleTheme.dimens.padding.medium)
                     .background(
                         color = colorResource(id = com.simplemobiletools.commons.R.color.md_grey_white),
                         shape = SimpleTheme.shapes.extraLarge
                     )
-                    .padding(horizontal = SimpleTheme.dimens.margin.extraLarge)
+                    .padding(horizontal = SimpleTheme.dimens.padding.extraLarge)
             )
         }
 

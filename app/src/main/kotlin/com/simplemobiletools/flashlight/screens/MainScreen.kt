@@ -100,7 +100,7 @@ internal fun FlashlightButton(
     Icon(
         modifier = Modifier
             .size(AppDimensions.mainButtonSize)
-            .padding(vertical = SimpleTheme.dimens.margin.large)
+            .padding(vertical = SimpleTheme.dimens.padding.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -131,7 +131,7 @@ internal fun SosButton(
 ) {
     Text(
         modifier = Modifier
-            .padding(vertical = SimpleTheme.dimens.margin.large)
+            .padding(vertical = SimpleTheme.dimens.padding.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
@@ -169,7 +169,7 @@ internal fun MainScreenSlidersSection(
     val dimens = SimpleTheme.dimens
     val sliderModifier = remember {
         Modifier
-            .padding(horizontal = dimens.margin.extraLarge)
+            .padding(horizontal = dimens.padding.extraLarge)
             .padding(top = 24.dp, bottom = 40.dp)
             .size(width = AppDimensions.seekbarWidth, height = AppDimensions.seekbarHeight)
     }
@@ -207,7 +207,7 @@ private fun SmallButton(
     Icon(
         modifier = Modifier
             .size(AppDimensions.smallerButtonSize)
-            .padding(vertical = SimpleTheme.dimens.margin.large)
+            .padding(vertical = SimpleTheme.dimens.padding.large)
             .clickable(
                 indication = null,
                 interactionSource = rememberMutableInteractionSource(),
