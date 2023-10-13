@@ -172,17 +172,7 @@ class MainActivity : ComponentActivity() {
         val lastSleepTimerSeconds by preferences.lastSleepTimerSecondsFlow.collectAsStateWithLifecycle(preferences.lastSleepTimerSeconds)
         val items by remember {
             derivedStateOf {
-                val finalItems = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
-                    RadioItem(it, secondsToString(it))
-                })
-
-                if (finalItems.none { it.id == lastSleepTimerSeconds }) {
-                    finalItems.add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
-                }
-
-                finalItems.sortBy { it.id }
-                finalItems.add(RadioItem(-1, getString(com.simplemobiletools.commons.R.string.custom)))
-                finalItems.toImmutableList()
+                buildSleepTimerRadioItemsList(lastSleepTimerSeconds)
             }
         }
 
@@ -199,6 +189,21 @@ class MainActivity : ComponentActivity() {
             }
         )
     }
+
+    private fun buildSleepTimerRadioItemsList(
+        lastSleepTimerSeconds: Int
+    ) = buildList<RadioItem> {
+        addAll(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+            RadioItem(it, secondsToString(it))
+        })
+
+        if (none { it.id == lastSleepTimerSeconds }) {
+            add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
+        }
+
+        sortBy { it.id }
+        add(RadioItem(-1, getString(com.simplemobiletools.commons.R.string.custom)))
+    }.toImmutableList()
 
     @Composable
     private fun AppLaunched(
