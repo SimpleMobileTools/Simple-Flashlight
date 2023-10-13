@@ -336,11 +336,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun getPermissionResultHandler(isSos: Boolean): (Boolean) -> Unit = {
-        handlePermissionResult(isSos, it)
-    }
-
-    private fun handlePermissionResult(isSos: Boolean, granted: Boolean) {
+    private fun getPermissionResultHandler(isSos: Boolean): (Boolean) -> Unit = { granted ->
         if (granted) {
             cameraPermissionGranted(isSos)
         } else {
