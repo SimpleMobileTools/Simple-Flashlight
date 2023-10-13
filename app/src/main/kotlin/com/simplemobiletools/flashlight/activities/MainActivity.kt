@@ -151,9 +151,10 @@ class MainActivity : ComponentActivity() {
                     openSettings = ::launchSettings,
                     openAbout = ::launchAbout,
                     openSleepTimer = {
-                        showSleepTimerPermission(sleepTimerPermissionDialogState) {
-                            sleepTimerDialogState.show()
-                        }
+                        showSleepTimerPermission(
+                            requestAlarmPermission = sleepTimerPermissionDialogState::show,
+                            onNoPermissionRequired = sleepTimerDialogState::show
+                        )
                     },
                     moreAppsFromUs = ::launchMoreAppsFromUsIntent
                 )
@@ -353,15 +354,15 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun showSleepTimerPermission(
-        showSleepTimerDialogState: AlertDialogState,
-        callback: () -> Unit
+        requestAlarmPermission: () -> Unit,
+        onNoPermissionRequired: () -> Unit
     ) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         if (isSPlus() && !alarmManager.canScheduleExactAlarms()) {
-            showSleepTimerDialogState.show()
+            requestAlarmPermission()
             return
         }
-        callback()
+        onNoPermissionRequired()
     }
 
     private fun secondsToString(seconds: Int): String {
