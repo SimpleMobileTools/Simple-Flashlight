@@ -181,10 +181,9 @@ class MainActivity : ComponentActivity() {
             items = items,
             selectedItemId = preferences.lastSleepTimerSeconds,
             callback = {
-                if (it as Int == -1) {
-                    onCustomValueSelected()
-                } else if (it > 0) {
-                    pickedSleepTimer(it)
+                when {
+                    it == -1  -> onCustomValueSelected()
+                    it as Int > 0 -> pickedSleepTimer(it)
                 }
             }
         )
