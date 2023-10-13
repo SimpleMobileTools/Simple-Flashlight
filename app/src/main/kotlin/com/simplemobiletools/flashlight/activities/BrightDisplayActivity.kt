@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.core.view.WindowCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
@@ -60,10 +59,6 @@ class BrightDisplayActivity : ComponentActivity() {
 
                 ScreenContent(colorPickerDialogState::show)
             }
-        }
-
-        if (isOreoMr1Plus()) {
-            WindowCompat.getInsetsController(window, window.decorView.rootView)
         }
     }
 
