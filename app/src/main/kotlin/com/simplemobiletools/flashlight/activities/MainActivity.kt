@@ -369,17 +369,17 @@ class MainActivity : ComponentActivity() {
         val finalHours = seconds / 3600
         val finalMinutes = (seconds / 60) % 60
         val finalSeconds = seconds % 60
-        val parts = mutableListOf<String>()
-        if (finalHours != 0) {
-            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.hours, finalHours, finalHours))
-        }
-        if (finalMinutes != 0) {
-            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.minutes, finalMinutes, finalMinutes))
-        }
-        if (finalSeconds != 0) {
-            parts.add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.seconds, finalSeconds, finalSeconds))
-        }
-        return parts.joinToString(separator = " ")
+        return buildList {
+            if (finalHours != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.hours, finalHours, finalHours))
+            }
+            if (finalMinutes != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.minutes, finalMinutes, finalMinutes))
+            }
+            if (finalSeconds != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.seconds, finalSeconds, finalSeconds))
+            }
+        }.joinToString(separator = " ")
     }
 
     private fun pickedSleepTimer(seconds: Int) {
