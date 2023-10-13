@@ -64,8 +64,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppThemeSurface {
                 val showMoreApps = onEventValue { !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations) }
-                val sosPermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(true))
-                val stroboscopePermissionLauncher = getCameraPermissionLauncher(onResult = getPermissionResultHandler(false))
+                val sosPermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = getPermissionResultHandler(true)
+                )
+                val stroboscopePermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = getPermissionResultHandler(false)
+                )
 
                 val sleepTimerCustomDialogState = getSleepTimerCustomDialogState()
                 val sleepTimerDialogState = getSleepTimerDialogState(showCustomSleepTimerDialog = sleepTimerCustomDialogState::show)
@@ -234,14 +240,6 @@ class MainActivity : ComponentActivity() {
             RateStarsAlertDialog(alertDialogState = this, onRating = ::rateStarsRedirectAndThankYou)
         }
     }
-
-    @Composable
-    private fun getCameraPermissionLauncher(
-        onResult: (Boolean) -> Unit
-    ) = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = onResult
-    )
 
     @Composable
     private fun getSleepTimerCustomDialogState() = rememberAlertDialogState().apply {
