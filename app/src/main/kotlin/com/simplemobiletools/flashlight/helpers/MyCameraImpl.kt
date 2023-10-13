@@ -168,9 +168,6 @@ class MyCameraImpl private constructor(private val context: Context, private var
             if (MyCameraImpl.cameraFlash == null) {
                 MyCameraImpl.cameraFlash = CameraFlash(context, cameraTorchListener)
             }
-            scope.launch {
-                _flashlightOn.emit(isFlashlightOn)
-            }
         } catch (e: Exception) {
             scope.launch {
                 cameraError.emit(Unit)
