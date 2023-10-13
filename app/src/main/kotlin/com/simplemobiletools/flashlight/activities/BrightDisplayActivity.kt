@@ -7,6 +7,7 @@ import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.ColorInt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -54,7 +55,8 @@ class BrightDisplayActivity : ComponentActivity() {
         enableEdgeToEdgeSimple()
         setContent {
             AppThemeSurface {
-                val colorPickerDialogState = getColorPickerDialogState()
+                val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(preferences.brightDisplayColor)
+                val colorPickerDialogState = getColorPickerDialogState(brightDisplayColor)
 
                 ScreenContent(colorPickerDialogState::show)
             }
@@ -66,8 +68,10 @@ class BrightDisplayActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun getColorPickerDialogState() = rememberAlertDialogState().apply {
-        val brightDisplayColor by preferences.brightDisplayColorFlow.collectAsStateWithLifecycle(preferences.brightDisplayColor)
+    private fun getColorPickerDialogState(
+        @ColorInt
+        brightDisplayColor: Int
+    ) = rememberAlertDialogState().apply {
         DialogMember {
             ColorPickerAlertDialog(
                 alertDialogState = this,

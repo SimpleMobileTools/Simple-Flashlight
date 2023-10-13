@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.ColorInt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -43,7 +44,7 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
-                val colorPickerDialogState = getColorPickerDialogState()
+                val colorPickerDialogState = getColorPickerDialogState(widgetColor)
 
                 WidgetConfigureScreen(
                     widgetDrawable = R.drawable.ic_flashlight_vector,
@@ -60,12 +61,14 @@ class WidgetTorchConfigureActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun getColorPickerDialogState() = rememberAlertDialogState().apply {
-        val brightDisplayColor by viewModel.widgetColor.collectAsStateWithLifecycle()
+    private fun getColorPickerDialogState(
+        @ColorInt
+        widgetColor: Int
+    ) = rememberAlertDialogState().apply {
         DialogMember {
             ColorPickerAlertDialog(
                 alertDialogState = this,
-                color = brightDisplayColor,
+                color = widgetColor,
                 removeDimmedBackground = true,
                 onActiveColorChange = {},
                 onButtonPressed = { wasPositivePressed, color ->
