@@ -22,7 +22,7 @@ class MyCameraImpl private constructor(private val context: Context, private var
         var isFlashlightOn = false
 
         private var u = 200L // The length of one dit (Time unit)
-        private val SOS = arrayListOf(u, u, u, u, u, u * 3, u * 3, u, u * 3, u, u * 3, u * 3, u, u, u, u, u, u * 7)
+        private val SOS = listOf(u, u, u, u, u, u * 3, u * 3, u, u * 3, u, u * 3, u * 3, u, u, u, u, u, u * 7)
 
         private var shouldEnableFlashlight = false
         private var shouldEnableStroboscope = false

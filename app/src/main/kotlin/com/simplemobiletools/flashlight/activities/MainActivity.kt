@@ -405,7 +405,7 @@ class MainActivity : ComponentActivity() {
             val createNewContact = getBrightDisplayShortcut(appIconColor)
 
             try {
-                shortcutManager.dynamicShortcuts = Arrays.asList(createNewContact)
+                shortcutManager.dynamicShortcuts = listOf(createNewContact)
                 preferences.lastHandledShortcutColor = appIconColor
             } catch (ignored: Exception) {
             }
