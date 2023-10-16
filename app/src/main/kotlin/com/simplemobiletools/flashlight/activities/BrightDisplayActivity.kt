@@ -17,11 +17,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.commons.compose.extensions.setShowWhenLockedCompat
+import com.simplemobiletools.commons.compose.extensions.setTurnScreenOnCompat
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
 import com.simplemobiletools.commons.dialogs.ColorPickerAlertDialog
 import com.simplemobiletools.commons.extensions.getContrastColor
 import com.simplemobiletools.commons.extensions.getFormattedDuration
-import com.simplemobiletools.commons.helpers.isOreoMr1Plus
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.helpers.SleepTimer
 import com.simplemobiletools.flashlight.helpers.stopSleepTimerCountDown
@@ -38,18 +39,8 @@ class BrightDisplayActivity : ComponentActivity() {
     private val preferences by lazy { config }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (isOreoMr1Plus()) {
-            setShowWhenLocked(true)
-            setTurnScreenOn(true)
-        } else {
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
-                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
-                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-
+        setShowWhenLockedCompat(true)
+        setTurnScreenOnCompat(true)
         super.onCreate(savedInstanceState)
         enableEdgeToEdgeSimple()
         setContent {
