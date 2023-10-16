@@ -87,10 +87,7 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     brightDisplayButton = {
-                        val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(
-                            config.brightDisplay,
-                            minActiveState = Lifecycle.State.CREATED
-                        )
+                        val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(config.brightDisplay)
                         if (showBrightDisplayButton) {
                             BrightDisplayButton(
                                 onBrightDisplayPress = {
@@ -100,7 +97,7 @@ class MainActivity : ComponentActivity() {
                         }
                     },
                     sosButton = {
-                        val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos, minActiveState = Lifecycle.State.CREATED)
+                        val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos)
                         val sosActive by viewModel.sosActive.collectAsStateWithLifecycle()
 
                         if (showSosButton) {
@@ -113,10 +110,7 @@ class MainActivity : ComponentActivity() {
                         }
                     },
                     stroboscopeButton = {
-                        val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(
-                            config.stroboscope,
-                            minActiveState = Lifecycle.State.CREATED
-                        )
+                        val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(config.stroboscope)
                         val stroboscopeActive by viewModel.stroboscopeActive.collectAsStateWithLifecycle()
 
                         if (showStroboscopeButton) {

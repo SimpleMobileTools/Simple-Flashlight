@@ -13,19 +13,19 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BRIGHT_DISPLAY, true)
         set(brightDisplay) = prefs.edit().putBoolean(BRIGHT_DISPLAY, brightDisplay).apply()
 
-    val brightDisplayFlow = ::brightDisplay.asFlowNonNull()
+    val brightDisplayFlow = ::brightDisplay.asFlowNonNull(emitOnCollect = true)
 
     var stroboscope: Boolean
         get() = prefs.getBoolean(STROBOSCOPE, true)
         set(stroboscope) = prefs.edit().putBoolean(STROBOSCOPE, stroboscope).apply()
 
-    val stroboscopeFlow = ::stroboscope.asFlowNonNull()
+    val stroboscopeFlow = ::stroboscope.asFlowNonNull(emitOnCollect = true)
 
     var sos: Boolean
         get() = prefs.getBoolean(SOS, true)
         set(sos) = prefs.edit().putBoolean(SOS, sos).apply()
 
-    val sosFlow = ::sos.asFlowNonNull()
+    val sosFlow = ::sos.asFlowNonNull(emitOnCollect = true)
 
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
