@@ -34,7 +34,8 @@ internal fun SleepTimer(
                 width = 1.dp,
                 color = divider_grey,
                 shape = RectangleShape
-            ).background(SimpleTheme.colorScheme.surface)
+            )
+            .background(SimpleTheme.colorScheme.surface)
     ) {
         Text(
             modifier = Modifier

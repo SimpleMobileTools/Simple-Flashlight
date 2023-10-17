@@ -81,6 +81,9 @@ internal fun MainScreen(
             sosButton()
             stroboscopeButton()
             slidersSection()
+            Spacer(
+                modifier = Modifier.size(SimpleTheme.dimens.padding.extraLarge)
+            )
         }
 
         Box(
