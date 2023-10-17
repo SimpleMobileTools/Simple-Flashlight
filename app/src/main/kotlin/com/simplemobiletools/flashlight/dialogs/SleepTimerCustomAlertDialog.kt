@@ -1,6 +1,7 @@
 package com.simplemobiletools.flashlight.dialogs
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -13,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.simplemobiletools.commons.R
 import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
 import com.simplemobiletools.commons.compose.alert_dialog.DialogSurface
+import com.simplemobiletools.commons.compose.alert_dialog.dialogTextColor
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.MyDevices
 import com.simplemobiletools.commons.compose.theme.AppThemeSurface
@@ -58,10 +60,12 @@ fun SleepTimerCustomAlertDialog(
                             top = SimpleTheme.dimens.padding.extraLarge
                         )
                 ) {
-                    TextField(
-                        modifier = Modifier.padding(
-                            bottom = SimpleTheme.dimens.padding.large
-                        ),
+                    OutlinedTextField(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                bottom = SimpleTheme.dimens.padding.large
+                            ),
                         value = value,
                         onValueChange = {
                             value = it.filter { it.isDigit() }
@@ -69,6 +73,11 @@ fun SleepTimerCustomAlertDialog(
                         label = {
                             Text(stringResource(id = R.string.value))
                         },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            disabledTextColor = dialogTextColor,
+                            disabledBorderColor = SimpleTheme.colorScheme.primary,
+                            disabledLabelColor = SimpleTheme.colorScheme.primary,
+                        ),
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Number
                         )
@@ -76,13 +85,18 @@ fun SleepTimerCustomAlertDialog(
 
                     items.forEachIndexed { index, item ->
                         Row(
+                            modifier = Modifier
+                                .clickable {
+                                    selectedItem = index
+                                }
+                                .padding(vertical = SimpleTheme.dimens.padding.large)
+                                .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             RadioButton(
+                                modifier = Modifier.padding(horizontal = SimpleTheme.dimens.padding.small),
                                 selected = index == selectedItem,
-                                onClick = {
-                                    selectedItem = index
-                                }
+                                onClick = null
                             )
                             Text(
                                 text = stringResource(id = item.stringResId)
