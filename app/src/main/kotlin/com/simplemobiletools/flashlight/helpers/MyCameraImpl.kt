@@ -272,12 +272,12 @@ class MyCameraImpl private constructor(private val context: Context, private var
         handleCameraSetup()
         while (!shouldStroboscopeStop) {
             try {
-                cameraFlash.runOrToast {
+                cameraFlash!!.run {
                     toggleFlashlight(true)
                 }
                 val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                 Thread.sleep(onDuration)
-                cameraFlash.runOrToast {
+                cameraFlash!!.run {
                     toggleFlashlight(false)
                 }
                 val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
