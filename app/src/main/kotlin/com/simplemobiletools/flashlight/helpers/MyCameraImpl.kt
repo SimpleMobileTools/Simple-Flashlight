@@ -193,13 +193,14 @@ class MyCameraImpl private constructor(private val context: Context, private var
         }
 
         try {
-            cameraFlash.runOrToast {
+            cameraFlash!!.run {
                 initialize()
                 toggleFlashlight(true)
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
             disableFlashlight()
+            return
         }
 
         val mainRunnable = Runnable { stateChanged(true) }
@@ -212,12 +213,9 @@ class MyCameraImpl private constructor(private val context: Context, private var
         }
 
         try {
-            cameraFlash.runOrToast {
-                toggleFlashlight(false)
-            }
+            cameraFlash!!.toggleFlashlight(false)
         } catch (e: Exception) {
             context.showErrorToast(e)
-            disableFlashlight()
         }
         stateChanged(false)
     }

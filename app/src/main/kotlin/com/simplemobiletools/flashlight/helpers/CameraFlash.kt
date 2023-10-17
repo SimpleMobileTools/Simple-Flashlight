@@ -48,10 +48,10 @@ internal class CameraFlash(
                 manager.setTorchMode(cameraId, enable)
             }
         } catch (e: Exception) {
-            context.showErrorToast(e)
             scope.launch {
                 MyCameraImpl.cameraError.emit(Unit)
             }
+            throw e
         }
     }
 
