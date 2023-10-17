@@ -2,10 +2,7 @@ package com.simplemobiletools.flashlight.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -33,6 +30,7 @@ internal fun BrightDisplayScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(backgroundColor))
+            .safeDrawingPadding()
     ) {
         TextButton(
             modifier = Modifier
@@ -54,7 +52,6 @@ internal fun BrightDisplayScreen(
         Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .navigationBarsPadding()
         ) {
             sleepTimer()
         }

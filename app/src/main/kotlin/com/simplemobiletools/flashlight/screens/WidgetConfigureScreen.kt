@@ -37,7 +37,7 @@ internal fun WidgetConfigureScreen(
     onSavePressed: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().safeDrawingPadding(),
         verticalArrangement = Arrangement.Bottom,
     ) {
         Box(
