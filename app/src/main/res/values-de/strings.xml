@@ -6,10 +6,10 @@
     <string name="camera_permission">Kameraberechtigung ist für den Stroboskopeffekt erforderlich</string>
     <string name="bright_display">Heller Bildschirm</string>
     <!-- Settings -->
-    <string name="show_bright_display">Schaltfläche für hellen Bildschirm zeigen</string>
-    <string name="show_stroboscope">Schaltfläche für Stroboskop zeigen</string>
-    <string name="stroboscope">Stroboscope</string>
-    <string name="show_sos">Eine SOS-Schaltfläche zeigen</string>
+    <string name="show_bright_display">Schaltfläche für hellen Bildschirm anzeigen</string>
+    <string name="show_stroboscope">Schaltfläche für Stroboskop anzeigen</string>
+    <string name="stroboscope">Stroboskop</string>
+    <string name="show_sos">Eine SOS-Schaltfläche anzeigen</string>
     <string name="turn_flashlight_on">Taschenlampe beim Start einschalten</string>
     <!--
         Haven't found some strings? There's more at
