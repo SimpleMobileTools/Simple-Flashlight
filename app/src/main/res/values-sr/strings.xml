@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Прикажи светло дугме за екран</string>
     <string name="show_stroboscope">Прикажи дугме за стробоскоп</string>
+    <string name="stroboscope">Стробоскоп</string>
     <string name="show_sos">Прикажи СОС дугме</string>
     <string name="turn_flashlight_on">Укључите батеријску лампу при покретању</string>
 </resources>

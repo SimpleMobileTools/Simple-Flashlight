@@ -1,433 +1,404 @@
 package com.simplemobiletools.flashlight.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlarmManager
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.view.WindowManager
-import android.widget.ImageView
-import com.simplemobiletools.commons.dialogs.PermissionRequiredDialog
-import com.simplemobiletools.commons.dialogs.RadioGroupDialog
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.ManagedActivityResultLauncher
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewModelScope
+import com.google.android.material.math.MathUtils
+import com.simplemobiletools.commons.compose.alert_dialog.AlertDialogState
+import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
+import com.simplemobiletools.commons.compose.extensions.*
+import com.simplemobiletools.commons.compose.theme.AppThemeSurface
+import com.simplemobiletools.commons.dialogs.*
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.FAQItem
 import com.simplemobiletools.commons.models.RadioItem
 import com.simplemobiletools.flashlight.BuildConfig
 import com.simplemobiletools.flashlight.R
-import com.simplemobiletools.flashlight.databinding.ActivityMainBinding
-import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomDialog
+import com.simplemobiletools.flashlight.dialogs.SleepTimerCustomAlertDialog
 import com.simplemobiletools.flashlight.extensions.config
+import com.simplemobiletools.flashlight.extensions.startAboutActivity
 import com.simplemobiletools.flashlight.helpers.*
-import com.simplemobiletools.flashlight.models.Events
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import com.simplemobiletools.flashlight.screens.*
+import com.simplemobiletools.flashlight.views.AnimatedSleepTimer
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.flow.*
 import java.util.*
+import kotlin.system.exitProcess
 
-class MainActivity : SimpleActivity() {
+class MainActivity : ComponentActivity() {
     companion object {
         private const val MAX_STROBO_DELAY = 2000L
         private const val MIN_STROBO_DELAY = 10L
-        private const val FLASHLIGHT_STATE = "flashlight_state"
-        private const val STROBOSCOPE_STATE = "stroboscope_state"
     }
 
-    private val binding by viewBinding(ActivityMainBinding::inflate)
-
-    private var mBus: EventBus? = null
-    private var mCameraImpl: MyCameraImpl? = null
-    private var mIsFlashlightOn = false
-    private var reTurnFlashlightOn = true
+    private val preferences by lazy { config }
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        appLaunched(BuildConfig.APPLICATION_ID)
-        setupOptionsMenu()
-        refreshMenuItems()
 
-        mBus = EventBus.getDefault()
+        enableEdgeToEdgeSimple()
+        setContent {
+            AppThemeSurface {
+                val showMoreApps = onEventValue { !resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations) }
+                val sosPermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = getPermissionResultHandler(true)
+                )
+                val stroboscopePermissionLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                    onResult = getPermissionResultHandler(false)
+                )
 
-        binding.apply {
-            updateMaterialActivityViews(mainCoordinator, mainHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-            setupMaterialScrollListener(mainNestedScrollview, mainToolbar)
+                val sleepTimerCustomDialogState = getSleepTimerCustomDialogState()
+                val sleepTimerDialogState = getSleepTimerDialogState(showCustomSleepTimerDialog = sleepTimerCustomDialogState::show)
+                val sleepTimerPermissionDialogState = getSleepTimerPermissionDialogState(showSleepTimerDialog = sleepTimerDialogState::show)
 
-            changeIconColor(getContrastColor(), stroboscopeBtn)
+                MainScreen(
+                    flashlightButton = {
+                        val flashlightActive by viewModel.flashlightOn.collectAsStateWithLifecycle()
 
-            brightDisplayBtn.setOnClickListener {
-                reTurnFlashlightOn = false
-                startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+                        FlashlightButton(
+                            onFlashlightPress = { viewModel.toggleFlashlight() },
+                            flashlightActive = flashlightActive,
+                        )
+                    },
+                    brightDisplayButton = {
+                        val showBrightDisplayButton by preferences.brightDisplayFlow.collectAsStateWithLifecycle(config.brightDisplay)
+                        if (showBrightDisplayButton) {
+                            BrightDisplayButton(
+                                onBrightDisplayPress = {
+                                    startActivity(Intent(applicationContext, BrightDisplayActivity::class.java))
+                                }
+                            )
+                        }
+                    },
+                    sosButton = {
+                        val showSosButton by preferences.sosFlow.collectAsStateWithLifecycle(config.sos)
+                        val sosActive by viewModel.sosActive.collectAsStateWithLifecycle()
+
+                        if (showSosButton) {
+                            SosButton(
+                                sosActive = sosActive,
+                                onSosButtonPress = {
+                                    toggleStroboscope(true, sosPermissionLauncher)
+                                },
+                            )
+                        }
+                    },
+                    stroboscopeButton = {
+                        val showStroboscopeButton by preferences.stroboscopeFlow.collectAsStateWithLifecycle(config.stroboscope)
+                        val stroboscopeActive by viewModel.stroboscopeActive.collectAsStateWithLifecycle()
+
+                        if (showStroboscopeButton) {
+                            StroboscopeButton(
+                                stroboscopeActive = stroboscopeActive,
+                                onStroboscopeButtonPress = {
+                                    toggleStroboscope(false, stroboscopePermissionLauncher)
+                                },
+                            )
+                        }
+                    },
+                    slidersSection = {
+                        val brightnessBarVisible by viewModel.brightnessBarVisible.collectAsStateWithLifecycle()
+                        val brightnessBarValue by viewModel.brightnessBarValue.collectAsStateWithLifecycle()
+                        val stroboscopeBarVisible by viewModel.stroboscopeBarVisible.collectAsStateWithLifecycle()
+                        val stroboscopeBarValue by viewModel.stroboscopeBarValue.collectAsStateWithLifecycle()
+
+                        MainScreenSlidersSection(
+                            showBrightnessBar = brightnessBarVisible,
+                            brightnessBarValue = brightnessBarValue,
+                            onBrightnessBarValueChange = viewModel::updateBrightnessBarValue,
+                            showStroboscopeBar = stroboscopeBarVisible,
+                            stroboscopeBarValue = stroboscopeBarValue,
+                            onStroboscopeBarValueChange = viewModel::updateStroboscopeBarValue,
+                        )
+                    },
+                    sleepTimer = {
+                        val timerVisible by viewModel.timerVisible.collectAsStateWithLifecycle()
+                        val timerText by viewModel.timerText.collectAsStateWithLifecycle()
+
+                        AnimatedSleepTimer(
+                            timerText = timerText,
+                            timerVisible = timerVisible,
+                            onTimerClosePress = { stopSleepTimer() },
+                        )
+                    },
+                    showMoreApps = showMoreApps,
+                    openSettings = ::launchSettings,
+                    openAbout = ::launchAbout,
+                    openSleepTimer = {
+                        showSleepTimerPermission(
+                            requestAlarmPermission = sleepTimerPermissionDialogState::show,
+                            onNoPermissionRequired = sleepTimerDialogState::show
+                        )
+                    },
+                    moreAppsFromUs = ::launchMoreAppsFromUsIntent
+                )
+
+                AppLaunched()
+                CheckAppOnSdCard()
             }
+        }
+    }
 
-            flashlightBtn.setOnClickListener {
-                mCameraImpl!!.toggleFlashlight()
+    @Composable
+    private fun SleepTimerRadioDialog(
+        alertDialogState: AlertDialogState,
+        onCustomValueSelected: () -> Unit
+    ) {
+        val lastSleepTimerSeconds by preferences.lastSleepTimerSecondsFlow.collectAsStateWithLifecycle(preferences.lastSleepTimerSeconds)
+        val items by remember {
+            derivedStateOf {
+                buildSleepTimerRadioItemsList(lastSleepTimerSeconds)
             }
-
-            sosBtn.setOnClickListener {
-                toggleStroboscope(true)
-            }
-
-            stroboscopeBtn.setOnClickListener {
-                toggleStroboscope(false)
-            }
-
-            sleepTimerStop.setOnClickListener { stopSleepTimer() }
         }
 
-        setupStroboscope()
-        checkAppOnSDCard()
+        RadioGroupAlertDialog(
+            alertDialogState = alertDialogState,
+            items = items,
+            selectedItemId = preferences.lastSleepTimerSeconds,
+            callback = {
+                when {
+                    it == -1  -> onCustomValueSelected()
+                    it as Int > 0 -> pickedSleepTimer(it)
+                }
+            }
+        )
+    }
+
+    private fun buildSleepTimerRadioItemsList(
+        lastSleepTimerSeconds: Int
+    ) = buildList<RadioItem> {
+        addAll(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
+            RadioItem(it, secondsToString(it))
+        })
+
+        if (none { it.id == lastSleepTimerSeconds }) {
+            add(RadioItem(lastSleepTimerSeconds, secondsToString(lastSleepTimerSeconds)))
+        }
+
+        sortBy { it.id }
+        add(RadioItem(-1, getString(com.simplemobiletools.commons.R.string.custom)))
+    }.toImmutableList()
+
+    @Composable
+    private fun AppLaunched(
+        donateAlertDialogState: AlertDialogState = getDonateAlertDialogState(),
+        rateStarsAlertDialogState: AlertDialogState = getRateStarsAlertDialogState(),
+    ) {
+        LaunchedEffect(Unit) {
+            appLaunchedCompose(
+                appId = BuildConfig.APPLICATION_ID,
+                showDonateDialog = donateAlertDialogState::show,
+                showRateUsDialog = rateStarsAlertDialogState::show,
+                showUpgradeDialog = {}
+            )
+        }
+    }
+
+    @Composable
+    private fun getDonateAlertDialogState() =
+        rememberAlertDialogState().apply {
+            DialogMember {
+                DonateAlertDialog(alertDialogState = this)
+            }
+        }
+
+    @Composable
+    private fun getRateStarsAlertDialogState() = rememberAlertDialogState().apply {
+        DialogMember {
+            RateStarsAlertDialog(alertDialogState = this, onRating = ::rateStarsRedirectAndThankYou)
+        }
+    }
+
+    @Composable
+    private fun getSleepTimerCustomDialogState() = rememberAlertDialogState().apply {
+        DialogMember {
+            SleepTimerCustomAlertDialog(
+                alertDialogState = this,
+                onConfirmClick = {
+                    if (it > 0) {
+                        pickedSleepTimer(it)
+                    }
+                },
+            )
+        }
+    }
+
+    @Composable
+    private fun getSleepTimerDialogState(
+        showCustomSleepTimerDialog: () -> Unit
+    ) = rememberAlertDialogState().apply {
+        DialogMember {
+            SleepTimerRadioDialog(
+                alertDialogState = this,
+                onCustomValueSelected = showCustomSleepTimerDialog
+            )
+        }
+    }
+
+    @Composable
+    private fun getSleepTimerPermissionDialogState(
+        showSleepTimerDialog: () -> Unit
+    ) = rememberAlertDialogState().apply {
+        DialogMember {
+            PermissionRequiredAlertDialog(
+                alertDialogState = this,
+                text = stringResource(id = com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer),
+                positiveActionCallback = {
+                    openRequestExactAlarmSettings(baseConfig.appId)
+                },
+                negativeActionCallback = showSleepTimerDialog
+            )
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.mainToolbar)
-        mCameraImpl!!.handleCameraSetup()
-        checkState(MyCameraImpl.isFlashlightOn)
+        viewModel.onResume()
 
-        val contrastColor = getContrastColor()
-
-        binding.apply {
-            changeIconColor(contrastColor, brightDisplayBtn)
-            brightDisplayBtn.beVisibleIf(config.brightDisplay)
-            sosBtn.beVisibleIf(config.sos)
-
-            if (sosBtn.currentTextColor != getProperPrimaryColor()) {
-                sosBtn.setTextColor(contrastColor)
-            }
-
-            stroboscopeBtn.beVisibleIf(config.stroboscope)
-
-            if (!config.stroboscope) {
-                mCameraImpl!!.stopStroboscope()
-                stroboscopeBar.beInvisible()
-            }
-
-            updateTextColors(mainHolder)
-            if (stroboscopeBar.isInvisible()) {
-                changeIconColor(contrastColor, stroboscopeBtn)
-            }
-        }
-
-        binding.sleepTimerHolder.background = ColorDrawable(getProperBackgroundColor())
-        binding.sleepTimerStop.applyColorFilter(getProperTextColor())
-
-        requestedOrientation = if (config.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
+        requestedOrientation = if (preferences.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
-
-        if (config.turnFlashlightOn && reTurnFlashlightOn) {
-            mCameraImpl!!.enableFlashlight()
-        }
-
-        reTurnFlashlightOn = true
 
         checkShortcuts()
     }
 
     override fun onStart() {
         super.onStart()
-        mBus!!.register(this)
 
-        if (config.sleepInTS == 0L) {
-            binding.sleepTimerHolder.beGone()
+        if (preferences.sleepInTS == 0L) {
+            viewModel.hideTimer()
             (getSystemService(Context.ALARM_SERVICE) as AlarmManager).cancel(getShutDownPendingIntent())
-        }
-
-        if (mCameraImpl == null) {
-            setupCameraImpl()
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mBus!!.unregister(this)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        releaseCamera()
-    }
-
-    private fun setupOptionsMenu() {
-        binding.mainToolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
-                R.id.settings -> launchSettings()
-                R.id.sleep_timer -> showSleepTimer()
-                R.id.about -> launchAbout()
-                else -> return@setOnMenuItemClickListener false
-            }
-            return@setOnMenuItemClickListener true
-        }
-    }
-
-    private fun refreshMenuItems() {
-        binding.mainToolbar.menu.apply {
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(R.bool.hide_google_relations)
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(FLASHLIGHT_STATE, mIsFlashlightOn)
-        outState.putBoolean(STROBOSCOPE_STATE, binding.stroboscopeBar.isVisible())
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val isFlashlightOn = savedInstanceState.getBoolean(FLASHLIGHT_STATE, false)
-        if (isFlashlightOn) {
-            mCameraImpl!!.toggleFlashlight()
-        }
-
-        val isStroboscopeOn = savedInstanceState.getBoolean(STROBOSCOPE_STATE, false)
-        if (isStroboscopeOn) {
-            toggleStroboscope(false)
         }
     }
 
     private fun launchSettings() {
         hideKeyboard()
-        reTurnFlashlightOn = false
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
 
     private fun launchAbout() {
-        reTurnFlashlightOn = false
-        val licenses = LICENSE_EVENT_BUS
-
         val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title_commons, R.string.faq_1_text_commons),
-            FAQItem(R.string.faq_4_title_commons, R.string.faq_4_text_commons)
+            FAQItem(com.simplemobiletools.commons.R.string.faq_1_title_commons, com.simplemobiletools.commons.R.string.faq_1_text_commons),
+            FAQItem(com.simplemobiletools.commons.R.string.faq_4_title_commons, com.simplemobiletools.commons.R.string.faq_4_text_commons)
         )
 
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
+        if (!resources.getBoolean(com.simplemobiletools.commons.R.bool.hide_google_relations)) {
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_2_title_commons, com.simplemobiletools.commons.R.string.faq_2_text_commons))
+            faqItems.add(FAQItem(com.simplemobiletools.commons.R.string.faq_6_title_commons, com.simplemobiletools.commons.R.string.faq_6_text_commons))
         }
 
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+        startAboutActivity(R.string.app_name, 0, BuildConfig.VERSION_NAME, faqItems, true)
     }
 
-    private fun setupCameraImpl() {
-        mCameraImpl = MyCameraImpl.newInstance(this, object : CameraTorchListener {
-            override fun onTorchEnabled(isEnabled: Boolean) {
-                mCameraImpl!!.onTorchEnabled(isEnabled)
-                if (mCameraImpl!!.supportsBrightnessControl()) {
-                    binding.brightnessBar.beVisibleIf(isEnabled)
-                }
-            }
-
-            override fun onTorchUnavailable() {
-                mCameraImpl!!.onCameraNotAvailable()
-            }
-        })
-        if (config.turnFlashlightOn) {
-            mCameraImpl!!.enableFlashlight()
-        }
-        setupBrightness()
-    }
-
-    private fun setupStroboscope() {
-        binding.stroboscopeBar.apply {
-            max = (MAX_STROBO_DELAY - MIN_STROBO_DELAY).toInt()
-            progress = config.stroboscopeProgress
-            onSeekBarChangeListener { progress ->
-                val frequency = max - progress + MIN_STROBO_DELAY
-                mCameraImpl?.stroboFrequency = frequency
-                config.stroboscopeFrequency = frequency
-                config.stroboscopeProgress = progress
-            }
-        }
-    }
-
-    private fun toggleStroboscope(isSOS: Boolean) {
+    private fun toggleStroboscope(isSOS: Boolean, launcher: ManagedActivityResultLauncher<String, Boolean>) {
         // use the old Camera API for stroboscope, the new Camera Manager is way too slow
         if (isNougatPlus()) {
             cameraPermissionGranted(isSOS)
         } else {
-            handlePermission(PERMISSION_CAMERA) {
-                if (it) {
-                    cameraPermissionGranted(isSOS)
-                } else {
-                    toast(R.string.camera_permission)
-                }
+            val permission = Manifest.permission.CAMERA
+            if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                cameraPermissionGranted(isSOS)
+            } else {
+                launcher.launch(permission)
             }
         }
     }
 
-    private fun setupBrightness() {
-        binding.brightnessBar.apply {
-            max = mCameraImpl?.getMaximumBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-            progress = mCameraImpl?.getCurrentBrightnessLevel() ?: MIN_BRIGHTNESS_LEVEL
-            onSeekBarChangeListener { level ->
-                val newLevel = level.coerceAtLeast(MIN_BRIGHTNESS_LEVEL)
-                mCameraImpl?.updateBrightnessLevel(newLevel)
-                config.brightnessLevel = newLevel
-            }
+    private fun getPermissionResultHandler(isSos: Boolean): (Boolean) -> Unit = { granted ->
+        if (granted) {
+            cameraPermissionGranted(isSos)
+        } else {
+            toast(R.string.camera_permission)
         }
     }
 
     private fun cameraPermissionGranted(isSOS: Boolean) {
         if (isSOS) {
-            val isSOSRunning = mCameraImpl!!.toggleSOS()
-            binding.sosBtn.setTextColor(if (isSOSRunning) getProperPrimaryColor() else getContrastColor())
-        } else if (mCameraImpl!!.toggleStroboscope()) {
-            binding.apply {
-                stroboscopeBar.beInvisibleIf(stroboscopeBar.isVisible())
-                changeIconColor(if (stroboscopeBar.isVisible()) getProperPrimaryColor() else getContrastColor(), stroboscopeBtn)
-            }
+            viewModel.enableSos()
+        } else {
+            viewModel.enableStroboscope()
         }
     }
 
-    private fun getContrastColor() = getProperBackgroundColor().getContrastColor()
-
-    private fun releaseCamera() {
-        mCameraImpl?.releaseCamera()
-        mCameraImpl = null
-    }
-
-    private fun showSleepTimer(force: Boolean = false) {
+    private fun showSleepTimerPermission(
+        requestAlarmPermission: () -> Unit,
+        onNoPermissionRequired: () -> Unit
+    ) {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        if (isSPlus() && !alarmManager.canScheduleExactAlarms() && !force) {
-            PermissionRequiredDialog(
-                this,
-                com.simplemobiletools.commons.R.string.allow_alarm_sleep_timer,
-                positiveActionCallback = { openRequestExactAlarmSettings(baseConfig.appId) },
-                negativeActionCallback = { showSleepTimer(true) }
-            )
+        if (isSPlus() && !alarmManager.canScheduleExactAlarms()) {
+            requestAlarmPermission()
             return
         }
-
-        val items = ArrayList(listOf(10, 30, 60, 5 * 60, 10 * 60, 30 * 60).map {
-            RadioItem(it, secondsToString(it))
-        })
-
-        if (items.none { it.id == config.lastSleepTimerSeconds }) {
-            items.add(RadioItem(config.lastSleepTimerSeconds, secondsToString(config.lastSleepTimerSeconds)))
-        }
-
-        items.sortBy { it.id }
-        items.add(RadioItem(-1, getString(R.string.custom)))
-
-        RadioGroupDialog(this, items, config.lastSleepTimerSeconds) {
-            if (it as Int == -1) {
-                SleepTimerCustomDialog(this) {
-                    if (it > 0) {
-                        pickedSleepTimer(it)
-                    }
-                }
-            } else if (it > 0) {
-                pickedSleepTimer(it)
-            }
-        }
+        onNoPermissionRequired()
     }
 
     private fun secondsToString(seconds: Int): String {
         val finalHours = seconds / 3600
         val finalMinutes = (seconds / 60) % 60
         val finalSeconds = seconds % 60
-        val parts = mutableListOf<String>()
-        if (finalHours != 0) {
-            parts.add(resources.getQuantityString(R.plurals.hours, finalHours, finalHours))
-        }
-        if (finalMinutes != 0) {
-            parts.add(resources.getQuantityString(R.plurals.minutes, finalMinutes, finalMinutes))
-        }
-        if (finalSeconds != 0) {
-            parts.add(resources.getQuantityString(R.plurals.seconds, finalSeconds, finalSeconds))
-        }
-        return parts.joinToString(separator = " ")
+        return buildList {
+            if (finalHours != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.hours, finalHours, finalHours))
+            }
+            if (finalMinutes != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.minutes, finalMinutes, finalMinutes))
+            }
+            if (finalSeconds != 0) {
+                add(resources.getQuantityString(com.simplemobiletools.commons.R.plurals.seconds, finalSeconds, finalSeconds))
+            }
+        }.joinToString(separator = " ")
     }
 
     private fun pickedSleepTimer(seconds: Int) {
-        config.lastSleepTimerSeconds = seconds
-        config.sleepInTS = System.currentTimeMillis() + seconds * 1000
+        preferences.lastSleepTimerSeconds = seconds
+        preferences.sleepInTS = System.currentTimeMillis() + seconds * 1000
         startSleepTimer()
     }
 
     private fun startSleepTimer() {
-        binding.sleepTimerHolder.fadeIn()
+        viewModel.showTimer()
         startSleepTimerCountDown()
     }
 
     private fun stopSleepTimer() {
-        binding.sleepTimerHolder.fadeOut()
+        viewModel.hideTimer()
         stopSleepTimerCountDown()
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun sleepTimerChanged(event: Events.SleepTimerChanged) {
-        binding.sleepTimerValue.text = event.seconds.getFormattedDuration()
-        binding.sleepTimerHolder.beVisible()
-
-        if (event.seconds == 0) {
-            finish()
-        }
-    }
-
-    @Subscribe
-    fun stateChangedEvent(event: Events.StateChanged) {
-        checkState(event.isEnabled)
-    }
-
-    @Subscribe
-    fun stopStroboscope(event: Events.StopStroboscope) {
-        binding.stroboscopeBar.beInvisible()
-        changeIconColor(getContrastColor(), binding.stroboscopeBtn)
-    }
-
-    @Subscribe
-    fun stopSOS(event: Events.StopSOS) {
-        binding.sosBtn.setTextColor(getContrastColor())
-    }
-
-    private fun checkState(isEnabled: Boolean) {
-        if (isEnabled) {
-            enableFlashlight()
-        } else {
-            disableFlashlight()
-        }
-    }
-
-    private fun enableFlashlight() {
-        changeIconColor(getProperPrimaryColor(), binding.flashlightBtn)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        mIsFlashlightOn = true
-
-        binding.apply {
-            sosBtn.setTextColor(getContrastColor())
-
-            changeIconColor(getContrastColor(), stroboscopeBtn)
-            stroboscopeBar.beInvisible()
-        }
-    }
-
-    private fun disableFlashlight() {
-        changeIconColor(getContrastColor(), binding.flashlightBtn)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        mIsFlashlightOn = false
-    }
-
-    private fun changeIconColor(color: Int, imageView: ImageView?) {
-        imageView!!.background.applyColorFilter(color)
     }
 
     @SuppressLint("NewApi")
     private fun checkShortcuts() {
-        val appIconColor = config.appIconColor
-        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
+        val appIconColor = preferences.appIconColor
+        if (isNougatMR1Plus() && preferences.lastHandledShortcutColor != appIconColor) {
             val createNewContact = getBrightDisplayShortcut(appIconColor)
 
             try {
-                shortcutManager.dynamicShortcuts = Arrays.asList(createNewContact)
-                config.lastHandledShortcutColor = appIconColor
+                shortcutManager.dynamicShortcuts = listOf(createNewContact)
+                preferences.lastHandledShortcutColor = appIconColor
             } catch (ignored: Exception) {
             }
         }
@@ -450,9 +421,147 @@ class MainActivity : SimpleActivity() {
             .build()
     }
 
-    @Subscribe
-    fun cameraUnavailable(event: Events.CameraUnavailable) {
-        toast(R.string.camera_error)
-        disableFlashlight()
+    internal class MainViewModel(
+        application: Application
+    ) : AndroidViewModel(application) {
+
+        private val preferences = application.config
+
+        private lateinit var camera: MyCameraImpl
+
+        init {
+            camera = MyCameraImpl.newInstance(application, object : CameraTorchListener {
+                override fun onTorchEnabled(isEnabled: Boolean) {
+                    camera.onTorchEnabled(isEnabled)
+                    if (isEnabled && camera.supportsBrightnessControl()) {
+                        _brightnessBarValue.value = camera.getCurrentBrightnessLevel().toFloat() / camera.getMaximumBrightnessLevel()
+                    }
+                }
+
+                override fun onTorchUnavailable() {
+                    camera.onCameraNotAvailable()
+                }
+            })
+            if (preferences.turnFlashlightOn) {
+                camera.enableFlashlight()
+            }
+        }
+
+        private val _timerText: MutableStateFlow<String> = MutableStateFlow("00:00")
+        val timerText = _timerText.asStateFlow()
+
+        private val _timerVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        val timerVisible = _timerVisible.asStateFlow()
+
+        val flashlightOn = camera.flashlightOnFlow
+
+        val brightnessBarVisible = flashlightOn.map {
+            it && camera.supportsBrightnessControl()
+        }.stateIn(viewModelScope, SharingStarted.Lazily, false)
+
+        private val _sosActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        val sosActive = _sosActive.asStateFlow()
+
+        private val _brightnessBarValue: MutableStateFlow<Float> = MutableStateFlow(1f)
+        val brightnessBarValue = _brightnessBarValue.asStateFlow()
+
+        private val _stroboscopeActive: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        val stroboscopeActive = _stroboscopeActive.asStateFlow()
+
+        val stroboscopeBarVisible = stroboscopeActive
+
+        private val _stroboscopeBarValue: MutableStateFlow<Float> = MutableStateFlow(0.5f)
+        val stroboscopeBarValue = _stroboscopeBarValue.asStateFlow()
+
+        init {
+            _stroboscopeBarValue.value = preferences.stroboscopeProgress.toFloat() / MAX_STROBO_DELAY
+
+            SleepTimer.timeLeft
+                .onEach { seconds ->
+                    _timerText.value = seconds.getFormattedDuration()
+                    _timerVisible.value = true
+
+                    if (seconds == 0) {
+                        exitProcess(0)
+                    }
+                }
+                .launchIn(viewModelScope)
+
+            MyCameraImpl.cameraError
+                .onEach { getApplication<Application>().toast(R.string.camera_error) }
+                .launchIn(viewModelScope)
+
+            camera.stroboscopeDisabled
+                .onEach { _stroboscopeActive.value = false }
+                .launchIn(viewModelScope)
+
+            camera.sosDisabled
+                .onEach { _sosActive.value = false }
+                .launchIn(viewModelScope)
+        }
+
+        fun hideTimer() {
+            _timerVisible.value = false
+        }
+
+        fun showTimer() {
+            _timerVisible.value = true
+        }
+
+        fun updateBrightnessBarValue(newValue: Float) {
+            _brightnessBarValue.value = newValue
+            val max = camera.getMaximumBrightnessLevel()
+            val min = MIN_BRIGHTNESS_LEVEL
+            val newLevel = MathUtils.lerp(min.toFloat(), max.toFloat(), newValue)
+            camera.updateBrightnessLevel(newLevel.toInt())
+            preferences.brightnessLevel = newLevel.toInt()
+        }
+
+        fun updateStroboscopeBarValue(newValue: Float) {
+            _stroboscopeBarValue.value = newValue
+            val max = MAX_STROBO_DELAY
+            val min = MIN_STROBO_DELAY
+            val newLevel = MathUtils.lerp(min.toFloat(), max.toFloat(), 1 - newValue)
+            camera.stroboFrequency = newLevel.toLong()
+            preferences.stroboscopeFrequency = newLevel.toLong()
+            preferences.stroboscopeProgress = ((1 - newLevel) * MAX_STROBO_DELAY).toInt()
+        }
+
+        fun onResume() {
+            camera.handleCameraSetup()
+
+            if (preferences.turnFlashlightOn) {
+                camera.enableFlashlight()
+            }
+
+            if (!preferences.stroboscope && _stroboscopeActive.value) {
+                camera.stopStroboscope()
+            }
+
+            if (!preferences.sos && _sosActive.value) {
+                camera.stopSOS()
+            }
+        }
+
+        override fun onCleared() {
+            super.onCleared()
+            releaseCamera()
+        }
+
+        fun toggleFlashlight() {
+            camera.toggleFlashlight()
+        }
+
+        private fun releaseCamera() {
+            camera.releaseCamera()
+        }
+
+        fun enableSos() {
+            _sosActive.value = camera.toggleSOS()
+        }
+
+        fun enableStroboscope() {
+            _stroboscopeActive.value = camera.toggleStroboscope()
+        }
     }
 }

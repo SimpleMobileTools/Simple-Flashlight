@@ -13,17 +13,25 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BRIGHT_DISPLAY, true)
         set(brightDisplay) = prefs.edit().putBoolean(BRIGHT_DISPLAY, brightDisplay).apply()
 
+    val brightDisplayFlow = ::brightDisplay.asFlowNonNull(emitOnCollect = true)
+
     var stroboscope: Boolean
         get() = prefs.getBoolean(STROBOSCOPE, true)
         set(stroboscope) = prefs.edit().putBoolean(STROBOSCOPE, stroboscope).apply()
+
+    val stroboscopeFlow = ::stroboscope.asFlowNonNull(emitOnCollect = true)
 
     var sos: Boolean
         get() = prefs.getBoolean(SOS, true)
         set(sos) = prefs.edit().putBoolean(SOS, sos).apply()
 
+    val sosFlow = ::sos.asFlowNonNull(emitOnCollect = true)
+
     var turnFlashlightOn: Boolean
         get() = prefs.getBoolean(TURN_FLASHLIGHT_ON, false)
         set(turnFlashlightOn) = prefs.edit().putBoolean(TURN_FLASHLIGHT_ON, turnFlashlightOn).apply()
+
+    val turnFlashlightOnFlow = ::turnFlashlightOn.asFlowNonNull()
 
     var stroboscopeProgress: Int
         get() = prefs.getInt(STROBOSCOPE_PROGRESS, 1000)
@@ -37,9 +45,13 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(BRIGHT_DISPLAY_COLOR, Color.WHITE)
         set(brightDisplayColor) = prefs.edit().putInt(BRIGHT_DISPLAY_COLOR, brightDisplayColor).apply()
 
+    val brightDisplayColorFlow = ::brightDisplayColor.asFlowNonNull()
+
     var forcePortraitMode: Boolean
         get() = prefs.getBoolean(FORCE_PORTRAIT_MODE, true)
         set(forcePortraitMode) = prefs.edit().putBoolean(FORCE_PORTRAIT_MODE, forcePortraitMode).apply()
+
+    val forcePortraitModeFlow = ::forcePortraitMode.asFlowNonNull()
 
     var brightnessLevel: Int
         get() = prefs.getInt(BRIGHTNESS_LEVEL, DEFAULT_BRIGHTNESS_LEVEL)
@@ -48,6 +60,8 @@ class Config(context: Context) : BaseConfig(context) {
     var lastSleepTimerSeconds: Int
         get() = prefs.getInt(LAST_SLEEP_TIMER_SECONDS, 30 * 60)
         set(lastSleepTimerSeconds) = prefs.edit().putInt(LAST_SLEEP_TIMER_SECONDS, lastSleepTimerSeconds).apply()
+
+    val lastSleepTimerSecondsFlow = ::lastSleepTimerSeconds.asFlowNonNull()
 
     var sleepInTS: Long
         get() = prefs.getLong(SLEEP_IN_TS, 0)

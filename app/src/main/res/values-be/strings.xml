@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Паказваць кнопку яркага экрана</string>
     <string name="show_stroboscope">Паказваць кнопку страбаскопа</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Паказваць кнопку СОС</string>
     <string name="turn_flashlight_on">Уключаць ліхтарык пры запуску</string>
     <!--

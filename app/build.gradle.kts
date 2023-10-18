@@ -43,6 +43,11 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     buildTypes {
@@ -80,6 +85,13 @@ android {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = project.libs.versions.app.build.kotlinJVMTarget.get()
+        kotlinOptions.freeCompilerArgs = listOf(
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material.ExperimentalMaterialApi",
+            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+            "-Xcontext-receivers"
+        )
     }
 
     namespace = libs.versions.app.version.appId.get()
@@ -93,6 +105,7 @@ android {
 dependencies {
     implementation(libs.simple.tools.commons)
 
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.eventbus)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.bundles.compose.preview)
 }

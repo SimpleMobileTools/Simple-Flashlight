@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Mostrar o botão de tela brilhante</string>
     <string name="show_stroboscope">Mostrar o botão do Estroboscópio</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Mostrar o botão de SOS</string>
     <string name="turn_flashlight_on">Ligar a lanterna ao iniciar o app</string>
     <!--

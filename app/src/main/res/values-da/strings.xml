@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Vis en lys skærmknap</string>
     <string name="show_stroboscope">Vis en stroboskop-knap</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Vis en SOS-knap</string>
     <string name="turn_flashlight_on">Slå lommelygte til ved start</string>
     <!--

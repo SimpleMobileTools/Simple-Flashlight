@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">چمکدار ڈیسپلے بٹن دکھاؤ</string>
     <string name="show_stroboscope">سٹروبوسکوپ بٹن دکھاؤ</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">ایس‌اوایس بٹن دکھاؤ</string>
     <string name="turn_flashlight_on">جدوں شروع کرن ٹورچ نوں چالو کرو</string>
 </resources>

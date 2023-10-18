@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Afișaţi un buton pentru ecran luminos</string>
     <string name="show_stroboscope">Afișaţi un buton pentru stroboscop</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Afișați un buton SOS</string>
     <string name="turn_flashlight_on">Porniți lanterna la pornire</string>
     <!--

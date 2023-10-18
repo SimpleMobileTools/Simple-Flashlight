@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Mostra un pulsante per lo schermo luminoso</string>
     <string name="show_stroboscope">Mostra un pulsante per l\'effetto stroboscopico</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Mostra un pulsante SOS</string>
     <string name="turn_flashlight_on">Accendi la torcia all\'avvio</string>
     <!--

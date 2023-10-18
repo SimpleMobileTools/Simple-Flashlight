@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Pokazuj przycisk jasnego wyświetlacza</string>
     <string name="show_stroboscope">Pokazuj przycisk stroboskopu</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Pokazuj przycisk SOS</string>
     <string name="turn_flashlight_on">Włączaj latarkę przy uruchomieniu</string>
     <!--

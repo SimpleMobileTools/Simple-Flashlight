@@ -2,4 +2,6 @@
 <resources>
     <string name="package_name">com.simplemobiletools.flashlight</string>
 
+    <string name="sos">SOS</string>
+
 </resources>

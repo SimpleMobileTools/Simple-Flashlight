@@ -7,17 +7,22 @@ import com.simplemobiletools.commons.extensions.toast
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.extensions.config
 import com.simplemobiletools.flashlight.extensions.updateWidgets
-import com.simplemobiletools.flashlight.models.Events
-import org.greenrobot.eventbus.EventBus
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class MyCameraImpl private constructor(val context: Context, private var cameraTorchListener: CameraTorchListener? = null) {
+class MyCameraImpl private constructor(private val context: Context, private var cameraTorchListener: CameraTorchListener? = null) {
     var stroboFrequency = 1000L
 
     companion object {
         var isFlashlightOn = false
 
         private var u = 200L // The length of one dit (Time unit)
-        private val SOS = arrayListOf(u, u, u, u, u, u * 3, u * 3, u, u * 3, u, u * 3, u * 3, u, u, u, u, u, u * 7)
+        private val SOS = listOf(u, u, u, u, u, u * 3, u * 3, u, u * 3, u, u * 3, u * 3, u, u, u, u, u, u * 7)
 
         private var shouldEnableFlashlight = false
         private var shouldEnableStroboscope = false
@@ -35,8 +40,15 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         @Volatile
         private var isSOSRunning = false
 
+        val cameraError = MutableSharedFlow<Unit>()
+
         fun newInstance(context: Context, cameraTorchListener: CameraTorchListener? = null) = MyCameraImpl(context, cameraTorchListener)
     }
+
+    private val scope = CoroutineScope(Dispatchers.Default)
+
+    private val _flashlightOn = MutableStateFlow(false)
+    val flashlightOnFlow = _flashlightOn.asStateFlow()
 
     private val cameraFlash: CameraFlash?
         get() {
@@ -50,6 +62,12 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         handleCameraSetup()
         stroboFrequency = context.config.stroboscopeFrequency
     }
+
+    private val _sosDisabled = MutableSharedFlow<Unit>()
+    val sosDisabled = _sosDisabled.asSharedFlow()
+
+    private val _stroboscopeDisabled = MutableSharedFlow<Unit>()
+    val stroboscopeDisabled = _stroboscopeDisabled.asSharedFlow()
 
     fun toggleFlashlight() {
         isFlashlightOn = !isFlashlightOn
@@ -89,7 +107,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun stopStroboscope() {
         shouldStroboscopeStop = true
-        EventBus.getDefault().post(Events.StopStroboscope())
+        scope.launch {
+            _stroboscopeDisabled.emit(Unit)
+        }
     }
 
     fun toggleSOS(): Boolean {
@@ -129,7 +149,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     fun stopSOS() {
         shouldStroboscopeStop = true
-        EventBus.getDefault().post(Events.StopSOS())
+        scope.launch {
+            _sosDisabled.emit(Unit)
+        }
     }
 
     private fun tryInitCamera(): Boolean {
@@ -147,7 +169,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
                 MyCameraImpl.cameraFlash = CameraFlash(context, cameraTorchListener)
             }
         } catch (e: Exception) {
-            EventBus.getDefault().post(Events.CameraUnavailable())
+            scope.launch {
+                cameraError.emit(Unit)
+            }
         }
     }
 
@@ -169,13 +193,14 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         }
 
         try {
-            cameraFlash.runOrToast {
+            cameraFlash!!.run {
                 initialize()
                 toggleFlashlight(true)
             }
         } catch (e: Exception) {
             context.showErrorToast(e)
             disableFlashlight()
+            return
         }
 
         val mainRunnable = Runnable { stateChanged(true) }
@@ -188,12 +213,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         }
 
         try {
-            cameraFlash.runOrToast {
-                toggleFlashlight(false)
-            }
+            cameraFlash!!.toggleFlashlight(false)
         } catch (e: Exception) {
             context.showErrorToast(e)
-            disableFlashlight()
         }
         stateChanged(false)
     }
@@ -209,7 +231,9 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
 
     private fun stateChanged(isEnabled: Boolean) {
         isFlashlightOn = isEnabled
-        EventBus.getDefault().post(Events.StateChanged(isEnabled))
+        scope.launch {
+            _flashlightOn.emit(isEnabled)
+        }
         context.updateWidgets(isEnabled)
     }
 
@@ -248,12 +272,12 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         handleCameraSetup()
         while (!shouldStroboscopeStop) {
             try {
-                cameraFlash.runOrToast {
+                cameraFlash!!.run {
                     toggleFlashlight(true)
                 }
                 val onDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
                 Thread.sleep(onDuration)
-                cameraFlash.runOrToast {
+                cameraFlash!!.run {
                     toggleFlashlight(false)
                 }
                 val offDuration = if (isStroboSOS) SOS[sosIndex++ % SOS.size] else stroboFrequency
@@ -276,8 +300,14 @@ class MyCameraImpl private constructor(val context: Context, private var cameraT
         shouldStroboscopeStop = false
         if (isStroboSOS) {
             isSOSRunning = false
+            scope.launch {
+                _sosDisabled.emit(Unit)
+            }
         } else {
             isStroboscopeRunning = false
+            scope.launch {
+                _stroboscopeDisabled.emit(Unit)
+            }
         }
 
         when {

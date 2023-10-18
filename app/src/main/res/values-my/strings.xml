@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">မှန်သားပြင်အလင်း ခလုတ်ပြပါ</string>
     <string name="show_stroboscope">အချက်ပြမီး ခလုတ် ပြပါ</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">အက်စ်အိုအက်စ် ခလုတ်ပြပါ</string>
     <string name="turn_flashlight_on">အက်ပ်ကိုဖွင့်တာနဲ့လက်နှိပ်မီးကိုဖွင့်ပါ</string>
     <!--

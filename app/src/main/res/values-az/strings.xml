@@ -8,6 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">İşıqlı ekran düyməsi göstər</string>
     <string name="show_stroboscope">Stroboskop düyməsi göstər</string>
+    <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Show an SOS button</string>
     <string name="turn_flashlight_on">Başlanğıcda fənəri aç</string>
     <!--
