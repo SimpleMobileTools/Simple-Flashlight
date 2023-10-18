@@ -9,12 +9,18 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.ColorInt
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.simplemobiletools.commons.compose.alert_dialog.rememberAlertDialogState
 import com.simplemobiletools.commons.compose.extensions.enableEdgeToEdgeSimple
+import com.simplemobiletools.commons.compose.system_ui_controller.rememberSystemUiController
 import com.simplemobiletools.commons.compose.theme.AppTheme
+import com.simplemobiletools.commons.compose.theme.SimpleTheme
+import com.simplemobiletools.commons.compose.theme.isLitWell
 import com.simplemobiletools.commons.dialogs.ColorPickerAlertDialog
+import com.simplemobiletools.commons.extensions.isUsingSystemDarkTheme
 import com.simplemobiletools.commons.helpers.IS_CUSTOMIZING_COLORS
 import com.simplemobiletools.flashlight.R
 import com.simplemobiletools.flashlight.activities.viewmodel.WidgetConfigureViewModel
@@ -37,9 +43,20 @@ class WidgetBrightDisplayConfigureActivity : ComponentActivity() {
             finish()
         }
 
-        enableEdgeToEdgeSimple()
         setContent {
             AppTheme {
+
+                val systemUiController = rememberSystemUiController()
+                val surfaceColor = SimpleTheme.colorScheme.surface
+
+                DisposableEffect(systemUiController, !isUsingSystemDarkTheme(), surfaceColor) {
+                    systemUiController.setSystemBarsColor(
+                        color = surfaceColor,
+                        darkIcons = surfaceColor.isLitWell()
+                    )
+                    onDispose { }
+                }
+
                 val widgetColor by viewModel.widgetColor.collectAsStateWithLifecycle()
                 val widgetAlpha by viewModel.widgetAlpha.collectAsStateWithLifecycle()
 
