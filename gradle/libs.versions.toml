@@ -22,8 +22,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.simplemobiletools.flashlight"
-app-version-versionCode = "65"
-app-version-versionName = "5.10.0"
+app-version-versionCode = "66"
+app-version-versionName = "5.10.1"
 [libraries]
 #AndroidX
 androidx-customView = { module = "androidx.customview:customview", version.ref = "androidx-customView" }
