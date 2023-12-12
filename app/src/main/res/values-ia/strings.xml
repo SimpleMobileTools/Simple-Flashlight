@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="turn_flashlight_on">Activar le lanterna al initio</string>
+    <string name="stroboscope">Stroboscopio</string>
+    <string name="show_stroboscope">Monstrar un button de stroboscopio</string>
+    <string name="app_launcher_name">Lanterna</string>
+    <string name="show_bright_display">Monstrar un button de schermo luminose</string>
+    <string name="camera_error">Falleva le accesso al camera</string>
+    <string name="show_sos">Monstrar un button de SOS</string>
+    <string name="bright_display">Schermo luminose</string>
+    <string name="app_name">Lanterna Simple</string>
+    <string name="camera_permission">Le permission de camera es necessari pro un effecto stroboscopic adequate</string>
+</resources>

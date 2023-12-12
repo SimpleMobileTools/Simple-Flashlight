@@ -8,7 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Näita nuppu ekraanil kirkana</string>
     <string name="show_stroboscope">Näita stroboskoobi nuppu</string>
-    <string name="stroboscope">Stroboscope</string>
+    <string name="stroboscope">Stroboskoop</string>
     <string name="show_sos">Näita SOS-nuppu</string>
     <string name="turn_flashlight_on">Rakenduse käivitamisel lülita taskulamp sisse</string>
     <!--

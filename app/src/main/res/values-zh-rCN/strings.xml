@@ -8,7 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">显示高亮屏幕按钮</string>
     <string name="show_stroboscope">显示频闪仪按钮</string>
-    <string name="stroboscope">Stroboscope</string>
+    <string name="stroboscope">频闪观测器</string>
     <string name="show_sos">显示紧急求助按钮</string>
     <string name="turn_flashlight_on">启动时打开手电筒</string>
     <!--

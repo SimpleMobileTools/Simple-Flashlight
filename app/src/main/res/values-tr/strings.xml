@@ -8,7 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Parlak ekran düğmesini göster</string>
     <string name="show_stroboscope">Stroboskop düğmesini göster</string>
-    <string name="stroboscope">Stroboscope</string>
+    <string name="stroboscope">Stroboskop</string>
     <string name="show_sos">SOS düğmesini göster</string>
     <string name="turn_flashlight_on">Başlangıçta feneri aç</string>
     <!--

@@ -8,7 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Показать кнопку яркого экрана</string>
     <string name="show_stroboscope">Показать кнопку стробоскопа</string>
-    <string name="stroboscope">Stroboscope</string>
+    <string name="stroboscope">Стробоскоп</string>
     <string name="show_sos">Показать кнопку SOS</string>
     <string name="turn_flashlight_on">Включать фонарик при запуске</string>
     <!--
