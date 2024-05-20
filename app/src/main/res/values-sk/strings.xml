@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Zobraziť tlačidlo SOS</string>
     <string name="turn_flashlight_on">Aktivovať baterku po spustení</string>
+    <string name="show_on_locked_screen">Zobraziť na uzamknutej obrazovke</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

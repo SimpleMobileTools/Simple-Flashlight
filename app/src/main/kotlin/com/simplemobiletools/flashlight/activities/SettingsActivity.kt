@@ -51,6 +51,7 @@ class SettingsActivity : ComponentActivity() {
                             }
                         }
                         val turnFlashlightOnStartupFlow by preferences.turnFlashlightOnFlow.collectAsStateWithLifecycle(preferences.turnFlashlightOn)
+                        val showOnLockedScreenFlow by preferences.showOnLockedScreenFlow.collectAsStateWithLifecycle(preferences.showOnLockedScreen)
                         val forcePortraitModeFlow by preferences.forcePortraitModeFlow.collectAsStateWithLifecycle(preferences.forcePortraitMode)
                         val showBrightDisplayButtonFlow by preferences.brightDisplayFlow.collectAsStateWithLifecycle(preferences.brightDisplay)
                         val showSosButtonFlow by preferences.sosFlow.collectAsStateWithLifecycle(preferences.sos)
@@ -67,12 +68,16 @@ class SettingsActivity : ComponentActivity() {
                             },
                             onSetupLanguagePress = ::launchChangeAppLanguageIntent,
                             turnFlashlightOnStartupChecked = turnFlashlightOnStartupFlow,
+                            showOnLockedScreenChecked = showOnLockedScreenFlow,
                             forcePortraitModeChecked = forcePortraitModeFlow,
                             showBrightDisplayButtonChecked = showBrightDisplayButtonFlow,
                             showSosButtonChecked = showSosButtonFlow,
                             showStroboscopeButtonChecked = showStroboscopeButtonFlow,
                             onTurnFlashlightOnStartupPress = {
                                 preferences.turnFlashlightOn = it
+                            },
+                            onShowOnLockedScreenPress = {
+                                preferences.showOnLockedScreen = it
                             },
                             onForcePortraitModePress = {
                                 preferences.forcePortraitMode = it

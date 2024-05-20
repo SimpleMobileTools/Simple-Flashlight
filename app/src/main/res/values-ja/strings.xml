@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">SOSボタンを表示</string>
     <string name="turn_flashlight_on">起動時にフラッシュライトを点灯</string>
+    <string name="show_on_locked_screen">ロック画面に表示</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

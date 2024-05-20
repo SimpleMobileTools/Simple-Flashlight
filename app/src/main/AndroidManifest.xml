@@ -39,7 +39,8 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:showOnLockScreen="true" />
 
         <activity
             android:name=".activities.WidgetTorchConfigureActivity"

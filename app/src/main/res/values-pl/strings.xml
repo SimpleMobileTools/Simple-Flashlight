@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboskop</string>
     <string name="show_sos">Pokazuj przycisk SOS</string>
     <string name="turn_flashlight_on">Włączaj latarkę przy uruchomieniu</string>
+    <string name="show_on_locked_screen">Pokazuj na ekranie blokady</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
