@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Afficher un bouton « S.O.S. »</string>
     <string name="turn_flashlight_on">Allumer la lampe de poche au démarrage</string>
+    <string name="show_on_locked_screen">Afficher sur l\'écran de verrouillage</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

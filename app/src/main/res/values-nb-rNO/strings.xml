@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Vis SOS-knapp</string>
     <string name="turn_flashlight_on">Skru på lommelykt ved oppstart</string>
+    <string name="show_on_locked_screen">Vis på låseskjerm</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
