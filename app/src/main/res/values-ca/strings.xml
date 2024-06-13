@@ -8,7 +8,7 @@
     <!-- Settings -->
     <string name="show_bright_display">Mostra un botó de pantalla lluminosa</string>
     <string name="show_stroboscope">Mostra un botó d\'estroboscopi</string>
-    <string name="stroboscope">Stroboscope</string>
+    <string name="stroboscope">Estroboscopi</string>
     <string name="show_sos">Mostra un botó de SOS</string>
     <string name="turn_flashlight_on">Activa la llanterna a l\'inici</string>
     <!--
