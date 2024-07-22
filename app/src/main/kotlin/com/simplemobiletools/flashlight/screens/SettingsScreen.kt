@@ -52,6 +52,7 @@ internal fun GeneralSettingsSection(
     showDisplayLanguage: Boolean,
     displayLanguage: String,
     turnFlashlightOnStartupChecked: Boolean,
+    showOnLockedScreenChecked: Boolean,
     forcePortraitModeChecked: Boolean,
     showBrightDisplayButtonChecked: Boolean,
     showSosButtonChecked: Boolean,
@@ -59,6 +60,7 @@ internal fun GeneralSettingsSection(
     onUseEnglishPress: (Boolean) -> Unit,
     onSetupLanguagePress: () -> Unit,
     onTurnFlashlightOnStartupPress: (Boolean) -> Unit,
+    onShowOnLockedScreenPress: (Boolean) -> Unit,
     onForcePortraitModePress: (Boolean) -> Unit,
     onShowBrightDisplayButtonPress: (Boolean) -> Unit,
     onShowSosButtonPress: (Boolean) -> Unit,
@@ -82,6 +84,11 @@ internal fun GeneralSettingsSection(
         label = stringResource(id = R.string.turn_flashlight_on),
         initialValue = turnFlashlightOnStartupChecked,
         onChange = onTurnFlashlightOnStartupPress
+    )
+    SettingsCheckBoxComponent(
+        label = stringResource(id = R.string.show_on_locked_screen),
+        initialValue = showOnLockedScreenChecked,
+        onChange = onShowOnLockedScreenPress
     )
     SettingsCheckBoxComponent(
         label = stringResource(id = com.simplemobiletools.commons.R.string.force_portrait_mode),
@@ -123,6 +130,7 @@ private fun SettingsScreenPreview() {
                     showDisplayLanguage = true,
                     displayLanguage = "English",
                     turnFlashlightOnStartupChecked = false,
+                    showOnLockedScreenChecked = false,
                     forcePortraitModeChecked = true,
                     showBrightDisplayButtonChecked = true,
                     showSosButtonChecked = true,
@@ -130,6 +138,7 @@ private fun SettingsScreenPreview() {
                     onUseEnglishPress = {},
                     onSetupLanguagePress = {},
                     onTurnFlashlightOnStartupPress = {},
+                    onShowOnLockedScreenPress = {},
                     onForcePortraitModePress = {},
                     onShowBrightDisplayButtonPress = {},
                     onShowSosButtonPress = {},

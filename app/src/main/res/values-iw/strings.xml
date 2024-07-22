@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">הצג כפתור SOS</string>
     <string name="turn_flashlight_on">הדלק את הפנס בעת ההפעלה</string>
+    <string name="show_on_locked_screen">הצג במסך הנעילה</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

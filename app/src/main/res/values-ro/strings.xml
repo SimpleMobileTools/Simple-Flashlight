@@ -11,6 +11,7 @@
     <string name="stroboscope">Stroboscope</string>
     <string name="show_sos">Afișați un buton SOS</string>
     <string name="turn_flashlight_on">Porniți lanterna la pornire</string>
+    <string name="show_on_locked_screen">Arată pe ecranul de blocare</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

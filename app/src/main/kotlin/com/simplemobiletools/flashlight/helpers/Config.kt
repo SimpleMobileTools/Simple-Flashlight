@@ -33,6 +33,12 @@ class Config(context: Context) : BaseConfig(context) {
 
     val turnFlashlightOnFlow = ::turnFlashlightOn.asFlowNonNull()
 
+    var showOnLockedScreen: Boolean
+        get() = prefs.getBoolean(SHOW_ON_LOCKED_SCREEN, false)
+        set(showOnLockedScreen) = prefs.edit().putBoolean(SHOW_ON_LOCKED_SCREEN, showOnLockedScreen).apply()
+
+    val showOnLockedScreenFlow = ::showOnLockedScreen.asFlowNonNull()
+
     var stroboscopeProgress: Int
         get() = prefs.getInt(STROBOSCOPE_PROGRESS, 1000)
         set(stroboscopeProgress) = prefs.edit().putInt(STROBOSCOPE_PROGRESS, stroboscopeProgress).apply()

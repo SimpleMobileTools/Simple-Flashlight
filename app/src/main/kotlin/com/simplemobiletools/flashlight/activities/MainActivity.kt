@@ -11,7 +11,9 @@ import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -283,6 +285,7 @@ class MainActivity : ComponentActivity() {
 
         requestedOrientation = if (preferences.forcePortraitMode) ActivityInfo.SCREEN_ORIENTATION_PORTRAIT else ActivityInfo.SCREEN_ORIENTATION_SENSOR
         invalidateOptionsMenu()
+        applyShowOnLockedScreen(preferences.showOnLockedScreen)
 
         checkShortcuts()
     }
@@ -294,6 +297,7 @@ class MainActivity : ComponentActivity() {
             viewModel.hideTimer()
             (getSystemService(Context.ALARM_SERVICE) as AlarmManager).cancel(getShutDownPendingIntent())
         }
+        applyShowOnLockedScreen(preferences.showOnLockedScreen)
     }
 
     private fun launchSettings() {
@@ -562,6 +566,21 @@ class MainActivity : ComponentActivity() {
 
         fun enableStroboscope() {
             _stroboscopeActive.value = camera.toggleStroboscope()
+        }
+    }
+
+    private fun applyShowOnLockedScreen(flag: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            setShowWhenLocked(flag)
+            setTurnScreenOn(flag)
+        } else {
+            val windowFlags = WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+
+            if (flag)
+                window.addFlags(windowFlags)
+            else
+                window.clearFlags(windowFlags)
         }
     }
 }
