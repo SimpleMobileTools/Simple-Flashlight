@@ -103,7 +103,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.simple.tools.commons)
+    implementation(libs.simple.tools.commons) {
+        // JitPack can no longer build this transitive dependency (it relied on the
+        // discontinued JCenter/Bintray). The simplified app uses no ViewPager-based
+        // commons features, so it is safe to exclude.
+        exclude(group = "com.github.duolingo", module = "rtl-viewpager")
+    }
 
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.compose)

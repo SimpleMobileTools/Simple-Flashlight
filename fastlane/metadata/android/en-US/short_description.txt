@@ -1,1 +1,1 @@
-Led light controller with brightness control and customizable color, stroboscope
+A dead-simple flashlight: one button and a brightness slider, in the Peitsman house style.

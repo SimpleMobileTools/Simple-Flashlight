@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="default_widget_bg_color">#FFF57C00</color>
+    <!-- Peitsman huisstijl (Brand Identity Guidelines v1.5) -->
+    <color name="peitsman_red">#FFFF3C00</color>
+    <color name="peitsman_smoky_black">#FF141312</color>
+    <color name="peitsman_off_white">#FFF6F3F1</color>
+
+    <color name="default_widget_bg_color">#FFFF3C00</color>
 </resources>

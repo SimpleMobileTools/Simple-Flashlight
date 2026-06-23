@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Llanterna</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Ha fallat l\'accés a la càmera</string>
     <string name="camera_permission">És necessari el permís de la càmera per a un efecte estroboscòpic adequat</string>
     <string name="bright_display">Pantalla lluminosa</string>

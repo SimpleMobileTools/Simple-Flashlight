@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Простий Ліхтарик</string>
-    <string name="app_launcher_name">Ліхтарик</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Не вдалося отримати доступ до камери</string>
     <string name="camera_permission">Дозвіл на доступ до камери необхідний для створення ефекту стробоскопа</string>
     <string name="bright_display">Яскравий дисплей</string>

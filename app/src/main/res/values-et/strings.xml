@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lihtne taskulamp</string>
-    <string name="app_launcher_name">Taskulamp</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Kaamera liidestamine ei õnnestunud</string>
     <string name="camera_permission">Toimiva stroboskoopilise efekti jaoks on vajalik kaamera kasutamise luba</string>
     <string name="bright_display">Kirgas ekraan</string>

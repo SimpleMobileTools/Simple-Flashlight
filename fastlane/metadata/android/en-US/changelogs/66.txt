@@ -1,1 +1,4 @@
- * Added some UI and translation improvements
+* Rebranded to the Peitsman house style with a brand-red icon
+* Simplified to just an on/off button and a brightness slider
+* Removed stroboscope, SOS, bright display, sleep timer, widget, tile and settings
+* Now requests only the flashlight permission

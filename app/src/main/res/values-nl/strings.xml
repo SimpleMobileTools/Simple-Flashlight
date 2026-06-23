@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Eenvoudige Zaklamp</string>
+    <string name="app_name">Peitsman Flashlight</string>
     <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Toegang tot de camera geweigerd</string>
     <string name="camera_permission">De permissie Camera is nodig voor het stroboscoopeffect</string>

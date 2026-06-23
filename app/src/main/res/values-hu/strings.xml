@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Egyszerű zseblámpa</string>
-    <string name="app_launcher_name">Zseblámpa</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">A kamera megszerzése sikertelen</string>
     <string name="camera_permission">A Kamera engedély szükséges a megfelelő stroboszkóp hatáshoz</string>
     <string name="bright_display">Fényes kijelző</string>

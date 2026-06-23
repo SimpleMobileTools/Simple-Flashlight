@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Simple Flashlight</string>
-    <string name="app_launcher_name">Flashlight</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">فشل الحصول على الكاميرا</string>
     <string name="camera_permission">الحصول على إذن تصوير ضروري للتأثيرات</string>
     <string name="bright_display">شاشة ساطعة</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Απλός φακός</string>
-    <string name="app_launcher_name">Φακός</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Η εύρεση της κάμερας απέτυχε</string>
     <string name="camera_permission">Χρειάζεται άδεια χρήσης της κάμερας για τη σωστή λειτουργία στροβοσκοπίου</string>
     <string name="bright_display">Φωτεινή οθόνη</string>

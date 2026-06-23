@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">简易手电筒</string>
-    <string name="app_launcher_name">手电筒</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">获取相机失败</string>
     <string name="camera_permission">相机权限对于正确的频闪仪效果是必须的</string>
     <string name="bright_display">高亮屏幕</string>

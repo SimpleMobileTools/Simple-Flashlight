@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Prosta latarka</string>
-    <string name="app_launcher_name">Latarka</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Nie udało się uzyskać dostępu do aparatu</string>
     <string name="camera_permission">Dostęp do aparatu jest niezbędny dla prawidłowego efektu stroboskopowego</string>
     <string name="bright_display">Jasny wyświetlacz</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Schlichte Taschenlampe</string>
-    <string name="app_launcher_name">Taschenlampe</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Beanspruchen der Kamera fehlgeschlagen</string>
     <string name="camera_permission">Kameraberechtigung ist für den Stroboskopeffekt erforderlich</string>
     <string name="bright_display">Heller Bildschirm</string>

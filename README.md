@@ -1,38 +1,43 @@
-# Simple Flashlight
+# Peitsman Flashlight
+
 <img alt="Logo" src="graphics/icon.png" width="120" />
 
-A clean flashlight with an extra bright display, customizable stroboscope with strobe light function and a predefined SOS mode. 
+A deliberately simple flashlight app in the Peitsman house style. No menus, no clutter — just one big button to toggle your device's LED, and a slider to set the brightness.
 
-This quick start led flashlight is light on your device and works as a real led light when in dark. Using this slash light, you can easily work in different circumstances and this quick start led flashlight can help you when you are in a dire situation.
+## Features
 
-All these functions can be hugely helpful under certain circumstances. Whether you are wandering in dark and need a led light to see the way, or you have to find something in a a low light place, this quick start flash light can help you in all the possible circumstances. The strobe light in this app can help you when you are in need of help. The quick start flash led light can help calling for rescue if you need it.
+- **One-tap on/off** — a single large button turns the flashlight on and off.
+- **Brightness control** — a slider adjusts the LED brightness on devices that support it (Android 13+).
+- **Nothing else** — no stroboscope, no SOS, no bright display, no widget, no settings, no quick-settings tile. The app does one thing well.
 
-The Bright display can have its color changed, opening a new world of possible uses. It can come handy in case you want to see your wider proximity without blinding yourself. With different colors, you can use this led light when you are with friends and want to have a party. Or you can use this feature to call someone for help according to the person. 
+## Privacy & permissions
 
-The stroboscope can have its frequency changed, ranging from really fast blinking to occasional ones. This quick start app can be customized according to your needs. You can change all the features of of this app according to your needs without any problem.
+- Requires only the `FLASHLIGHT` permission and a device with a camera flash.
+- No internet access, no ads, no tracking, no account.
 
-If this free flash light is turned on via the app (not widget), it will prevent the device from falling asleep. The strong torch can optionally turn on at launching the app, but it isn't mandatory.
+## Branding
 
-Comes with a 1x1 widget with customizable color and transparency. This widget can help you in quick start your led light app whenever you need it.
+The app follows the **Peitsman Brand Identity Guidelines (v1.5)**. The launcher icon places the flashlight glyph on the Peitsman brand red (`#FF3C00`, PMS 2028 C). Supporting brand colors: smoky black `#141312` and off-white `#F6F3F1`.
 
-It comes with material design and dark theme by default, provides great user experience for easy usage. The lack of internet access gives you more privacy, security and stability than other apps.
+## Building
 
-Contains no ads or unnecessary permissions. It is fully opensource, provides customizable colors.
+The project is a standard Gradle Android build. You need a **JDK 17 that includes the `jmods` directory** (the slimmed-down "nomod" JBR that ships with Android Studio will fail the `jlink`/`JdkImageTransform` step).
 
-<a href="https://f-droid.org/packages/com.simplemobiletools.flashlight">Get it on F-Droid</a>
+```bash
+# Point at a full JDK 17 (with jmods)
+export JAVA_HOME=/path/to/jdk-17
 
-Support us:  
-IBAN: SK4083300000002000965231  
-Bitcoin: 19Hc8A7sWGud8sP19VXDC5a5j28UyJfpyJ  
-Ethereum: 0xB7a2DD6f2408Bce77334655CF5E7639aE31feb30  
-Litecoin: LYACbHTKaM9ZubKQGxJ4NRyVy1gHUuztRP  
-Bitcoin Cash: qz6dvmhq5vzkcsypxpp2mnur30muxdah4gvulx3y85  
-Tether: 0x250f9cC32863E59b87037a14955Ed64F879653F0  
-<a href="https://paypal.me/SimpleMobileTools?country.x=SK&locale.x=en_US">PayPal</a>  
-<a href="https://www.patreon.com/tiborkaputa">Patreon</a>
+# Debug APK (no signing required)
+./gradlew assembleCoreDebug
 
-<div style="display:flex;">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.jpeg" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.jpeg" width="30%">
-<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.jpeg" width="30%">
-</div>
+# Release APK (requires keystore.properties, see keystore.properties_sample)
+./gradlew assembleCoreRelease
+```
+
+The debug APK is written to `app/build/outputs/apk/core/debug/`.
+
+Product flavors: `core`, `fdroid`, `prepaid`. Build types: `debug` and `release`.
+
+## Credits
+
+Based on the open-source [Simple Flashlight](https://github.com/SimpleMobileTools/Simple-Flashlight) by Simple Mobile Tools, simplified and rebranded for Peitsman. Released under the GPL-3.0 license — see [LICENSE](LICENSE).

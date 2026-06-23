@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Простой фонарик</string>
-    <string name="app_launcher_name">Фонарик</string>
+    <string name="app_name">Peitsman Flashlight</string>
+    <string name="app_launcher_name">Zaklamp</string>
     <string name="camera_error">Не удалось получить доступ к камере</string>
     <string name="camera_permission">Разрешение на доступ к камере необходимо для создания эффекта стробоскопа</string>
     <string name="bright_display">Яркий экран</string>

@@ -1,6 +1,15 @@
 Changelog
 ==========
 
+Peitsman Flashlight *(2026-06-23)*
+----------------------------
+
+ * Rebranded to the Peitsman house style (Brand Identity Guidelines v1.5), with the brand-red launcher icon
+ * Stripped the app down to a single flashlight on/off button and a brightness slider
+ * Removed the stroboscope, SOS, bright display, sleep timer, home-screen widget, quick-settings tile, settings and about screens
+ * Removed the icon-color picker and all unused launcher-icon color variants
+ * Now requests only the FLASHLIGHT permission
+
 Version 5.10.1 *(2023-10-18)*
 ----------------------------
 
